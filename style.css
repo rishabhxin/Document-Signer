@@ -202,3 +202,132 @@ dialog h2 {
   gap: 8px;
   margin-top: 14px;
 }
+
+
+/* Responsive layout */
+html, body {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+header {
+  gap: 10px;
+  align-items: flex-start;
+}
+
+header h1 {
+  flex: 0 0 100%;
+}
+
+.actions {
+  width: 100%;
+}
+
+#pages {
+  width: 100%;
+  min-width: 0;
+  overflow: visible;
+}
+
+.page {
+  max-width: 100%;
+  height: auto;
+}
+
+.page canvas.render {
+  width: 100%;
+  height: auto;
+}
+
+dialog {
+  width: min(540px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  margin: auto;
+}
+
+@media (max-width: 600px) {
+  header {
+    position: relative;
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .actions .btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 8px;
+    font-size: 14px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .actions #downloadBtn {
+    grid-column: 1 / -1;
+  }
+
+  main {
+    padding: 14px 8px 40px;
+  }
+
+  #hint {
+    margin: 12px 4px 18px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  #pages {
+    gap: 12px;
+  }
+
+  .page {
+    max-width: 100%;
+  }
+
+  .item .del {
+    width: 24px;
+    height: 24px;
+    top: -12px;
+    right: -12px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .item .rz {
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    bottom: -8px;
+  }
+
+  dialog {
+    padding: 14px;
+  }
+
+  .tab canvas {
+    height: auto;
+  }
+
+  .dialog-actions .btn {
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 360px) {
+  .actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .actions .btn {
+    font-size: 13px;
+  }
+}

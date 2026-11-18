@@ -36,8 +36,13 @@
     const pdf = await pdfjsLib.getDocument({ data: pdfBytes.slice() }).promise;
     for (let i = 1; i <= pdf.numPages; i++) {
       const page = await pdf.getPage(i);
-      const vp = page.getViewport({ scale: SCALE });
+      // Fit PDF pages to the available screen width on phones.
+      const baseViewport = page.getViewport({ scale: 1 });
+      const availableWidth = Math.max(280, window.innerWidth - 32);
+      const pageScale = Math.min(SCALE, availableWidth / baseViewport.width);
+      const vp = page.getViewport({ scale: pageScale });
       const wrap = document.createElement("div");
+      wrap.dataset.scale = pageScale;
       wrap.className = "page";
       wrap.dataset.page = i - 1;
       wrap.style.width = vp.width + "px";
@@ -82,7 +87,14 @@
     const x = ev.clientX - rect.left;
     const y = ev.clientY - rect.top;
     const kind = armed;
-    const item = { id: nextId++, page: +wrap.dataset.page, kind, x, y };
+    const item = {
+      id: nextId++,
+      page: +wrap.dataset.page,
+      scale: +wrap.dataset.scale,
+      kind,
+      x,
+      y,
+    };
     if (kind === "sig") {
       item.w = 180;
       item.h = 60;
@@ -330,10 +342,11 @@
     for (const it of items) {
       const page = pages[it.page];
       const { height } = page.getSize();
-      const x = it.x / SCALE,
-        w = it.w / SCALE,
-        h = it.h / SCALE;
-      const y = height - it.y / SCALE - h;
+      const pageScale = it.scale || SCALE;
+      const x = it.x / pageScale,
+        w = it.w / pageScale,
+        h = it.h / pageScale;
+      const y = height - it.y / pageScale - h;
       if (it.kind === "sig") {
         const png = await doc.embedPng(it.data);
         page.drawImage(png, { x, y, width: w, height: h });
