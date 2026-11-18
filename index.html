@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
   </head>
   <body>
     <header>
@@ -37,6 +40,14 @@
       <div id="pages"></div>
     </main>
 
+    <footer class="site-footer">
+      <span>Document Signer · Free document signing</span>
+      <span class="visitor-count" aria-live="polite">
+        <span class="visitor-dot" aria-hidden="true"></span>
+        Total visits: <strong id="totalVisitors">—</strong>
+      </span>
+    </footer>
+
     <dialog id="sigDialog">
       <h2>Create signature</h2>
       <div class="tabs">
@@ -63,5 +74,6 @@
     </dialog>
 
     <script src="app.js"></script>
+    <script src="visitor-counter.js"></script>
   </body>
 </html>

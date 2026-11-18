@@ -331,3 +331,44 @@ dialog {
     font-size: 13px;
   }
 }
+
+
+/* Footer and total visitor counter */
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 28px;
+  padding: 18px 20px;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  color: #6b7280;
+  font-size: 13px;
+}
+.visitor-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #374151;
+}
+.visitor-count strong {
+  color: #111827;
+  font-variant-numeric: tabular-nums;
+}
+.visitor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
+  display: inline-block;
+}
+@media (max-width: 600px) {
+  .site-footer {
+    justify-content: center;
+    text-align: center;
+    padding: 16px 12px;
+    font-size: 12px;
+  }
+}
