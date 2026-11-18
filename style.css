@@ -1,22 +1,33 @@
+
 :root {
   --bg: #f3f4f6;
   --fg: #111827;
   --accent: #2563eb;
   --border: #d1d5db;
 }
+
 * {
   box-sizing: border-box;
 }
+
+html,
 body {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
   margin: 0;
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--fg);
 }
+
 header {
   position: sticky;
   top: 0;
@@ -25,20 +36,25 @@ header {
   border-bottom: 1px solid var(--border);
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
+  gap: 10px;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 10px 16px;
 }
+
 h1 {
   font-size: 18px;
   margin: 0;
+  flex: 0 0 100%;
 }
+
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  width: 100%;
 }
+
 .btn {
   background: #fff;
   border: 1px solid var(--border);
@@ -47,46 +63,67 @@ h1 {
   font-size: 14px;
   cursor: pointer;
 }
+
 .btn:hover:not(:disabled) {
   border-color: var(--accent);
 }
+
 .btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
+
 .btn.primary {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
 }
+
 .btn.armed {
   outline: 2px solid var(--accent);
   background: #eff6ff;
 }
+
+/* Main content grows to push footer down */
 main {
+  flex: 1 0 auto;
+  width: 100%;
   padding: 20px 12px 60px;
 }
+
 #hint {
   text-align: center;
   color: #6b7280;
 }
+
 #pages {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  width: 100%;
+  min-width: 0;
+  overflow: visible;
 }
+
 .page {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  height: auto;
 }
+
 .page canvas.render {
   display: block;
+  width: 100%;
+  height: auto;
 }
+
 .page.placing {
   cursor: crosshair;
 }
+
 .item {
   position: absolute;
   border: 1px dashed var(--accent);
@@ -94,12 +131,14 @@ main {
   touch-action: none;
   user-select: none;
 }
+
 .item img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   pointer-events: none;
 }
+
 .item .txt {
   width: 100%;
   height: 100%;
@@ -112,6 +151,7 @@ main {
   white-space: nowrap;
   overflow: hidden;
 }
+
 .item .del {
   position: absolute;
   top: -10px;
@@ -127,6 +167,7 @@ main {
   padding: 0;
   cursor: pointer;
 }
+
 .item .rz {
   position: absolute;
   right: -6px;
@@ -136,25 +177,32 @@ main {
   background: var(--accent);
   cursor: nwse-resize;
 }
+
 dialog {
   border: none;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  max-width: 540px;
+  width: min(540px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  margin: auto;
 }
+
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.4);
 }
+
 dialog h2 {
   margin: 0 0 12px;
   font-size: 18px;
 }
+
 .tabs {
   display: flex;
   gap: 4px;
   margin-bottom: 10px;
 }
+
 .tabs button {
   flex: 1;
   padding: 8px;
@@ -163,11 +211,13 @@ dialog h2 {
   cursor: pointer;
   border-radius: 6px;
 }
+
 .tabs button.active {
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
 }
+
 .tab canvas {
   width: 100%;
   max-width: 480px;
@@ -177,6 +227,7 @@ dialog h2 {
   display: block;
   touch-action: none;
 }
+
 .tab input[type="text"],
 #typedName {
   width: 100%;
@@ -186,6 +237,7 @@ dialog h2 {
   border: 1px solid var(--border);
   border-radius: 6px;
 }
+
 .link {
   background: none;
   border: none;
@@ -193,9 +245,11 @@ dialog h2 {
   cursor: pointer;
   padding: 6px 0;
 }
+
 .hidden {
   display: none;
 }
+
 .dialog-actions {
   display: flex;
   justify-content: flex-end;
@@ -203,49 +257,44 @@ dialog h2 {
   margin-top: 14px;
 }
 
-
-/* Responsive layout */
-html, body {
+/* Footer */
+.site-footer {
   width: 100%;
-  min-width: 0;
-  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: auto;
+  flex-shrink: 0;
+  padding: 18px 20px;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  color: #6b7280;
+  font-size: 13px;
 }
 
-header {
-  gap: 10px;
-  align-items: flex-start;
+.visitor-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #374151;
 }
 
-header h1 {
-  flex: 0 0 100%;
+.visitor-count strong {
+  color: #111827;
+  font-variant-numeric: tabular-nums;
 }
 
-.actions {
-  width: 100%;
+.visitor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
+  display: inline-block;
 }
 
-#pages {
-  width: 100%;
-  min-width: 0;
-  overflow: visible;
-}
-
-.page {
-  max-width: 100%;
-  height: auto;
-}
-
-.page canvas.render {
-  width: 100%;
-  height: auto;
-}
-
-dialog {
-  width: min(540px, calc(100vw - 24px));
-  max-width: calc(100vw - 24px);
-  margin: auto;
-}
-
+/* Mobile responsive */
 @media (max-width: 600px) {
   header {
     position: relative;
@@ -289,10 +338,6 @@ dialog {
     gap: 12px;
   }
 
-  .page {
-    max-width: 100%;
-  }
-
   .item .del {
     width: 24px;
     height: 24px;
@@ -320,6 +365,13 @@ dialog {
   .dialog-actions .btn {
     min-height: 42px;
   }
+
+  .site-footer {
+    justify-content: center;
+    text-align: center;
+    padding: 16px 12px;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -329,46 +381,5 @@ dialog {
 
   .actions .btn {
     font-size: 13px;
-  }
-}
-
-
-/* Footer and total visitor counter */
-.site-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px 16px;
-  margin-top: 28px;
-  padding: 18px 20px;
-  background: #fff;
-  border-top: 1px solid var(--border);
-  color: #6b7280;
-  font-size: 13px;
-}
-.visitor-count {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: #374151;
-}
-.visitor-count strong {
-  color: #111827;
-  font-variant-numeric: tabular-nums;
-}
-.visitor-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #16a34a;
-  display: inline-block;
-}
-@media (max-width: 600px) {
-  .site-footer {
-    justify-content: center;
-    text-align: center;
-    padding: 16px 12px;
-    font-size: 12px;
   }
 }
