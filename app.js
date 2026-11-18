@@ -49,13 +49,26 @@
       wrap.style.height = vp.height + "px";
       const canvas = document.createElement("canvas");
       canvas.className = "render";
-      canvas.width = vp.width;
-      canvas.height = vp.height;
+
+      // Render at the device's pixel density so PDF text and fine lines
+      // stay sharp on Retina/high-DPI phones and desktop displays.
+      const outputScale = Math.min(window.devicePixelRatio || 1, 3);
+      canvas.width = Math.ceil(vp.width * outputScale);
+      canvas.height = Math.ceil(vp.height * outputScale);
+
+      // Keep the displayed size in CSS pixels; only the backing bitmap
+      // gets the higher resolution.
+      canvas.style.width = vp.width + "px";
+      canvas.style.height = vp.height + "px";
+
       wrap.appendChild(canvas);
       pagesEl.appendChild(wrap);
       await page.render({
-        canvasContext: canvas.getContext("2d"),
+        canvasContext: canvas.getContext("2d", { alpha: false }),
         viewport: vp,
+        transform: outputScale === 1
+          ? null
+          : [outputScale, 0, 0, outputScale, 0, 0],
       }).promise;
       wrap.addEventListener("click", (ev) => onPageClick(ev, wrap));
     }
