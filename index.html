@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document Signer</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Document Signer</h1>
+      <div class="actions">
+        <label class="btn"
+          >Open PDF<input
+            type="file"
+            id="fileInput"
+            accept="application/pdf"
+            hidden
+        /></label>
+        <button class="btn" id="sigBtn" disabled>Create signature</button>
+        <button class="btn" id="addSigBtn" disabled>Place signature</button>
+        <button class="btn" id="addTextBtn" disabled>Add text</button>
+        <button class="btn" id="addDateBtn" disabled>Add date</button>
+        <button class="btn primary" id="downloadBtn" disabled>
+          Download signed PDF
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <p id="hint">
+        Open a PDF to begin. Everything runs in your browser; files are never
+        uploaded.
+      </p>
+      <div id="pages"></div>
+    </main>
+
+    <dialog id="sigDialog">
+      <h2>Create signature</h2>
+      <div class="tabs">
+        <button data-tab="draw" class="active">Draw</button>
+        <button data-tab="type">Type</button>
+        <button data-tab="image">Upload</button>
+      </div>
+      <div class="tab" id="tab-draw">
+        <canvas id="pad" width="480" height="160"></canvas>
+        <button id="clearPad" class="link">Clear</button>
+      </div>
+      <div class="tab hidden" id="tab-type">
+        <input id="typedName" placeholder="Type your name" maxlength="40" />
+        <canvas id="typedPreview" width="480" height="160"></canvas>
+      </div>
+      <div class="tab hidden" id="tab-image">
+        <input type="file" id="sigImage" accept="image/png,image/jpeg" />
+        <canvas id="imgPreview" width="480" height="160"></canvas>
+      </div>
+      <div class="dialog-actions">
+        <button class="btn" id="cancelSig">Cancel</button>
+        <button class="btn primary" id="saveSig">Use signature</button>
+      </div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
