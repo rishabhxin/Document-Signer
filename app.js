@@ -1,12 +1,12 @@
 (() => {
   "use strict";
+
   const { PDFDocument, StandardFonts, rgb } = PDFLib;
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
   const SCALE = 1.4;
-  const MAX_BYTES = 50 * 1024 * 1024; // keep in sync with the "up to 50 MB" copy
-  const MIN_PROCESS_MS = 700; // lets the processing animation register on fast files
+  const MAX_BYTES = 50 * 1024 * 1024;
   const $ = (id) => document.getElementById(id);
   const pagesEl = $("pages");
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
@@ -14,37 +14,30 @@
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), Math.max(lo, hi));
 
-  let pdfBytes = null; // original file bytes
+  let pdfBytes = null;
   let fileName = "document.pdf";
-  let signatureDataUrl = null; // PNG data URL
-  let sigSize = { w: 3, h: 1 }; // pixel size of the trimmed signature
+  let lastSignedBlobUrl = null;
+  let lastSignedName = "document-signed.pdf";
+  let signatureDataUrl = null;
+  let sigSize = { w: 3, h: 1 };
   let armed = null; // 'sig' | 'text' | 'date' | null
-  let items = []; // placed elements
+  let items = [];
   let nextId = 1;
   let selectedId = null;
   let loading = false;
   let pageEls = [];
-  const nodes = new Map(); // item id -> { el, place }
+  const nodes = new Map();
 
-  const buttons = ["sigBtn", "addSigBtn", "addTextBtn", "addDateBtn", "downloadBtn"].map($);
-  const setEnabled = (on) => buttons.forEach((b) => (b.disabled = !on));
+  const editorBtns = ["sigBtn", "addSigBtn", "addTextBtn", "addDateBtn", "downloadBtn"].map($);
+  const setEnabled = (on) => editorBtns.forEach((b) => (b.disabled = !on));
 
-  /* ---------- Theme ---------- */
-  const root = document.documentElement;
-  const themeBtn = $("themeToggle");
-  themeBtn.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
-  themeBtn.addEventListener("click", () => {
-    const next = root.dataset.theme === "dark" ? "light" : "dark";
-    root.dataset.theme = next;
-    themeBtn.setAttribute("aria-pressed", String(next === "dark"));
-    document
-      .querySelector('meta[name="theme-color"]')
-      .setAttribute("content", next === "dark" ? "#121110" : "#f5f2eb");
-    try { localStorage.setItem("opensign-theme", next); } catch (_) {}
-  });
+  /* ---------- Views, Toast & Modals ---------- */
+  const views = {
+    home: $("homeView"),
+    processing: $("processView"),
+    editor: $("editorView"),
+  };
 
-  /* ---------- Views, toast, dialogs ---------- */
-  const views = { home: $("homeView"), processing: $("processView"), editor: $("editorView") };
   function setView(name) {
     document.body.dataset.view = name;
     for (const [key, el] of Object.entries(views)) {
@@ -73,7 +66,10 @@
   function closeDlg(d) {
     return new Promise((resolve) => {
       if (!d.open) return resolve();
-      if (reduceMotion.matches) { d.close(); return resolve(); }
+      if (reduceMotion.matches) {
+        d.close();
+        return resolve();
+      }
       d.classList.add("closing");
       const done = () => {
         if (!d.classList.contains("closing")) return;
@@ -82,19 +78,21 @@
         resolve();
       };
       d.addEventListener("animationend", done, { once: true });
-      setTimeout(done, 400);
+      setTimeout(done, 300);
     });
   }
+
   document.querySelectorAll("dialog").forEach((d) =>
     d.addEventListener("cancel", (e) => {
       e.preventDefault();
       closeDlg(d);
-    }),
+    })
   );
 
-  /* ---------- Processing status ---------- */
+  /* ---------- Processing Status ---------- */
   const statusEl = $("processStatus");
   const detailEl = $("processDetail");
+
   function setStatus(text, detail) {
     if (text != null && statusEl.textContent !== text) {
       statusEl.textContent = text;
@@ -104,26 +102,28 @@
     }
     if (detail != null) detailEl.textContent = detail;
   }
-  const fmtSize = (b) => (b >= 1048576 ? (b / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(b / 1024)) + " KB");
 
-  /* ---------- Hint ---------- */
+  const fmtSize = (b) =>
+    b >= 1048576 ? (b / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(b / 1024)) + " KB";
+
+  /* ---------- Contextual Guidance ---------- */
   function updateHint() {
     const verb = coarse.matches ? "Tap" : "Click";
     let msg = "";
     if (pdfBytes) {
       if (armed) {
-        const what = { sig: "signature", text: "text", date: "date" }[armed];
-        msg = `${verb} on the page to place your ${what}.`;
+        const label = { sig: "signature", text: "text", date: "date" }[armed];
+        msg = `${verb} anywhere on the page to place your ${label}.`;
       } else if (!items.length) {
         msg = signatureDataUrl
-          ? "Place your signature, or add text or a date."
-          : "Start by creating your signature.";
+          ? "Select Place signature, or add text or a date."
+          : "Select Create signature to begin.";
       }
     }
     $("hint").textContent = msg;
   }
 
-  /* ---------- Load & render PDF ---------- */
+  /* ---------- Load & Render PDF ---------- */
   const isPdfFile = (f) => f && (f.type === "application/pdf" || /\.pdf$/i.test(f.name));
 
   function closeDocument() {
@@ -137,33 +137,47 @@
     select(null);
     setEnabled(false);
     $("pager").hidden = true;
+    if (lastSignedBlobUrl) {
+      URL.revokeObjectURL(lastSignedBlobUrl);
+      lastSignedBlobUrl = null;
+    }
   }
 
   async function loadFile(file) {
     if (!file || loading) return;
-    if (!isPdfFile(file)) return toast("That doesn't look like a PDF. Please choose a .pdf file.", "error");
-    if (file.size > MAX_BYTES) return toast("That file is larger than 50 MB.", "error");
+    if (!isPdfFile(file)) {
+      return toast("Please choose a valid PDF file (.pdf).", "error");
+    }
+    if (file.size > MAX_BYTES) {
+      return toast("File exceeds the 50 MB limit.", "error");
+    }
 
     loading = true;
-    const started = performance.now();
+    const dz = $("dropzone");
+    dz.classList.add("is-reacting");
+    if (!reduceMotion.matches) await sleep(180);
+    dz.classList.remove("is-reacting");
+
     closeDocument();
     setView("processing");
-    setStatus("Receiving your document...", `${file.name} · ${fmtSize(file.size)}`);
+    setStatus("Opening your document...", `${file.name} · ${fmtSize(file.size)}`);
 
     try {
       const bytes = new Uint8Array(await file.arrayBuffer());
-      setStatus("Preparing your pages...");
+      if (!reduceMotion.matches) await sleep(220);
+
+      setStatus("Preparing your pages...", `${file.name} · ${fmtSize(file.size)}`);
       const pdf = await pdfjsLib.getDocument({ data: bytes.slice() }).promise;
 
       for (let i = 1; i <= pdf.numPages; i++) {
-        setStatus(null, `${file.name} · page ${i} of ${pdf.numPages}`);
+        setStatus(null, `${file.name} · Page ${i} of ${pdf.numPages}`);
         const page = await pdf.getPage(i);
-        // Fit PDF pages to the available screen width on phones.
         const baseViewport = page.getViewport({ scale: 1 });
-        const gutter = window.innerWidth < 640 ? 28 : 96;
+        const gutter = window.innerWidth < 640 ? 24 : 96;
         const availableWidth = Math.max(280, document.documentElement.clientWidth - gutter);
         const pageScale = Math.min(SCALE, availableWidth / baseViewport.width);
         const vp = page.getViewport({ scale: pageScale });
+
         const wrap = document.createElement("div");
         wrap.dataset.scale = pageScale;
         wrap.className = "page";
@@ -172,10 +186,9 @@
         wrap.setAttribute("aria-label", `Page ${i} of ${pdf.numPages}`);
         wrap.style.width = vp.width + "px";
         wrap.style.height = vp.height + "px";
+
         const canvas = document.createElement("canvas");
         canvas.className = "render";
-
-        // Render at the device's pixel density so text stays sharp on high-DPI screens.
         const outputScale = Math.min(window.devicePixelRatio || 1, 3);
         canvas.width = Math.ceil(vp.width * outputScale);
         canvas.height = Math.ceil(vp.height * outputScale);
@@ -185,27 +198,27 @@
         wrap.appendChild(canvas);
         pagesEl.appendChild(wrap);
         pageEls.push(wrap);
+
         await page.render({
           canvasContext: canvas.getContext("2d", { alpha: false }),
           viewport: vp,
           transform: outputScale === 1 ? null : [outputScale, 0, 0, outputScale, 0, 0],
         }).promise;
+
         wrap.addEventListener("click", (ev) => onPageClick(ev, wrap));
       }
 
-      setStatus("Almost ready...", `${file.name} · ${fmtSize(file.size)}`);
       pdfBytes = bytes;
       fileName = file.name;
       items = [];
       setEnabled(true);
       $("addSigBtn").disabled = !signatureDataUrl;
-      $("deleteBtn").disabled = true;
       $("docName").textContent = file.name;
       $("docPages").textContent = pdf.numPages === 1 ? "1 page" : `${pdf.numPages} pages`;
       pdf.destroy?.();
 
-      const wait = reduceMotion.matches ? 0 : MIN_PROCESS_MS - (performance.now() - started);
-      if (wait > 0) await sleep(wait);
+      setStatus("Ready to sign.", `${file.name} · ${pdf.numPages === 1 ? "1 page" : `${pdf.numPages} pages`}`);
+      if (!reduceMotion.matches) await sleep(340);
 
       setView("editor");
       updateHint();
@@ -216,9 +229,9 @@
       setView("home");
       toast(
         err && err.name === "PasswordException"
-          ? "This PDF is password-protected. Remove the password and try again."
-          : "We couldn't read that PDF. It may be damaged or unsupported.",
-        "error",
+          ? "This PDF is password-protected. Please unlock it and try again."
+          : "Unable to open this PDF. The file may be corrupted or unsupported.",
+        "error"
       );
     } finally {
       loading = false;
@@ -227,30 +240,33 @@
 
   $("fileInput").addEventListener("change", (e) => {
     const file = e.target.files[0];
-    e.target.value = ""; // allow picking the same file again
+    e.target.value = "";
     loadFile(file);
   });
 
-  /* ---------- Drag and drop ---------- */
+  /* ---------- Drag and Drop ---------- */
   const dz = $("dropzone");
   const hasFiles = (e) => e.dataTransfer && Array.from(e.dataTransfer.types || []).includes("Files");
   let dzDepth = 0;
+
   dz.addEventListener("dragenter", (e) => {
     if (!hasFiles(e)) return;
     dzDepth++;
     dz.classList.add("is-over");
   });
+
   dz.addEventListener("dragleave", (e) => {
     if (!hasFiles(e)) return;
     dzDepth = Math.max(0, dzDepth - 1);
     if (!dzDepth) dz.classList.remove("is-over");
   });
-  // Stop the browser from navigating to a PDF dropped anywhere; accept drops on the home view.
+
   window.addEventListener("dragover", (e) => {
     if (!hasFiles(e)) return;
     e.preventDefault();
     e.dataTransfer.dropEffect = document.body.dataset.view === "home" ? "copy" : "none";
   });
+
   window.addEventListener("drop", (e) => {
     if (!hasFiles(e)) return;
     e.preventDefault();
@@ -261,8 +277,9 @@
     loadFile(files.find(isPdfFile) || files[0]);
   });
 
-  /* ---------- Page navigation ---------- */
+  /* ---------- Multi-page Navigation ---------- */
   let currentPage = 0;
+
   function updatePager() {
     if (!pageEls.length) return;
     const line = window.innerHeight * 0.4;
@@ -276,10 +293,12 @@
     $("pagePrev").disabled = cur === 0;
     $("pageNext").disabled = cur === pageEls.length - 1;
   }
+
   function initPager() {
     $("pager").hidden = pageEls.length < 2;
     updatePager();
   }
+
   let pagerTick = false;
   window.addEventListener(
     "scroll",
@@ -291,18 +310,21 @@
         updatePager();
       });
     },
-    { passive: true },
+    { passive: true }
   );
+
   const goToPage = (i) =>
     pageEls[clamp(i, 0, pageEls.length - 1)]?.scrollIntoView({
       behavior: reduceMotion.matches ? "auto" : "smooth",
       block: "start",
     });
+
   $("pagePrev").onclick = () => goToPage(currentPage - 1);
   $("pageNext").onclick = () => goToPage(currentPage + 1);
 
-  /* ---------- Arming placement ---------- */
+  /* ---------- Tool Selection & Active States ---------- */
   const armMap = { sig: "addSigBtn", text: "addTextBtn", date: "addDateBtn" };
+
   function arm(kind) {
     armed = armed === kind ? null : kind;
     Object.values(armMap).forEach((id) => {
@@ -316,6 +338,7 @@
     }
     updateHint();
   }
+
   $("addSigBtn").onclick = () => arm("sig");
   $("addTextBtn").onclick = () => arm("text");
   $("addDateBtn").onclick = () => arm("date");
@@ -323,19 +346,23 @@
   function select(id) {
     selectedId = id;
     nodes.forEach((n, k) => n.el.classList.toggle("selected", k === id));
-    $("deleteBtn").disabled = id == null;
+    const delBtn = $("deleteBtn");
+    delBtn.hidden = id == null;
+    delBtn.disabled = id == null;
   }
+
   function removeItem(id) {
     items = items.filter((i) => i.id !== id);
     const n = nodes.get(id);
     nodes.delete(id);
     if (n) {
       n.el.classList.add("leaving");
-      setTimeout(() => n.el.remove(), reduceMotion.matches ? 0 : 170);
+      setTimeout(() => n.el.remove(), reduceMotion.matches ? 0 : 160);
     }
     if (selectedId === id) select(null);
     updateHint();
   }
+
   $("deleteBtn").onclick = () => selectedId != null && removeItem(selectedId);
 
   function onPageClick(ev, wrap) {
@@ -344,12 +371,14 @@
       select(null);
       return;
     }
+
     const rect = wrap.getBoundingClientRect();
     const x = ev.clientX - rect.left;
     const y = ev.clientY - rect.top;
     const kind = armed;
-    const pw = wrap.clientWidth,
-      ph = wrap.clientHeight;
+    const pw = wrap.clientWidth;
+    const ph = wrap.clientHeight;
+
     const item = {
       id: nextId++,
       page: +wrap.dataset.page,
@@ -358,6 +387,7 @@
       x,
       y,
     };
+
     if (kind === "sig") {
       item.ratio = sigSize.w / sigSize.h;
       item.w = Math.min(180, pw * 0.5);
@@ -376,12 +406,14 @@
       item.h = 28;
       item.text = "Text";
     }
+
     item.x = clamp(x - item.w / 2, 0, pw - item.w);
     item.y = clamp(y - item.h / 2, 0, ph - item.h);
     items.push(item);
     mountItem(item, wrap);
     arm(null);
     select(item.id);
+
     if (kind === "text") {
       const t = nodes.get(item.id).el.querySelector(".txt");
       t.focus();
@@ -389,16 +421,18 @@
     }
   }
 
-  /* ---------- Draggable / resizable items ---------- */
+  /* ---------- Interactive Placed Elements (Move, Resize, Edit, Delete) ---------- */
   function mountItem(item, wrap) {
     const el = document.createElement("div");
     el.className = "item";
     el.tabIndex = 0;
     el.setAttribute("role", "group");
     el.setAttribute("aria-label", { sig: "Signature", text: "Text", date: "Date" }[item.kind]);
+
     const inner = document.createElement("div");
     inner.style.cssText = "width:100%;height:100%";
     let txt = null;
+
     if (item.kind === "sig") {
       const img = document.createElement("img");
       img.src = item.data;
@@ -426,17 +460,19 @@
       });
       inner.appendChild(txt);
     }
+
     el.appendChild(inner);
 
     const del = document.createElement("button");
     del.className = "del";
     del.type = "button";
     del.textContent = "×";
-    del.setAttribute("aria-label", "Delete");
+    del.setAttribute("aria-label", "Delete element");
     del.onclick = (e) => {
       e.stopPropagation();
       removeItem(item.id);
     };
+
     const rz = document.createElement("div");
     rz.className = "rz";
     el.append(del, rz);
@@ -447,7 +483,9 @@
       el.style.top = item.y + "px";
       el.style.width = item.w + "px";
       el.style.height = item.h + "px";
-      if (item.kind !== "sig") el.querySelector(".txt").style.fontSize = item.h * 0.6 + "px";
+      if (item.kind !== "sig") {
+        el.querySelector(".txt").style.fontSize = item.h * 0.6 + "px";
+      }
     };
     place();
     nodes.set(item.id, { el, place });
@@ -457,21 +495,23 @@
       e.preventDefault();
       e.stopPropagation();
       select(item.id);
-      const sx = e.clientX,
-        sy = e.clientY;
+
+      const sx = e.clientX;
+      const sy = e.clientY;
       const o = { x: item.x, y: item.y, w: item.w, h: item.h };
-      const pw = wrap.clientWidth,
-        ph = wrap.clientHeight;
+      const pw = wrap.clientWidth;
+      const ph = wrap.clientHeight;
       let moved = false;
+
       const move = (ev) => {
-        const dx = ev.clientX - sx,
-          dy = ev.clientY - sy;
+        const dx = ev.clientX - sx;
+        const dy = ev.clientY - sy;
         if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+
         if (mode === "move") {
           item.x = clamp(o.x + dx, 0, pw - item.w);
           item.y = clamp(o.y + dy, 0, ph - item.h);
         } else if (item.kind === "sig") {
-          // keep the signature's aspect ratio so the export matches the preview
           let w = Math.max(40, Math.min(o.w + dx, pw - item.x));
           let h = w / item.ratio;
           if (item.y + h > ph) {
@@ -486,68 +526,81 @@
         }
         place();
       };
+
       const up = () => {
         window.removeEventListener("pointermove", move);
         window.removeEventListener("pointerup", up);
         window.removeEventListener("pointercancel", up);
-        // a plain click on text/date starts editing
         if (mode === "move" && !moved && txt && e.target.closest?.(".txt")) {
           txt.focus();
           document.getSelection().selectAllChildren(txt);
         }
       };
+
       window.addEventListener("pointermove", move);
       window.addEventListener("pointerup", up);
       window.addEventListener("pointercancel", up);
     };
+
     el.addEventListener("pointerdown", (e) => {
       if (e.target.closest(".del")) return;
-      // while a text field is being edited, let the caret behave normally
       if (txt && document.activeElement === txt && e.target.closest(".txt")) {
         e.stopPropagation();
         return;
       }
       startDrag(e, "move");
     });
+
     rz.addEventListener("pointerdown", (e) => startDrag(e, "resize"));
     el.addEventListener("focus", () => select(item.id));
   }
 
-  // Keyboard: Esc, Delete, arrow-key nudging
+  /* ---------- Keyboard Controls ---------- */
   document.addEventListener("keydown", (e) => {
     if (document.body.dataset.view !== "editor" || document.querySelector("dialog[open]")) return;
     const editing = e.target.closest?.('[contenteditable="true"], input, textarea');
+
     if (e.key === "Escape") {
       if (editing) e.target.blur();
       else if (armed) arm(null);
       else select(null);
       return;
     }
+
     if (editing || selectedId == null) return;
     const item = items.find((i) => i.id === selectedId);
     const n = nodes.get(selectedId);
     if (!item || !n) return;
+
     if (e.key === "Delete" || e.key === "Backspace") {
       e.preventDefault();
       removeItem(selectedId);
       return;
     }
+
     const step = e.shiftKey ? 10 : 1;
-    const d = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[e.key];
-    if (!d) return;
+    const delta = {
+      ArrowLeft: [-step, 0],
+      ArrowRight: [step, 0],
+      ArrowUp: [0, -step],
+      ArrowDown: [0, step],
+    }[e.key];
+
+    if (!delta) return;
     e.preventDefault();
     const wrap = n.el.parentElement;
-    item.x = clamp(item.x + d[0], 0, wrap.clientWidth - item.w);
-    item.y = clamp(item.y + d[1], 0, wrap.clientHeight - item.h);
+    item.x = clamp(item.x + delta[0], 0, wrap.clientWidth - item.w);
+    item.y = clamp(item.y + delta[1], 0, wrap.clientHeight - item.h);
     n.place();
   });
 
-  /* ---------- Signature dialog ---------- */
+  /* ---------- Signature Creation Modal ---------- */
   const dlg = $("sigDialog");
   const pad = $("pad");
   const pctx = pad.getContext("2d");
   const typedPreview = $("typedPreview");
   const imgPreview = $("imgPreview");
+
   let activeTab = "draw";
   let drawing = false;
   const strokes = [];
@@ -572,14 +625,13 @@
     $("saveSig").disabled = !ok;
   }
 
-  const openSig = () => {
+  $("sigBtn").onclick = () => {
     dlg.showModal();
     updateSave();
   };
-  $("sigBtn").onclick = openSig;
   $("cancelSig").onclick = () => closeDlg(dlg);
   $("cancelSigTop").onclick = () => closeDlg(dlg);
-  // Close on backdrop click, but not when a drawing stroke merely ends outside the dialog.
+
   let downOnBackdrop = false;
   dlg.addEventListener("pointerdown", (e) => (downOnBackdrop = e.target === dlg));
   dlg.addEventListener("click", (e) => {
@@ -587,18 +639,20 @@
   });
 
   const tabBtns = Array.from(dlg.querySelectorAll(".tabs button"));
+
   function showTab(name) {
     activeTab = name;
-    tabBtns.forEach((x) => {
-      const on = x.dataset.tab === name;
-      x.classList.toggle("active", on);
-      x.setAttribute("aria-selected", String(on));
-      x.tabIndex = on ? 0 : -1;
+    tabBtns.forEach((btn) => {
+      const on = btn.dataset.tab === name;
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-selected", String(on));
+      btn.tabIndex = on ? 0 : -1;
     });
     ["draw", "type", "image"].forEach((t) => $("tab-" + t).classList.toggle("hidden", t !== name));
     updateSave();
     if (name === "type") $("typedName").focus({ preventScroll: true });
   }
+
   tabBtns.forEach((b, i) => {
     b.addEventListener("click", () => showTab(b.dataset.tab));
     b.addEventListener("keydown", (e) => {
@@ -610,13 +664,14 @@
     });
   });
 
-  // --- Draw: smoothed strokes with undo
-  const INK = "#111";
+  // --- Method 1: Draw
+  const INK = "#141413";
   pctx.lineWidth = 4.5;
   pctx.lineCap = "round";
   pctx.lineJoin = "round";
   pctx.strokeStyle = INK;
   pctx.fillStyle = INK;
+
   const mid = (a, b) => ({ x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 });
   const pos = (e) => {
     const r = pad.getBoundingClientRect();
@@ -625,6 +680,7 @@
       y: ((e.clientY - r.top) * pad.height) / r.height,
     };
   };
+
   function drawStroke(pts) {
     if (pts.length === 1) {
       pctx.beginPath();
@@ -642,6 +698,7 @@
     pctx.lineTo(last.x, last.y);
     pctx.stroke();
   }
+
   function drawTail(pts) {
     const n = pts.length;
     pctx.beginPath();
@@ -656,10 +713,12 @@
     }
     pctx.stroke();
   }
+
   function redrawPad() {
     pctx.clearRect(0, 0, pad.width, pad.height);
     strokes.forEach(drawStroke);
   }
+
   pad.addEventListener("pointerdown", (e) => {
     drawing = true;
     pad.setPointerCapture(e.pointerId);
@@ -668,6 +727,7 @@
     drawStroke(s);
     updateSave();
   });
+
   pad.addEventListener("pointermove", (e) => {
     if (!drawing) return;
     const s = strokes[strokes.length - 1];
@@ -677,24 +737,15 @@
     s.push(p);
     drawTail(s);
   });
+
   const endDraw = () => {
     if (!drawing) return;
     drawing = false;
     redrawPad();
   };
   ["pointerup", "pointercancel"].forEach((ev) => pad.addEventListener(ev, endDraw));
-  $("undoPad").onclick = () => {
-    strokes.pop();
-    redrawPad();
-    updateSave();
-  };
-  $("clearPad").onclick = () => {
-    strokes.length = 0;
-    redrawPad();
-    updateSave();
-  };
 
-  // --- Type: handwriting fonts
+  // --- Method 2: Type
   const fontList = $("fontList");
   FONTS.forEach((f, i) => {
     const b = document.createElement("button");
@@ -704,10 +755,12 @@
     b.setAttribute("aria-checked", String(i === 0));
     b.style.fontFamily = `"${f.name}", cursive`;
     b.style.fontWeight = f.weight;
-    b.textContent = "Your name";
+    b.textContent = "Your signature";
     b.addEventListener("click", () => {
       typedFont = i;
-      fontList.querySelectorAll(".font-opt").forEach((x, j) => x.setAttribute("aria-checked", String(j === i)));
+      fontList
+        .querySelectorAll(".font-opt")
+        .forEach((x, j) => x.setAttribute("aria-checked", String(j === i)));
       renderTyped();
     });
     fontList.appendChild(b);
@@ -717,24 +770,28 @@
     const text = $("typedName").value;
     const token = ++typedToken;
     const c = typedPreview.getContext("2d");
-    fontList.querySelectorAll(".font-opt").forEach((x) => (x.textContent = text.trim() || "Your name"));
+    fontList.querySelectorAll(".font-opt").forEach((x) => (x.textContent = text.trim() || "Your signature"));
+
     if (!text.trim()) {
       c.clearRect(0, 0, typedPreview.width, typedPreview.height);
       typedReady = false;
       updateSave();
       return;
     }
+
     const f = FONTS[typedFont];
     try {
       await document.fonts.load(`${f.weight} 64px "${f.name}"`, text);
     } catch (_) {}
-    if (token !== typedToken) return; // a newer render superseded this one
+    if (token !== typedToken) return;
+
     const maxW = typedPreview.width - 60;
     let size = 120;
     const fontStr = (s) => `${f.weight} ${s}px "${f.name}", "Brush Script MT", "Segoe Script", cursive`;
     c.font = fontStr(size);
     const w = c.measureText(text).width;
     if (w > maxW) size = Math.max(24, Math.floor((size * maxW) / w));
+
     c.clearRect(0, 0, typedPreview.width, typedPreview.height);
     c.font = fontStr(size);
     c.fillStyle = INK;
@@ -746,40 +803,68 @@
   }
   $("typedName").addEventListener("input", renderTyped);
 
-  // --- Upload
+  // --- Method 3: Upload Image
   $("sigImage").addEventListener("change", (e) => {
     const f = e.target.files[0];
+    e.target.value = "";
     if (!f) return;
+
     const url = URL.createObjectURL(f);
     const img = new Image();
     img.onload = () => {
       const c = imgPreview.getContext("2d");
       c.clearRect(0, 0, imgPreview.width, imgPreview.height);
       const r = Math.min(imgPreview.width / img.width, imgPreview.height / img.height);
-      const w = img.width * r,
-        h = img.height * r;
+      const w = img.width * r;
+      const h = img.height * r;
       c.drawImage(img, (imgPreview.width - w) / 2, (imgPreview.height - h) / 2, w, h);
+
+      // Remove near-white paper backgrounds from uploaded photos so signatures blend cleanly onto PDFs
+      const imgData = c.getImageData(0, 0, imgPreview.width, imgPreview.height);
+      const data = imgData.data;
+      for (let i = 0; i < data.length; i += 4) {
+        if (data[i] > 235 && data[i + 1] > 235 && data[i + 2] > 235) {
+          data[i + 3] = 0;
+        }
+      }
+      c.putImageData(imgData, 0, 0);
+
       hasImage = true;
       URL.revokeObjectURL(url);
       updateSave();
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      toast("That image couldn't be read.", "error");
+      toast("Unable to read that image file.", "error");
     };
     img.src = url;
   });
 
+  // Single Clear action for active signature method
+  $("clearSig").onclick = () => {
+    if (activeTab === "draw") {
+      strokes.length = 0;
+      redrawPad();
+    } else if (activeTab === "type") {
+      $("typedName").value = "";
+      renderTyped();
+    } else if (activeTab === "image") {
+      imgPreview.getContext("2d").clearRect(0, 0, imgPreview.width, imgPreview.height);
+      hasImage = false;
+    }
+    updateSave();
+  };
+
   const trim = (canvas) => {
-    // crop transparent margins so the placed box fits the ink
     const c = canvas.getContext("2d");
     const { width: w, height: h } = canvas;
     const d = c.getImageData(0, 0, w, h).data;
-    let minX = w,
-      minY = h,
-      maxX = 0,
-      maxY = 0;
-    for (let y = 0; y < h; y++)
+    let minX = w;
+    let minY = h;
+    let maxX = 0;
+    let maxY = 0;
+
+    for (let y = 0; y < h; y++) {
       for (let x = 0; x < w; x++) {
         if (d[(y * w + x) * 4 + 3] > 10) {
           if (x < minX) minX = x;
@@ -788,7 +873,9 @@
           if (y > maxY) maxY = y;
         }
       }
+    }
     if (maxX <= minX || maxY <= minY) return null;
+
     const out = document.createElement("canvas");
     out.width = maxX - minX + 1;
     out.height = maxY - minY + 1;
@@ -800,16 +887,19 @@
     const src = { draw: pad, type: typedPreview, image: imgPreview }[activeTab];
     const out = trim(src);
     if (!out) {
-      toast("Please provide a signature first.", "error");
+      toast("Please create or upload a signature first.", "error");
       return;
     }
+
     signatureDataUrl = out.toDataURL("image/png");
     sigSize = { w: out.width, h: out.height };
     $("addSigBtn").disabled = !pdfBytes;
+
     const thumb = $("sigThumb");
     thumb.src = signatureDataUrl;
     thumb.hidden = false;
     $("addSigBtn").classList.add("has-sig");
+
     await closeDlg(dlg);
     if (pdfBytes) {
       if (armed !== "sig") arm("sig");
@@ -817,40 +907,38 @@
     }
   };
 
-  /* ---------- Leave / go home ---------- */
+  /* ---------- Navigation & Leave Confirmation ---------- */
   const leaveDlg = $("leaveDialog");
-  function goHome(thenAbout) {
+
+  function goHome() {
     closeDocument();
     setView("home");
-    if (thenAbout) $("about").scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth" });
   }
-  document.querySelectorAll("[data-nav]").forEach((a) =>
+
+  document.querySelectorAll("[data-nav='home']").forEach((a) =>
     a.addEventListener("click", (e) => {
       const view = document.body.dataset.view;
-      const about = a.dataset.nav === "about";
       if (view === "processing") {
         e.preventDefault();
         return;
       }
       if (view === "home") {
-        if (!about) {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: reduceMotion.matches ? "auto" : "smooth" });
-        }
-        return; // About: native anchor scroll
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: reduceMotion.matches ? "auto" : "smooth" });
+        return;
       }
       e.preventDefault();
-      if (!items.length) return goHome(about);
-      leaveDlg.dataset.about = about ? "1" : "";
+      if (!items.length) return goHome();
       leaveDlg.showModal();
-    }),
+    })
   );
+
   $("leaveCancel").onclick = () => closeDlg(leaveDlg);
   $("leaveConfirm").onclick = async () => {
-    const about = !!leaveDlg.dataset.about;
     await closeDlg(leaveDlg);
-    goHome(about);
+    goHome();
   };
+
   window.addEventListener("beforeunload", (e) => {
     if (items.length) {
       e.preventDefault();
@@ -858,18 +946,31 @@
     }
   });
 
-  /* ---------- Export ---------- */
+  /* ---------- Export & Satisfying Download Experience ---------- */
   const dlBtn = $("downloadBtn");
+  const downloadDlg = $("downloadDialog");
+
   function setDl(state, label) {
     dlBtn.dataset.state = state;
     $("dlLabel").textContent = label;
   }
+
+  function triggerBlobDownload(url, name) {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
   dlBtn.onclick = async () => {
     if (!items.length) {
-      toast("Place at least one signature or field first.");
+      toast("Place a signature, text, or date on your document first.");
       return;
     }
     if (dlBtn.dataset.state === "busy") return;
+
     setDl("busy", "Preparing...");
     try {
       const doc = await PDFDocument.load(pdfBytes);
@@ -880,10 +981,11 @@
         const page = pages[it.page];
         const { height } = page.getSize();
         const pageScale = it.scale || SCALE;
-        const x = it.x / pageScale,
-          w = it.w / pageScale,
-          h = it.h / pageScale;
+        const x = it.x / pageScale;
+        const w = it.w / pageScale;
+        const h = it.h / pageScale;
         const y = height - it.y / pageScale - h;
+
         if (it.kind === "sig") {
           const png = await doc.embedPng(it.data);
           page.drawImage(png, { x, y, width: w, height: h });
@@ -901,19 +1003,26 @@
 
       const out = await doc.save();
       const blob = new Blob([out], { type: "application/pdf" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = fileName.replace(/\.pdf$/i, "") + "-signed.pdf";
-      a.click();
-      URL.revokeObjectURL(a.href);
 
-      setDl("done", "Saved");
-      toast("Your signed PDF is ready.");
-      setTimeout(() => setDl("idle", "Download"), 2400);
+      if (lastSignedBlobUrl) URL.revokeObjectURL(lastSignedBlobUrl);
+      lastSignedBlobUrl = URL.createObjectURL(blob);
+      lastSignedName = fileName.replace(/\.pdf$/i, "") + "-signed.pdf";
+
+      triggerBlobDownload(lastSignedBlobUrl, lastSignedName);
+
+      setDl("done", "Downloaded");
+      $("dlFileName").textContent = lastSignedName;
+      downloadDlg.showModal();
+      setTimeout(() => setDl("idle", "Download"), 2000);
     } catch (err) {
       console.error(err);
       setDl("idle", "Download");
-      toast("Couldn't create the PDF. If you typed special characters, try plain letters and numbers.", "error");
+      toast("Couldn't generate the PDF. Try using standard letters and numbers in text fields.", "error");
     }
+  };
+
+  $("continueEditingBtn").onclick = () => closeDlg(downloadDlg);
+  $("downloadAgainBtn").onclick = () => {
+    if (lastSignedBlobUrl) triggerBlobDownload(lastSignedBlobUrl, lastSignedName);
   };
 })();

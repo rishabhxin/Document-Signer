@@ -3,195 +3,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f5f2eb" />
-  <meta name="description" content="Open Sign: sign PDF documents directly in your browser. Free, open source and private." />
-  <title>Open Sign: Simple, private PDF signing</title>
-  <script>
-    // Apply the saved (or system) theme before first paint to avoid a flash.
-    (function () {
-      try {
-        var t = localStorage.getItem("opensign-theme");
-        if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.dataset.theme = t;
-        if (t === "dark") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#121110");
-      } catch (e) { document.documentElement.dataset.theme = "light"; }
-    })();
-  </script>
+  <meta name="theme-color" content="#faf8f5" />
+  <meta name="description" content="Open Sign: Signing documents, simplified. Sign any PDF right in your browser—private, instant, and free." />
+  <title>Open Sign | Signing documents. Simplified.</title>
+
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <link rel="preconnect" href="https://www.gstatic.com" />
+  <link rel="preconnect" href="https://unpkg.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Handwriting fonts for typed signatures -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@600&family=Homemade+Apple&family=Sacramento&display=swap" />
+  <!-- UI + Handwriting fonts for typed signatures -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@600&family=Homemade+Apple&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap" />
   <link rel="stylesheet" href="style.css" />
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
-  <script src="firebase-config.js"></script>
 </head>
 <body data-view="home">
-  <!-- Visually hidden but focusable file input; every "choose a PDF" control is a <label for="fileInput"> -->
+  <!-- Visually hidden file input -->
   <input type="file" id="fileInput" class="sr-only" accept="application/pdf,.pdf" />
 
+  <!-- ============ HEADER ============ -->
   <header class="site-header">
     <a class="brand" href="./" data-nav="home" aria-label="Open Sign home">
       <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1.5" />
-        <path d="M8 20.5c2.6-7.5 4.6-10 6-8.6 1.6 1.7-2.4 8.4.2 8.4 2.4 0 3-5.4 5-5.4 1.7 0 1.6 3.2 4 1.2" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <rect x="2.5" y="2.5" width="27" height="27" rx="7" stroke="currentColor" stroke-width="1.5" />
+        <path d="M8.5 20.5c2.4-6.8 4.2-9 5.5-7.7 1.4 1.5-2.1 7.6.2 7.6 2.1 0 2.7-4.8 4.5-4.8 1.5 0 1.4 2.8 3.6 1.1" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="8.5" y1="24" x2="23.5" y2="24" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.28" stroke-linecap="round" />
       </svg>
       <span class="brand-name">Open Sign</span>
     </a>
 
     <div class="doc-meta" id="docMeta">
+      <span class="doc-sep" aria-hidden="true">/</span>
       <span class="doc-name" id="docName"></span>
       <span class="doc-pages" id="docPages"></span>
     </div>
 
-    <nav class="site-nav" aria-label="Primary">
-      <a href="./" data-nav="home">Home</a>
-      <a href="#about" data-nav="about">About</a>
-      <!-- TODO: point this at your repository -->
-      <a href="https://github.com/rishabhxin/Document-Signer" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-
     <div class="header-actions">
-      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark theme" aria-pressed="false">
-        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" /></svg>
-        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4" /></svg>
-      </button>
+      <a class="github-link" id="githubLink" href="https://github.com/rishabhxin/Document-Signer" target="_blank" rel="noopener noreferrer" aria-label="View Open Sign on GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
+        </svg>
+        <span>GitHub</span>
+      </a>
+
       <button class="btn primary" id="downloadBtn" type="button" data-state="idle" disabled>
-        <svg class="dl-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14" /></svg>
-        <svg class="dl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" /></svg>
+        <svg class="dl-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+        </svg>
+        <svg class="dl-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1" />
+        </svg>
         <span id="dlLabel">Download</span>
       </button>
     </div>
   </header>
 
   <main id="main">
-    <!-- ============ HOME ============ -->
+    <!-- ============ 1. HOME ============ -->
     <section class="view home" id="homeView" aria-labelledby="heroTitle">
-      <p class="eyebrow">Free &middot; Open source &middot; Private</p>
-      <h2 class="hero-title" id="heroTitle" data-focus tabindex="-1">
-        <span class="line">Your documents.</span>
-        <span class="line">Your
-          <span class="u-wrap">signature<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13c40-9 80-10 120-5s90 6 174-3" pathLength="1" /></svg></span>.</span>
-        <span class="line">Your control.</span>
-      </h2>
-      <p class="hero-sub">Sign documents securely, instantly, and for free. <br>No unnecessary steps. No complicated setup.</p>
+      <div class="hero-copy">
+        <h1 class="hero-title" id="heroTitle" data-focus tabindex="-1">
+          Signing documents.<br />
+          <span class="accent-word">Simplified<span class="accent-dot">.</span></span>
+        </h1>
+        <p class="hero-sub">Your documents stay yours. Sign any PDF, right in your browser.</p>
+      </div>
 
       <label class="dropzone" id="dropzone" for="fileInput">
-        <i class="dz-corner tl" aria-hidden="true"></i><i class="dz-corner tr" aria-hidden="true"></i>
-        <i class="dz-corner bl" aria-hidden="true"></i><i class="dz-corner br" aria-hidden="true"></i>
-
-        <svg class="dz-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M8 31v7a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2v-7" />
-          <g class="dz-arrow"><path d="M24 30V8M15 16.5 24 8l9 8.5" /></g>
-        </svg>
-        <span class="dz-cta">Choose a PDF</span>
-        <span class="dz-sub">
-          <span class="when-idle">or drag and drop your document here</span>
-          <span class="when-over">Release to open your document</span>
+        <span class="dz-frame" aria-hidden="true">
+          <i class="dz-corner tl"></i>
+          <i class="dz-corner tr"></i>
+          <i class="dz-corner bl"></i>
+          <i class="dz-corner br"></i>
         </span>
-        <span class="dz-meta">PDF only &middot; up to 50 MB &middot; never leaves your device</span>
 
-        <span class="sign-line" aria-hidden="true">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13" /></svg>
-          <span class="rule"></span>
-        </span>
-      </label>
+        <div class="dz-stage">
+          <!-- Morphing Upload -> Document Icon -->
+          <div class="dz-morph" aria-hidden="true">
+            <svg class="ic-upload" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 18V11a3 3 0 0 1 3-3h12l9 9v20a3 3 0 0 1-3 3H15a3 3 0 0 1-3-3v-7" />
+              <path d="M27 8v9h9" />
+              <g class="dz-arrow">
+                <path d="M24 34V21" />
+                <path d="M19 25.5 24 20.5l5 5" />
+              </g>
+            </svg>
+          </div>
 
-      <section class="about" id="about" aria-labelledby="aboutTitle">
-        <div>
-          <h2 id="aboutTitle">About</h2>
-          <p>Open Sign is a free, open-source way to sign a PDF. Everything happens in your browser, so your document stays yours.</p>
+          <p class="dz-prompt">
+            <span class="when-idle">Drop your PDF here.</span>
+            <span class="when-over">Release to open your PDF.</span>
+          </p>
+
+          <span class="dz-action">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 4v12M4 10h12" />
+            </svg>
+            <span>Choose a file</span>
+          </span>
         </div>
-        <ol class="steps">
-          <li><span class="num">01</span><div><strong>Open</strong><p>Choose a PDF. It's read on your device and never uploaded.</p></div></li>
-          <li><span class="num">02</span><div><strong>Sign</strong><p>Draw, type or upload a signature, then click where it belongs. Add text or a date too.</p></div></li>
-          <li><span class="num">03</span><div><strong>Download</strong><p>Save the signed PDF. Nothing to install, no account to create.</p></div></li>
-        </ol>
-      </section>
+
+        <div class="dz-footer">
+          <span class="sign-mark" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+            </svg>
+            <span class="rule"></span>
+          </span>
+          <span class="dz-privacy">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+              <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+            </svg>
+            Your documents never leave your device.
+          </span>
+        </div>
+      </label>
     </section>
 
-    <!-- ============ PROCESSING ============ -->
+    <!-- ============ 2. DOCUMENT UPLOAD & SCAN ANIMATION ============ -->
     <section class="view process" id="processView" hidden aria-label="Preparing your document">
-      <div class="doc-illo" aria-hidden="true">
+      <div class="doc-stage" aria-hidden="true">
         <div class="sheet">
-          <span class="ln" style="width:42%"></span>
-          <span class="ln" style="width:88%"></span>
-          <span class="ln" style="width:76%"></span>
-          <span class="ln" style="width:92%"></span>
-          <span class="ln" style="width:58%"></span>
-          <span class="ln gap" style="width:84%"></span>
-          <span class="ln" style="width:70%"></span>
-          <span class="ln" style="width:30%"></span>
-          <span class="scan"></span>
+          <div class="sheet-fold"></div>
+          <div class="sheet-head">
+            <span class="badge">PDF</span>
+            <span class="ln short"></span>
+          </div>
+          <div class="sheet-body">
+            <span class="ln" style="width: 88%"></span>
+            <span class="ln" style="width: 94%"></span>
+            <span class="ln" style="width: 72%"></span>
+            <span class="ln gap" style="width: 91%"></span>
+            <span class="ln" style="width: 83%"></span>
+            <span class="ln" style="width: 64%"></span>
+          </div>
+          <div class="sheet-sign">
+            <span class="x-mark">×</span>
+            <span class="sig-line"></span>
+          </div>
+          <span class="scan-beam"></span>
         </div>
       </div>
-      <p class="process-status" id="processStatus" role="status" data-focus tabindex="-1">Receiving your document...</p>
+
+      <p class="process-status" id="processStatus" role="status" data-focus tabindex="-1">Opening your document...</p>
       <p class="process-detail" id="processDetail"></p>
-      <div class="progress" role="progressbar" aria-label="Preparing your document" aria-busy="true"><span></span></div>
     </section>
 
-    <!-- ============ EDITOR ============ -->
+    <!-- ============ 3. PDF EDITOR ============ -->
     <section class="view editor" id="editorView" hidden aria-label="Document editor">
       <h1 class="sr-only" data-focus tabindex="-1">Sign your document</h1>
       <div id="pages"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <span>Your files stay on your device.</span>
-    <span class="visitor-count" aria-live="polite">Total visits <strong id="totalVisitors">—</strong></span>
-  </footer>
-
-  <!-- ============ FLOATING EDITOR UI ============ -->
+  <!-- ============ FLOATING EDITOR CONTROLS ============ -->
   <p class="hint" id="hint" aria-live="polite"></p>
 
   <div class="dock" id="dock" role="toolbar" aria-label="Document tools">
-    <button class="tool" id="sigBtn" type="button" data-tip="Draw, type or upload a signature" disabled>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" /><path d="M14 7l3 3" /></svg>
-      <span>Signature</span>
+    <button class="tool" id="sigBtn" type="button" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+        <path d="M14 7l3 3" />
+      </svg>
+      <span>Create signature</span>
     </button>
-    <button class="tool" id="addSigBtn" type="button" data-tip="Place your signature on the page" aria-pressed="false" disabled>
-      <svg class="ic-place" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4l6 15 2-6 6-2L5 4Z" /></svg>
-      <img class="sig-thumb" id="sigThumb" alt="Your signature" hidden />
-      <span><span class="full">Place signature</span><span class="short">Place</span></span>
+
+    <button class="tool" id="addSigBtn" type="button" aria-pressed="false" disabled>
+      <svg class="ic-place" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+        <path d="M4 20h16" />
+      </svg>
+      <img class="sig-thumb" id="sigThumb" alt="Signature preview" hidden />
+      <span>Place signature</span>
     </button>
+
     <span class="dock-sep" aria-hidden="true"></span>
-    <button class="tool" id="addTextBtn" type="button" data-tip="Add a line of text" aria-pressed="false" disabled>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7V5.5h14V7M12 5.5v13M9 18.5h6" /></svg>
-      <span>Text</span>
+
+    <button class="tool" id="addTextBtn" type="button" aria-pressed="false" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 7V5.5h14V7M12 5.5v13M9 18.5h6" />
+      </svg>
+      <span>Add text</span>
     </button>
-    <button class="tool" id="addDateBtn" type="button" data-tip="Add today's date" aria-pressed="false" disabled>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1.5" /><path d="M4 10h16M8 3v4M16 3v4" /></svg>
-      <span>Date</span>
+
+    <button class="tool" id="addDateBtn" type="button" aria-pressed="false" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="4" y="5" width="16" height="15" rx="2" />
+        <path d="M4 10h16M8 3v4M16 3v4" />
+      </svg>
+      <span>Add date</span>
     </button>
-    <span class="dock-sep" aria-hidden="true"></span>
-    <button class="tool danger" id="deleteBtn" type="button" data-tip="Delete selected (Del)" disabled>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12M10.5 11v5M13.5 11v5" /></svg>
+
+    <button class="tool danger contextual-del" id="deleteBtn" type="button" hidden disabled aria-label="Delete selected element">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12" />
+      </svg>
       <span>Delete</span>
     </button>
   </div>
 
   <div class="pager" id="pager" role="group" aria-label="Page navigation" hidden>
-    <button type="button" id="pagePrev" aria-label="Previous page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
+    <button type="button" id="pagePrev" aria-label="Previous page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" />
+      </svg>
+    </button>
     <span id="pageCount" aria-live="polite">1 / 1</span>
-    <button type="button" id="pageNext" aria-label="Next page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg></button>
+    <button type="button" id="pageNext" aria-label="Next page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 6l6 6-6 6" />
+      </svg>
+    </button>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- ============ SIGNATURE DIALOG ============ -->
+  <!-- ============ SIGNATURE CREATION MODAL ============ -->
   <dialog id="sigDialog" aria-labelledby="sigTitle">
     <div class="dlg-head">
       <div>
-        <p class="eyebrow-sm">Signature</p>
-        <h2 id="sigTitle">Create your signature</h2>
+        <h2 id="sigTitle">Create signature</h2>
+        <p class="dlg-sub">Draw, type, or upload your signature.</p>
       </div>
       <button class="icon-btn" id="cancelSigTop" type="button" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
       </button>
     </div>
 
@@ -202,41 +241,61 @@
     </div>
 
     <div class="tab" id="tab-draw" role="tabpanel">
-      <div class="pad-wrap guide"><canvas id="pad" width="720" height="240" aria-label="Signature drawing area"></canvas></div>
-      <div class="pad-tools">
-        <span>Sign above the line</span>
-        <span class="pad-btns">
-          <button id="undoPad" class="link" type="button">Undo</button>
-          <button id="clearPad" class="link" type="button">Clear</button>
-        </span>
+      <div class="pad-wrap guide">
+        <canvas id="pad" width="760" height="260" aria-label="Signature drawing area"></canvas>
       </div>
+      <p class="pad-note">Sign smoothly above the baseline.</p>
     </div>
 
     <div class="tab hidden" id="tab-type" role="tabpanel">
-      <input id="typedName" type="text" placeholder="Type your name" maxlength="40" autocomplete="off" aria-label="Your name" />
+      <input id="typedName" type="text" placeholder="Type your full name" maxlength="40" autocomplete="off" aria-label="Your name" />
       <div class="fonts" id="fontList" role="radiogroup" aria-label="Handwriting style"></div>
-      <div class="pad-wrap"><canvas id="typedPreview" width="720" height="240" aria-label="Typed signature preview"></canvas></div>
+      <div class="pad-wrap">
+        <canvas id="typedPreview" width="760" height="240" aria-label="Typed signature preview"></canvas>
+      </div>
     </div>
 
     <div class="tab hidden" id="tab-image" role="tabpanel">
       <label class="file-drop" for="sigImage">
-        <strong>Choose an image</strong>
-        <span>PNG or JPG. A clear photo on a white background works best.</span>
-        <input type="file" id="sigImage" class="sr-only" accept="image/png,image/jpeg" />
+        <strong>Choose a signature image</strong>
+        <span>PNG or JPG on a clean white or transparent background</span>
+        <input type="file" id="sigImage" class="sr-only" accept="image/png,image/jpeg,image/webp" />
       </label>
-      <div class="pad-wrap"><canvas id="imgPreview" width="720" height="240" aria-label="Uploaded signature preview"></canvas></div>
+      <div class="pad-wrap">
+        <canvas id="imgPreview" width="760" height="240" aria-label="Uploaded signature preview"></canvas>
+      </div>
     </div>
 
     <div class="dlg-actions">
-      <button class="btn" id="cancelSig" type="button">Cancel</button>
-      <button class="btn primary" id="saveSig" type="button" disabled>Use signature <span aria-hidden="true">&rarr;</span></button>
+      <button class="btn ghost" id="clearSig" type="button">Clear</button>
+      <div class="dlg-actions-right">
+        <button class="btn" id="cancelSig" type="button">Cancel</button>
+        <button class="btn primary" id="saveSig" type="button" disabled>Use signature</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ============ DOWNLOAD SUCCESS MODAL ============ -->
+  <dialog id="downloadDialog" class="small center-dlg" aria-labelledby="dlDoneTitle">
+    <div class="success-badge" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="21" stroke="var(--accent)" stroke-width="1.6" stroke-opacity="0.22" />
+        <circle class="ring-anim" cx="24" cy="24" r="21" stroke="var(--accent)" stroke-width="1.8" pathLength="1" />
+        <path class="check-anim" d="M15.5 24.5l5.5 5.5 11.5-12" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" />
+      </svg>
+    </div>
+    <h2 id="dlDoneTitle">Your document is ready.</h2>
+    <p class="dlg-text" id="dlFileName">document-signed.pdf</p>
+    <div class="dlg-actions stacked">
+      <button class="btn primary full-w" id="continueEditingBtn" type="button">Continue editing</button>
+      <button class="link subtle-link" id="downloadAgainBtn" type="button">Download again</button>
     </div>
   </dialog>
 
   <!-- ============ LEAVE CONFIRMATION ============ -->
   <dialog id="leaveDialog" class="small" aria-labelledby="leaveTitle">
-    <h2 id="leaveTitle">Close this document?</h2>
-    <p class="dlg-text">Your placed signatures and fields will be discarded. Nothing has been saved.</p>
+    <h2 id="leaveTitle">Leave this document?</h2>
+    <p class="dlg-text">Your placed signatures and text will be cleared. Nothing is stored on any server.</p>
     <div class="dlg-actions">
       <button class="btn" id="leaveCancel" type="button">Keep editing</button>
       <button class="btn primary" id="leaveConfirm" type="button">Close document</button>
@@ -244,6 +303,5 @@
   </dialog>
 
   <script src="app.js"></script>
-  <script src="visitor-counter.js"></script>
 </body>
 </html>
