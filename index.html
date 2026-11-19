@@ -1,79 +1,123 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Open Sign</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
-    <script src="firebase-config.js"></script>
-  </head>
-  <body>
-    <header>
-      <h1>Open Sign</h1>
-      <div class="actions">
-        <label class="btn"
-          >Open PDF<input
-            type="file"
-            id="fileInput"
-            accept="application/pdf"
-            hidden
-        /></label>
-        <button class="btn" id="sigBtn" disabled>Create signature</button>
-        <button class="btn" id="addSigBtn" disabled>Place signature</button>
-        <button class="btn" id="addTextBtn" disabled>Add text</button>
-        <button class="btn" id="addDateBtn" disabled>Add date</button>
-        <button class="btn primary" id="downloadBtn" disabled>
-          Download signed PDF
-        </button>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f8fc" />
+  <meta name="description" content="Open Sign: sign PDF documents directly in your browser." />
+  <title>Open Sign: Simple, private PDF signing</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://www.gstatic.com" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="/index.html" aria-label="Open Sign home">
+      <span class="footer-mark">O</span>
+      <span class="brand-copy"><strong>Open Sign</strong><small>Open source document signing</small></span>
+    </a>
 
-    <main>
+    <div class="header-note"> Private by design · Files stay on your device</div>
+
+    <div class="actions" aria-label="Document tools">
+      <label class="btn upload-btn" for="fileInput">
+        <span class="btn-icon" aria-hidden="true">＋</span> Open PDF
+        <input type="file" id="fileInput" accept="application/pdf" hidden />
+      </label>
+      <span class="toolbar-divider" aria-hidden="true"></span>
+      <button class="btn" id="sigBtn" disabled><span class="btn-icon" aria-hidden="true">🖊️</span> Create signature</button>
+      <button class="btn" id="addSigBtn" disabled><span class="btn-icon" aria-hidden="true">↗</span> Place signature</button>
+      <button class="btn" id="addTextBtn" disabled><span class="btn-icon" aria-hidden="true">T</span> Add text</button>
+      <button class="btn" id="addDateBtn" disabled><span class="btn-icon" aria-hidden="true">▦</span> Add date</button>
+      <button class="btn primary" id="downloadBtn" disabled><span class="btn-icon" aria-hidden="true">↓</span> Download PDF</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <div class="workspace-heading">
+      <div>
+        <p class="eyebrow">YOUR WORKSPACE</p>
+        <h1>Sign your document</h1>
+        <p class="subheading">Add your signature, text or date, then export your finished PDF.</p>
+      </div>
+      <div class="secure-pill"><span class="secure-icon">✓</span> 100% browser-based</div>
+    </div>
+
+    <section class="document-stage" aria-label="PDF document workspace">
+      <div class="stage-topline">
+        <span class="stage-label"><span class="stage-indicator"></span> DOCUMENT PREVIEW</span>
+        <span class="stage-hint">PDF files are processed locally</span>
+      </div>
       <p id="hint">
-        Open a PDF to begin. Everything runs in your browser; files are never
-        uploaded.
+        <span class="empty-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none">
+            <path d="M14 5.5h13l9 9v27H14a4 4 0 0 1-4-4v-28a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M27 5.5v10h9M17 27h16M17 33h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 20v0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <strong>Ready when you are</strong>
+        <span>Open a PDF to get started. Your document never leaves your device.</span>
+        <label class="btn primary empty-upload" for="fileInput">Choose a PDF</label>
       </p>
       <div id="pages"></div>
-    </main>
+    </section>
 
-    <footer class="site-footer">
-      <span>Open Sign</span>
-      <span class="visitor-count" aria-live="polite">
-        <span class="visitor-dot" aria-hidden="true"></span>
-        Total visits: <strong id="totalVisitors">—</strong>
-      </span>
-    </footer>
+    <div class="workflow-strip">
+      <div class="workflow-step"><span>01</span><div><strong>Upload</strong><small>Choose your PDF</small></div></div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step"><span>02</span><div><strong>Personalise</strong><small>Add signature or text</small></div></div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step"><span>03</span><div><strong>Download</strong><small>Save your signed file</small></div></div>
+    </div>
+  </main>
 
-    <dialog id="sigDialog">
-      <h2>Create signature</h2>
-      <div class="tabs">
-        <button data-tab="draw" class="active">Draw</button>
-        <button data-tab="type">Type</button>
-        <button data-tab="image">Upload</button>
-      </div>
-      <div class="tab" id="tab-draw">
-        <canvas id="pad" width="480" height="160"></canvas>
-        <button id="clearPad" class="link">Clear</button>
-      </div>
-      <div class="tab hidden" id="tab-type">
-        <input id="typedName" placeholder="Type your name" maxlength="40" />
-        <canvas id="typedPreview" width="480" height="160"></canvas>
-      </div>
-      <div class="tab hidden" id="tab-image">
-        <input type="file" id="sigImage" accept="image/png,image/jpeg" />
-        <canvas id="imgPreview" width="480" height="160"></canvas>
-      </div>
-      <div class="dialog-actions">
-        <button class="btn" id="cancelSig">Cancel</button>
-        <button class="btn primary" id="saveSig">Use signature</button>
-      </div>
-    </dialog>
+  <footer class="site-footer">
+    <div class="footer-brand"><span class="footer-mark">O</span><span><strong>Open Sign</strong><small>Open source document signing</small></span></div>
+    <div class="footer-trust"></span> Your files stay on your device</div>
+    <span class="visitor-count" aria-live="polite"> Total visits <strong id="totalVisitors">—</strong></span>
+  </footer>
 
-    <script src="app.js"></script>
-    <script src="visitor-counter.js"></script>
-  </body>
+  <dialog id="sigDialog">
+    <div class="dialog-head">
+      <div><p class="eyebrow">PERSONALISE</p><h2>Create your signature</h2><p class="dialog-subtitle">Draw it, type your name, or upload an image.</p></div>
+      <button class="dialog-close" id="cancelSigTop" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="tabs">
+      <button data-tab="draw" class="active">Draw</button>
+      <button data-tab="type">Type</button>
+      <button data-tab="image">Upload</button>
+    </div>
+    <div class="tab" id="tab-draw">
+      <canvas id="pad" width="480" height="160"></canvas>
+      <button id="clearPad" class="link">Clear signature</button>
+    </div>
+    <div class="tab hidden" id="tab-type">
+      <input id="typedName" placeholder="Type your name" maxlength="40" />
+      <canvas id="typedPreview" width="480" height="160"></canvas>
+    </div>
+    <div class="tab hidden" id="tab-image">
+      <input type="file" id="sigImage" accept="image/png,image/jpeg" />
+      <canvas id="imgPreview" width="480" height="160"></canvas>
+    </div>
+    <div class="dialog-actions">
+      <button class="btn" id="cancelSig">Cancel</button>
+      <button class="btn primary" id="saveSig">Use signature <span aria-hidden="true">→</span></button>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+  <script src="visitor-counter.js"></script>
+  <script>
+    // Keep the existing signature dialog controls and add a close affordance.
+    document.getElementById("cancelSigTop")?.addEventListener("click", () => {
+      document.getElementById("sigDialog")?.close();
+    });
+  </script>
+</body>
 </html>
