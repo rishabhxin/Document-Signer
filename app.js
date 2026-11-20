@@ -28,7 +28,7 @@
   let pageEls = [];
   const nodes = new Map();
 
-  const editorBtns = ["sigBtn", "addSigBtn", "addTextBtn", "addDateBtn", "downloadBtn"].map($);
+  const editorBtns = ["sigBtn", "addSigBtn", "addTextBtn", "addDateBtn", "smartSignBtn", "downloadBtn"].map($).filter(Boolean);
   const setEnabled = (on) => editorBtns.forEach((b) => (b.disabled = !on));
 
   /* ---------- Views, Toast & Modals ---------- */
@@ -127,6 +127,7 @@
   const isPdfFile = (f) => f && (f.type === "application/pdf" || /\.pdf$/i.test(f.name));
 
   function closeDocument() {
+    window.dispatchEvent(new CustomEvent("opensign:document-closed"));
     pdfBytes = null;
     items = [];
     nodes.clear();
@@ -223,6 +224,11 @@
       setView("editor");
       updateHint();
       initPager();
+      window.dispatchEvent(
+        new CustomEvent("opensign:document-loaded", {
+          detail: { fileName: file.name, pageCount: pageEls.length },
+        })
+      );
     } catch (err) {
       console.error(err);
       closeDocument();
@@ -901,7 +907,8 @@
     $("addSigBtn").classList.add("has-sig");
 
     await closeDlg(dlg);
-    if (pdfBytes) {
+    const handledBySmartSign = window.__openSignBridge?.notifySignatureSaved?.();
+    if (pdfBytes && !handledBySmartSign) {
       if (armed !== "sig") arm("sig");
       else updateHint();
     }
@@ -977,8 +984,35 @@
       const font = await doc.embedFont(StandardFonts.Helvetica);
       const pages = doc.getPages();
 
+      const mapper = window.__openSignCoordMapper;
       for (const it of items) {
         const page = pages[it.page];
+        const wrap = pageEls[it.page];
+
+        if (mapper && wrap) {
+          const placed = mapper.domRectToPdfLib(it, page, wrap.clientWidth, wrap.clientHeight, PDFLib.degrees);
+          if (it.kind === "sig") {
+            const png = await doc.embedPng(it.data);
+            page.drawImage(png, {
+              x: placed.x,
+              y: placed.y,
+              width: placed.width,
+              height: placed.height,
+              rotate: placed.rotate,
+            });
+          } else {
+            page.drawText(it.text || "", {
+              x: placed.textX,
+              y: placed.textY,
+              size: placed.fontSize,
+              font,
+              color: rgb(0, 0, 0),
+              rotate: placed.rotate,
+            });
+          }
+          continue;
+        }
+
         const { height } = page.getSize();
         const pageScale = it.scale || SCALE;
         const x = it.x / pageScale;
@@ -1024,5 +1058,87 @@
   $("continueEditingBtn").onclick = () => closeDlg(downloadDlg);
   $("downloadAgainBtn").onclick = () => {
     if (lastSignedBlobUrl) triggerBlobDownload(lastSignedBlobUrl, lastSignedName);
+  };
+
+  /* ---------- Internal Smart Sign Integration Bridge ---------- */
+  let sigSavedHook = null;
+
+  window.__openSignBridge = {
+    getPdfBytes: () => pdfBytes,
+    getFileName: () => fileName,
+    getPageEls: () => pageEls,
+    getSignatureDataUrl: () => signatureDataUrl,
+    getSigSize: () => ({ ...sigSize }),
+    getItemsCount: () => items.length,
+    goToPage,
+    toast,
+    updateHint,
+    clearSelection: () => {
+      arm(null);
+      select(null);
+    },
+    openSignatureModal: (onSaved) => {
+      sigSavedHook = typeof onSaved === "function" ? onSaved : null;
+      dlg.showModal();
+      updateSave();
+    },
+    notifySignatureSaved: () => {
+      if (!sigSavedHook) return false;
+      const fn = sigSavedHook;
+      sigSavedHook = null;
+      fn();
+      return true;
+    },
+    placeFieldItem: ({ page, kind, x, y, w, h, text, focusText = false }) => {
+      const wrap = pageEls[page];
+      if (!wrap) return null;
+      const pw = wrap.clientWidth;
+      const ph = wrap.clientHeight;
+      const item = {
+        id: nextId++,
+        page,
+        scale: +wrap.dataset.scale || SCALE,
+        kind,
+        x: clamp(x, 0, Math.max(0, pw - w)),
+        y: clamp(y, 0, Math.max(0, ph - h)),
+        w,
+        h,
+      };
+
+      if (kind === "sig") {
+        if (!signatureDataUrl) return null;
+        item.ratio = sigSize.w / sigSize.h;
+        let fitW = w;
+        let fitH = fitW / item.ratio;
+        if (fitH > h) {
+          fitH = h;
+          fitW = fitH * item.ratio;
+        }
+        item.w = Math.max(40, fitW);
+        item.h = item.w / item.ratio;
+        item.x = clamp(x + (w - item.w) / 2, 0, Math.max(0, pw - item.w));
+        item.y = clamp(y + (h - item.h), 0, Math.max(0, ph - item.h));
+        item.data = signatureDataUrl;
+      } else {
+        item.w = Math.max(40, Math.min(w, pw));
+        item.h = Math.max(18, Math.min(h, ph));
+        item.text = text != null ? text : "";
+      }
+
+      items.push(item);
+      mountItem(item, wrap);
+      arm(null);
+      select(item.id);
+      updateHint();
+
+      if (focusText && kind !== "sig") {
+        const t = nodes.get(item.id)?.el.querySelector(".txt");
+        if (t) {
+          t.focus();
+          document.getSelection()?.selectAllChildren(t);
+        }
+      }
+      return item;
+    },
   };
 })();

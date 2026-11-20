@@ -14,6 +14,7 @@
   <!-- UI + Handwriting fonts for typed signatures -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@600&family=Homemade+Apple&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="smart-sign/smart-sign.css" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
@@ -196,6 +197,16 @@
       <span>Add date</span>
     </button>
 
+    <span class="dock-sep" aria-hidden="true"></span>
+
+    <button class="tool" id="smartSignBtn" type="button" disabled aria-label="Smart Sign: auto-detect fields">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z" />
+        <path d="M18.5 16l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" />
+      </svg>
+      <span>Smart Sign</span>
+    </button>
+
     <button class="tool danger contextual-del" id="deleteBtn" type="button" hidden disabled aria-label="Delete selected element">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12" />
@@ -303,5 +314,20 @@
   </dialog>
 
   <script src="app.js"></script>
+  <script src="smart-sign/coordinate-mapper.js"></script>
+  <script src="smart-sign/text-extractor.js"></script>
+  <script src="smart-sign/text-normalizer.js"></script>
+  <script src="smart-sign/signer-detector.js"></script>
+  <script src="smart-sign/signature-detector.js"></script>
+  <script src="smart-sign/date-detector.js"></script>
+  <script src="smart-sign/name-detector.js"></script>
+  <script src="smart-sign/initials-detector.js"></script>
+  <script src="smart-sign/confidence-engine.js"></script>
+  <script src="smart-sign/field-validator.js"></script>
+  <script src="smart-sign/analysis-worker.js"></script>
+  <script src="smart-sign/document-analyzer.js"></script>
+  <script src="smart-sign/detection-overlay.js"></script>
+  <script src="smart-sign/review-panel.js"></script>
+  <script src="smart-sign/smart-sign.js"></script>
 </body>
 </html>
