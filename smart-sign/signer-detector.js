@@ -14,12 +14,12 @@
     { role: "Client", re: /\b(?:client|customer)\b/i },
     { role: "Disclosing Party", re: /\bdisclosing party\b/i },
     { role: "Receiving Party", re: /\breceiving party\b/i },
+    { role: "Counsel", re: /\b(?:counsel|attorney)\b/i },
+    { role: "Officer", re: /\bofficer\b/i },
     { role: "Commission", re: /\bcommission\b/i },
     { role: "Company", re: /\b(?:company|organization|authorized representative)\b/i },
     { role: "Buyer", re: /\b(?:buyer|purchaser)\b/i },
     { role: "Seller", re: /\b(?:seller)\b/i },
-    { role: "Counsel", re: /\b(?:counsel|attorney)\b/i },
-    { role: "Officer", re: /\bofficer\b/i },
     { role: "Party A", re: /\bparty\s*(?:a|1|one)\b/i },
     { role: "Party B", re: /\bparty\s*(?:b|2|two)\b/i },
   ];
@@ -57,7 +57,6 @@
 
       let role = extractRoleFromText(seg.cleanText);
 
-      // Recognize numbered signatory blocks like "1. CONSULTANT", "2. ACME CORP"
       if (!role && sigY !== null && seg.y >= sigY - 0.02) {
         const m = seg.cleanText.match(NUMBERED_HEADER_RE);
         if (m && seg.cleanText === seg.cleanText.toUpperCase()) {
@@ -84,8 +83,8 @@
       }
     }
 
-    const leftAnchors = anchors.filter((a) => a.cx < 0.48);
-    const rightAnchors = anchors.filter((a) => a.cx >= 0.48);
+    const leftAnchors = anchors.filter((a) => a.cx < 0.45);
+    const rightAnchors = anchors.filter((a) => a.cx >= 0.45);
     const isTwoColumn = leftAnchors.length > 0 && rightAnchors.length > 0;
 
     return { anchors, isTwoColumn };
@@ -104,15 +103,15 @@
 
     for (const a of anchors) {
       if (isTwoColumn) {
-        const sameSide = (fieldCx < 0.48 && a.cx < 0.48) || (fieldCx >= 0.48 && a.cx >= 0.48);
+        const sameSide = (fieldCx < 0.45 && a.cx < 0.45) || (fieldCx >= 0.45 && a.cx >= 0.45);
         if (!sameSide) continue;
       }
 
       const dy = field.y - a.y;
-      if (dy < -0.04 || dy > 0.28) continue;
+      if (dy < -0.02 || dy > 0.24) continue;
 
       const dx = Math.abs(fieldCx - a.cx);
-      const dist = Math.abs(dy) * 1.4 + dx * 0.8;
+      const dist = dy * 1.5 + dx * 0.7;
       if (dist < bestDist) {
         bestDist = dist;
         best = a;

@@ -10,10 +10,10 @@
   };
 
   const DEFAULT_ADD_SIZES = {
-    signature: { width: 0.28, height: 0.052 },
-    name: { width: 0.24, height: 0.03 },
-    date: { width: 0.16, height: 0.03 },
-    initials: { width: 0.09, height: 0.034 },
+    signature: { width: 0.28, height: 0.044 },
+    name: { width: 0.24, height: 0.026 },
+    date: { width: 0.16, height: 0.026 },
+    initials: { width: 0.09, height: 0.028 },
   };
 
   const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), Math.max(lo, hi));

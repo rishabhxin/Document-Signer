@@ -8,31 +8,29 @@
   const STANDARD_INITIALS_RE = /^(?:initials?)\s*[:.]?$/i;
 
   const DEFAULT_W = 0.09;
-  const DEFAULT_H = 0.032;
+  const DESIRED_H = 0.028;
+  const MIN_H = 0.02;
 
-  function computePlacement(seg) {
+  function placeAboveBaseline(x, width, baselineY, segments, excludeSegId, blankType) {
+    const w = Math.min(0.14, Math.max(0.065, width));
+    const fit = NS.measureClearHeightAbove(x, w, baselineY, segments, excludeSegId, DESIRED_H, MIN_H);
+    return { x, y: fit.y, width: w, height: fit.height, blankType };
+  }
+
+  function computePlacement(seg, segments) {
     const g = seg.geometry;
+
+    if (!seg.hasTrailingColon && g.lineAbove) {
+      return placeAboveBaseline(g.lineAbove.x, g.lineAbove.width, g.lineAbove.y, segments, seg.id, "vector-line-above");
+    }
 
     if (seg.inlineBlankBox && seg.inlineBlankBox.width >= 0.03) {
       const b = seg.inlineBlankBox;
-      return {
-        x: b.x,
-        y: Math.max(0.01, b.y - 0.005),
-        width: Math.min(0.14, Math.max(0.07, b.width)),
-        height: DEFAULT_H,
-        blankType: "inline-underscore",
-      };
+      return placeAboveBaseline(b.x, b.width, b.baselineY || b.y + b.height, segments, seg.id, "inline-underscore");
     }
 
     if (g.lineRight) {
-      const ln = g.lineRight;
-      return {
-        x: ln.x,
-        y: Math.max(0.01, ln.y - DEFAULT_H + 0.004),
-        width: Math.min(0.14, Math.max(0.07, ln.width)),
-        height: DEFAULT_H,
-        blankType: "vector-line-right",
-      };
+      return placeAboveBaseline(g.lineRight.x, g.lineRight.width, g.lineRight.y, segments, seg.id, "vector-line-right");
     }
 
     if (g.rightBox) {
@@ -41,51 +39,27 @@
         x: b.x + 0.002,
         y: b.y + 0.002,
         width: Math.max(0.06, b.width - 0.004),
-        height: Math.max(0.025, b.height - 0.004),
+        height: Math.max(0.022, b.height - 0.004),
         blankType: "vector-box",
       };
     }
 
     if (g.lineAbove) {
-      const ln = g.lineAbove;
-      return {
-        x: ln.x,
-        y: Math.max(0.01, ln.y - DEFAULT_H + 0.004),
-        width: Math.min(0.14, Math.max(0.07, ln.width)),
-        height: DEFAULT_H,
-        blankType: "vector-line-above",
-      };
+      return placeAboveBaseline(g.lineAbove.x, g.lineAbove.width, g.lineAbove.y, segments, seg.id, "vector-line-above");
     }
 
     if (g.lineBelow) {
-      const ln = g.lineBelow;
-      return {
-        x: ln.x,
-        y: Math.max(0.01, ln.y - DEFAULT_H + 0.004),
-        width: Math.min(0.14, Math.max(0.07, ln.width)),
-        height: DEFAULT_H,
-        blankType: "vector-line-below",
-      };
+      return placeAboveBaseline(g.lineBelow.x, g.lineBelow.width, g.lineBelow.y, segments, seg.id, "vector-line-below");
     }
 
     if (seg.hasTrailingColon && g.freeSpaceRight >= 0.06) {
-      return {
-        x: seg.x + seg.width + 0.008,
-        y: Math.max(0.01, seg.y - 0.004),
-        width: Math.min(DEFAULT_W, g.freeSpaceRight - 0.006),
-        height: DEFAULT_H,
-        blankType: "whitespace-right",
-      };
+      const x = seg.x + seg.width + 0.008;
+      const w = Math.min(DEFAULT_W, g.freeSpaceRight - 0.006);
+      return placeAboveBaseline(x, w, seg.y + seg.height, segments, seg.id, "whitespace-right");
     }
 
-    if (g.freeSpaceAbove >= 0.028) {
-      return {
-        x: seg.x,
-        y: Math.max(0.01, seg.y - DEFAULT_H - 0.004),
-        width: DEFAULT_W,
-        height: DEFAULT_H,
-        blankType: "whitespace-above",
-      };
+    if (g.freeSpaceAbove >= 0.024) {
+      return placeAboveBaseline(seg.x, DEFAULT_W, seg.y - 0.003, segments, seg.id, "whitespace-above");
     }
 
     return null;
@@ -103,7 +77,7 @@
           x: w.x,
           y: w.y,
           width: w.width,
-          height: Math.max(0.024, w.height),
+          height: Math.max(0.022, w.height),
           sourceText: hint.trim() || "Initials Widget",
           keywordStrength: "strong",
           blankType: "acroform",
@@ -131,7 +105,7 @@
 
       if (seg.isParagraphLike && !seg.hasInlineBlank && !seg.geometry.lineRight) continue;
 
-      const placement = computePlacement(seg);
+      const placement = computePlacement(seg, normalizedPage.segments);
       if (!placement) continue;
 
       const inSignatureSection =

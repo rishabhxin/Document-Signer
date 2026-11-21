@@ -354,6 +354,7 @@
 }
 
 .ss-field:hover {
+  z-index: 18;
   background: rgba(22, 82, 240, 0.12);
 }
 
@@ -362,7 +363,7 @@
 }
 
 .ss-field.selected {
-  z-index: 14;
+  z-index: 24;
   border-style: solid;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(22, 82, 240, 0.18);
@@ -375,19 +376,23 @@
 .ss-field-tag {
   position: absolute;
   left: -1px;
-  bottom: calc(100% + 3px);
+  bottom: calc(100% + 2px);
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 2px 7px;
+  padding: 1px 6px;
   border-radius: 4px;
-  background: var(--ink);
+  background: rgba(20, 20, 19, 0.88);
   color: var(--surface);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.35;
   white-space: nowrap;
   pointer-events: none;
+}
+
+.ss-field.selected .ss-field-tag {
+  background: var(--ink);
 }
 
 .ss-field.conf-medium .ss-field-tag {
@@ -411,7 +416,7 @@
   border-radius: 6px;
   background: var(--surface);
   box-shadow: 0 6px 16px -6px rgba(20, 20, 19, 0.25);
-  z-index: 20;
+  z-index: 26;
 }
 
 .ss-field.selected .ss-field-controls {
@@ -481,7 +486,7 @@
   border-radius: 5px;
   background: rgba(22, 82, 240, 0.08);
   color: var(--accent);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   cursor: pointer;
   overflow: hidden;

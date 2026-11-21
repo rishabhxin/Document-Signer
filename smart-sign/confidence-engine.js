@@ -43,7 +43,7 @@
       return 7;
     }
     if (c.type === "signature") {
-      if (isLastPages && c.y >= 0.25) return 10;
+      if (isLastPages && c.y >= 0.2) return 10;
       if (c.y >= 0.45) return 8;
       return 6;
     }

@@ -52,7 +52,6 @@
     return NS.validateAndDeduplicate(allScored);
   };
 
-  // Non-blocking chunked fallback for file:// origins where browsers restrict Web Workers
   NS.runDetectionPipelineAsync = async function runDetectionPipelineAsync(extractedDoc, onProgress, signal) {
     const { pages, totalPages } = extractedDoc;
     const allScored = [];

@@ -22,14 +22,14 @@
     const acy = a.y + a.height / 2;
     const bcx = b.x + b.width / 2;
     const bcy = b.y + b.height / 2;
-    return Math.abs(acx - bcx) < 0.06 && Math.abs(acy - bcy) < 0.028;
+    return Math.abs(acx - bcx) < 0.06 && Math.abs(acy - bcy) < 0.022;
   }
 
   function normalizeGeometry(f) {
     const minW = f.type === "initials" ? 0.055 : 0.09;
     const maxW = f.type === "initials" ? 0.16 : 0.5;
-    const minH = f.type === "signature" ? 0.032 : 0.022;
-    const maxH = f.type === "signature" ? 0.12 : 0.06;
+    const minH = f.type === "signature" ? 0.026 : 0.018;
+    const maxH = f.type === "signature" ? 0.12 : 0.055;
 
     const width = clamp(f.width, minW, maxW);
     const height = clamp(f.height, minH, maxH);
