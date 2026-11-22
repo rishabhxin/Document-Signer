@@ -11,17 +11,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="/assets/fav.png" type="image/x-icon">
 </head>
 <body data-view="about">
   <!-- ============ HEADER ============ -->
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Open Sign home">
-      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="2.5" y="2.5" width="27" height="27" rx="7" stroke="currentColor" stroke-width="1.5" />
-        <path d="M8.5 20.5c2.4-6.8 4.2-9 5.5-7.7 1.4 1.5-2.1 7.6.2 7.6 2.1 0 2.7-4.8 4.5-4.8 1.5 0 1.4 2.8 3.6 1.1" stroke="var(--accent)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
-        <line x1="8.5" y1="24" x2="23.5" y2="24" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.28" stroke-linecap="round" />
-      </svg>
-      <span class="brand-name">Open Sign</span>
+    <a class="brand" href="/index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="assets/open sign logo.png" alt="Open Sign" width="156" height="32">
     </a>
 
     <div class="header-actions">
@@ -45,7 +41,6 @@
       <!-- Hero -->
       <section class="about-hero">
         <span class="about-eyebrow">
-          <span class="about-eyebrow-dot" aria-hidden="true"></span>
           Open Source · Privacy First
         </span>
         <h1 class="about-title" id="aboutTitle">
@@ -53,7 +48,7 @@
           <span class="accent-word">effortless signing<span class="accent-dot">.</span></span>
         </h1>
         <p class="about-lead">
-          Open Sign is an open-source, browser-based PDF signing platform. We believe signing a document should take seconds—without mandatory accounts, subscriptions, or handing sensitive files over to remote servers.
+          Open Sign is an open-source, browser-based PDF signing platform. We believe signing a document should take seconds, without mandatory accounts, subscriptions, or handing sensitive files over to remote servers.
         </p>
       </section>
 
@@ -94,7 +89,7 @@
           </div>
           <h2>Local Smart Sign detection</h2>
           <p>
-            Smart Sign scans uploaded contracts locally—using PDF text geometry and in-browser OCR for scanned pages—to suggest signature, name, date, and initials fields that you review and approve before signing.
+            Smart Sign scans uploaded contracts locally, using PDF text geometry and in-browser OCR for scanned pages, to suggest signature, name, date, and initials fields that you review and approve before signing.
           </p>
         </div>
 
@@ -135,12 +130,12 @@
           <div class="about-spec">
             <span class="about-spec-label">Scanned PDF Support</span>
             <span class="about-spec-val">Tesseract.js (Local OCR)</span>
-            <span class="about-spec-note">Loaded on demand only for image-based pages—no external AI APIs.</span>
+            <span class="about-spec-note">Loaded on demand only for image-based pages, no external AI APIs.</span>
           </div>
           <div class="about-spec">
             <span class="about-spec-label">Source Code</span>
             <span class="about-spec-val">Open Source on GitHub</span>
-            <span class="about-spec-note">Vanilla HTML, CSS, and JavaScript—easy to audit, customize, and deploy anywhere.</span>
+            <span class="about-spec-note">Vanilla HTML, CSS, and JavaScript, easy to audit, customize, and deploy anywhere.</span>
           </div>
         </div>
       </section>
@@ -170,12 +165,21 @@
     </article>
   </main>
 
+  <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
-    <span>Open Sign — Open-source, browser-based PDF signing.</span>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="about.html" aria-current="page">About us</a>
-      <a href="https://github.com/rishabhxin/Document-Signer" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="footer-logo-link" href="/index.html" aria-label="Open Sign home">
+          <img class="footer-logo" src="assets/open sign logo.png" alt="Open Sign" width="136" height="28" />
+        </a>
+        <p class="footer-tagline">Open-source, browser-based PDF signing. Your documents never leave your device.</p>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/index.html">Home</a>
+        <a href="/about.html" aria-current="page">About us</a>
+        <a href="https://github.com/rishabhxin/Document-Signer" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
     </div>
   </footer>
 </body>
