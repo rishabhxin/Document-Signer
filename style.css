@@ -1790,7 +1790,7 @@ body[data-view="editor"] .site-nav {
 /* Image Logo */
 .brand-logo {
   display: block;
-  height: 32px;
+  height: 48px;
   width: auto;
   max-width: 200px;
   object-fit: contain;
@@ -1843,7 +1843,7 @@ body[data-view="editor"] .site-footer {
 
 .footer-logo {
   display: block;
-  height: 24px;
+  height: 36px;
   width: auto;
   max-width: 136px;
   object-fit: contain;
