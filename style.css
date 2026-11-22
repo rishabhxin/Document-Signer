@@ -31,7 +31,7 @@
   --accent-soft: rgba(22, 82, 240, 0.08);
   --on-accent: #ffffff;
   --danger: #d12c2c;
-  --font: "Plus Jakarta Sans", "Metropolis", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font:  "Metropolis", system-ui, -apple-system, "Segoe UI", sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --header-h: 68px;
 }
