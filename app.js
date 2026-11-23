@@ -181,6 +181,8 @@
 
         const wrap = document.createElement("div");
         wrap.dataset.scale = pageScale;
+        wrap.dataset.baseW = baseViewport.width;
+        wrap.dataset.baseH = baseViewport.height;
         wrap.className = "page";
         wrap.dataset.page = i - 1;
         wrap.setAttribute("role", "group");
@@ -1059,6 +1061,63 @@
   $("downloadAgainBtn").onclick = () => {
     if (lastSignedBlobUrl) triggerBlobDownload(lastSignedBlobUrl, lastSignedName);
   };
+
+  /* ---------- Responsive Page Reflow on Viewport Resize / Orientation Change ---------- */
+  let resizeRaf = null;
+  function reflowPages() {
+    if (!pageEls.length) return;
+    const gutter = window.innerWidth < 640 ? 20 : window.innerWidth < 1024 ? 48 : 96;
+    const availableWidth = Math.max(260, document.documentElement.clientWidth - gutter);
+
+    for (const wrap of pageEls) {
+      const baseW = parseFloat(wrap.dataset.baseW);
+      const baseH = parseFloat(wrap.dataset.baseH);
+      if (!baseW || !baseH) continue;
+
+      const oldW = parseFloat(wrap.style.width) || wrap.clientWidth;
+      const newScale = Math.min(SCALE, availableWidth / baseW);
+      const newW = baseW * newScale;
+      const newH = baseH * newScale;
+
+      if (Math.abs(newW - oldW) < 0.5) continue;
+
+      const ratio = oldW > 0 ? newW / oldW : 1;
+      const pageIdx = +wrap.dataset.page;
+
+      wrap.dataset.scale = newScale;
+      wrap.style.width = newW + "px";
+      wrap.style.height = newH + "px";
+
+      const canvas = wrap.querySelector("canvas.render");
+      if (canvas) {
+        canvas.style.width = newW + "px";
+        canvas.style.height = newH + "px";
+      }
+
+      for (const it of items) {
+        if (it.page !== pageIdx) continue;
+        it.x *= ratio;
+        it.y *= ratio;
+        it.w *= ratio;
+        it.h *= ratio;
+        it.scale = newScale;
+        nodes.get(it.id)?.place();
+      }
+    }
+    updatePager();
+  }
+
+  window.addEventListener(
+    "resize",
+    () => {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        resizeRaf = null;
+        reflowPages();
+      });
+    },
+    { passive: true }
+  );
 
   /* ---------- Internal Smart Sign Integration Bridge ---------- */
   let sigSavedHook = null;
