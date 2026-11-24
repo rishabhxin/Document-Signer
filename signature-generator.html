@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#130032" />
+  <meta name="description" content="Open Sign Signature Generator: Draw or type your digital signature online in seconds. Download as transparent PNG or JPEG—free, private, and 100% browser-based." />
+  <title>Signature Generator | Open Sign</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Caveat:wght@600&family=Dancing+Script:wght@600&family=Great+Vibes&family=Homemade+Apple&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="signature-generator.css" />
+  <link rel="shortcut icon" href="/assets/fav.png" type="image/x-icon">
+</head>
+<body data-view="generator">
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="assets/open sign logo.png" alt="Open Sign" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link hide-mobile" href="index.html#features">Features</a>
+      <a class="nav-link hide-mobile" href="index.html#workflow">How it works</a>
+      <a class="nav-link" href="signature-generator.html" aria-current="page">Signature Generator</a>
+      <a class="nav-link" href="about.html">About us</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="assets/open sign logo.png" alt="Open Sign" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">Platform</p>
+        <nav class="side-nav-list" aria-label="Mobile platform navigation">
+          <a class="side-nav-link" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Sign a PDF</span>
+          </a>
+          <a class="side-nav-link" href="signature-generator.html" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+          <a class="side-nav-link" href="index.html#features">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z" />
+              <path d="M18.5 16l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" />
+            </svg>
+            <span>Smart Sign Features</span>
+          </a>
+          <a class="side-nav-link" href="index.html#workflow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M10 8.5l5 3.5-5 3.5V8.5Z" />
+            </svg>
+            <span>How it works</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About us</span>
+          </a>
+          <a class="side-nav-link" href="about.html#security">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l7 3v6c0 4.6-3 8.1-7 9-4-.9-7-4.4-7-9V6l7-3Z" />
+              <path d="M9.5 12l1.8 1.8L15 10" />
+            </svg>
+            <span>Security &amp; Privacy</span>
+          </a>
+          <a class="side-nav-link" href="about.html#capabilities">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="6" rx="1.5" />
+              <rect x="3" y="14" width="18" height="6" rx="1.5" />
+            </svg>
+            <span>Architecture</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view sg-page enter">
+      <!-- ============ 1. HERO + INTERACTIVE SIGNATURE GENERATOR STUDIO ============ -->
+      <section class="sg-hero-band" aria-labelledby="sgHeroTitle">
+        <div class="sg-container">
+          <div class="sg-hero-head">
+            <span class="eyebrow">
+              100% Free · No Account Required · Browser-Based
+            </span>
+            <h1 class="sg-title" id="sgHeroTitle">
+              Generate your digital signature <span class="accent-word">in seconds</span>
+            </h1>
+            <p class="sg-sub">
+              Draw with your mouse, trackpad, or touchscreen, or type and choose a signature style. Download cleanly as a transparent PNG or crisp JPEG with zero watermarks.
+            </p>
+          </div>
+
+          <div class="sg-studio">
+            <!-- Left: Creator Panel -->
+            <div class="sg-panel" aria-label="Signature creator">
+              <div class="sg-panel-head">
+                <div class="sg-mode-tabs" role="tablist" aria-label="Signature creation method">
+                  <button type="button" role="tab" class="sg-mode-tab active" data-mode="draw" aria-selected="true" aria-controls="sgPanelDraw">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+                      <path d="M14 7l3 3" />
+                    </svg>
+                    Draw
+                  </button>
+                  <button type="button" role="tab" class="sg-mode-tab" data-mode="type" aria-selected="false" aria-controls="sgPanelType" tabindex="-1">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M5 7V5.5h14V7M12 5.5v13M9 18.5h6" />
+                    </svg>
+                    Type
+                  </button>
+                </div>
+
+                <span class="dz-privacy">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+                    <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+                  </svg>
+                  Created locally in your browser
+                </span>
+              </div>
+
+              <!-- Color & Stroke Customization -->
+              <div class="sg-controls-bar">
+                <div class="sg-control-group">
+                  <span class="sg-control-label">Ink</span>
+                  <div class="sg-swatches" id="sgSwatches" role="radiogroup" aria-label="Signature ink color"></div>
+                </div>
+
+                <div class="sg-control-group" id="sgWeightGroup">
+                  <span class="sg-control-label">Stroke</span>
+                  <div class="sg-weight-btns" id="sgWeights" role="radiogroup" aria-label="Stroke thickness"></div>
+                </div>
+              </div>
+
+              <!-- Draw Mode Panel -->
+              <div id="sgPanelDraw" role="tabpanel">
+                <div class="sg-pad-stage" id="sgPadStage">
+                  <canvas id="sgDrawPad" width="1040" height="455" aria-label="Draw your signature canvas"></canvas>
+                  <div class="sg-pad-placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+                    </svg>
+                    <span>Draw your signature here</span>
+                  </div>
+                  <div class="sg-pad-guide" aria-hidden="true"></div>
+                </div>
+
+                <div class="sg-pad-footer" style="margin-top:12px">
+                  <p class="sg-pad-hint">Sign smoothly with a mouse, trackpad, finger, or stylus.</p>
+                  <div class="sg-pad-actions">
+                    <button type="button" class="sg-mini-btn" id="sgUndoBtn" disabled>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M9 14L4 9l5-5" />
+                        <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" />
+                      </svg>
+                      Undo
+                    </button>
+                    <button type="button" class="sg-mini-btn" id="sgClearDrawBtn" disabled>Clear</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Type Mode Panel -->
+              <div id="sgPanelType" role="tabpanel" hidden>
+                <div class="sg-type-input-wrap">
+                  <label for="sgNameInput">Type your signature</label>
+                  <div class="sg-name-row">
+                    <input
+                      id="sgNameInput"
+                      class="sg-name-input"
+                      type="text"
+                      placeholder="Type your full name"
+                      maxlength="45"
+                      autocomplete="off"
+                    />
+                    <button type="button" class="sg-mini-btn" id="sgClearTypeBtn" disabled>Clear</button>
+                  </div>
+                </div>
+
+                <p class="sg-style-label" style="margin-top:14px;margin-bottom:8px">Choose a style</p>
+                <div class="sg-style-grid" id="sgStyleGrid" role="radiogroup" aria-label="Signature handwriting styles"></div>
+              </div>
+            </div>
+
+            <!-- Right: Live Preview + Contract Preview + Downloads -->
+            <div class="sg-preview-col">
+              <div class="sg-panel" aria-label="Signature preview and export">
+                <div class="sg-panel-head">
+                  <strong style="font-size:15px;letter-spacing:-0.01em">Signature preview</strong>
+                  <span style="font-size:12px;color:var(--muted);font-weight:600">No watermarks</span>
+                </div>
+
+                <div class="sg-preview-box">
+                  <img id="sgPreviewImg" class="sg-preview-img" alt="Generated digital signature preview" hidden />
+                  <span id="sgPreviewEmpty" class="sg-preview-empty">Your live signature preview will appear here.</span>
+                </div>
+
+                <div class="sg-download-row">
+                  <button type="button" class="btn primary" id="sgDlPng" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+                    </svg>
+                    Download as PNG
+                  </button>
+                  <button type="button" class="btn" id="sgDlJpg" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+                    </svg>
+                    Download as JPEG
+                  </button>
+                </div>
+
+                <button type="button" class="btn sg-use-pdf-btn" id="sgUseInPdf" disabled>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                    <path d="M14 2v6h6M9 15l2 2 4-4" />
+                  </svg>
+                  Use to Sign a PDF in Open Sign
+                </button>
+
+                <p class="sg-format-note">PNG includes a transparent background for PDFs · JPEG uses a clean white background</p>
+              </div>
+
+              <!-- Live Contract Preview -->
+              <div class="sg-contract-card" aria-label="Contract preview">
+                <div class="sg-contract-head">
+                  <h2>Contract Preview</h2>
+                  <span class="sg-ready-pill" id="sgReadyPill" hidden>Ready to sign</span>
+                </div>
+
+                <div class="sg-contract-sheet">
+                  <div class="sg-mock-lines" aria-hidden="true">
+                    <span style="width:42%;height:7px;background:rgba(19,0,50,0.2)"></span>
+                    <span style="width:96%"></span>
+                    <span style="width:88%"></span>
+                    <span style="width:74%"></span>
+                  </div>
+
+                  <div class="sg-contract-sign-row">
+                    <div class="sg-contract-slot">
+                      <div class="sg-contract-sig-area">
+                        <img id="sgContractSigImg" class="sg-contract-sig-img" alt="Signature applied on contract preview" hidden />
+                        <span id="sgContractPlaceholder" class="sg-contract-sig-placeholder">Sign to preview on agreement...</span>
+                      </div>
+                      <span class="sg-contract-caption" id="sgContractNameCaption">Authorized Signature</span>
+                    </div>
+
+                    <div class="sg-contract-slot">
+                      <div class="sg-contract-date-val" id="sgContractDate"></div>
+                      <span class="sg-contract-caption">Date</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 2. WHERE YOU CAN USE YOUR DIGITAL SIGNATURE ============ -->
+      <section class="saas-section" aria-labelledby="sgUseCasesTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Built for real workflows</span>
+            <h2 class="section-title" id="sgUseCasesTitle">Where can you use your digital signature?</h2>
+            <p class="section-desc">
+              Your signature belongs on documents that matter. Use your downloaded PNG or JPEG across everyday paperwork and business-critical agreements.
+            </p>
+          </div>
+
+          <div class="sg-usecase-grid">
+            <div class="sg-usecase-card">
+              <div class="sg-usecase-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                  <path d="M14 2v6h6" />
+                </svg>
+              </div>
+              <div>
+                <h3>PDFs</h3>
+                <p>Overlay transparent PNG signatures cleanly onto forms, quotes, proposals, and multi-page PDFs.</p>
+              </div>
+            </div>
+
+            <div class="sg-usecase-card">
+              <div class="sg-usecase-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+                  <path d="M14 7l3 3" />
+                </svg>
+              </div>
+              <div>
+                <h3>Contracts</h3>
+                <p>Sign client service agreements, freelance scopes, rental leases, and vendor contracts in seconds.</p>
+              </div>
+            </div>
+
+            <div class="sg-usecase-card">
+              <div class="sg-usecase-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M5 20a7 7 0 0 1 14 0" />
+                </svg>
+              </div>
+              <div>
+                <h3>HR Documents</h3>
+                <p>Complete offer letters, onboarding checklists, policy acknowledgments, and leave approvals digitally.</p>
+              </div>
+            </div>
+
+            <div class="sg-usecase-card">
+              <div class="sg-usecase-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="11" width="16" height="10" rx="2" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>
+              </div>
+              <div>
+                <h3>NDAs</h3>
+                <p>Execute mutual or one-way non-disclosure agreements quickly while keeping files strictly on your device.</p>
+              </div>
+            </div>
+
+            <div class="sg-usecase-card">
+              <div class="sg-usecase-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+              </div>
+              <div>
+                <h3>Email Signatures</h3>
+                <p>Add a polished handwritten sign-off to your Gmail, Outlook, or business email footer.</p>
+              </div>
+            </div>
+
+            <div class="sg-usecase-card">
+              <div class="sg-usecase-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="M7 9h10M7 13h6M7 17h4" />
+                </svg>
+              </div>
+              <div>
+                <h3>Financial Forms</h3>
+                <p>Sign invoices, expense authorizations, purchase orders, and account onboarding forms without printing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 3. 4-STEP WORKFLOW BAND ============ -->
+      <section class="workflow-band" aria-labelledby="sgStepsTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">End-to-end signing</span>
+            <h2 class="section-title" id="sgStepsTitle">Steps for signing documents with Open Sign.</h2>
+            <p class="section-desc">
+              Create your personal signature once and apply it directly to any PDF right in your browser, no printers or scanners needed.
+            </p>
+          </div>
+
+          <div class="sg-steps-4">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Create your signature</h3>
+              <p>Draw or type your signature above, pick your preferred ink and style, and preview it directly on a contract line.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Download or carry forward</h3>
+              <p>Save your signature as a transparent PNG or JPEG or jump straight into the Open Sign PDF workspace with one click.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Auto-detect fields with Smart Sign</h3>
+              <p>Upload your PDF and let Smart Sign automatically highlight signature, name, date, and initials locations locally.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">04</span>
+              <h3>Export a print-ready PDF</h3>
+              <p>Apply your signature with exact placement and download a crisp signed PDF with original layout and orientation preserved.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 4. FREQUENTLY ASKED QUESTIONS ============ -->
+      <section class="sg-faq-band" aria-labelledby="sgFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="sgFaqTitle">Everything you need to know about creating signatures.</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>What is a signature generator?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>A signature generator is an online tool that lets you draw or type your personal digital signature and download it as a clean image file for use in PDFs, contracts, Word documents, and emails.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>Is the Open Sign signature generator free to use?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. You can draw, type, customize, and download unlimited signatures directly in your browser with no watermarks and no sign-up required.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>Can I draw my own signature on mobile or tablet?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. The drawing canvas supports mouse, laptop trackpads, touchscreens, and stylus pens smoothly across phones, tablets, and desktops.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>What is the difference between PNG and JPEG downloads?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>PNG exports with a transparent background so your signature blends cleanly over contract lines and PDFs without a white box. JPEG exports with a crisp white background and smaller file size, ideal for email attachments and general sharing.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>Is my signature saved or stored on any server?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. Everything runs 100% locally inside your browser. Your signature strokes, typed name, and exported images are never uploaded to or stored on any server.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>Can I customize the style, thickness, and ink color?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Choose from six ink colors, adjust fine/medium/bold stroke weight when drawing, or switch between six curated handwriting styles when typing your signature.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>How do I use my generated signature on a PDF?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Click "Use to Sign a PDF in Open Sign" to carry your signature straight into our PDF editor, or download the transparent PNG and insert it into any PDF or Word document.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>How do I add my signature to Gmail or Outlook?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Download your signature as a PNG or JPEG, open your email client's signature settings, and insert the image right above your name and title.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 5. CLOSING CTA ============ -->
+      <section class="sg-cta-section" aria-labelledby="sgCtaTitle">
+        <div class="saas-container">
+          <div class="about-cta">
+            <h2 id="sgCtaTitle">Ready to sign your agreement?</h2>
+            <p>
+              Upload your PDF, detect signature and date fields automatically with Smart Sign, and export a print-ready signed document in seconds.
+            </p>
+            <div class="about-cta-actions">
+              <a class="btn on-dark" href="index.html">Upload &amp; Sign a PDF</a>
+              <a class="btn outline-dark" href="about.html">Learn about Open Sign</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="assets/open sign logo.png" alt="Open Sign" width="146" height="30" />
+          </a>
+          <p class="footer-tagline">
+            Modern eSignature and intelligent agreement signing software engineered for speed, precision, and zero-retention document privacy.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-links" aria-label="Platform navigation">
+            <a href="index.html">Sign a PDF</a>
+            <a href="signature-generator.html" aria-current="page">Signature Generator</a>
+            <a href="index.html#features">Smart Sign</a>
+            <a href="index.html#workflow">How it works</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Company navigation">
+            <a href="about.html">About us</a>
+            <a href="about.html#security">Security &amp; Privacy</a>
+            <a href="about.html#capabilities">Architecture</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="nav.js"></script>
+  <script src="signature-generator.js"></script>
+</body>
+</html>

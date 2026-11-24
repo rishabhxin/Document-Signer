@@ -1200,4 +1200,24 @@
       return item;
     },
   };
+
+  /* ---------- Preload Signature from Signature Generator (if present) ---------- */
+  try {
+    const saved = sessionStorage.getItem("opensign:generatedSignature");
+    if (saved) {
+      sessionStorage.removeItem("opensign:generatedSignature");
+      const parsed = JSON.parse(saved);
+      if (parsed && typeof parsed.dataUrl === "string" && parsed.dataUrl.startsWith("data:image/png")) {
+        signatureDataUrl = parsed.dataUrl;
+        sigSize = { w: parsed.w || 3, h: parsed.h || 1 };
+        const thumb = $("sigThumb");
+        if (thumb) {
+          thumb.src = signatureDataUrl;
+          thumb.hidden = false;
+        }
+        $("addSigBtn")?.classList.add("has-sig");
+        toast("Your generated signature is ready — upload a PDF to place it.");
+      }
+    }
+  } catch (_) {}
 })();

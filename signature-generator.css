@@ -1,0 +1,841 @@
+/* =========================================================
+   Open Sign — Online Signature Generator Studio
+   Inherits Open Sign Cobalt/Inkwell/Ecru design tokens.
+   ========================================================= */
+
+body[data-view="generator"] {
+  background: var(--bg);
+}
+
+.sg-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Hero + Above-the-Fold Studio Band ---------- */
+.sg-hero-band {
+  width: 100%;
+  background: linear-gradient(180deg, var(--ecru) 0%, #ffffff 78%);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(32px, 5vh, 56px) clamp(16px, 4vw, 56px) clamp(48px, 7vh, 76px);
+}
+
+.sg-container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vw, 40px);
+}
+
+.sg-hero-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.sg-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(32px, 4.4vw, 50px);
+  line-height: 1.07;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.sg-sub {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: clamp(15px, 1.35vw, 17.5px);
+  line-height: 1.6;
+}
+
+/* ---------- Interactive 2-Column Studio ---------- */
+.sg-studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.sg-panel {
+  background: var(--surface);
+  border: 1.5px solid var(--line-strong);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 22px 54px -28px rgba(19, 0, 50, 0.16), 0 2px 8px rgba(19, 0, 50, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sg-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Segmented Mode Switcher (Draw | Type) */
+.sg-mode-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 9px;
+  background: var(--surface-tint);
+  border: 1px solid var(--line);
+}
+
+.sg-mode-tab {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.18s, color 0.18s, box-shadow 0.18s;
+}
+
+.sg-mode-tab svg {
+  width: 16px;
+  height: 16px;
+}
+
+.sg-mode-tab:hover {
+  color: var(--ink);
+}
+
+.sg-mode-tab.active {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: 0 2px 8px -2px rgba(19, 0, 50, 0.14);
+}
+
+/* Color & Stroke Controls Bar */
+.sg-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-tint);
+}
+
+.sg-control-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sg-control-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-right: 2px;
+}
+
+.sg-swatches {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.sg-swatch {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1.5px var(--line-strong);
+  transition: transform 0.16s var(--ease), box-shadow 0.16s;
+}
+
+.sg-swatch:hover {
+  transform: scale(1.1);
+}
+
+.sg-swatch[aria-checked="true"] {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.sg-weight-btns {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sg-weight-btn {
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  transition: border-color 0.16s, color 0.16s, background-color 0.16s;
+}
+
+.sg-weight-btn:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.sg-weight-btn[aria-checked="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Draw Canvas Stage */
+.sg-pad-stage {
+  position: relative;
+  border: 1.5px dashed rgba(76, 0, 255, 0.3);
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sg-pad-stage:hover,
+.sg-pad-stage.is-drawing {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.sg-pad-stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 7;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.sg-pad-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+  color: var(--muted);
+  opacity: 0.72;
+  transition: opacity 0.2s;
+}
+
+.sg-pad-stage.has-ink .sg-pad-placeholder {
+  opacity: 0;
+}
+
+.sg-pad-placeholder svg {
+  width: 26px;
+  height: 26px;
+  color: var(--accent);
+}
+
+.sg-pad-placeholder span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sg-pad-guide {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 22%;
+  border-bottom: 1px solid var(--line-strong);
+  pointer-events: none;
+}
+
+.sg-pad-guide::before {
+  content: "\2715";
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sg-pad-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sg-pad-hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.sg-pad-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sg-mini-btn {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 0.16s, border-color 0.16s, color 0.16s;
+}
+
+.sg-mini-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.sg-mini-btn:hover:not(:disabled) {
+  border-color: var(--ink);
+  background: var(--surface-tint);
+}
+
+.sg-mini-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* Type Tab */
+.sg-type-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sg-type-input-wrap label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.sg-name-row {
+  display: flex;
+  gap: 8px;
+}
+
+.sg-name-input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 15px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface-tint);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.sg-name-input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.sg-style-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.sg-style-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sg-style-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 92px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-tint);
+  text-align: left;
+  overflow: hidden;
+  transition: border-color 0.18s, background-color 0.18s, box-shadow 0.18s, transform 0.14s var(--ease);
+}
+
+.sg-style-card:hover {
+  border-color: var(--line-strong);
+  background: #ffffff;
+}
+
+.sg-style-card[aria-checked="true"] {
+  border-color: var(--accent);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.sg-style-persona {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+.sg-style-card[aria-checked="true"] .sg-style-persona {
+  color: var(--accent);
+}
+
+.sg-style-sample {
+  width: 100%;
+  font-size: 27px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Right Column: Live Preview + Contract Preview + Downloads ---------- */
+.sg-preview-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sg-preview-box {
+  position: relative;
+  min-height: 122px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(45deg, rgba(19, 0, 50, 0.035) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(19, 0, 50, 0.035) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(19, 0, 50, 0.035) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(19, 0, 50, 0.035) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+.sg-preview-img {
+  max-width: 100%;
+  max-height: 92px;
+  object-fit: contain;
+  display: block;
+}
+
+.sg-preview-empty {
+  font-size: 13.5px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.sg-download-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sg-download-row .btn {
+  width: 100%;
+  padding: 0 14px;
+  font-size: 13.5px;
+}
+
+.sg-use-pdf-btn {
+  width: 100%;
+  min-height: 40px;
+  border-color: rgba(76, 0, 255, 0.3);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.sg-use-pdf-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: rgba(76, 0, 255, 0.14);
+}
+
+.sg-format-note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Contract Preview Card */
+.sg-contract-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 16px 40px -26px rgba(19, 0, 50, 0.14);
+}
+
+.sg-contract-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sg-contract-head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.sg-ready-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(21, 128, 61, 0.1);
+  color: #15803d;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.sg-contract-sheet {
+  background: var(--ecru);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sg-mock-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sg-mock-lines span {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(19, 0, 50, 0.11);
+}
+
+.sg-contract-sign-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+  gap: 14px;
+  align-items: end;
+  padding-top: 6px;
+}
+
+.sg-contract-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sg-contract-sig-area {
+  min-height: 54px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.sg-contract-sig-img {
+  max-width: 100%;
+  max-height: 46px;
+  object-fit: contain;
+  display: block;
+}
+
+.sg-contract-sig-placeholder {
+  font-size: 12.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.sg-contract-date-val {
+  min-height: 54px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5px;
+  border-bottom: 1.5px solid var(--ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.sg-contract-caption {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+/* ---------- Use Cases Grid ("Where can you use your digital signature?") ---------- */
+.sg-usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.sg-usecase-card {
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color 0.2s, transform 0.2s var(--ease), box-shadow 0.2s;
+}
+
+.sg-usecase-card:hover {
+  border-color: rgba(76, 0, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -24px rgba(19, 0, 50, 0.16);
+}
+
+.sg-usecase-icon {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.sg-usecase-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sg-usecase-card h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.sg-usecase-card p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ---------- 4-Step Product Bridge (Dark Inkwell Band) ---------- */
+.sg-steps-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* ---------- FAQ Accordion ---------- */
+.sg-faq-band {
+  width: 100%;
+  background: var(--ecru);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(52px, 8vh, 88px) clamp(20px, 4vw, 56px);
+}
+
+.sg-faq-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.sg-faq-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sg-faq-item[open] {
+  border-color: rgba(76, 0, 255, 0.35);
+  box-shadow: 0 14px 32px -22px rgba(19, 0, 50, 0.16);
+}
+
+.sg-faq-item summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.sg-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.sg-faq-plus {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface-tint);
+  color: var(--accent);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform 0.22s var(--ease), background-color 0.2s, color 0.2s;
+}
+
+.sg-faq-item[open] .sg-faq-plus {
+  transform: rotate(45deg);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.sg-faq-body {
+  padding: 0 18px 16px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.sg-faq-body p {
+  margin: 0;
+}
+
+/* ---------- Closing CTA Band ---------- */
+.sg-cta-section {
+  width: 100%;
+  padding: clamp(48px, 7vh, 76px) clamp(20px, 4vw, 56px);
+  background: #ffffff;
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+@media (max-width: 1024px) {
+  .sg-studio {
+    grid-template-columns: 1fr;
+  }
+
+  .sg-steps-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sg-usecase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .sg-faq-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .sg-panel {
+    padding: 18px 16px;
+  }
+
+  .sg-mode-tabs {
+    width: 100%;
+  }
+
+  .sg-mode-tab {
+    flex: 1;
+    padding: 0 12px;
+  }
+
+  .sg-pad-stage canvas {
+    aspect-ratio: 4 / 2.6;
+  }
+
+  .sg-controls-bar {
+    padding: 10px 12px;
+  }
+
+  .sg-swatch {
+    width: 30px;
+    height: 30px;
+  }
+
+  .sg-style-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sg-style-card {
+    min-height: 78px;
+  }
+
+  .sg-download-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sg-contract-sign-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .sg-usecase-grid,
+  .sg-steps-4 {
+    grid-template-columns: 1fr;
+  }
+}
