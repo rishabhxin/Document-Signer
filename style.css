@@ -2749,3 +2749,19 @@ body[data-view="processing"] .menu-toggle {
     padding: 8px 10px;
   }
 }
+
+
+/* Prevent desktop nav wrapping when all tools are present */
+.nav-link {
+  white-space: nowrap;
+}
+
+@media (max-width: 1260px) {
+  .nav-link.hide-mobile {
+    display: none;
+  }
+  .nav-link {
+    padding: 7px 11px;
+    font-size: 13.5px;
+  }
+}

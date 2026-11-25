@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#130032" />
+  <meta name="description" content="Open Sign Payslip Generator: Create Indian statutory salary slips online in seconds with Basic, HRA, EPF, PT, TDS, LOP validation, Amount in Words, and instant PDF export." />
+  <title>Payslip Generator | Open Sign</title>
+
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="signature-generator.css" />
+  <link rel="stylesheet" href="invoice-generator.css" />
+  <link rel="stylesheet" href="payslip-generator.css" />
+  <link rel="shortcut icon" href="/assets/fav.png" type="image/x-icon">
+
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body data-view="payslip">
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="assets/open sign logo.png" alt="Open Sign" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link hide-mobile" href="index.html#features">Features</a>
+      <a class="nav-link hide-mobile" href="index.html#workflow">How it works</a>
+      <a class="nav-link" href="signature-generator.html">Signature Generator</a>
+      <a class="nav-link" href="invoice-generator.html">Invoice Generator</a>
+      <a class="nav-link" href="payslip-generator.html" aria-current="page">Payslip Generator</a>
+      <a class="nav-link" href="about.html">About us</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="assets/open sign logo.png" alt="Open Sign" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">Platform</p>
+        <nav class="side-nav-list" aria-label="Mobile platform navigation">
+          <a class="side-nav-link" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Sign a PDF</span>
+          </a>
+          <a class="side-nav-link" href="signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+          <a class="side-nav-link" href="invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <a class="side-nav-link" href="payslip-generator.html" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M7 9h10M7 13h6M7 17h4" />
+            </svg>
+            <span>Payslip Generator</span>
+          </a>
+          <a class="side-nav-link" href="index.html#features">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z" />
+              <path d="M18.5 16l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" />
+            </svg>
+            <span>Smart Sign Features</span>
+          </a>
+          <a class="side-nav-link" href="index.html#workflow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M10 8.5l5 3.5-5 3.5V8.5Z" />
+            </svg>
+            <span>How it works</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About us</span>
+          </a>
+          <a class="side-nav-link" href="about.html#security">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l7 3v6c0 4.6-3 8.1-7 9-4-.9-7-4.4-7-9V6l7-3Z" />
+              <path d="M9.5 12l1.8 1.8L15 10" />
+            </svg>
+            <span>Security &amp; Privacy</span>
+          </a>
+          <a class="side-nav-link" href="about.html#capabilities">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="6" rx="1.5" />
+              <rect x="3" y="14" width="18" height="6" rx="1.5" />
+            </svg>
+            <span>Our Tools</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view ps-page enter">
+      <!-- ============ 1. HERO + INTERACTIVE PAYSLIP STUDIO ============ -->
+      <section class="ig-hero-band" aria-labelledby="psHeroTitle">
+        <div class="ig-container">
+          <div class="ig-hero-head">
+            <span class="eyebrow">
+              Indian Statutory Format · 100% Browser-Based · Zero Storage
+            </span>
+            <h1 class="ig-title" id="psHeroTitle">
+              Generate employee payslips <span class="accent-word">in seconds</span>
+            </h1>
+            <p class="ig-sub">
+              Create clean, statutory-compliant salary slips with company branding, Paid/LOP days validation, custom HR fields (PAN, UAN, Bank A/C), auto EPF &amp; Net Pay in words, and instant PDF export.
+            </p>
+          </div>
+
+          <!-- Top Action Toolbar -->
+          <div class="ig-toolbar" role="toolbar" aria-label="Payslip tools">
+            <div class="ig-toolbar-group">
+              <button type="button" class="ig-tool-btn" id="psSampleBtn">Load Sample</button>
+              <button type="button" class="ig-tool-btn" id="psSaveDraftBtn">Save Draft</button>
+              <button type="button" class="ig-tool-btn" id="psExportJsonBtn" title="Backup payslip as JSON">Backup JSON</button>
+              <label class="ig-tool-btn" for="psImportJsonInput" title="Restore payslip from JSON">
+                Import JSON
+                <input type="file" id="psImportJsonInput" class="sr-only" accept="application/json,.json" />
+              </label>
+              <button type="button" class="ig-tool-btn danger" id="psResetBtn">Reset</button>
+            </div>
+
+            <div class="ig-toolbar-group">
+              <button type="button" class="ig-tool-btn" id="psPrintBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 6 2 18 2 18 9" />
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                  <rect x="6" y="14" width="12" height="8" />
+                </svg>
+                Print
+              </button>
+              <button type="button" class="ig-tool-btn accent-soft" id="psSignInOpenSignBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+                  <path d="M14 7l3 3" />
+                </svg>
+                Sign in Open Sign
+              </button>
+              <button type="button" class="ig-tool-btn primary" id="psDownloadPdfBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+                </svg>
+                Download PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Inline Validation Caution Banner -->
+          <div class="ps-alert" id="psAlert" role="alert" hidden>
+            <span id="psAlertMsg"></span>
+            <button type="button" class="ps-alert-close" id="psAlertClose" aria-label="Dismiss caution">&times;</button>
+          </div>
+
+          <!-- Mobile / Tablet Pane Switcher -->
+          <div class="ig-mobile-switcher" role="tablist" aria-label="Payslip workspace view">
+            <button type="button" role="tab" class="active" data-pane="edit" aria-selected="true">Edit Payslip</button>
+            <button type="button" role="tab" data-pane="preview" aria-selected="false">Live Preview</button>
+          </div>
+
+          <!-- Split Studio Workspace -->
+          <div class="ig-workspace" id="psWorkspace" data-mobile-pane="edit">
+            <!-- LEFT: Editor Form -->
+            <div class="ig-editor-col">
+              <!-- Card 1: Template, Branding & Pay Period -->
+              <section class="ig-card" aria-label="Payslip style and company details">
+                <div class="ig-card-head">
+                  <h2><span class="ig-step-badge">1</span> Company Details &amp; Pay Period</h2>
+                  <span class="ig-gst-pill" id="psPeriodBadge">November 2026</span>
+                </div>
+
+                <div class="ig-grid-3">
+                  <div class="ig-field">
+                    <label for="psPayMonth">Payslip Month</label>
+                    <select id="psPayMonth" class="ig-select">
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November" selected>November</option>
+                      <option value="December">December</option>
+                    </select>
+                  </div>
+                  <div class="ig-field">
+                    <label for="psPayYear">Year</label>
+                    <input type="number" id="psPayYear" class="ig-input" value="2026" min="2000" max="2100" />
+                  </div>
+                  <div class="ig-field">
+                    <label for="psCurrency">Currency</label>
+                    <select id="psCurrency" class="ig-select">
+                      <option value="INR" selected>INR (₹) — Indian Rupee</option>
+                      <option value="USD">USD ($) — US Dollar</option>
+                      <option value="EUR">EUR (€) — Euro</option>
+                      <option value="GBP">GBP (£) — British Pound</option>
+                      <option value="AED">AED — UAE Dirham</option>
+                      <option value="SGD">SGD (S$) — Singapore Dollar</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="ig-grid-2" style="align-items:center">
+                  <div class="ig-field">
+                    <label>Payslip Template</label>
+                    <div class="ig-template-row" id="psTemplateRow" role="radiogroup" aria-label="Payslip template" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+                      <button type="button" class="ig-tpl-btn" data-tpl="classic" role="radio" aria-checked="true">Classic</button>
+                      <button type="button" class="ig-tpl-btn" data-tpl="modern" role="radio" aria-checked="false">Modern</button>
+                      <button type="button" class="ig-tpl-btn" data-tpl="minimal" role="radio" aria-checked="false">Minimal</button>
+                    </div>
+                  </div>
+                  <div class="ig-field">
+                    <label>Accent Color</label>
+                    <div class="ig-swatch-bar" id="psSwatches" role="radiogroup" aria-label="Accent color"></div>
+                  </div>
+                </div>
+
+                <!-- Company Logo Upload (240x240 recommended, max 1MB) -->
+                <div class="ig-logo-row">
+                  <label class="ig-logo-drop" for="psLogoInput">
+                    <img id="psLogoThumb" class="ig-logo-thumb" alt="Company logo preview" hidden />
+                    <span class="ig-logo-placeholder" id="psLogoPlaceholder" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <path d="M21 15l-5-5L5 21" />
+                      </svg>
+                    </span>
+                    <span class="ig-logo-copy">
+                      <strong>Upload Company Logo</strong>
+                      <span>240 × 240 px · PNG, JPG, GIF or BMP · Max 1 MB</span>
+                    </span>
+                    <input type="file" id="psLogoInput" class="sr-only" accept="image/png,image/jpeg,image/gif,image/bmp,.png,.jpg,.jpeg,.gif,.bmp" />
+                  </label>
+                  <button type="button" class="ig-tool-btn danger" id="psRemoveLogoBtn" hidden>Remove Logo</button>
+                </div>
+
+                <div class="ig-grid-2">
+                  <div class="ig-field">
+                    <label for="psCompanyName">Company Name *</label>
+                    <input type="text" id="psCompanyName" class="ig-input" placeholder="Enter the Company's name" />
+                  </div>
+                  <div class="ig-field">
+                    <label for="psCompanyCountry">Country</label>
+                    <input type="text" id="psCompanyCountry" class="ig-input" value="India" placeholder="India" />
+                  </div>
+                </div>
+
+                <div class="ig-grid-2">
+                  <div class="ig-field">
+                    <label for="psCompanyAddress">Company Address</label>
+                    <input type="text" id="psCompanyAddress" class="ig-input" placeholder="Street, Building, Area" />
+                  </div>
+                  <div class="ig-field">
+                    <label for="psCompanyCity">City, State &amp; Pincode</label>
+                    <input type="text" id="psCompanyCity" class="ig-input" placeholder="e.g. Mumbai, Maharashtra 400013" />
+                  </div>
+                </div>
+              </section>
+
+              <!-- Card 2: Employee Pay Summary + Custom Fields -->
+              <section class="ig-card" aria-label="Employee pay summary">
+                <div class="ig-card-head">
+                  <h2><span class="ig-step-badge">2</span> Employee Pay Summary *</h2>
+                  <span style="font-size:12px;color:var(--muted);font-weight:600" id="psDaysCheckBadge">Paid + LOP: 30 / 31 days</span>
+                </div>
+
+                <div class="ig-grid-2">
+                  <div class="ig-field">
+                    <label for="psEmpName">Employee Name *</label>
+                    <input type="text" id="psEmpName" class="ig-input" placeholder="Enter the Employee's Name" />
+                  </div>
+                  <div class="ig-field">
+                    <label for="psEmpId">Employee ID *</label>
+                    <input type="text" id="psEmpId" class="ig-input" placeholder="e.g. EMP-1024" />
+                  </div>
+                </div>
+
+                <div class="ig-grid-3">
+                  <div class="ig-field">
+                    <label for="psPaidDays">Paid Days *</label>
+                    <input type="number" id="psPaidDays" class="ig-input" value="30" min="0" max="31" step="0.5" />
+                  </div>
+                  <div class="ig-field">
+                    <label for="psLopDays">Loss of Pay (LOP) Days</label>
+                    <input type="number" id="psLopDays" class="ig-input" value="0" min="0" max="31" step="0.5" />
+                  </div>
+                  <div class="ig-field">
+                    <label for="psPayDate">Pay Date *</label>
+                    <input type="date" id="psPayDate" class="ig-input" />
+                  </div>
+                </div>
+
+                <!-- Dynamic Custom Employee Fields (Designation, PAN, UAN, Bank A/C, etc.) -->
+                <div class="ig-field">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px">
+                    <label style="margin:0">Additional Employee Fields (Designation, PAN, UAN, Bank A/C...)</label>
+                    <button type="button" class="ig-tool-btn accent-soft" id="psAddCustomFieldBtn" style="min-height:30px;font-size:12px;padding:0 10px">+ Add another field</button>
+                  </div>
+                  <div class="ps-custom-list" id="psCustomFieldsList"></div>
+                </div>
+              </section>
+
+              <!-- Card 3: Income Details (Earnings & Deductions + Smart Payroll Helpers) -->
+              <section class="ig-card" aria-label="Income details">
+                <div class="ig-card-head">
+                  <h2><span class="ig-step-badge">3</span> Income Details *</h2>
+                </div>
+
+                <!-- Optional Indian Statutory Helpers -->
+                <div class="ps-helper-strip">
+                  <label class="ig-toggle-row">
+                    <input type="checkbox" id="psAutoEpf" />
+                    <span>Auto-calculate EPF (12% of Basic Salary)</span>
+                  </label>
+                  <button type="button" class="ig-tool-btn" id="psApplyLopBtn" style="min-height:30px;font-size:12px" title="Adjust earnings proportionally using Paid Days / (Paid + LOP)">
+                    Apply LOP Pro-Rata
+                  </button>
+                </div>
+
+                <div class="ps-income-grid">
+                  <!-- Earnings Column -->
+                  <div class="ps-income-box">
+                    <div class="ps-income-head">
+                      <h3>Earnings</h3>
+                      <button type="button" class="ig-tool-btn accent-soft" id="psAddEarningBtn" style="min-height:28px;font-size:12px;padding:0 10px">+ Add Earnings</button>
+                    </div>
+                    <div class="ps-income-rows" id="psEarningsList"></div>
+                    <div class="ps-income-total is-earn">
+                      <span>Gross Earnings</span>
+                      <strong id="psGrossEarningsVal">₹0.00</strong>
+                    </div>
+                  </div>
+
+                  <!-- Deductions Column -->
+                  <div class="ps-income-box">
+                    <div class="ps-income-head">
+                      <h3>Deductions</h3>
+                      <button type="button" class="ig-tool-btn accent-soft" id="psAddDeductionBtn" style="min-height:28px;font-size:12px;padding:0 10px">+ Add Deductions</button>
+                    </div>
+                    <div class="ps-income-rows" id="psDeductionsList"></div>
+                    <div class="ps-income-total is-deduct">
+                      <span>Total Deductions</span>
+                      <strong id="psTotalDeductionsVal">₹0.00</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Net Payable Summary Box -->
+                <div class="ps-net-editor-card">
+                  <div class="ps-net-copy">
+                    <strong>Total Net Payable</strong>
+                    <span>Gross Earnings − Total Deductions</span>
+                  </div>
+                  <div class="ps-net-amount" id="psNetPayEditorVal">₹0.00</div>
+                </div>
+
+                <div class="ps-words-bar">
+                  <strong>Amount in words:</strong>
+                  <span id="psWordsEditorVal">Amount is less than or equal to zero.</span>
+                </div>
+              </section>
+
+              <!-- Card 4: Signatory & Footer Note -->
+              <section class="ig-card" aria-label="Authorized signatory and notes">
+                <div class="ig-card-head">
+                  <h2><span class="ig-step-badge">4</span> Authorized Signatory &amp; Note</h2>
+                </div>
+
+                <div class="ig-grid-2">
+                  <div class="ig-field">
+                    <label for="psSignatoryName">Signatory / HR Name (Optional)</label>
+                    <input type="text" id="psSignatoryName" class="ig-input" placeholder="e.g. Priya Deshmukh" />
+                  </div>
+                  <div class="ig-field">
+                    <label for="psSignatoryRole">Designation</label>
+                    <input type="text" id="psSignatoryRole" class="ig-input" value="Authorized Signatory · HR & Payroll" />
+                  </div>
+                </div>
+
+                <div class="ig-sig-box">
+                  <img id="psSigMiniPreview" class="ig-sig-preview-mini" alt="Authorized signature preview" hidden />
+                  <button type="button" class="ig-tool-btn accent-soft" id="psDrawSigBtn">Draw Signature</button>
+                  <label class="ig-tool-btn" for="psUploadSigInput">
+                    Upload Signature / Stamp
+                    <input type="file" id="psUploadSigInput" class="sr-only" accept="image/png,image/jpeg,image/webp" />
+                  </label>
+                  <button type="button" class="ig-tool-btn danger" id="psClearSigBtn" hidden>Remove</button>
+                </div>
+
+                <div class="ig-field">
+                  <label for="psFooterNote">Payslip Footer Note</label>
+                  <input type="text" id="psFooterNote" class="ig-input" value="This is a system-generated payslip and does not require a physical signature." />
+                </div>
+
+                <div style="display:flex;flex-wrap:wrap;gap:10px">
+                  <button type="button" class="btn primary" id="psGenerateBtn" style="flex:1">Generate Payslip PDF</button>
+                  <button type="button" class="btn" id="psResetBottomBtn">Reset</button>
+                </div>
+              </section>
+            </div>
+
+            <!-- RIGHT: Sticky Live A4 Payslip Preview -->
+            <div class="ig-preview-col">
+              <div class="ig-preview-bar">
+                <span class="ig-live-dot">Live A4 Payslip Preview</span>
+                <span id="psPreviewNetStrip">Net Pay: ₹0.00</span>
+              </div>
+
+              <div class="ig-paper-stage">
+                <article class="ps-paper" id="psPaper" data-template="classic" aria-label="Live employee payslip preview"></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 2. 4-STEP PAYSLIP WORKFLOW BAND ============ -->
+      <section class="workflow-band" aria-labelledby="psStepsTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">How it works</span>
+            <h2 class="section-title" id="psStepsTitle">Generate statutory payslips in four simple steps.</h2>
+            <p class="section-desc">
+              Create and disburse monthly salary slips for your employees directly in your browser, with zero installation and zero server storage.
+            </p>
+          </div>
+
+          <div class="sg-steps-4">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Add company details</h3>
+              <p>Enter your company name, logo, address, and select the payslip month and year.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Fill employee summary</h3>
+              <p>Add employee name, ID, Paid Days, LOP Days, Pay Date, plus custom fields like Designation, PAN, UAN, and Bank A/C.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Enter earnings &amp; deductions</h3>
+              <p>Configure Basic, HRA, Special Allowance, EPF, Professional Tax, and TDS with instant Gross and Net Pay totals.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">04</span>
+              <h3>Preview, sign &amp; download</h3>
+              <p>Review the live A4 payslip, download as a crisp PDF, print directly, or open in Open Sign to apply signatures or stamps.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 3. VALID INDIAN PAYSLIP FORMAT CHECKLIST ============ -->
+      <section class="saas-section" aria-labelledby="psFormatTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Statutory format</span>
+            <h2 class="section-title" id="psFormatTitle">What makes a valid Indian payslip?</h2>
+            <p class="section-desc">
+              Every payslip generated by Open Sign includes the five essential statutory sections expected by employees, banks, and tax authorities.
+            </p>
+          </div>
+
+          <div class="ps-checklist-grid">
+            <div class="ps-check-card">
+              <span class="ps-check-num">1</span>
+              <h3>Employer Info</h3>
+              <p>Company name, uploaded logo, office address, and the exact payslip month and year.</p>
+            </div>
+            <div class="ps-check-card">
+              <span class="ps-check-num">2</span>
+              <h3>Employee Details</h3>
+              <p>Employee name, Employee ID, designation, PAN, UAN, and bank account identifiers.</p>
+            </div>
+            <div class="ps-check-card">
+              <span class="ps-check-num">3</span>
+              <h3>Attendance &amp; Pay Date</h3>
+              <p>Total Paid Days, Loss of Pay (LOP) Days validated against calendar limits, and Payment Date.</p>
+            </div>
+            <div class="ps-check-card">
+              <span class="ps-check-num">4</span>
+              <h3>Earnings &amp; Deductions</h3>
+              <p>Itemized breakdown of Basic, HRA, allowances, EPF, Professional Tax, and TDS.</p>
+            </div>
+            <div class="ps-check-card">
+              <span class="ps-check-num">5</span>
+              <h3>Gross &amp; Net Pay</h3>
+              <p>Clearly highlighted Gross Earnings, Total Deductions, Net Payable, and Amount in Words.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 4. COMPONENTS OF A PAYSLIP + SIGNIFICANCE ============ -->
+      <section class="sg-faq-band" aria-labelledby="psCompTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Payroll reference</span>
+            <h2 class="section-title" id="psCompTitle">Key components of an Indian salary slip.</h2>
+            <p class="section-desc">
+              Understand the standard earnings and statutory deductions that make up monthly employee compensation.
+            </p>
+          </div>
+
+          <div class="ps-comp-guide-grid">
+            <div class="ps-guide-col">
+              <h3>Earnings</h3>
+              <ul class="ps-def-list">
+                <li>
+                  <strong>Basic Salary</strong>
+                  <span>The core fixed component of salary and the foundation for calculating statutory contributions such as 12% EPF.</span>
+                </li>
+                <li>
+                  <strong>House Rent Allowance (HRA)</strong>
+                  <span>Typically 40%–50% of Basic pay depending on metro/non-metro city; eligible for partial income tax exemption when filing ITR.</span>
+                </li>
+                <li>
+                  <strong>Dearness Allowance (DA)</strong>
+                  <span>Percentage of Basic pay provided to offset inflation (most common in public-sector salaries) and fully taxable.</span>
+                </li>
+                <li>
+                  <strong>Performance &amp; Special Allowance</strong>
+                  <span>Variable or fixed incentive components paid to reward performance or balance CTC structure.</span>
+                </li>
+                <li>
+                  <strong>Other Allowances</strong>
+                  <span>Additional employer-specific heads such as conveyance, medical, internet, or meal allowances.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="ps-guide-col">
+              <h3>Deductions</h3>
+              <ul class="ps-def-list">
+                <li>
+                  <strong>Employee Provident Fund (EPF)</strong>
+                  <span>Statutory retirement contribution typically calculated at 12% of Basic salary and deposited into the employee's EPF/UAN account.</span>
+                </li>
+                <li>
+                  <strong>Professional Tax (PT)</strong>
+                  <span>State-level tax levied on salaried individuals in applicable Indian states (such as Maharashtra, Karnataka, West Bengal, and Tamil Nadu).</span>
+                </li>
+                <li>
+                  <strong>Tax Deducted at Source (TDS)</strong>
+                  <span>Income tax deducted monthly by the employer on behalf of the Income Tax Department based on the employee's tax regime and slab.</span>
+                </li>
+                <li>
+                  <strong>Why Payslips Matter</strong>
+                  <span>Essential for ITR planning, formal proof of employment and visas, home/personal loan &amp; credit card approvals, and future salary negotiations.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 5. FREQUENTLY ASKED QUESTIONS ============ -->
+      <section class="saas-section" aria-labelledby="psFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="psFaqTitle">Common questions about Open Sign Payslip Generator.</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>What is a payslip and who receives it?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>A payslip (or salary slip) is an official monthly document issued by an employer to salaried employees detailing their gross earnings, statutory deductions, attendance days, and net take-home pay.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>Are payslips generated here Indian statutory-compliant?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. The layout includes organization details, employee info (ID, PAN, UAN, Bank A/C), Pay Period, Paid &amp; LOP days, Payment Date, itemized Earnings &amp; Deductions, Gross Pay, Net Pay, and Amount in Words.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>Can I customize, add, or remove salary components?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. You can rename any earning or deduction head, delete unused components so they never appear on the payslip, or add unlimited custom earnings, deductions, and employee summary fields.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>Is employee salary data stored on any server?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. Everything runs 100% locally inside your browser. Employee details, PAN/UAN numbers, salary amounts, and generated PDFs never leave your device unless you save a local draft or download a backup yourself.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>How does Auto-EPF (12% of Basic) work?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>When enabled, Open Sign automatically computes 12% of your Basic Salary row and keeps the EPF deduction row synchronized whenever you update Basic pay.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>Can I add an HR signature or company stamp to the payslip?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Draw or upload an authorized signature/company stamp directly in Step 4, or click "Sign in Open Sign" to open the generated payslip PDF inside our full PDF signer.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ QUICK DRAW SIGNATURE MODAL ============ -->
+  <dialog id="psSigDialog" class="ig-sig-modal" aria-labelledby="psSigDlgTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="psSigDlgTitle">Draw authorized signature</h2>
+        <p class="dlg-sub">Sign inside the box below to embed it on your employee payslip.</p>
+      </div>
+      <button class="icon-btn" id="psSigCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="ig-sig-canvas-wrap">
+      <canvas id="psSigCanvas" width="760" height="250" aria-label="Authorized signature drawing pad"></canvas>
+    </div>
+
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="psSigClearPad">Clear</button>
+      <div class="dlg-actions-right">
+        <button type="button" class="btn" id="psSigCancel">Cancel</button>
+        <button type="button" class="btn primary" id="psSigApply" disabled>Apply to Payslip</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="assets/open sign logo.png" alt="Open Sign" width="146" height="30" />
+          </a>
+          <p class="footer-tagline">
+            Modern eSignature and intelligent agreement signing software engineered for speed, precision, and zero-retention document privacy.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-links" aria-label="Platform navigation">
+            <a href="index.html">Sign a PDF</a>
+            <a href="signature-generator.html">Signature Generator</a>
+            <a href="invoice-generator.html">Invoice Generator</a>
+            <a href="payslip-generator.html" aria-current="page">Payslip Generator</a>
+            <a href="index.html#features">Smart Sign</a>
+            <a href="index.html#workflow">How it works</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Company navigation">
+            <a href="about.html">About us</a>
+            <a href="about.html#security">Security &amp; Privacy</a>
+            <a href="about.html#capabilities">Our Tools</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="nav.js"></script>
+  <script src="payslip-generator.js"></script>
+</body>
+</html>

@@ -1,0 +1,700 @@
+/* =========================================================
+   Open Sign — Indian Statutory & Global Payslip Generator
+   Inherits Open Sign Cobalt/Inkwell/Ecru design tokens.
+   ========================================================= */
+
+body[data-view="payslip"] {
+  background: var(--bg);
+}
+
+.ps-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Caution / Validation Banner ---------- */
+.ps-alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(217, 45, 32, 0.32);
+  background: rgba(217, 45, 32, 0.07);
+  color: #b42318;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ps-alert-close {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.ps-alert-close:hover {
+  background: rgba(217, 45, 32, 0.12);
+}
+
+/* ---------- Custom Employee Fields ---------- */
+.ps-custom-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ps-custom-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ---------- Two-Column Earnings & Deductions Editor ---------- */
+.ps-income-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ps-income-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface-tint);
+}
+
+.ps-income-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ps-income-head h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ps-income-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ps-comp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.85fr) auto;
+  gap: 6px;
+  align-items: center;
+}
+
+.ps-income-total {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1.5px dashed var(--line-strong);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.ps-income-total.is-earn strong {
+  color: #15803d;
+}
+
+.ps-income-total.is-deduct strong {
+  color: #b42318;
+}
+
+/* Live Net Payable Summary Card inside Editor */
+.ps-net-editor-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(76, 0, 255, 0.28);
+  background: linear-gradient(135deg, rgba(76, 0, 255, 0.06) 0%, rgba(203, 194, 255, 0.2) 100%);
+}
+
+.ps-net-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ps-net-copy strong {
+  font-size: 14.5px;
+  color: var(--ink);
+}
+
+.ps-net-copy span {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.ps-net-amount {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.ps-words-bar {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--ecru);
+  border: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+.ps-words-bar strong {
+  color: var(--accent);
+  margin-right: 4px;
+}
+
+.ps-helper-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--ecru);
+}
+
+/* ---------- Printable A4 Payslip Preview Sheet ---------- */
+.ps-paper {
+  --ps-accent: #4c00ff;
+  width: 100%;
+  min-height: 690px;
+  background: #ffffff;
+  color: #141413;
+  border: 1px solid rgba(19, 0, 50, 0.12);
+  border-radius: 6px;
+  box-shadow: 0 18px 44px -24px rgba(19, 0, 50, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.ps-paper-head {
+  padding: 22px 26px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  border-bottom: 2px solid var(--ps-accent);
+}
+
+.ps-paper[data-template="modern"] .ps-paper-head {
+  background: linear-gradient(135deg, var(--ps-accent) 0%, #130032 135%);
+  color: #ffffff;
+  border-bottom: 0;
+}
+
+.ps-paper[data-template="modern"] .ps-head-muted {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.ps-paper[data-template="minimal"] .ps-paper-head {
+  border-bottom: 1px solid rgba(19, 0, 50, 0.14);
+}
+
+.ps-brand-col {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 62%;
+}
+
+.ps-paper-logo {
+  max-width: 64px;
+  max-height: 52px;
+  object-fit: contain;
+  display: block;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 3px;
+  flex: none;
+}
+
+.ps-co-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.ps-head-muted {
+  color: #564c6b;
+  font-size: 11px;
+  white-space: pre-line;
+  margin-top: 2px;
+}
+
+.ps-period-col {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.ps-period-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.82;
+}
+
+.ps-period-val {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ps-accent);
+  letter-spacing: -0.02em;
+}
+
+.ps-paper[data-template="modern"] .ps-period-val {
+  color: #ffffff;
+}
+
+.ps-paper-body {
+  padding: 20px 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+}
+
+/* Employee Summary + Net Pay Hero Card inside Payslip */
+.ps-summary-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.ps-emp-card {
+  border: 1px solid rgba(19, 0, 50, 0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fcfbfd;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ps-section-cap {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ps-accent);
+}
+
+.ps-emp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 14px;
+}
+
+.ps-emp-kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  border-bottom: 1px dotted rgba(19, 0, 50, 0.08);
+  padding-bottom: 3px;
+}
+
+.ps-emp-kv span {
+  color: #5c556c;
+}
+
+.ps-emp-kv strong {
+  color: #130032;
+  text-align: right;
+  word-break: break-word;
+}
+
+.ps-net-hero {
+  border-radius: 8px;
+  border: 1px solid rgba(21, 128, 61, 0.24);
+  background: linear-gradient(180deg, rgba(21, 128, 61, 0.08) 0%, #f4fbf6 100%);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ps-net-hero-top {
+  border-left: 3.5px solid #15803d;
+  padding-left: 10px;
+}
+
+.ps-net-hero-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: #130032;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.ps-net-hero-lbl {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #15803d;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.ps-days-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(21, 128, 61, 0.18);
+  font-size: 11px;
+}
+
+.ps-days-split div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.ps-days-split span {
+  color: #564c6b;
+  font-size: 10px;
+}
+
+.ps-days-split strong {
+  color: #130032;
+  font-size: 12.5px;
+}
+
+/* Side-by-Side Earnings & Deductions Table inside Payslip */
+.ps-pay-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(19, 0, 50, 0.12);
+  border-radius: 8px;
+}
+
+.ps-pay-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+
+.ps-pay-table th {
+  padding: 9px 12px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  background: var(--ps-accent);
+  color: #ffffff;
+}
+
+.ps-paper[data-template="minimal"] .ps-pay-table th {
+  background: #f6f4fa;
+  color: #130032;
+  border-bottom: 1.5px solid #130032;
+}
+
+.ps-pay-table th.num,
+.ps-pay-table td.num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.ps-pay-table th.mid-div,
+.ps-pay-table td.mid-div {
+  border-right: 1px solid rgba(19, 0, 50, 0.12);
+}
+
+.ps-pay-table td {
+  padding: 7.5px 12px;
+  border-bottom: 1px solid rgba(19, 0, 50, 0.07);
+}
+
+.ps-pay-table tr.ps-tot-row td {
+  background: #f8f6fb;
+  font-weight: 800;
+  color: #130032;
+  border-bottom: 0;
+  border-top: 1.5px solid rgba(19, 0, 50, 0.14);
+}
+
+/* Bottom Net Payable Banner */
+.ps-net-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 13px 16px;
+  border-radius: 8px;
+  background: #f6f4fa;
+  border: 1px solid rgba(76, 0, 255, 0.22);
+}
+
+.ps-net-banner-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ps-net-banner-left strong {
+  font-size: 13px;
+  color: #130032;
+}
+
+.ps-net-banner-left span {
+  font-size: 11px;
+  color: #564c6b;
+}
+
+.ps-net-banner-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ps-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.ps-words-line {
+  font-size: 11.5px;
+  color: #3e3650;
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #faf8fc;
+  border: 1px solid rgba(19, 0, 50, 0.07);
+}
+
+.ps-paper-foot {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(19, 0, 50, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.ps-system-note {
+  margin: 0;
+  font-size: 10.5px;
+  color: #6b637c;
+  max-width: 58%;
+}
+
+/* ---------- Supporting Educational Sections ---------- */
+.ps-checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ps-check-card {
+  padding: 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ps-check-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+.ps-check-card h3 {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ps-check-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.ps-comp-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.ps-guide-col {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ps-guide-col h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ps-def-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ps-def-list li strong {
+  display: block;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.ps-def-list li span {
+  display: block;
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+@media (max-width: 1120px) {
+  .ps-checklist-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .ps-income-grid,
+  .ps-comp-guide-grid,
+  .ps-summary-band {
+    grid-template-columns: 1fr;
+  }
+
+  .ps-checklist-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .ps-custom-row {
+    grid-template-columns: 1fr 1fr auto;
+  }
+
+  .ps-paper-head {
+    flex-direction: column;
+    padding: 18px 16px;
+  }
+
+  .ps-brand-col {
+    max-width: 100%;
+  }
+
+  .ps-period-col {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .ps-paper-body {
+    padding: 16px;
+  }
+
+  .ps-emp-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ps-system-note {
+    max-width: 100%;
+  }
+
+  .ps-checklist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Clean Print Output (Prints ONLY the Payslip Sheet) ---------- */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  #psPaper,
+  #psPaper * {
+    visibility: visible !important;
+  }
+
+  #psPaper {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .ig-workspace[data-mobile-pane="edit"] .ig-preview-col {
+    display: block !important;
+  }
+}
