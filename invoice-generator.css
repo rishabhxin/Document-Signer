@@ -619,7 +619,6 @@ body[data-view="invoice"] {
   color: var(--ink);
 }
 
-
 .ig-paper-stage {
   background: var(--stage);
   border: 1px solid var(--line);
