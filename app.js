@@ -1220,4 +1220,20 @@
       }
     }
   } catch (_) {}
+
+  /* ---------- Preload Generated Invoice PDF from Invoice Generator (if present) ---------- */
+  try {
+    const rawInv = sessionStorage.getItem("opensign:generatedInvoicePdf");
+    if (rawInv) {
+      sessionStorage.removeItem("opensign:generatedInvoicePdf");
+      const parsed = JSON.parse(rawInv);
+      if (parsed && typeof parsed.base64 === "string" && parsed.base64.length > 50) {
+        const bin = atob(parsed.base64);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        const invFile = new File([bytes], parsed.fileName || "invoice.pdf", { type: "application/pdf" });
+        loadFile(invFile);
+      }
+    }
+  } catch (_) {}
 })();
