@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="contact.css" />
   <link rel="stylesheet" href="signature-generator.css" />
   <link rel="stylesheet" href="invoice-generator.css" />
   <link rel="shortcut icon" href="/assets/fav.png" type="image/x-icon">
@@ -88,7 +89,7 @@
         </div>
       </div>
 
-      <a class="nav-link" href="about.html#contact">Contact</a>
+      <a class="nav-link" href="contact.html">Contact</a>
     </nav>
 
     <div class="header-actions">
@@ -232,12 +233,12 @@
             </svg>
             <span>About Us</span>
           </a>
-          <a class="side-nav-link" href="about.html#contact">
+          <a class="side-nav-link" href="contact.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="5" width="18" height="14" rx="2" />
               <path d="M3 7l9 6 9-6" />
             </svg>
-            <span>Contact</span>
+            <span>Contact Us</span>
           </a>
         </nav>
       </div>
@@ -839,20 +840,34 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-top">
-        <!-- Brand Column -->
+        <!-- Brand & Social Column -->
         <div class="footer-brand">
           <a class="footer-logo-link" href="index.html" aria-label="Open Sign home">
             <img class="footer-logo" src="assets/open sign logo.png" alt="Open Sign logo" width="156" height="42" />
           </a>
           <p class="footer-tagline">
-            Modern eSignature, smart PDF tools, and business document software engineered for speed, precision, and zero-retention browser privacy.
+            Enterprise-grade eSignature, smart PDF utilities, and business document tools engineered for speed, precision, and zero-retention browser privacy.
           </p>
+          <div class="footer-socials" aria-label="Open Sign social media">
+            <a class="footer-social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
         </div>
 
         <!-- Column 1: E-Signature -->
         <div class="footer-col">
           <p class="footer-col-title">E-Signature</p>
-          <nav class="footer-links" aria-label="Footer E-Signature navigation">
+          <nav class="footer-links" aria-label="Footer E-Signature tools">
             <a href="index.html">Sign PDF Online</a>
             <a href="index.html#features">Smart Sign Auto-Detect</a>
             <a href="signature-generator.html">Signature Generator</a>
@@ -863,23 +878,28 @@
         <!-- Column 2: PDF & Document -->
         <div class="footer-col">
           <p class="footer-col-title">PDF &amp; Document</p>
-          <nav class="footer-links" aria-label="Footer PDF & Document navigation">
+          <nav class="footer-links" aria-label="Footer PDF and Document tools">
             <a href="tools/pdf-merger/index.html">PDF Merger</a>
             <a href="tools/pdf-compressor/index.html">PDF Compressor</a>
             <a href="tools/pdf-splitter/index.html">PDF Splitter</a>
             <a href="tools/pdf-to-jpg/index.html">PDF to JPG Converter</a>
             <span class="footer-soon-item" aria-disabled="true">JPG to PDF Converter <span class="footer-soon-tag">Soon</span></span>
-            <span class="footer-soon-item" aria-disabled="true">PDF Watermark <span class="footer-soon-tag">Soon</span></span>
-            <span class="footer-soon-item" aria-disabled="true">Page Numbers &amp; Metadata <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Watermark Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Page Number Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Metadata Editor <span class="footer-soon-tag">Soon</span></span>
           </nav>
         </div>
 
         <!-- Column 3: HR & Business + More Suites -->
         <div class="footer-col">
           <p class="footer-col-title">HR &amp; Business</p>
-          <nav class="footer-links" aria-label="Footer HR & Business navigation">
+          <nav class="footer-links" aria-label="Footer HR and Business tools">
             <a href="invoice-generator.html" aria-current="page">Invoice Generator</a>
             <a href="payslip-generator.html">Payslip Generator</a>
+          </nav>
+
+          <p class="footer-col-title" style="margin-top:12px">More Suites</p>
+          <nav class="footer-links" aria-label="Footer upcoming tool suites">
             <span class="footer-soon-item" aria-disabled="true">SEO &amp; Marketing <span class="footer-soon-tag">Soon</span></span>
             <span class="footer-soon-item" aria-disabled="true">Developer &amp; Utility <span class="footer-soon-tag">Soon</span></span>
           </nav>
@@ -892,8 +912,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="about.html#security">Security &amp; Privacy</a>
-            <a href="about.html#capabilities">All Tools</a>
-            <a href="about.html#contact">Contact</a>
+            <a href="contact.html">Contact Us</a>
           </nav>
         </div>
       </div>
@@ -901,11 +920,11 @@
       <div class="footer-bottom">
         <span>&copy; 2026 Open Sign. All rights reserved.</span>
         <div class="footer-bottom-links">
-          <a href="about.html#security">Privacy First</a>
+          <a href="about.html">About Us</a>
           <span aria-hidden="true">·</span>
-          <a href="about.html#capabilities">Platform Tools</a>
+          <a href="about.html#security">Privacy &amp; Security</a>
           <span aria-hidden="true">·</span>
-          <a href="about.html#contact">Contact</a>
+          <a href="contact.html">Contact Us</a>
         </div>
       </div>
     </div>
