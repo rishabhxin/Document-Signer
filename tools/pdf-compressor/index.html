@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#130032" />
+  <title>Compress PDF Online Free – Reduce PDF File Size | Open Sign</title>
+  <meta name="description" content="Compress PDF files online for free with Open Sign. Reduce PDF file size with adjustable compression settings and download optimized documents securely in your browser." />
+  <link rel="canonical" href="https://www.opensign.in/tools/pdf-compressor/" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Open Sign" />
+  <meta property="og:title" content="Compress PDF Online Free – Reduce PDF File Size | Open Sign" />
+  <meta property="og:description" content="Reduce your PDF file size locally in your browser with Low, Medium, or High compression presets. 100% free, no sign-up required." />
+  <meta property="og:url" content="https://www.opensign.in/tools/pdf-compressor/" />
+  <meta property="og:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Twitter / X Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Compress PDF Online Free – Reduce PDF File Size | Open Sign" />
+  <meta name="twitter:description" content="Compress PDF documents online for free with Open Sign. Browser-based processing with zero server uploads." />
+  <meta name="twitter:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Ensure trailing slash on HTTP origins so relative asset paths resolve cleanly -->
+  <script>
+    if (/^https?:$/.test(location.protocol) && /\/tools\/pdf-compressor$/.test(location.pathname)) {
+      location.replace(location.pathname + "/" + location.search + location.hash);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../signature-generator.css" />
+  <link rel="stylesheet" href="pdf-compressor.css" />
+  <link rel="shortcut icon" href="../../assets/fav.png" type="image/x-icon" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Open Sign PDF Compressor",
+        "url": "https://www.opensign.in/tools/pdf-compressor/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+        "description": "Free browser-based PDF compressor with Low, Medium, and High compression levels, before-and-after size comparison, and zero server uploads."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.opensign.in/" },
+          { "@type": "ListItem", "position": 2, "name": "PDF & Document", "item": "https://www.opensign.in/tools/pdf-merger/" },
+          { "@type": "ListItem", "position": 3, "name": "PDF Compressor", "item": "https://www.opensign.in/tools/pdf-compressor/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How can I compress a PDF file online for free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Upload your PDF file into Open Sign PDF Compressor, pick Low (Best Quality), Medium (Recommended), or High (Smallest File) compression, click Compress PDF, compare the original and compressed sizes, and download your optimized document."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I compress a PDF without uploading it to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Open Sign processes your PDF entirely inside your browser using local JavaScript libraries. Your files are never uploaded to or stored on Open Sign servers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will compression affect digital signatures?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Modifying or recompressing any digitally signed PDF alters its cryptographic byte hash and will invalidate existing digital signatures. Always compress documents before applying cryptographic signatures."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-view="pdf-compressor">
+  <!-- Visually hidden single PDF input -->
+  <input type="file" id="pcFileInput" class="sr-only" accept="application/pdf,.pdf" />
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link" href="../../about.html">About Us</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>E-Signature</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../index.html" role="menuitem"><span>Sign PDF Online</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../index.html#features" role="menuitem"><span>Smart Sign Auto-Detect</span></a>
+          <a class="nav-drop-item" href="../../signature-generator.html" role="menuitem"><span>Signature Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn is-current" aria-expanded="false" aria-haspopup="true">
+          <span>PDF &amp; Document</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../tools/pdf-merger/index.html" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>PDF Compressor</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Splitter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Page Number Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Metadata Editor</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>HR &amp; Business</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../invoice-generator.html" role="menuitem"><span>Invoice Generator</span></a>
+          <a class="nav-drop-item" href="../../payslip-generator.html" role="menuitem"><span>Payslip Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>SEO &amp; Marketing</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Meta Tag Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Open Graph Previewer</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Developer &amp; Utility</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JSON &amp; XML Formatter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>QR Code Generator</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <a class="nav-link" href="../../about.html#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="../../index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="../../index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">E-Signature</p>
+        <nav class="side-nav-list" aria-label="Mobile E-Signature navigation">
+          <a class="side-nav-link" href="../../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Home / Sign PDF</span>
+          </a>
+          <a class="side-nav-link" href="../../signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">PDF &amp; Document</p>
+        <nav class="side-nav-list" aria-label="Mobile PDF tools navigation">
+          <a class="side-nav-link" href="../../tools/pdf-merger/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M9 15h6M12 12v6" />
+            </svg>
+            <span>PDF Merger</span>
+          </a>
+          <a class="side-nav-link" href="./" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+            </svg>
+            <span>PDF Compressor</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Splitter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF to JPG Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JPG to PDF Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Watermark Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Page Number Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Metadata Editor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">HR &amp; Business</p>
+        <nav class="side-nav-list" aria-label="Mobile HR & Business navigation">
+          <a class="side-nav-link" href="../../invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <a class="side-nav-link" href="../../payslip-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M7 9h10M7 13h6M7 17h4" />
+            </svg>
+            <span>Payslip Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">More Categories</p>
+        <nav class="side-nav-list" aria-label="Mobile more categories">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>SEO &amp; Marketing Tools</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Developer &amp; Utility Tools</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="../../about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About Us</span>
+          </a>
+          <a class="side-nav-link" href="../../about.html#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            <span>Contact</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="../../index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view pc-page enter">
+      <!-- ============ HERO & MAIN COMPRESSOR WORKSPACE ============ -->
+      <section class="pc-hero-band" aria-labelledby="pcHeroTitle">
+        <div class="pc-container">
+          <!-- Breadcrumb Navigation -->
+          <nav class="pc-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="pc-bc-sep" aria-hidden="true">/</span>
+            <a href="../pdf-merger/index.html">PDF &amp; Document</a>
+            <span class="pc-bc-sep" aria-hidden="true">/</span>
+            <span aria-current="page">PDF Compressor</span>
+          </nav>
+
+          <div class="pc-hero-head">
+            <h1 class="pc-title" id="pcHeroTitle">Compress PDF Files Online for Free</h1>
+            <p class="pc-sub">
+              Reduce your PDF file size without unnecessary hassle. Upload your document, choose your compression level and download an optimized PDF in seconds. Free, simple and secure.
+            </p>
+            <div class="pc-trust-row" aria-label="Trust indicators">
+              <span class="pc-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                100% Free
+              </span>
+              <span class="pc-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                No Sign-Up Required
+              </span>
+              <span class="pc-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                Browser-Based Processing
+              </span>
+              <span class="pc-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                Secure File Handling
+              </span>
+            </div>
+          </div>
+
+          <!-- Prominent White Compressor Tool Container -->
+          <div class="pc-tool-card" role="region" aria-label="PDF Compressor workspace">
+            <!-- Error / Warning Banner -->
+            <div class="pc-alert" id="pcAlert" role="alert" hidden>
+              <span id="pcAlertMsg"></span>
+              <button type="button" class="pc-alert-close" id="pcAlertClose" aria-label="Dismiss message">&times;</button>
+            </div>
+
+            <!-- Drag-and-Drop Single PDF Upload Area -->
+            <label class="pc-dropzone" id="pcDropzone" for="pcFileInput">
+              <span class="pc-dz-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+                </svg>
+              </span>
+              <p class="pc-dz-title">Drop your PDF file here to compress</p>
+              <p class="pc-dz-sub">Select one PDF document to analyze and reduce its file size locally in your browser</p>
+              <span class="btn primary">Browse PDF</span>
+              <span class="pc-dz-limit">PDF only (.pdf) · Maximum file size: 100 MB</span>
+            </label>
+
+            <!-- Uploaded Document Card with Thumbnail Preview -->
+            <div class="pc-file-card" id="pcFileCard" hidden>
+              <div class="pc-thumb-box" aria-label="First page preview">
+                <canvas id="pcThumbCanvas" hidden></canvas>
+                <div class="pc-thumb-fallback" id="pcThumbFallback" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                    <path d="M14 2v6h6" />
+                  </svg>
+                  <span>PDF</span>
+                </div>
+              </div>
+
+              <div class="pc-file-details">
+                <div class="pc-file-top">
+                  <h2 class="pc-file-name" id="pcFileName">document.pdf</h2>
+                  <span class="pc-status-badge" id="pcFileStatus" data-status="ready">Ready to compress</span>
+                </div>
+                <div class="pc-meta-grid">
+                  <span>Original size: <strong id="pcFileSize">0 KB</strong></span>
+                  <span>Pages: <strong id="pcFilePages">0 pages</strong></span>
+                  <span>Dimensions: <strong id="pcFileDims">-</strong></span>
+                  <span>Type: <strong id="pcFileType">PDF</strong></span>
+                </div>
+                <div class="pc-analysis-tags" id="pcAnalysisTags"></div>
+              </div>
+
+              <div class="pc-file-actions">
+                <button type="button" class="btn ghost" id="pcReplaceFileBtn">Change PDF</button>
+              </div>
+            </div>
+
+            <!-- Compression Level Settings -->
+            <div class="pc-settings-section" id="pcSettingsSection" hidden>
+              <div class="pc-settings-head">
+                <h2>Select Compression Level</h2>
+                <span>Stronger compression reduces file size further but may lower image sharpness.</span>
+              </div>
+
+              <div class="pc-preset-grid" role="radiogroup" aria-label="PDF compression level">
+                <button type="button" class="pc-preset-card" data-level="low" role="radio" aria-checked="false">
+                  <div class="pc-preset-top">
+                    <span class="pc-preset-name">Low Compression</span>
+                    <span class="pc-preset-badge">Best Quality</span>
+                  </div>
+                  <p class="pc-preset-desc">Prioritizes visual clarity and preserves images as much as possible, using safe structural optimization first.</p>
+                  <span class="pc-preset-spec">Up to 90% JPEG quality · Max 200 DPI</span>
+                </button>
+
+                <button type="button" class="pc-preset-card" data-level="medium" role="radio" aria-checked="true">
+                  <div class="pc-preset-top">
+                    <span class="pc-preset-name">Medium Compression</span>
+                    <span class="pc-preset-badge">Recommended</span>
+                  </div>
+                  <p class="pc-preset-desc">Balanced file-size reduction and clear readability for everyday contracts, scans, and email attachments.</p>
+                  <span class="pc-preset-spec">75% JPEG quality · Max 150 DPI</span>
+                </button>
+
+                <button type="button" class="pc-preset-card" data-level="high" role="radio" aria-checked="false">
+                  <div class="pc-preset-top">
+                    <span class="pc-preset-name">High Compression</span>
+                    <span class="pc-preset-badge">Smallest File</span>
+                  </div>
+                  <p class="pc-preset-desc">Maximum size reduction using stronger lossy JPEG recompression and lower image resolution.</p>
+                  <span class="pc-preset-spec">55% JPEG quality · Max 100 DPI</span>
+                </button>
+              </div>
+
+              <!-- Optional Non-Flattening Structural Mode Toggle -->
+              <div class="pc-option-row">
+                <label class="pc-check-label">
+                  <input type="checkbox" id="pcPreserveTextOnly" />
+                  <span>Preserve selectable text &amp; structure only (skip image rasterization)</span>
+                </label>
+                <span style="font-size:12px;color:var(--muted)">Recommended for text-only PDFs with links or forms</span>
+              </div>
+
+              <!-- Honest PDF Compatibility Warning (Displayed Before Processing) -->
+              <div class="pc-compat-warning" id="pcCompatWarning" role="note" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                <span id="pcCompatWarningText"></span>
+              </div>
+            </div>
+
+            <!-- Live Processing Progress Panel -->
+            <div class="pc-progress-panel" id="pcProgressPanel" role="status" aria-live="polite" hidden>
+              <div class="pc-progress-top">
+                <span id="pcProgressMsg">Reading your PDF...</span>
+                <span id="pcProgressMeta"></span>
+              </div>
+              <div class="pc-progress-track">
+                <div class="pc-progress-fill" id="pcProgressFill"></div>
+              </div>
+            </div>
+
+            <!-- Primary Action Bar -->
+            <div class="pc-action-bar" id="pcActionBar" hidden>
+              <div class="pc-action-left">
+                <button type="button" class="btn ghost" id="pcResetBtn" disabled>Reset</button>
+              </div>
+              <div class="pc-action-right">
+                <button type="button" class="btn primary pc-compress-btn" id="pcCompressBtn" disabled>
+                  <span id="pcCompressBtnLabel" style="display:inline-flex;align-items:center;gap:8px">Compress PDF</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Results & Before-After Comparison Dashboard -->
+            <section class="pc-result-panel" id="pcResultPanel" data-outcome="saved" aria-labelledby="pcResultTitle" hidden>
+              <div class="pc-result-head">
+                <div class="pc-result-title-wrap">
+                  <span class="pc-result-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <div>
+                    <h2 id="pcResultTitle">Compression complete</h2>
+                    <p id="pcResultSub"></p>
+                  </div>
+                </div>
+                <span class="pc-method-pill" id="pcResultMethod">Method</span>
+              </div>
+
+              <!-- Before & After Comparison Cards -->
+              <div class="pc-compare-grid">
+                <div class="pc-compare-box">
+                  <span class="pc-compare-lbl">Original PDF</span>
+                  <span class="pc-compare-val" id="pcResOrigSize">0 KB</span>
+                  <span class="pc-compare-sub" id="pcResOrigName">original.pdf</span>
+                </div>
+
+                <div class="pc-compare-box">
+                  <span class="pc-compare-lbl">Compressed PDF</span>
+                  <span class="pc-compare-val" id="pcResCompSize">0 KB</span>
+                  <span class="pc-compare-sub" id="pcResCompName">opensign-compressed-document.pdf</span>
+                </div>
+
+                <div class="pc-compare-box is-savings">
+                  <span class="pc-compare-lbl">Space Saved</span>
+                  <span class="pc-compare-val" id="pcResSavedVal">0 KB</span>
+                  <span class="pc-compare-sub" id="pcResSavedPct">0% saved</span>
+                </div>
+              </div>
+
+              <!-- Visual Size Comparison Bars -->
+              <div class="pc-bars-card" aria-label="Before and after file size comparison">
+                <div class="pc-bar-row">
+                  <div class="pc-bar-meta">
+                    <span id="pcBarOrigLabel">Original</span>
+                    <span>100%</span>
+                  </div>
+                  <div class="pc-bar-track">
+                    <div class="pc-bar-fill is-orig"></div>
+                  </div>
+                </div>
+
+                <div class="pc-bar-row">
+                  <div class="pc-bar-meta">
+                    <span id="pcBarCompLabel">Compressed</span>
+                  </div>
+                  <div class="pc-bar-track">
+                    <div class="pc-bar-fill is-comp" id="pcBarCompFill" style="width: 100%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Custom Filename + Primary Download -->
+              <div class="pc-download-bar">
+                <div class="pc-filename-field">
+                  <label for="pcCustomFileName">Output filename</label>
+                  <input
+                    type="text"
+                    id="pcCustomFileName"
+                    class="pc-filename-input"
+                    value="opensign-compressed-document.pdf"
+                    placeholder="opensign-compressed-document.pdf"
+                    autocomplete="off"
+                  />
+                </div>
+                <button type="button" class="btn primary pc-compress-btn" id="pcDownloadCompBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+                  </svg>
+                  Download Compressed PDF
+                </button>
+              </div>
+
+              <!-- Secondary Result Actions -->
+              <div class="pc-result-secondary-actions">
+                <button type="button" class="btn" id="pcDownloadOrigBtn">Download Original PDF</button>
+                <button type="button" class="btn" id="pcCompressAnotherBtn">Compress Another PDF</button>
+                <button type="button" class="btn ghost" id="pcResetResultBtn">Reset Tool</button>
+              </div>
+            </section>
+
+            <!-- Privacy Notice -->
+            <div class="pc-privacy-box">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+                <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+              </svg>
+              <span>Your PDF files are processed directly in your browser. Open Sign does not upload or store your documents on its servers.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: HOW TO COMPRESS PDF FILES ONLINE ============ -->
+      <section class="workflow-band" aria-labelledby="pcStepsTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Simple 3-step compression</span>
+            <h2 class="section-title" id="pcStepsTitle">How to Compress PDF Files Online</h2>
+            <p class="section-desc">
+              Shrink oversized scans, photo-heavy brochures, and business documents locally in your browser in three straightforward steps.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Upload your PDF</h3>
+              <p>Drag and drop your PDF or click Browse PDF. Open Sign inspects page count, dimensions, images, and forms directly in your browser.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Choose your compression level</h3>
+              <p>Select Best Quality (Low), Recommended (Medium), or Smallest File (High), or enable structural-only optimization to keep text selectable.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Compare &amp; download</h3>
+              <p>Click Compress PDF, review your exact before-and-after file size reduction, customize the filename, and download your verified PDF.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: CHOOSE YOUR PDF COMPRESSION LEVEL ============ -->
+      <section class="saas-section" aria-labelledby="pcLevelsTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Transparent compression parameters</span>
+            <h2 class="section-title" id="pcLevelsTitle">Choose Your PDF Compression Level</h2>
+            <p class="section-desc">
+              Every preset uses real, verifiable optimization parameters. Actual savings depend on how much uncompressed image data your original PDF contains.
+            </p>
+          </div>
+
+          <div class="pc-levels-grid">
+            <div class="pc-level-info-card">
+              <span class="pc-preset-badge" style="width:max-content">Best Quality</span>
+              <h3>Low Compression (90% · 200 DPI)</h3>
+              <p>Prioritizes visual fidelity and sharp text. Applies safe structural optimization first and uses light image recompression only when needed for image-heavy pages.</p>
+            </div>
+            <div class="pc-level-info-card">
+              <span class="pc-preset-badge" style="width:max-content;background:var(--accent);color:#fff;border-color:var(--accent)">Recommended</span>
+              <h3>Medium Compression (75% · 150 DPI)</h3>
+              <p>Delivers a practical balance between file size and visual clarity, ideal for scanned agreements, pitch decks, and email attachments.</p>
+            </div>
+            <div class="pc-level-info-card">
+              <span class="pc-preset-badge" style="width:max-content">Smallest File</span>
+              <h3>High Compression (55% · 100 DPI)</h3>
+              <p>Applies aggressive lossy JPEG recompression and resolution downscaling to minimize file size when strict portal upload limits apply.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: FEATURES OF OPEN SIGN PDF COMPRESSOR ============ -->
+      <section class="sg-faq-band" aria-labelledby="pcFeaturesTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Intelligent local processing</span>
+            <h2 class="section-title" id="pcFeaturesTitle">Features of Open Sign PDF Compressor</h2>
+            <p class="section-desc">
+              Built to deliver honest results with clear compatibility notices and zero remote file uploads.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="11" width="16" height="10" rx="2" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>
+              </div>
+              <h3>100% Browser-Based Privacy</h3>
+              <p>All PDF inspection, page rendering, JPEG recompression, and PDF assembly happen inside your browser's memory with zero server uploads.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3l7 3v6c0 4.6-3 8.1-7 9-4-.9-7-4.4-7-9V6l7-3Z" />
+                  <path d="M9.5 12l1.8 1.8L15 10" />
+                </svg>
+              </div>
+              <h3>Smart No-Bloat Safeguard</h3>
+              <p>Every compressed file is verified for page count and readability. If an already-optimized PDF does not shrink, Open Sign clearly informs you and lets you keep the original.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                  <path d="M14 2v6h6M8 13h8M8 17h5" />
+                </svg>
+              </div>
+              <h3>Preserves Dimensions &amp; Orientation</h3>
+              <p>Original page order, portrait/landscape orientation, and exact page dimensions are maintained cleanly when rebuilding your document.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: WHY COMPRESS PDF FILES? ============ -->
+      <section class="saas-section" aria-labelledby="pcWhyTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Faster sharing &amp; compliance uploads</span>
+            <h2 class="section-title" id="pcWhyTitle">Why Compress PDF Files?</h2>
+            <p class="section-desc">
+              Oversized scans and high-resolution exports frequently hit email attachment caps and government or vendor onboarding upload limits. Compressing PDFs locally lets you meet size restrictions while keeping confidential agreements private, and pairs cleanly with <a href="../pdf-merger/index.html" style="color:var(--accent);font-weight:600">Open Sign PDF Merger</a> and our <a href="../../index.html" style="color:var(--accent);font-weight:600">PDF Signer</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: FREQUENTLY ASKED QUESTIONS (EXACT 10 REQUIRED) ============ -->
+      <section class="sg-faq-band" aria-labelledby="pcFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="pcFaqTitle">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>1. How can I compress a PDF file online for free?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Drop your PDF into the upload box above or click Browse PDF, choose Low (Best Quality), Medium (Recommended), or High (Smallest File), click Compress PDF, and download your optimized file once the before-and-after comparison appears.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>2. Will compressing a PDF reduce its quality?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Structural optimization is lossless and keeps visual quality unchanged. Lossy image recompression (used especially in Medium and High modes) reduces image resolution and JPEG quality to cut file size, so stronger compression can make fine text or photos look softer.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>3. Can I compress a PDF without uploading it to a server?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Open Sign runs PDF analysis, canvas image optimization, and PDF rebuilding 100% inside your browser. Your document never leaves your device.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>4. What is the difference between low, medium and high compression?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Low (Best Quality) targets up to 90% JPEG quality at 200 DPI and prefers lossless structural optimization first. Medium (Recommended) balances size and clarity at 75% quality and 150 DPI. High (Smallest File) targets 55% quality at 100 DPI for maximum size reduction on image-heavy files.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>5. Can I compress scanned PDF documents?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Scanned PDFs usually store large uncompressed or high-DPI page images, so Medium or High compression often achieves significant size reductions on scanned contracts, IDs, and forms.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>6. Does Open Sign support large PDF files?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Open Sign supports PDF files up to 100 MB directly in the browser. Because compression runs locally on your device, very large multi-page PDFs may take longer on phones or low-memory laptops.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>7. Can I compress a PDF without losing text quality?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Check the "Preserve selectable text &amp; structure only" option before clicking Compress PDF. This runs lossless structural optimization without rasterizing pages, keeping text sharp and selectable (though file-size savings on image-heavy PDFs will be smaller).</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>8. Why did my compressed PDF become larger?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>PDFs that are already tightly optimized or contain mostly compact vector text (such as clean digital invoices) can sometimes grow when rasterized into images. Whenever our output is not smaller than your original file, Open Sign notifies you transparently and lets you retain your original PDF.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>9. Will compression affect digital signatures?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Any modification or recompression changes the underlying PDF bytes, which invalidates existing cryptographic digital signatures. Always compress your PDF first before digitally signing it.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>10. Can I compress password-protected PDFs?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. Encrypted or password-protected PDFs cannot be processed while locked. Remove the password protection first, then upload the unlocked PDF to compress it.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELATED TOOLS ============ -->
+      <section class="saas-section" aria-labelledby="pcRelatedTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">More PDF &amp; Document Tools</span>
+            <h2 class="section-title" id="pcRelatedTitle">Related Tools</h2>
+            <p class="section-desc">
+              Explore live and upcoming browser-based PDF tools in the Open Sign platform.
+            </p>
+          </div>
+
+          <div class="pc-related-grid">
+            <a class="pc-related-card" href="../pdf-merger/index.html">
+              <div class="pc-related-top">
+                <span class="pc-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6M9 15h6M12 12v6" /></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>PDF Merger</h3>
+              <p>Combine multiple PDF documents in your exact chosen order directly in your browser.</p>
+              <span class="pc-related-url">Open PDF Merger →</span>
+            </a>
+
+            <article class="pc-related-card" data-planned-url="/tools/pdf-splitter/" aria-disabled="true">
+              <div class="pc-related-top">
+                <span class="pc-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>PDF Splitter</h3>
+              <p>Extract specific page ranges or split a large PDF into separate standalone files.</p>
+              <span class="pc-related-url">/tools/pdf-splitter/</span>
+            </article>
+
+            <article class="pc-related-card" data-planned-url="/tools/pdf-to-jpg/" aria-disabled="true">
+              <div class="pc-related-top">
+                <span class="pc-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>PDF to JPG Converter</h3>
+              <p>Convert individual PDF pages into crisp, high-resolution JPG images locally.</p>
+              <span class="pc-related-url">/tools/pdf-to-jpg/</span>
+            </article>
+
+            <article class="pc-related-card" data-planned-url="/tools/jpg-to-pdf/" aria-disabled="true">
+              <div class="pc-related-top">
+                <span class="pc-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6M8 14l2.5-2.5L13 14l2-2 2 2" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>JPG to PDF Converter</h3>
+              <p>Combine photos, scans, and JPG images into a clean, print-ready PDF document.</p>
+              <span class="pc-related-url">/tools/jpg-to-pdf/</span>
+            </article>
+
+            <article class="pc-related-card" data-planned-url="/tools/pdf-watermark/" aria-disabled="true">
+              <div class="pc-related-top">
+                <span class="pc-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7l5.7 6.8a7 7 0 1 1-11.4 0L12 2.7Z" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>PDF Watermark Generator</h3>
+              <p>Stamp text or logo watermarks across PDF pages with custom opacity and angle.</p>
+              <span class="pc-related-url">/tools/pdf-watermark/</span>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="../../index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+          </a>
+          <p class="footer-tagline">
+            Modern eSignature and intelligent agreement signing software engineered for speed, precision, and zero-retention document privacy.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-links" aria-label="Platform navigation">
+            <a href="../../index.html">Sign a PDF</a>
+            <a href="../pdf-merger/index.html">PDF Merger</a>
+            <a href="./" aria-current="page">PDF Compressor</a>
+            <a href="../../signature-generator.html">Signature Generator</a>
+            <a href="../../invoice-generator.html">Invoice Generator</a>
+            <a href="../../payslip-generator.html">Payslip Generator</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Company navigation">
+            <a href="../../about.html">About Us</a>
+            <a href="../../about.html#security">Security &amp; Privacy</a>
+            <a href="../../about.html#capabilities">Our Tools</a>
+            <a href="../../about.html#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../nav.js"></script>
+  <script src="pdf-compressor.js"></script>
+</body>
+</html>
