@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#130032" />
+  <title>Merge PDF Files Online Free, Combine PDFs | Open Sign</title>
+  <meta name="description" content="Merge multiple PDF files into one document online for free with Open Sign. Upload, rearrange and combine PDFs securely in your browser. No sign-up required." />
+  <link rel="canonical" href="https://www.opensign.in/tools/pdf-merger/" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Open Sign" />
+  <meta property="og:title" content="Merge PDF Files Online Free – Combine PDFs | Open Sign" />
+  <meta property="og:description" content="Combine multiple PDF files into one document in seconds. Upload your files, arrange them in your preferred order and download your merged PDF securely in your browser." />
+  <meta property="og:url" content="https://www.opensign.in/tools/pdf-merger/" />
+  <meta property="og:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Twitter / X Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Merge PDF Files Online Free – Combine PDFs | Open Sign" />
+  <meta name="twitter:description" content="Merge multiple PDF files into one document online for free with Open Sign. 100% browser-based, no sign-up required." />
+  <meta name="twitter:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Ensure trailing slash on HTTP origins so relative paths always resolve cleanly -->
+  <script>
+    if (/^https?:$/.test(location.protocol) && /\/tools\/pdf-merger$/.test(location.pathname)) {
+      location.replace(location.pathname + "/" + location.search + location.hash);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../signature-generator.css" />
+  <link rel="stylesheet" href="pdf-merger.css" />
+  <link rel="shortcut icon" href="../../assets/fav.png" type="image/x-icon" />
+
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <!-- Structured Data (WebApplication, BreadcrumbList, FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Open Sign PDF Merger",
+        "url": "https://www.opensign.in/tools/pdf-merger/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+        "description": "Free browser-based PDF merger tool to combine multiple PDF documents in your preferred order with zero server uploads."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.opensign.in/" },
+          { "@type": "ListItem", "position": 2, "name": "PDF & Document", "item": "https://www.opensign.in/tools/pdf-merger/" },
+          { "@type": "ListItem", "position": 3, "name": "PDF Merger", "item": "https://www.opensign.in/tools/pdf-merger/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How can I merge multiple PDF files into one?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Upload two or more PDF files using the upload area, arrange them in your preferred sequence by dragging rows or using the Move Up and Move Down buttons, click Merge PDF, and download your combined document."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Open Sign PDF Merger free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Open Sign PDF Merger is 100% free to use directly in your browser with no account or sign-up required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my PDF files uploaded to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Your documents are processed directly in your browser using client-side JavaScript. Open Sign does not upload or store your PDF files on its servers."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-view="pdf-merger">
+  <!-- Visually hidden multiple PDF file input -->
+  <input type="file" id="pmFileInput" class="sr-only" accept="application/pdf,.pdf" multiple />
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link" href="../../about.html">About Us</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>E-Signature</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../index.html" role="menuitem"><span>Sign PDF Online</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../index.html#features" role="menuitem"><span>Smart Sign Auto-Detect</span></a>
+          <a class="nav-drop-item" href="../../signature-generator.html" role="menuitem"><span>Signature Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn is-current" aria-expanded="false" aria-haspopup="true">
+          <span>PDF &amp; Document</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Compressor</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Splitter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Page Number Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Metadata Editor</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>HR &amp; Business</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../invoice-generator.html" role="menuitem"><span>Invoice Generator</span></a>
+          <a class="nav-drop-item" href="../../payslip-generator.html" role="menuitem"><span>Payslip Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>SEO &amp; Marketing</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Meta Tag Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Open Graph Previewer</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Developer &amp; Utility</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JSON &amp; XML Formatter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>QR Code Generator</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <a class="nav-link" href="../../about.html#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="../../index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="../../index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">E-Signature</p>
+        <nav class="side-nav-list" aria-label="Mobile E-Signature navigation">
+          <a class="side-nav-link" href="../../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Home / Sign PDF</span>
+          </a>
+          <a class="side-nav-link" href="../../signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">PDF &amp; Document</p>
+        <nav class="side-nav-list" aria-label="Mobile PDF tools navigation">
+          <a class="side-nav-link" href="./" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M9 15h6M12 12v6" />
+            </svg>
+            <span>PDF Merger</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Compressor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Splitter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF to JPG Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JPG to PDF Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Watermark Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Page Number Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Metadata Editor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">HR &amp; Business</p>
+        <nav class="side-nav-list" aria-label="Mobile HR & Business navigation">
+          <a class="side-nav-link" href="../../invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <a class="side-nav-link" href="../../payslip-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M7 9h10M7 13h6M7 17h4" />
+            </svg>
+            <span>Payslip Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">More Categories</p>
+        <nav class="side-nav-list" aria-label="Mobile more categories">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>SEO &amp; Marketing Tools</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Developer &amp; Utility Tools</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="../../about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About Us</span>
+          </a>
+          <a class="side-nav-link" href="../../about.html#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            <span>Contact</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="../../index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view pm-page enter">
+      <!-- ============ HERO & MAIN PDF MERGER TOOL ============ -->
+      <section class="pm-hero-band" aria-labelledby="pmHeroTitle">
+        <div class="pm-container">
+          <!-- Breadcrumb Navigation -->
+          <nav class="pm-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="pm-bc-sep" aria-hidden="true">/</span>
+            <span>PDF &amp; Document</span>
+            <span class="pm-bc-sep" aria-hidden="true">/</span>
+            <span aria-current="page">PDF Merger</span>
+          </nav>
+
+          <div class="pm-hero-head">
+            <span class="pm-privacy-pill">
+              100% Free | Secure Browser Processing | No Sign-Up Required
+            </span>
+            <h1 class="pm-title" id="pmHeroTitle">Merge PDF Files Online for Free</h1>
+            <p class="pm-sub">
+              Combine multiple PDF files into one document in seconds. Upload your files, arrange them in your preferred order and download your merged PDF. No registration required.
+            </p>
+          </div>
+
+          <!-- Prominent White Tool Container -->
+          <div class="pm-tool-card" role="region" aria-label="PDF Merger workspace">
+            <!-- Validation / Error Alert -->
+            <div class="pm-alert" id="pmAlert" role="alert" hidden>
+              <span id="pmAlertMsg"></span>
+              <button type="button" class="pm-alert-close" id="pmAlertClose" aria-label="Dismiss message">&times;</button>
+            </div>
+
+            <!-- Drag-and-Drop Upload Area -->
+            <label class="pm-dropzone" id="pmDropzone" for="pmFileInput">
+              <div class="pm-dz-left">
+                <span class="pm-dz-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                    <path d="M14 2v6h6" />
+                    <path d="M12 18v-6M9 15l3-3 3 3" />
+                  </svg>
+                </span>
+                <div>
+                  <p class="pm-dz-title">Drop your PDF files here</p>
+                  <p class="pm-dz-sub">Select two or more .pdf files to combine, portrait, landscape and mixed page sizes supported</p>
+                </div>
+              </div>
+              <span class="btn primary">Upload PDF Files</span>
+            </label>
+
+            <!-- Live Processing Status Bar -->
+            <div class="pm-status-bar" id="pmStatusBar">
+              <div class="pm-stats-group">
+                <span class="pm-stat-chip">Files uploaded: <strong id="pmStatFiles">0</strong></span>
+                <span class="pm-stat-chip">Total pages: <strong id="pmStatPages">0</strong></span>
+                <span class="pm-stat-chip">Total size: <strong id="pmStatSize">0 B</strong></span>
+              </div>
+              <span class="pm-state-pill" id="pmStatusPill" data-status="idle" role="status" aria-live="polite">Waiting for files</span>
+            </div>
+
+            <!-- Empty State -->
+            <div class="pm-empty-state" id="pmEmptyState">
+              <strong>No PDF files added yet</strong>
+              Upload at least two PDF documents above. You can drag rows or use Move Up / Move Down to control the exact page order of your merged PDF.
+            </div>
+
+            <!-- Uploaded Documents Queue -->
+            <div id="pmListWrap" hidden>
+              <div class="pm-list-head" style="margin-bottom:10px">
+                <p class="pm-list-title">Selected PDF Documents (Merged Top to Bottom)</p>
+                <span class="pm-list-hint">Drag rows or use arrow buttons to reorder</span>
+              </div>
+              <ul class="pm-file-list" id="pmFileList" aria-label="Uploaded PDF files list"></ul>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="pm-progress-panel" id="pmProgressPanel" role="status" aria-live="polite" hidden>
+              <div class="pm-progress-top">
+                <span id="pmProgressMsg">Preparing your documents...</span>
+                <span id="pmProgressPct">0%</span>
+              </div>
+              <div class="pm-progress-track">
+                <div class="pm-progress-fill" id="pmProgressFill"></div>
+              </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="pm-action-bar">
+              <div class="pm-action-left">
+                <button type="button" class="btn" id="pmAddMoreBtn">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                    <path d="M10 4v12M4 10h12" />
+                  </svg>
+                  Add More PDFs
+                </button>
+                <button type="button" class="btn ghost" id="pmClearAllBtn" disabled>Clear All</button>
+              </div>
+
+              <div class="pm-action-right">
+                <button type="button" class="btn primary pm-merge-btn" id="pmMergeBtn" disabled>
+                  <span id="pmMergeBtnLabel" style="display:inline-flex;align-items:center;gap:8px">Merge PDF</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Merged Result & Download Panel -->
+            <section class="pm-result-panel" id="pmResultPanel" aria-labelledby="pmResultTitle" hidden>
+              <div class="pm-result-head">
+                <span class="pm-result-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <div>
+                  <h2 id="pmResultTitle">Your merged PDF is ready</h2>
+                  <p>Review the filename below and download your combined document directly to your device.</p>
+                </div>
+              </div>
+
+              <div class="pm-result-stats">
+                <div class="pm-result-stat">
+                  <span>Final file name</span>
+                  <strong id="pmResultFileName">opensign-merged-document.pdf</strong>
+                </div>
+                <div class="pm-result-stat">
+                  <span>Total pages</span>
+                  <strong id="pmResultPages">0 pages</strong>
+                </div>
+                <div class="pm-result-stat">
+                  <span>PDFs merged</span>
+                  <strong id="pmResultCount">0 PDFs</strong>
+                </div>
+                <div class="pm-result-stat">
+                  <span>Final file size</span>
+                  <strong id="pmResultSize">0 KB</strong>
+                </div>
+              </div>
+
+              <div class="pm-download-bar">
+                <div class="pm-filename-field">
+                  <label for="pmCustomFileName">Custom filename (optional)</label>
+                  <input
+                    type="text"
+                    id="pmCustomFileName"
+                    class="pm-filename-input"
+                    value="opensign-merged-document.pdf"
+                    placeholder="opensign-merged-document.pdf"
+                    autocomplete="off"
+                  />
+                </div>
+                <button type="button" class="btn primary pm-merge-btn" id="pmDownloadMergedBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+                  </svg>
+                  Download Merged PDF
+                </button>
+              </div>
+            </section>
+
+            <!-- Privacy Notice -->
+            <div class="pm-privacy-box">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+                <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+              </svg>
+              <span>Your documents are processed directly in your browser. Open Sign does not upload or store your PDF files on its servers.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ HOW TO MERGE PDF FILES ONLINE (3 SIMPLE STEPS) ============ -->
+      <section class="workflow-band" aria-labelledby="pmStepsTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Simple 3-step workflow</span>
+            <h2 class="section-title" id="pmStepsTitle">How to Merge PDF Files Online</h2>
+            <p class="section-desc">
+              Combine contracts, invoices, onboarding packets, or scanned reports into one organized PDF in three effortless steps.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Upload your PDF files</h3>
+              <p>Click Upload PDF Files or drag and drop two or more PDF documents directly into the workspace. You can add additional files at any time.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Arrange them in your preferred order</h3>
+              <p>Drag document rows or use the accessible Move Up and Move Down buttons to set the exact sequence of pages in your final file.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Click Merge PDF and download your document</h3>
+              <p>Click Merge PDF to combine all files locally in your browser, optionally customize the filename, and download your ready-to-use PDF.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FEATURES OF OUR FREE PDF MERGER ============ -->
+      <section class="saas-section" aria-labelledby="pmFeaturesTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Built for accuracy and speed</span>
+            <h2 class="section-title" id="pmFeaturesTitle">Features of Our Free PDF Merger</h2>
+            <p class="section-desc">
+              Engineered to handle everyday business packets, contracts, and multi-orientation documents reliably on desktop, tablet, and mobile.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="11" width="16" height="10" rx="2" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>
+              </div>
+              <h3>100% Browser-Based Privacy</h3>
+              <p>Every PDF is read, validated, and merged inside your browser memory using client-side JavaScript. Files are never uploaded to external servers or saved in browser storage.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+                </svg>
+              </div>
+              <h3>Exact Order &amp; Mixed Page Sizes</h3>
+              <p>Reorder PDFs via drag-and-drop or accessible buttons while preserving each page's original A4, Letter, portrait, or landscape dimensions and orientation.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3l7 3v6c0 4.6-3 8.1-7 9-4-.9-7-4.4-7-9V6l7-3Z" />
+                  <path d="M9.5 12l1.8 1.8L15 10" />
+                </svg>
+              </div>
+              <h3>Smart File Validation</h3>
+              <p>Checks both file extensions and PDF binary signatures to reject renamed images, empty files, corrupted PDFs, and encrypted documents with clear feedback.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ WHY USE OPEN SIGN PDF MERGER ============ -->
+      <section class="sg-faq-band" aria-labelledby="pmWhyTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Part of the Open Sign suite</span>
+            <h2 class="section-title" id="pmWhyTitle">Why Use Open Sign PDF Merger?</h2>
+            <p class="section-desc">
+              Combine attachments, annexures, ID proofs, and agreements before sending or signing, without leaving Open Sign.
+            </p>
+          </div>
+
+          <div class="pm-why-grid">
+            <div class="pm-why-card">
+              <h3>No Account, No Watermarks, No Waiting</h3>
+              <p>Skip registration walls and slow server upload queues. Because merging runs locally on your device, your PDF combines immediately with zero added watermarks.</p>
+            </div>
+            <div class="pm-why-card">
+              <h3>Works Seamlessly with Open Sign Workflows</h3>
+              <p>After merging your contracts, schedules, or <a href="../../invoice-generator.html" style="color:var(--accent);font-weight:600">invoices</a> into one file, open it directly in the <a href="../../index.html" style="color:var(--accent);font-weight:600">Open Sign PDF Signer</a> to add signatures and dates.</p>
+            </div>
+          </div>
+
+          <div class="pm-limit-note">
+            <strong>Compatibility note:</strong> Open Sign merges PDFs locally using <code>pdf-lib</code>. Standard text, vector graphics, images, page sizes, and page orientations are preserved accurately. However, some advanced PDF structures, such as password-encrypted files, XFA dynamic forms, existing cryptographic digital signatures, or certain interactive annotations, may not be preserved when copying pages into a new PDF.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FREQUENTLY ASKED QUESTIONS (EXACT 8 REQUIRED) ============ -->
+      <section class="saas-section" aria-labelledby="pmFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="pmFaqTitle">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>1. How can I merge multiple PDF files into one?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Click Upload PDF Files or drag and drop two or more PDFs into the tool above. Arrange them in your desired sequence by dragging rows or clicking Move Up / Move Down, then click Merge PDF and download the combined file.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>2. Is Open Sign PDF Merger free?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Open Sign PDF Merger is free to use in your browser with no account, no subscription, and no watermarks added to your merged PDF.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>3. Can I rearrange PDF pages before merging?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>You can rearrange the exact order of your uploaded PDF files before merging using drag-and-drop or the Move Up and Move Down buttons. Pages within each individual PDF stay in their original sequence.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>4. Is there a limit on the number of PDF files?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Open Sign does not impose an artificial file-count cap, and you can merge two, five, or dozens of PDFs. Practical limits depend on your browser and device memory since all processing happens locally.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>5. Are my PDF files uploaded to a server?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. All file validation and PDF merging run 100% locally inside your web browser. Open Sign never uploads, transmits, or stores your PDF files on any server.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>6. Can I merge large PDF files?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes, large PDFs are supported up to the memory capacity of your browser and device. Very large files (for example over 50–100 MB combined) may take a few extra seconds to process locally, especially on mobile devices.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>7. Does the merged PDF maintain the original page quality?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Pages are copied directly at the PDF object level rather than rasterized into images, preserving original text sharpness, vector graphics, page sizes, and portrait or landscape orientations.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>8. Can I merge password-protected PDF files?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Password-protected or encrypted PDFs cannot be merged directly while locked. Unlock or remove the password restriction from the file first, then upload it to merge smoothly.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELATED PDF TOOLS SECTION ============ -->
+      <section class="sg-faq-band" aria-labelledby="pmRelatedTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">More PDF &amp; Document Tools</span>
+            <h2 class="section-title" id="pmRelatedTitle">Related Tools</h2>
+            <p class="section-desc">
+              Explore upcoming browser-based PDF tools in the Open Sign ecosystem, all built with the same zero-upload privacy approach.
+            </p>
+          </div>
+
+          <div class="pm-related-grid">
+            <article class="pm-related-card" data-planned-url="/tools/pdf-compressor/" aria-disabled="true">
+              <div class="pm-related-top">
+                <span class="pm-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>PDF Compressor</h3>
+              <p>Reduce PDF file size directly in your browser for faster email sharing and uploads.</p>
+              <span class="pm-related-url">/tools/pdf-compressor/</span>
+            </article>
+
+            <article class="pm-related-card" data-planned-url="/tools/pdf-splitter/" aria-disabled="true">
+              <div class="pm-related-top">
+                <span class="pm-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>PDF Splitter</h3>
+              <p>Extract specific page ranges or split a large PDF into separate standalone files.</p>
+              <span class="pm-related-url">/tools/pdf-splitter/</span>
+            </article>
+
+            <article class="pm-related-card" data-planned-url="/tools/pdf-to-jpg/" aria-disabled="true">
+              <div class="pm-related-top">
+                <span class="pm-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>PDF to JPG Converter</h3>
+              <p>Convert individual PDF pages into crisp, high-resolution JPG images locally.</p>
+              <span class="pm-related-url">/tools/pdf-to-jpg/</span>
+            </article>
+
+            <article class="pm-related-card" data-planned-url="/tools/jpg-to-pdf/" aria-disabled="true">
+              <div class="pm-related-top">
+                <span class="pm-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6M8 14l2.5-2.5L13 14l2-2 2 2" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>JPG to PDF Converter</h3>
+              <p>Combine photos, scans, and JPG images into a clean, print-ready PDF document.</p>
+              <span class="pm-related-url">/tools/jpg-to-pdf/</span>
+            </article>
+
+            <article class="pm-related-card" data-planned-url="/tools/pdf-watermark/" aria-disabled="true">
+              <div class="pm-related-top">
+                <span class="pm-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7l5.7 6.8a7 7 0 1 1-11.4 0L12 2.7Z" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>PDF Watermark Generator</h3>
+              <p>Stamp text or logo watermarks across PDF pages with custom opacity and angle.</p>
+              <span class="pm-related-url">/tools/pdf-watermark/</span>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="../../index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+          </a>
+          <p class="footer-tagline">
+            Modern eSignature and intelligent agreement signing software engineered for speed, precision, and zero-retention document privacy.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Platform</p>
+          <nav class="footer-links" aria-label="Platform navigation">
+            <a href="../../index.html">Sign a PDF</a>
+            <a href="./" aria-current="page">PDF Merger</a>
+            <a href="../../signature-generator.html">Signature Generator</a>
+            <a href="../../invoice-generator.html">Invoice Generator</a>
+            <a href="../../payslip-generator.html">Payslip Generator</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Company navigation">
+            <a href="../../about.html">About Us</a>
+            <a href="../../about.html#security">Security &amp; Privacy</a>
+            <a href="../../about.html#capabilities">Our Tools</a>
+            <a href="../../about.html#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../nav.js"></script>
+  <script src="pdf-merger.js"></script>
+</body>
+</html>

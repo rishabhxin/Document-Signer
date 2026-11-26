@@ -1,6 +1,70 @@
 (() => {
   "use strict";
 
+  /* ---------- Desktop Navigation Dropdowns ---------- */
+  const dropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
+
+  function closeAllDropdowns(except = null) {
+    for (const dd of dropdowns) {
+      if (dd === except) continue;
+      dd.classList.remove("is-open");
+      const btn = dd.querySelector(".nav-drop-btn");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  for (const dd of dropdowns) {
+    const btn = dd.querySelector(".nav-drop-btn");
+    const menu = dd.querySelector(".nav-drop-menu");
+    if (!btn || !menu) continue;
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !dd.classList.contains("is-open");
+      closeAllDropdowns(willOpen ? dd : null);
+      dd.classList.toggle("is-open", willOpen);
+      btn.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        closeAllDropdowns(dd);
+        dd.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+        menu.querySelector("a[href]")?.focus();
+      } else if (e.key === "Escape") {
+        closeAllDropdowns();
+        btn.focus();
+      }
+    });
+
+    menu.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeAllDropdowns();
+        btn.focus();
+      }
+    });
+
+    // Close when clicking an active link inside dropdown
+    menu.addEventListener("click", (e) => {
+      const a = e.target.closest("a[href]");
+      if (a) closeAllDropdowns();
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav-dropdown")) {
+      closeAllDropdowns();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAllDropdowns();
+  });
+
+  /* ---------- Mobile & Tablet Slide-Over Side Navigation Drawer ---------- */
   const toggle = document.getElementById("navToggle");
   const drawer = document.getElementById("sideNav");
   const backdrop = document.getElementById("sideNavBackdrop");
@@ -14,6 +78,7 @@
 
   function openMenu() {
     if (isOpen) return;
+    closeAllDropdowns();
     isOpen = true;
     lastFocused = document.activeElement;
 
@@ -67,15 +132,13 @@
   closeBtn?.addEventListener("click", () => closeMenu());
   backdrop.addEventListener("click", () => closeMenu());
 
-  // Close drawer when selecting any link or CTA inside it
   drawer.addEventListener("click", (e) => {
-    const link = e.target.closest("a, label[for]");
+    const link = e.target.closest("a[href], label[for]");
     if (link) {
       closeMenu({ restoreFocus: false });
     }
   });
 
-  // Keyboard support: Escape to close, Tab focus trap
   document.addEventListener("keydown", (e) => {
     if (!isOpen) return;
     if (e.key === "Escape") {
@@ -98,13 +161,15 @@
     }
   });
 
-  // Automatically close drawer if resized to desktop width or when switching to editor/processing
-  const desktopMq = window.matchMedia("(min-width: 961px)");
+  const desktopMq = window.matchMedia("(min-width: 1181px)");
   const onDesktopChange = (ev) => {
     if (ev.matches && isOpen) closeMenu({ restoreFocus: false });
   };
   if (desktopMq.addEventListener) desktopMq.addEventListener("change", onDesktopChange);
   else if (desktopMq.addListener) desktopMq.addListener(onDesktopChange);
 
-  window.addEventListener("opensign:document-loaded", () => closeMenu({ restoreFocus: false }));
+  window.addEventListener("opensign:document-loaded", () => {
+    closeAllDropdowns();
+    closeMenu({ restoreFocus: false });
+  });
 })();
