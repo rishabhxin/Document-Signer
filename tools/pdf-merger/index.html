@@ -127,7 +127,7 @@
         <div class="nav-drop-menu" role="menu">
           <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
           <a class="nav-drop-item" href="../../tools/pdf-compressor/index.html" role="menuitem"><span>PDF Compressor</span><span class="nav-live-badge">Live</span></a>
-          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Splitter</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../../tools/pdf-splitter/index.html" role="menuitem"><span>PDF Splitter</span><span class="nav-live-badge">Live</span></a>
           <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-soon-badge">Soon</span></span>
           <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
           <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
@@ -233,10 +233,12 @@
             </svg>
             <span>PDF Compressor</span>
           </a>
-          <span class="side-nav-link is-disabled" aria-disabled="true">
-            <span class="side-nav-link-inner"><span>PDF Splitter</span></span>
-            <span class="nav-soon-badge">Soon</span>
-          </span>
+          <a class="side-nav-link" href="../../tools/pdf-splitter/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" />
+            </svg>
+            <span>PDF Splitter</span>
+          </a>
           <span class="side-nav-link is-disabled" aria-disabled="true">
             <span class="side-nav-link-inner"><span>PDF to JPG Converter</span></span>
             <span class="nav-soon-badge">Soon</span>
@@ -720,17 +722,17 @@
               <span class="pm-related-url" style="color:var(--accent)">Open PDF Compressor →</span>
             </a>
 
-            <article class="pm-related-card" data-planned-url="/tools/pdf-splitter/" aria-disabled="true">
+            <a class="pm-related-card" href="../pdf-splitter/index.html" style="opacity:1;text-decoration:none;color:inherit">
               <div class="pm-related-top">
                 <span class="pm-related-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" /></svg>
                 </span>
-                <span class="nav-soon-badge">Coming Soon</span>
+                <span class="nav-live-badge">Live</span>
               </div>
               <h3>PDF Splitter</h3>
               <p>Extract specific page ranges or split a large PDF into separate standalone files.</p>
-              <span class="pm-related-url">/tools/pdf-splitter/</span>
-            </article>
+              <span class="pm-related-url" style="color:var(--accent)">Open PDF Splitter →</span>
+            </a>
 
             <article class="pm-related-card" data-planned-url="/tools/pdf-to-jpg/" aria-disabled="true">
               <div class="pm-related-top">
@@ -792,6 +794,7 @@
             <a href="../../index.html">Sign a PDF</a>
             <a href="./" aria-current="page">PDF Merger</a>
             <a href="../pdf-compressor/index.html">PDF Compressor</a>
+            <a href="../pdf-splitter/index.html">PDF Splitter</a>
             <a href="../../signature-generator.html">Signature Generator</a>
             <a href="../../invoice-generator.html">Invoice Generator</a>
             <a href="../../payslip-generator.html">Payslip Generator</a>
