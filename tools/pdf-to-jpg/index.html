@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#130032" />
+  <title>PDF to JPG Converter Online Free, Convert PDF to Images | Open Sign</title>
+  <meta name="description" content="Convert PDF to JPG images online for free with Open Sign. Select pages, customize image quality and resolution, preview images and download them securely in your browser." />
+  <link rel="canonical" href="https://www.opensign.in/tools/pdf-to-jpg/" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Open Sign" />
+  <meta property="og:title" content="PDF to JPG Converter Online Free, Convert PDF to Images | Open Sign" />
+  <meta property="og:description" content="Convert PDF pages into high-quality JPG images in seconds. Upload your PDF, select pages, customize quality &amp; DPI, and download locally in your browser." />
+  <meta property="og:url" content="https://www.opensign.in/tools/pdf-to-jpg/" />
+  <meta property="og:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Twitter / X Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PDF to JPG Converter Online Free, Convert PDF to Images | Open Sign" />
+  <meta name="twitter:description" content="Convert PDF to JPG images online for free with Open Sign. 100% browser-based, no sign-up required." />
+  <meta name="twitter:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Ensure trailing slash on HTTP origins so relative asset paths resolve cleanly -->
+  <script>
+    if (/^https?:$/.test(location.protocol) && /\/tools\/pdf-to-jpg$/.test(location.pathname)) {
+      location.replace(location.pathname + "/" + location.search + location.hash);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../signature-generator.css" />
+  <link rel="stylesheet" href="pdf-to-jpg.css" />
+  <link rel="shortcut icon" href="../../assets/fav.png" type="image/x-icon" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Open Sign PDF to JPG Converter",
+        "url": "https://www.opensign.in/tools/pdf-to-jpg/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+        "description": "Free browser-based PDF to JPG converter with page selection, custom DPI resolution, image quality presets, gallery preview, and bulk ZIP download."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.opensign.in/" },
+          { "@type": "ListItem", "position": 2, "name": "PDF & Document", "item": "https://www.opensign.in/tools/pdf-to-jpg/" },
+          { "@type": "ListItem", "position": 3, "name": "PDF to JPG Converter", "item": "https://www.opensign.in/tools/pdf-to-jpg/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I convert a PDF to JPG online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Upload your PDF into Open Sign PDF to JPG Converter, choose all pages, selected pages, or a page range, pick your preferred image quality and DPI resolution, click Convert to JPG, and download individual JPG images or a ZIP archive."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my PDF files uploaded to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. All PDF rendering and JPG image encoding happen locally inside your web browser using PDF.js and the HTML5 Canvas API. Open Sign never uploads or stores your files on its servers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will the converted JPG images contain selectable text?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. JPG is a raster image format, so text in the converted images is rendered as pixels and is not selectable as text."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-view="pdf-to-jpg">
+  <!-- Visually hidden single PDF file input -->
+  <input type="file" id="pjFileInput" class="sr-only" accept="application/pdf,.pdf" />
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link" href="../../about.html">About Us</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>E-Signature</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../index.html" role="menuitem"><span>Sign PDF Online</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../index.html#features" role="menuitem"><span>Smart Sign Auto-Detect</span></a>
+          <a class="nav-drop-item" href="../../signature-generator.html" role="menuitem"><span>Signature Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn is-current" aria-expanded="false" aria-haspopup="true">
+          <span>PDF &amp; Document</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../tools/pdf-merger/index.html" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-compressor/index.html" role="menuitem"><span>PDF Compressor</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-splitter/index.html" role="menuitem"><span>PDF Splitter</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Page Number Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Metadata Editor</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>HR &amp; Business</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../invoice-generator.html" role="menuitem"><span>Invoice Generator</span></a>
+          <a class="nav-drop-item" href="../../payslip-generator.html" role="menuitem"><span>Payslip Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>SEO &amp; Marketing</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Meta Tag Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Open Graph Previewer</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Developer &amp; Utility</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JSON &amp; XML Formatter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>QR Code Generator</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <a class="nav-link" href="../../about.html#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="../../index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="../../index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">E-Signature</p>
+        <nav class="side-nav-list" aria-label="Mobile E-Signature navigation">
+          <a class="side-nav-link" href="../../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Home / Sign PDF</span>
+          </a>
+          <a class="side-nav-link" href="../../signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">PDF &amp; Document</p>
+        <nav class="side-nav-list" aria-label="Mobile PDF tools navigation">
+          <a class="side-nav-link" href="../../tools/pdf-merger/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M9 15h6M12 12v6" />
+            </svg>
+            <span>PDF Merger</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-compressor/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+            </svg>
+            <span>PDF Compressor</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-splitter/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" />
+            </svg>
+            <span>PDF Splitter</span>
+          </a>
+          <a class="side-nav-link" href="./" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span>PDF to JPG Converter</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JPG to PDF Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Watermark Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Page Number Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Metadata Editor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">HR &amp; Business</p>
+        <nav class="side-nav-list" aria-label="Mobile HR & Business navigation">
+          <a class="side-nav-link" href="../../invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <a class="side-nav-link" href="../../payslip-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M7 9h10M7 13h6M7 17h4" />
+            </svg>
+            <span>Payslip Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">More Categories</p>
+        <nav class="side-nav-list" aria-label="Mobile more categories">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>SEO &amp; Marketing Tools</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Developer &amp; Utility Tools</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="../../about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About Us</span>
+          </a>
+          <a class="side-nav-link" href="../../about.html#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            <span>Contact</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="../../index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view pj-page enter">
+      <!-- ============ HERO & MAIN PDF TO JPG CONVERTER TOOL ============ -->
+      <section class="pj-hero-band" aria-labelledby="pjHeroTitle">
+        <div class="pj-container">
+          <!-- Breadcrumb Navigation -->
+          <nav class="pj-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="pj-bc-sep" aria-hidden="true">/</span>
+            <a href="../pdf-merger/index.html">PDF &amp; Document</a>
+            <span class="pj-bc-sep" aria-hidden="true">/</span>
+            <span aria-current="page">PDF to JPG Converter</span>
+          </nav>
+
+          <div class="pj-hero-head">
+            <h1 class="pj-title" id="pjHeroTitle">Convert PDF to JPG Online for Free</h1>
+            <p class="pj-sub">
+              Convert PDF pages into high-quality JPG images in seconds. Upload your PDF, select the pages you need, customize image quality and download your images instantly with Open Sign.
+            </p>
+            <div class="pj-trust-row" aria-label="Trust indicators">
+              <span class="pj-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                100% Free
+              </span>
+              <span class="pj-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                No Sign-Up Required
+              </span>
+              <span class="pj-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                Secure Browser Processing
+              </span>
+              <span class="pj-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                High-Quality Image Export
+              </span>
+            </div>
+          </div>
+
+          <!-- Prominent White Conversion Container -->
+          <div class="pj-tool-card" role="region" aria-label="PDF to JPG Converter workspace">
+            <!-- Validation / Error Alert -->
+            <div class="pj-alert" id="pjAlert" role="alert" hidden>
+              <span id="pjAlertMsg"></span>
+              <button type="button" class="pj-alert-close" id="pjAlertClose" aria-label="Dismiss message">&times;</button>
+            </div>
+
+            <!-- Drag-and-Drop Single PDF Upload Area -->
+            <label class="pj-dropzone" id="pjDropzone" for="pjFileInput">
+              <span class="pj-dz-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+              </span>
+              <p class="pj-dz-title">Drop your PDF file here to convert to JPG</p>
+              <p class="pj-dz-sub">Select one PDF document to preview pages, pick DPI resolution &amp; quality, and export JPG images locally</p>
+              <span class="btn primary">Browse PDF</span>
+              <span class="pj-dz-limit">PDF only (.pdf) · Maximum file size: 100 MB</span>
+            </label>
+
+            <!-- Uploaded Document Info Header -->
+            <div class="pj-doc-header" id="pjDocHeader" hidden>
+              <div class="pj-doc-left">
+                <span class="pj-pdf-badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                    <path d="M14 2v6h6M8 13h8M8 17h5" />
+                  </svg>
+                </span>
+                <div class="pj-doc-info">
+                  <div class="pj-doc-title-row">
+                    <h2 class="pj-doc-name" id="pjDocName">document.pdf</h2>
+                    <span class="pj-status-pill" id="pjDocStatus" data-status="ready">Ready to convert</span>
+                  </div>
+                  <div class="pj-doc-meta">
+                    <span>Original size: <strong id="pjDocSize">0 KB</strong></span>
+                    <span>Total pages: <strong id="pjDocPages">0 pages</strong></span>
+                    <span>Page dimensions: <strong id="pjDocDims">-</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="pj-doc-actions">
+                <button type="button" class="btn ghost" id="pjChangePdfBtn">Change PDF</button>
+              </div>
+            </div>
+
+            <!-- Conversion Settings: Page Selection, Image Quality, Resolution -->
+            <div class="pj-options-section" id="pjOptionsSection" hidden>
+              <div class="pj-options-grid">
+                <!-- 1. Page Selection -->
+                <div class="pj-option-box">
+                  <h2>1. Page Selection</h2>
+                  <div class="pj-radio-stack" role="radiogroup" aria-label="Page selection mode">
+                    <button type="button" class="pj-radio-card" data-sel-mode="all" role="radio" aria-checked="true">
+                      <div>
+                        <span class="pj-radio-title">Convert All Pages</span>
+                        <span class="pj-radio-sub">Export every page in the PDF as a separate JPG image</span>
+                      </div>
+                    </button>
+
+                    <button type="button" class="pj-radio-card" data-sel-mode="selected" role="radio" aria-checked="false">
+                      <div>
+                        <span class="pj-radio-title">Convert Selected Pages</span>
+                        <span class="pj-radio-sub">Pick specific pages using the thumbnail checkboxes below</span>
+                      </div>
+                    </button>
+
+                    <button type="button" class="pj-radio-card" data-sel-mode="ranges" role="radio" aria-checked="false">
+                      <div>
+                        <span class="pj-radio-title">Convert Page Ranges</span>
+                        <span class="pj-radio-sub">Specify exact pages and ranges (e.g. 1-5, 7, 9-12)</span>
+                      </div>
+                    </button>
+                  </div>
+
+                  <div id="pjRangeInputWrap" hidden>
+                    <label for="pjRangeInput" class="sr-only">Enter page ranges</label>
+                    <input
+                      type="text"
+                      id="pjRangeInput"
+                      class="pj-input"
+                      placeholder="e.g. 1-5, 7, 9-12"
+                      autocomplete="off"
+                    />
+                    <p class="pj-helper-text" style="margin-top:4px">Example: 1-5, 7, 9-12</p>
+                  </div>
+                </div>
+
+                <!-- 2. Image Quality -->
+                <div class="pj-option-box">
+                  <h2>2. Image Quality</h2>
+                  <div class="pj-radio-stack" role="radiogroup" aria-label="JPG image quality">
+                    <button type="button" class="pj-radio-card" data-quality="low" role="radio" aria-checked="false">
+                      <div>
+                        <span class="pj-radio-title">Low Quality (60%)</span>
+                        <span class="pj-radio-sub">Smaller file size, suitable for quick sharing</span>
+                      </div>
+                    </button>
+
+                    <button type="button" class="pj-radio-card" data-quality="medium" role="radio" aria-checked="true">
+                      <div>
+                        <span class="pj-radio-title">Medium Quality (80%)</span>
+                        <span class="pj-radio-sub">Balanced image quality and file size</span>
+                      </div>
+                      <span class="pj-pill-tag">Default</span>
+                    </button>
+
+                    <button type="button" class="pj-radio-card" data-quality="high" role="radio" aria-checked="false">
+                      <div>
+                        <span class="pj-radio-title">High Quality (95%)</span>
+                        <span class="pj-radio-sub">Better visual sharpness, larger image file size</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 3. Resolution (DPI) -->
+                <div class="pj-option-box">
+                  <h2>3. Resolution (DPI)</h2>
+                  <div class="pj-dpi-grid" role="radiogroup" aria-label="Output resolution in DPI">
+                    <button type="button" class="pj-dpi-btn" data-dpi="72" role="radio" aria-checked="false">72 DPI</button>
+                    <button type="button" class="pj-dpi-btn" data-dpi="150" role="radio" aria-checked="true">150 DPI (Default)</button>
+                    <button type="button" class="pj-dpi-btn" data-dpi="200" role="radio" aria-checked="false">200 DPI</button>
+                    <button type="button" class="pj-dpi-btn" data-dpi="300" role="radio" aria-checked="false">300 DPI</button>
+                    <button type="button" class="pj-dpi-btn" data-dpi="custom" role="radio" aria-checked="false" style="grid-column:1 / -1">Custom DPI</button>
+                  </div>
+
+                  <div class="pj-custom-dpi-row" id="pjCustomDpiWrap" hidden>
+                    <label for="pjCustomDpiInput" class="sr-only">Custom DPI (36 to 400)</label>
+                    <input
+                      type="number"
+                      id="pjCustomDpiInput"
+                      class="pj-input"
+                      value="180"
+                      min="36"
+                      max="400"
+                      step="1"
+                    />
+                    <span style="font-size:12.5px;font-weight:700;color:var(--muted);white-space:nowrap">DPI (36–400)</span>
+                  </div>
+
+                  <p class="pj-helper-text">
+                    Higher resolution produces sharper details for printing or zooming, and creates larger JPG files.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Pre-Conversion Settings Summary -->
+              <div class="pj-settings-summary" aria-label="Conversion settings summary">
+                <div class="pj-sum-chips">
+                  <span class="pj-sum-chip">Total PDF pages: <strong id="pjSumTotalPages">0</strong></span>
+                  <span class="pj-sum-chip">Selected pages: <strong id="pjSumSelectedPages">0</strong></span>
+                  <span class="pj-sum-chip">Output format: <strong>JPG / JPEG</strong></span>
+                  <span class="pj-sum-chip">Resolution: <strong id="pjSumResolution">150 DPI</strong></span>
+                  <span class="pj-sum-chip">Image quality: <strong id="pjSumQuality">Medium (80%)</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page Thumbnail Grid & Quick Selection Actions -->
+            <div class="pj-grid-section" id="pjGridSection" hidden>
+              <div class="pj-quick-bar" id="pjQuickBar">
+                <div class="pj-quick-group" aria-label="Quick selection actions">
+                  <button type="button" class="pj-mini-btn" id="pjBtnSelectAll">Select All</button>
+                  <button type="button" class="pj-mini-btn" id="pjBtnDeselectAll">Deselect All</button>
+                  <button type="button" class="pj-mini-btn" id="pjBtnConvertAllMode">Convert All Pages</button>
+                  <button type="button" class="pj-mini-btn" id="pjBtnClearSel">Clear Selection</button>
+                </div>
+                <span style="font-size:12.5px;color:var(--muted);font-weight:500">Click any page thumbnail to toggle selection or zoom</span>
+              </div>
+
+              <div class="pj-page-grid" id="pjPageGrid" aria-label="PDF page thumbnails"></div>
+
+              <div class="pj-pager-bar" id="pjPagerBar" hidden>
+                <span id="pjPagerLabel">Showing pages 1–36</span>
+                <div class="pj-quick-group">
+                  <button type="button" class="pj-mini-btn" id="pjPagerPrev">← Previous Pages</button>
+                  <button type="button" class="pj-mini-btn" id="pjPagerNext">Next Pages →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Raster Image Notice -->
+            <div class="pj-raster-note" id="pjRasterNote" role="note" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 10v6M12 7h.01" />
+              </svg>
+              <span>
+                PDF to JPG conversion creates raster image files with a solid white background while preserving your original page aspect ratio. Text inside converted JPG images will not remain selectable as text.
+              </span>
+            </div>
+
+            <!-- Real Sequential Progress Indicator -->
+            <div class="pj-progress-panel" id="pjProgressPanel" role="status" aria-live="polite" hidden>
+              <div class="pj-progress-top">
+                <span id="pjProgressMsg">Reading your PDF...</span>
+                <span id="pjProgressMeta"></span>
+              </div>
+              <div class="pj-progress-track">
+                <div class="pj-progress-fill" id="pjProgressFill"></div>
+              </div>
+            </div>
+
+            <!-- Primary Action Bar -->
+            <div class="pj-action-bar" id="pjActionBar" hidden>
+              <div class="pj-action-left">
+                <button type="button" class="btn ghost" id="pjResetBtn" disabled>Reset Tool</button>
+              </div>
+              <div class="pj-action-right">
+                <button type="button" class="btn primary pj-convert-btn" id="pjConvertBtn" disabled>
+                  <span id="pjConvertBtnLabel" style="display:inline-flex;align-items:center;gap:8px">Convert to JPG</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Converted Image Gallery & Results -->
+            <section class="pj-result-panel" id="pjResultPanel" aria-labelledby="pjResultTitle" hidden>
+              <div class="pj-result-head">
+                <div class="pj-result-title-group">
+                  <span class="pj-result-check" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <div>
+                    <h2 id="pjResultTitle">Conversion complete!</h2>
+                    <p id="pjResultSub"></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Conversion Summary Stats -->
+              <div class="pj-result-stats">
+                <div class="pj-res-stat">
+                  <span>Pages converted</span>
+                  <strong id="pjResPagesConv">0 pages</strong>
+                </div>
+                <div class="pj-res-stat">
+                  <span>JPG files generated</span>
+                  <strong id="pjResFilesGen">0 JPGs</strong>
+                </div>
+                <div class="pj-res-stat">
+                  <span>Total output size</span>
+                  <strong id="pjResTotalSize">0 KB</strong>
+                </div>
+                <div class="pj-res-stat">
+                  <span>Resolution</span>
+                  <strong id="pjResDpiUsed">150 DPI</strong>
+                </div>
+                <div class="pj-res-stat">
+                  <span>Image quality</span>
+                  <strong id="pjResQualUsed">Medium (80%)</strong>
+                </div>
+              </div>
+
+              <!-- Base Filename Customization + Bulk ZIP Downloads -->
+              <div class="pj-bulk-bar">
+                <div class="pj-base-field">
+                  <label for="pjBaseFileName">Base filename (exports as &lt;base&gt;-1.jpg, &lt;base&gt;-2.jpg...)</label>
+                  <input
+                    type="text"
+                    id="pjBaseFileName"
+                    class="pj-input"
+                    value="opensign-page"
+                    placeholder="opensign-page"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="pj-bulk-actions">
+                  <button type="button" class="btn" id="pjDownloadSelectedZipBtn" hidden>Download Selected as ZIP</button>
+                  <button type="button" class="btn primary pj-convert-btn" id="pjDownloadAllZipBtn" hidden>Download All as ZIP</button>
+                  <button type="button" class="btn" id="pjConvertAnotherBtn">Convert Another PDF</button>
+                  <button type="button" class="btn ghost" id="pjResetResultBtn">Reset Tool</button>
+                </div>
+              </div>
+
+              <!-- Responsive Gallery of Converted JPG Images -->
+              <div class="pj-gallery-grid" id="pjGalleryGrid" aria-label="Converted JPG images"></div>
+            </section>
+
+            <!-- Privacy Assurance Box -->
+            <div class="pj-privacy-box">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+                <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+              </svg>
+              <span>Your PDF files are processed directly in your browser. Open Sign does not upload or store your documents on its servers.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: HOW TO CONVERT PDF PAGES INTO JPG IMAGES ============ -->
+      <section class="workflow-band" aria-labelledby="pjStepsTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Simple 3-step conversion</span>
+            <h2 class="section-title" id="pjStepsTitle">How to Convert PDF Pages into JPG Images</h2>
+            <p class="section-desc">
+              Turn PDF pages into crisp, shareable JPG images right in your browser with full control over pages, quality, and DPI resolution.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Upload your PDF</h3>
+              <p>Drop your PDF into the converter or click Browse PDF. Open Sign validates the file and generates visual page thumbnails locally.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Select pages, quality &amp; DPI</h3>
+              <p>Convert all pages, pick specific thumbnails, or enter page ranges, then choose Low, Medium, or High quality and 72–300 DPI.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Preview &amp; download JPGs</h3>
+              <p>Click Convert to JPG, inspect your images in the responsive gallery, and download individual JPGs or a single ZIP archive.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: CUSTOMIZE YOUR JPG IMAGE QUALITY ============ -->
+      <section class="saas-section" aria-labelledby="pjQualityTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Quality &amp; resolution controls</span>
+            <h2 class="section-title" id="pjQualityTitle">Customize Your JPG Image Quality</h2>
+            <p class="section-desc">
+              Pair JPEG compression quality with output DPI (72, 150, 200, 300, or custom DPI) to balance clarity and file size for web, email, or print.
+            </p>
+          </div>
+
+          <div class="pj-quality-grid">
+            <div class="pj-info-card">
+              <h3>Low Quality (60% JPEG)</h3>
+              <p>Produces compact JPG files ideal for fast messaging, mobile previews, and quick email sharing where minimal file size matters most.</p>
+            </div>
+            <div class="pj-info-card">
+              <h3>Medium Quality (80% JPEG · Recommended)</h3>
+              <p>Delivers clean text readability and accurate colors at a balanced file size, making it the best default for most documents and presentations.</p>
+            </div>
+            <div class="pj-info-card">
+              <h3>High Quality (95% JPEG)</h3>
+              <p>Preserves fine graphic and photographic detail—especially when paired with 200 or 300 DPI—for high-resolution archiving and design workflows.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: CONVERT INDIVIDUAL PDF PAGES OR ENTIRE DOCUMENTS & WHY USE OPEN SIGN ============ -->
+      <section class="sg-faq-band" aria-labelledby="pjScopeTitle">
+        <div class="saas-container">
+          <div class="pj-split-info-grid">
+            <div class="pj-info-card">
+              <span class="section-kicker">Flexible page targeting</span>
+              <h2 class="section-title" id="pjScopeTitle" style="font-size:24px">Convert Individual PDF Pages or Entire Documents</h2>
+              <p>
+                Whether you need a single slide from a deck, specific pages like <code>1-5, 7, 9-12</code>, or every page of a multi-page report, Open Sign renders each page cleanly on a white background while preserving original portrait or landscape aspect ratios.
+              </p>
+            </div>
+
+            <div class="pj-info-card">
+              <span class="section-kicker">Private by design</span>
+              <h2 class="section-title" id="pjWhyTitle" style="font-size:24px">Why Use Open Sign PDF to JPG Converter?</h2>
+              <p>
+                No account sign-ups, no watermarks, and no server uploads. Everything runs inside your browser alongside Open Sign's <a href="../pdf-merger/index.html" style="color:var(--accent);font-weight:600">PDF Merger</a>, <a href="../pdf-compressor/index.html" style="color:var(--accent);font-weight:600">PDF Compressor</a>, <a href="../pdf-splitter/index.html" style="color:var(--accent);font-weight:600">PDF Splitter</a>, and <a href="../../index.html" style="color:var(--accent);font-weight:600">PDF Signer</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: FREQUENTLY ASKED QUESTIONS (EXACT 10 REQUIRED) ============ -->
+      <section class="saas-section" aria-labelledby="pjFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="pjFaqTitle">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>1. How do I convert a PDF to JPG online?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Drop your PDF into the upload box above or click Browse PDF, choose which pages to convert, set your preferred image quality and DPI resolution, click Convert to JPG, and download individual JPG files or a ZIP archive.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>2. Can I convert only selected PDF pages?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Choose Convert Selected Pages to click individual page checkboxes on the thumbnail grid, or choose Convert Page Ranges to enter specific pages and ranges like 1-5, 7, 9-12.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>3. Can I convert an entire PDF into JPG images?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Keep Convert All Pages selected (the default) and click Convert to JPG to render every page of your document as a separate JPG image.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>4. What image resolutions are available?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>You can choose 72 DPI, 150 DPI (default), 200 DPI, 300 DPI, or enter a custom DPI value between 36 and 400 DPI. Higher DPI settings produce sharper images and larger file sizes.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>5. Can I download all converted images together?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. When two or more pages are converted, click Download All as ZIP (or select specific images in the gallery and click Download Selected as ZIP) to package them into one ZIP archive (default filename: <code>opensign-pdf-to-jpg.zip</code>).</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>6. Is Open Sign PDF to JPG Converter free?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Open Sign PDF to JPG Converter is 100% free to use in your browser with no account registration and no watermarks.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>7. Are my PDF files uploaded to a server?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. All PDF parsing, page rendering, and JPG encoding occur locally on your device inside your web browser. Open Sign never uploads or stores your documents on any server.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>8. Will converting PDF to JPG reduce quality?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>JPG uses lossy image compression, so very low quality or 72 DPI settings can soften small text. Choosing High Quality (95%) at 200 or 300 DPI preserves crisp visual detail.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>9. Can I convert scanned PDF documents?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Both native digital PDFs and scanned image-based PDFs are rendered accurately onto a white background and exported as standard JPG images.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>10. Will the converted JPG images contain selectable text?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. Converting a PDF to JPG creates raster pixel images, so text inside the output JPG files cannot be highlighted or copied as text.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELATED TOOLS ============ -->
+      <section class="sg-faq-band" aria-labelledby="pjRelatedTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">More PDF &amp; Document Tools</span>
+            <h2 class="section-title" id="pjRelatedTitle">Related Tools</h2>
+            <p class="section-desc">
+              Explore live and upcoming browser-based PDF tools in the Open Sign platform.
+            </p>
+          </div>
+
+          <div class="pj-related-grid">
+            <a class="pj-related-card" href="../pdf-merger/index.html">
+              <div class="pj-related-top">
+                <span class="pj-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6M9 15h6M12 12v6" /></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>PDF Merger</h3>
+              <p>Combine multiple PDF documents in your exact chosen order directly in your browser.</p>
+              <span class="pj-related-url">Open PDF Merger →</span>
+            </a>
+
+            <a class="pj-related-card" href="../pdf-compressor/index.html">
+              <div class="pj-related-top">
+                <span class="pj-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" /></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>PDF Compressor</h3>
+              <p>Reduce PDF file size locally with Best Quality, Recommended, or Smallest File presets.</p>
+              <span class="pj-related-url">Open PDF Compressor →</span>
+            </a>
+
+            <a class="pj-related-card" href="../pdf-splitter/index.html">
+              <div class="pj-related-top">
+                <span class="pj-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" /></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>PDF Splitter</h3>
+              <p>Extract specific pages, split every page, or divide PDFs by ranges or equal parts.</p>
+              <span class="pj-related-url">Open PDF Splitter →</span>
+            </a>
+
+            <article class="pj-related-card" data-planned-url="/tools/jpg-to-pdf/" aria-disabled="true">
+              <div class="pj-related-top">
+                <span class="pj-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6M8 14l2.5-2.5L13 14l2-2 2 2" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>JPG to PDF Converter</h3>
+              <p>Combine photos, scans, and JPG images into a clean, print-ready PDF document.</p>
+              <span class="pj-related-url">/tools/jpg-to-pdf/</span>
+            </article>
+
+            <article class="pj-related-card" data-planned-url="/tools/pdf-watermark/" aria-disabled="true">
+              <div class="pj-related-top">
+                <span class="pj-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7l5.7 6.8a7 7 0 1 1-11.4 0L12 2.7Z" /></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>PDF Watermark Generator</h3>
+              <p>Stamp text or logo watermarks across PDF pages with custom opacity and angle.</p>
+              <span class="pj-related-url">/tools/pdf-watermark/</span>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ PAGE / JPG PREVIEW & ZOOM MODAL ============ -->
+  <dialog id="pjZoomModal" class="pj-zoom-modal" aria-labelledby="pjZoomTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="pjZoomTitle">Page Preview</h2>
+        <p class="dlg-sub">Inspect page details or converted JPG output.</p>
+      </div>
+      <button class="icon-btn" id="pjZoomCloseTop" type="button" aria-label="Close preview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="pj-zoom-toolbar">
+      <div class="pj-quick-group">
+        <button type="button" class="pj-mini-btn" id="pjZoomPrev">← Prev</button>
+        <button type="button" class="pj-mini-btn" id="pjZoomNext">Next →</button>
+      </div>
+      <div class="pj-quick-group">
+        <button type="button" class="pj-mini-btn" id="pjZoomOut" aria-label="Zoom out">−</button>
+        <span id="pjZoomPct" style="font-size:13px;font-weight:700;min-width:46px;text-align:center">100%</span>
+        <button type="button" class="pj-mini-btn" id="pjZoomIn" aria-label="Zoom in">+</button>
+        <button type="button" class="btn primary" id="pjZoomToggleSel" style="min-height:34px;padding:0 14px;font-size:13px">Select Page</button>
+      </div>
+    </div>
+
+    <div class="pj-zoom-stage">
+      <canvas id="pjZoomCanvas"></canvas>
+      <img id="pjZoomImg" alt="Converted JPG full preview" hidden />
+    </div>
+  </dialog>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="../../index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="156" height="42" />
+          </a>
+          <p class="footer-tagline">
+            Modern eSignature, smart PDF tools, and business document software engineered for speed, precision, and zero-retention browser privacy.
+          </p>
+          <span class="footer-privacy-pill">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+              <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+            </svg>
+            100% Browser-Based · Zero File Retention
+          </span>
+        </div>
+
+        <!-- Column 1: E-Signature -->
+        <div class="footer-col">
+          <p class="footer-col-title">E-Signature</p>
+          <nav class="footer-links" aria-label="Footer E-Signature navigation">
+            <a href="../../index.html">Sign PDF Online</a>
+            <a href="../../index.html#features">Smart Sign Auto-Detect</a>
+            <a href="../../signature-generator.html">Signature Generator</a>
+            <a href="../../index.html#workflow">How It Works</a>
+          </nav>
+        </div>
+
+        <!-- Column 2: PDF & Document -->
+        <div class="footer-col">
+          <p class="footer-col-title">PDF &amp; Document</p>
+          <nav class="footer-links" aria-label="Footer PDF & Document navigation">
+            <a href="../../tools/pdf-merger/index.html">PDF Merger</a>
+            <a href="../../tools/pdf-compressor/index.html">PDF Compressor</a>
+            <a href="../../tools/pdf-splitter/index.html">PDF Splitter</a>
+            <a href="./" aria-current="page">PDF to JPG Converter</a>
+            <span class="footer-soon-item" aria-disabled="true">JPG to PDF Converter <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Watermark <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">Page Numbers &amp; Metadata <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 3: HR & Business + More Suites -->
+        <div class="footer-col">
+          <p class="footer-col-title">HR &amp; Business</p>
+          <nav class="footer-links" aria-label="Footer HR & Business navigation">
+            <a href="../../invoice-generator.html">Invoice Generator</a>
+            <a href="../../payslip-generator.html">Payslip Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">SEO &amp; Marketing <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">Developer &amp; Utility <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Company -->
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Footer Company navigation">
+            <a href="../../index.html">Home</a>
+            <a href="../../about.html">About Us</a>
+            <a href="../../about.html#security">Security &amp; Privacy</a>
+            <a href="../../about.html#capabilities">All Tools</a>
+            <a href="../../about.html#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="../../about.html#security">Privacy First</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../about.html#capabilities">Platform Tools</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../about.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../nav.js"></script>
+  <script src="pdf-to-jpg.js"></script>
+</body>
+</html>
