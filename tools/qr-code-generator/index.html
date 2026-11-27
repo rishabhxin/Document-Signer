@@ -1,0 +1,1347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#130032" />
+  <title>Free QR Code Generator Online, Create Custom QR Codes | Open Sign</title>
+  <meta name="description" content="Create free custom QR codes online with Open Sign. Generate QR codes for websites, Wi-Fi, WhatsApp, email, phone numbers and contacts. Download PNG and SVG instantly." />
+  <link rel="canonical" href="https://www.opensign.in/tools/qr-code-generator/" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Open Sign" />
+  <meta property="og:title" content="Free QR Code Generator Online, Create Custom QR Codes | Open Sign" />
+  <meta property="og:description" content="Create free custom QR codes for websites, Wi-Fi, contact details, email, phone numbers and more. Customize colors, add your logo and download PNG, SVG or JPG." />
+  <meta property="og:url" content="https://www.opensign.in/tools/qr-code-generator/" />
+  <meta property="og:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Twitter / X Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free QR Code Generator Online, Create Custom QR Codes | Open Sign" />
+  <meta name="twitter:description" content="Generate custom static QR codes for URLs, Wi-Fi, vCards, WhatsApp, SMS, email, and locations locally in your browser." />
+  <meta name="twitter:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Ensure trailing slash on HTTP origins so relative asset paths resolve cleanly -->
+  <script>
+    if (/^https?:$/.test(location.protocol) && /\/tools\/qr-code-generator$/.test(location.pathname)) {
+      location.replace(location.pathname + "/" + location.search + location.hash);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../contact.css" />
+  <link rel="stylesheet" href="../../signature-generator.css" />
+  <link rel="stylesheet" href="qr-code-generator.css" />
+  <link rel="shortcut icon" href="../../assets/fav.png" type="image/x-icon" />
+
+  <!-- Client-side QR generator & local scan-back decoder -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PWPQ9PMD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+
+  <!-- Structured Data (WebApplication, BreadcrumbList, FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Open Sign QR Code Generator",
+        "url": "https://www.opensign.in/tools/qr-code-generator/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+        "description": "Free browser-based QR code generator for URLs, plain text, Wi-Fi, email, phone, SMS, vCard contacts, WhatsApp, and geographic coordinates with PNG, SVG, and JPG export."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.opensign.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Developer & Utility", "item": "https://www.opensign.in/tools/qr-code-generator/" },
+          { "@type": "ListItem", "position": 3, "name": "QR Code Generator", "item": "https://www.opensign.in/tools/qr-code-generator/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I generate a QR code online for free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Select a QR code type (Website URL, Wi-Fi, vCard Contact, WhatsApp, Email, Phone, SMS, Plain Text, or Location), enter your content, customize colors or add an optional center logo, and download your QR code as PNG, SVG, or JPG."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do Open Sign QR codes expire?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Open Sign generates static QR codes with your data encoded directly inside the QR pattern, so they never expire on their own. However, if you encode a website URL that later moves or goes offline, that destination link will stop working."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my QR code details uploaded to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Your QR codes are generated directly in your browser. Open Sign does not upload or store your QR content, Wi-Fi credentials, or uploaded logo."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-view="qr-code-generator">
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link" href="../../about.html">About Us</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>E-Signature</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../index.html" role="menuitem"><span>Sign PDF Online</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../index.html#features" role="menuitem"><span>Smart Sign Auto-Detect</span></a>
+          <a class="nav-drop-item" href="../../signature-generator.html" role="menuitem"><span>Signature Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>PDF &amp; Document</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../tools/pdf-merger/index.html" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-compressor/index.html" role="menuitem"><span>PDF Compressor</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-splitter/index.html" role="menuitem"><span>PDF Splitter</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../pdf-to-jpg/index.html" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Page Number Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Metadata Editor</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>HR &amp; Business</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../invoice-generator.html" role="menuitem"><span>Invoice Generator</span></a>
+          <a class="nav-drop-item" href="../../payslip-generator.html" role="menuitem"><span>Payslip Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>SEO &amp; Marketing</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Sitemap Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Robots.txt Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../meta-tag-generator/index.html" role="menuitem"><span>Meta Tag Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Open Graph Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../schema-markup-generator/index.html" role="menuitem"><span>Schema Markup Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>UTM Link Builder</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn is-current" aria-expanded="false" aria-haspopup="true">
+          <span>Developer &amp; Utility</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JSON &amp; XML Formatter</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>QR Code Generator</span><span class="nav-live-badge">Live</span></a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="../../contact.html">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="../../index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="../../index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">E-Signature</p>
+        <nav class="side-nav-list" aria-label="Mobile E-Signature navigation">
+          <a class="side-nav-link" href="../../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Home / Sign PDF</span>
+          </a>
+          <a class="side-nav-link" href="../../signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">PDF &amp; Document</p>
+        <nav class="side-nav-list" aria-label="Mobile PDF tools navigation">
+          <a class="side-nav-link" href="../../tools/pdf-merger/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M9 15h6M12 12v6" />
+            </svg>
+            <span>PDF Merger</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-compressor/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+            </svg>
+            <span>PDF Compressor</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-splitter/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" />
+            </svg>
+            <span>PDF Splitter</span>
+          </a>
+          <a class="side-nav-link" href="../pdf-to-jpg/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span>PDF to JPG Converter</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JPG to PDF Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Watermark Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Page Number Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Metadata Editor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">HR &amp; Business</p>
+        <nav class="side-nav-list" aria-label="Mobile HR & Business navigation">
+          <a class="side-nav-link" href="../../invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <a class="side-nav-link" href="../../payslip-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M7 9h10M7 13h6M7 17h4" />
+            </svg>
+            <span>Payslip Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">SEO &amp; Marketing</p>
+        <nav class="side-nav-list" aria-label="Mobile SEO &amp; Marketing navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Sitemap Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Robots.txt Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../meta-tag-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            <span>Meta Tag Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Open Graph Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../schema-markup-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>Schema Markup Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>UTM Link Builder</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Developer &amp; Utility</p>
+        <nav class="side-nav-list" aria-label="Mobile developer &amp; utility navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JSON &amp; XML Formatter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="./" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <path d="M14 14h3v3h-3zM19 19h2v2h-2zM14 20h2" />
+            </svg>
+            <span>QR Code Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="../../about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About Us</span>
+          </a>
+          <a class="side-nav-link" href="../../contact.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            <span>Contact Us</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="../../index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view qr-page enter">
+      <!-- ============ HERO & TWO-COLUMN QR STUDIO ============ -->
+      <section class="qr-hero-band" aria-labelledby="qrHeroTitle">
+        <div class="qr-container">
+          <!-- Breadcrumb Navigation -->
+          <nav class="qr-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="qr-bc-sep" aria-hidden="true">/</span>
+            <span>Developer &amp; Utility</span>
+            <span class="qr-bc-sep" aria-hidden="true">/</span>
+            <span aria-current="page">QR Code Generator</span>
+          </nav>
+
+          <div class="qr-hero-head">
+            <h1 class="qr-title" id="qrHeroTitle">Free QR Code Generator</h1>
+            <p class="qr-sub">
+              Create free custom QR codes for websites, Wi-Fi, contact details, email, phone numbers and more. Customize colors, add your logo and download high-quality QR codes instantly with Open Sign.
+            </p>
+            <div class="qr-trust-row" aria-label="Trust indicators">
+              <span class="qr-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                100% Free
+              </span>
+              <span class="qr-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                No Sign-Up Required
+              </span>
+              <span class="qr-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                Instant QR Generation
+              </span>
+              <span class="qr-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                PNG &amp; SVG Downloads
+              </span>
+              <span class="qr-trust-chip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4L16 6.5" /></svg>
+                Browser-Based Processing
+              </span>
+            </div>
+          </div>
+
+          <!-- Two-Column Workspace: Left Controls | Right Live QR Preview & Export -->
+          <div class="qr-workspace" role="region" aria-label="QR Code Generator workspace">
+            <!-- ============ LEFT COLUMN ============ -->
+            <div class="qr-left-col">
+              <!-- Card 1: 9 QR Code Types + Dynamic Inputs -->
+              <section class="qr-card" aria-labelledby="qrTypeHead">
+                <div class="qr-card-head">
+                  <h2 id="qrTypeHead"><span class="qr-step-badge">1</span> Select QR Code Type &amp; Content</h2>
+                  <button type="button" class="qr-mini-btn" id="qrResetTopBtn">Reset</button>
+                </div>
+
+                <!-- 9 Selectable QR Types -->
+                <div class="qr-types-grid" role="radiogroup" aria-label="QR code content types">
+                  <button type="button" class="qr-type-btn" data-qr-type="url" role="radio" aria-checked="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a14.5 14.5 0 0 1 0 18M12 3a14.5 14.5 0 0 0 0 18"/></svg>
+                    <span>Website URL</span>
+                  </button>
+
+                  <button type="button" class="qr-type-btn" data-qr-type="text" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+                    <span>Plain Text</span>
+                  </button>
+
+                  <button type="button" class="qr-type-btn" data-qr-type="wifi" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+                    <span>Wi-Fi</span>
+                  </button>
+
+                  <button type="button" class="qr-type-btn" data-qr-type="email" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                    <span>Email</span>
+                  </button>
+
+                  <button type="button" class="qr-type-btn" data-qr-type="phone" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>Phone</span>
+                  </button>
+
+                  <button type="button" class="qr-type-btn" data-qr-type="sms" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span>SMS</span>
+                  </button>
+
+                  <button type="button" class="qr-type-btn" data-qr-type="vcard" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M6 16a3 3 0 0 1 6 0M15 9h3M15 13h3"/></svg>
+                    <span>Contact / vCard</span>
+                  </button>
+
+                  <button type="button" class="qr-type-btn" data-qr-type="whatsapp" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    <span>WhatsApp</span>
+                  </button>
+
+                  <button type="button" class="qr-type-btn" data-qr-type="location" role="radio" aria-checked="false">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Location</span>
+                  </button>
+                </div>
+
+                <!-- Dynamic Panel 1: Website URL -->
+                <div data-qr-panel="url" style="display:flex;flex-direction:column;gap:12px">
+                  <div class="qr-field">
+                    <div class="qr-label-row">
+                      <label for="qrUrlInput">Website URL</label>
+                      <button type="button" class="qr-mini-btn" id="qrCopyOrigUrlBtn" style="min-height:28px;font-size:11.5px;padding:0 9px">Copy Original URL</button>
+                    </div>
+                    <input type="url" id="qrUrlInput" class="qr-input" placeholder="https://www.example.com" autocomplete="off" />
+                    <p class="qr-hint" id="qrUrlHint">Generates a static QR code pointing directly to your URL.</p>
+                  </div>
+
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrUrlCampaign">Campaign Name (Optional)</label>
+                      <input type="text" id="qrUrlCampaign" class="qr-input" placeholder="e.g. product-launch-2026" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrUrlParams">Tracking Parameters (Optional)</label>
+                      <input type="text" id="qrUrlParams" class="qr-input" placeholder="utm_source=qr&utm_medium=print" autocomplete="off" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dynamic Panel 2: Plain Text -->
+                <div data-qr-panel="text" style="display:flex;flex-direction:column;gap:12px" hidden>
+                  <div class="qr-field">
+                    <div class="qr-label-row">
+                      <label for="qrTextInput">Plain Text Content</label>
+                      <span class="qr-counter" id="qrTextCount">0 chars</span>
+                    </div>
+                    <textarea id="qrTextInput" class="qr-textarea" rows="4" placeholder="Enter your message, instructions, serial number, or notes..."></textarea>
+                    <p class="qr-hint">Supports multiline text, UTF-8 characters, and symbols.</p>
+                  </div>
+                </div>
+
+                <!-- Dynamic Panel 3: Wi-Fi -->
+                <div data-qr-panel="wifi" style="display:flex;flex-direction:column;gap:12px" hidden>
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrWifiSsid">Network Name (SSID)</label>
+                      <input type="text" id="qrWifiSsid" class="qr-input" placeholder="e.g. Office_Guest_WiFi" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrWifiSec">Security Type</label>
+                      <select id="qrWifiSec" class="qr-select">
+                        <option value="WPA" selected>WPA / WPA2 / WPA3</option>
+                        <option value="WEP">WEP</option>
+                        <option value="nopass">None (Open Network)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="qr-field">
+                    <label for="qrWifiPass">Wi-Fi Password</label>
+                    <div class="qr-pass-wrap">
+                      <input type="password" id="qrWifiPass" class="qr-input" placeholder="Enter Wi-Fi password" autocomplete="new-password" />
+                      <button type="button" class="qr-pass-toggle" id="qrWifiPassToggle">Show</button>
+                    </div>
+                  </div>
+
+                  <label class="qr-toggle-label">
+                    <input type="checkbox" id="qrWifiHidden" />
+                    <span>Hidden Wi-Fi network (H:true)</span>
+                  </label>
+                </div>
+
+                <!-- Dynamic Panel 4: Email -->
+                <div data-qr-panel="email" style="display:flex;flex-direction:column;gap:12px" hidden>
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrEmailAddr">Recipient Email Address</label>
+                      <input type="email" id="qrEmailAddr" class="qr-input" placeholder="hello@example.com" autocomplete="off" />
+                      <p class="qr-hint" id="qrEmailHint">Opens the user's default email app pre-filled with recipient, subject, and message.</p>
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrEmailSubj">Subject (Optional)</label>
+                      <input type="text" id="qrEmailSubj" class="qr-input" placeholder="e.g. Product Inquiry" autocomplete="off" />
+                    </div>
+                  </div>
+
+                  <div class="qr-field">
+                    <label for="qrEmailBody">Message Body (Optional)</label>
+                    <textarea id="qrEmailBody" class="qr-textarea" rows="3" placeholder="Write a pre-filled email message..."></textarea>
+                  </div>
+                </div>
+
+                <!-- Dynamic Panel 5: Phone -->
+                <div data-qr-panel="phone" style="display:flex;flex-direction:column;gap:12px" hidden>
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrPhoneCode">Country Code</label>
+                      <input type="text" id="qrPhoneCode" class="qr-input" value="+91" placeholder="+91" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrPhoneNum">Phone Number</label>
+                      <input type="tel" id="qrPhoneNum" class="qr-input" placeholder="1234567890" autocomplete="off" />
+                    </div>
+                  </div>
+                  <p class="qr-hint" id="qrPhoneHint">Prompts mobile phones to dial the encoded number.</p>
+                </div>
+
+                <!-- Dynamic Panel 6: SMS -->
+                <div data-qr-panel="sms" style="display:flex;flex-direction:column;gap:12px" hidden>
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrSmsCode">Country Code</label>
+                      <input type="text" id="qrSmsCode" class="qr-input" value="+91" placeholder="+91" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrSmsNum">Phone Number</label>
+                      <input type="tel" id="qrSmsNum" class="qr-input" placeholder="1234567890" autocomplete="off" />
+                    </div>
+                  </div>
+
+                  <div class="qr-field">
+                    <label for="qrSmsBody">Predefined SMS Message (Optional)</label>
+                    <textarea id="qrSmsBody" class="qr-textarea" rows="2" placeholder="Enter predefined text message..."></textarea>
+                    <p class="qr-hint" id="qrSmsHint">Opens the SMS messaging app with the recipient and predefined text.</p>
+                  </div>
+                </div>
+
+                <!-- Dynamic Panel 7: Contact / vCard 3.0 -->
+                <div data-qr-panel="vcard" style="display:flex;flex-direction:column;gap:12px" hidden>
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrVcFirst">First Name</label>
+                      <input type="text" id="qrVcFirst" class="qr-input" placeholder="e.g. Aarav" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrVcLast">Last Name</label>
+                      <input type="text" id="qrVcLast" class="qr-input" placeholder="e.g. Sharma" autocomplete="off" />
+                    </div>
+                  </div>
+
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrVcOrg">Organization</label>
+                      <input type="text" id="qrVcOrg" class="qr-input" placeholder="e.g. Open Sign" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrVcTitle">Job Title</label>
+                      <input type="text" id="qrVcTitle" class="qr-input" placeholder="e.g. Product Lead" autocomplete="off" />
+                    </div>
+                  </div>
+
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrVcPhone">Phone Number</label>
+                      <input type="tel" id="qrVcPhone" class="qr-input" placeholder="+91 98765 43210" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrVcEmail">Email Address</label>
+                      <input type="email" id="qrVcEmail" class="qr-input" placeholder="aarav@example.com" autocomplete="off" />
+                    </div>
+                  </div>
+
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrVcUrl">Website</label>
+                      <input type="url" id="qrVcUrl" class="qr-input" placeholder="https://www.example.com" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrVcStreet">Street Address</label>
+                      <input type="text" id="qrVcStreet" class="qr-input" placeholder="101 Business Park" autocomplete="off" />
+                    </div>
+                  </div>
+
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrVcCity">City</label>
+                      <input type="text" id="qrVcCity" class="qr-input" placeholder="Mumbai" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrVcState">State / Region</label>
+                      <input type="text" id="qrVcState" class="qr-input" placeholder="Maharashtra" autocomplete="off" />
+                    </div>
+                  </div>
+
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrVcZip">Postal Code</label>
+                      <input type="text" id="qrVcZip" class="qr-input" placeholder="400013" autocomplete="off" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrVcCountry">Country</label>
+                      <input type="text" id="qrVcCountry" class="qr-input" placeholder="India" autocomplete="off" />
+                    </div>
+                  </div>
+                  <p class="qr-hint">Encodes standard vCard 3.0 contact details so phones can save the contact in one tap.</p>
+                </div>
+
+                <!-- Dynamic Panel 8: WhatsApp -->
+                <div data-qr-panel="whatsapp" style="display:flex;flex-direction:column;gap:12px" hidden>
+                  <div class="qr-field">
+                    <label for="qrWaNum">WhatsApp Phone Number (with Country Code)</label>
+                    <input type="tel" id="qrWaNum" class="qr-input" placeholder="e.g. 911234567890" autocomplete="off" />
+                    <p class="qr-hint" id="qrWaHint">Include country code (e.g. 91 for India, 1 for US) without leading + or zeros.</p>
+                  </div>
+
+                  <div class="qr-field">
+                    <label for="qrWaMsg">Predefined WhatsApp Message (Optional)</label>
+                    <textarea id="qrWaMsg" class="qr-textarea" rows="2" placeholder="Hello! I would like to connect."></textarea>
+                  </div>
+                </div>
+
+                <!-- Dynamic Panel 9: Location -->
+                <div data-qr-panel="location" style="display:flex;flex-direction:column;gap:12px" hidden>
+                  <div class="qr-grid-3">
+                    <div class="qr-field">
+                      <label for="qrLocLat">Latitude (-90 to 90)</label>
+                      <input type="number" id="qrLocLat" class="qr-input" step="any" min="-90" max="90" placeholder="19.0760" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrLocLng">Longitude (-180 to 180)</label>
+                      <input type="number" id="qrLocLng" class="qr-input" step="any" min="-180" max="180" placeholder="72.8777" />
+                    </div>
+                    <div class="qr-field">
+                      <label for="qrLocName">Location Label (Optional)</label>
+                      <input type="text" id="qrLocName" class="qr-input" placeholder="Mumbai" autocomplete="off" />
+                    </div>
+                  </div>
+                  <p class="qr-hint" id="qrLocHint">Opens coordinates in Apple Maps, Google Maps, or device map apps.</p>
+                </div>
+              </section>
+
+              <!-- Card 2: Collapsible Customization & Logo Settings -->
+              <details class="qr-accordion" open>
+                <summary>
+                  <span class="qr-acc-title">
+                    <span class="qr-step-badge">2</span>
+                    Customize Design, Size &amp; Logo
+                  </span>
+                  <span class="qr-acc-meta">
+                    <span>Colors, DPI/Size, ECC, Logo</span>
+                    <span class="qr-acc-chevron" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4" /></svg>
+                    </span>
+                  </span>
+                </summary>
+
+                <div class="qr-acc-body">
+                  <!-- Preset Designs -->
+                  <div class="qr-field">
+                    <label>Preset Designs (Preserves your entered content)</label>
+                    <div class="qr-presets-row" role="radiogroup" aria-label="QR color presets">
+                      <button type="button" class="qr-preset-btn" data-preset="classic" role="radio" aria-checked="true">
+                        <span class="qr-preset-dot" style="background:#000000" aria-hidden="true"></span>
+                        <span>Classic Black &amp; White</span>
+                      </button>
+                      <button type="button" class="qr-preset-btn" data-preset="blue" role="radio" aria-checked="false">
+                        <span class="qr-preset-dot" style="background:#1652f0" aria-hidden="true"></span>
+                        <span>Professional Blue</span>
+                      </button>
+                      <button type="button" class="qr-preset-btn" data-preset="green" role="radio" aria-checked="false">
+                        <span class="qr-preset-dot" style="background:#0f766e" aria-hidden="true"></span>
+                        <span>Business Green</span>
+                      </button>
+                      <button type="button" class="qr-preset-btn" data-preset="dark" role="radio" aria-checked="false">
+                        <span class="qr-preset-dot" style="background:#130032" aria-hidden="true"></span>
+                        <span>Minimal Dark</span>
+                      </button>
+                      <button type="button" class="qr-preset-btn" data-preset="brand" role="radio" aria-checked="false">
+                        <span class="qr-preset-dot" style="background:#4c00ff" aria-hidden="true"></span>
+                        <span>Custom Brand Colors</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Foreground & Background Colors -->
+                  <div class="qr-grid-2">
+                    <div class="qr-field">
+                      <label for="qrFgHex">Foreground Color</label>
+                      <div class="qr-color-row">
+                        <input type="color" id="qrFgPicker" class="qr-color-picker" value="#000000" aria-label="Pick foreground color" />
+                        <input type="text" id="qrFgHex" class="qr-input" value="#000000" maxlength="7" placeholder="#000000" />
+                      </div>
+                    </div>
+
+                    <div class="qr-field">
+                      <label for="qrBgHex">Background Color</label>
+                      <div class="qr-color-row">
+                        <input type="color" id="qrBgPicker" class="qr-color-picker" value="#ffffff" aria-label="Pick background color" />
+                        <input type="text" id="qrBgHex" class="qr-input" value="#ffffff" maxlength="7" placeholder="#ffffff" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Output Size, Error Correction & Margin / Quiet Zone -->
+                  <div class="qr-grid-3">
+                    <div class="qr-field">
+                      <label for="qrSizeSelect">QR Code Size</label>
+                      <select id="qrSizeSelect" class="qr-select">
+                        <option value="256">256 × 256 px</option>
+                        <option value="512">512 × 512 px</option>
+                        <option value="1024" selected>1024 × 1024 px (Default)</option>
+                        <option value="2048">2048 × 2048 px</option>
+                        <option value="custom">Custom Dimensions</option>
+                      </select>
+                    </div>
+
+                    <div class="qr-field">
+                      <label for="qrEccSelect">Error Correction</label>
+                      <select id="qrEccSelect" class="qr-select">
+                        <option value="L">Low (L · ~7%)</option>
+                        <option value="M" selected>Medium (M · ~15%)</option>
+                        <option value="Q">Quartile (Q · ~25%)</option>
+                        <option value="H">High (H · ~30%)</option>
+                      </select>
+                    </div>
+
+                    <div class="qr-field">
+                      <label for="qrMarginSelect">Margin / Quiet Zone</label>
+                      <select id="qrMarginSelect" class="qr-select">
+                        <option value="0">No extra margin (0)</option>
+                        <option value="2">Small margin (2)</option>
+                        <option value="4" selected>Standard margin (4)</option>
+                        <option value="6">Large margin (6)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="qr-field" id="qrCustomSizeWrap" hidden>
+                    <label for="qrCustomSizeInput">Custom Pixel Size (128 to 4096 px)</label>
+                    <input type="number" id="qrCustomSizeInput" class="qr-input" value="1200" min="128" max="4096" step="1" />
+                  </div>
+
+                  <p class="qr-hint">
+                    Higher error correction improves recovery from smudges or center logos, but increases QR module density. Keep a standard quiet-zone margin for reliable scanning.
+                  </p>
+
+                  <!-- Logo Integration -->
+                  <div class="qr-logo-box">
+                    <div class="qr-logo-upload-row">
+                      <label class="qr-logo-drop" for="qrLogoInput">
+                        <img id="qrLogoThumb" class="qr-logo-thumb" alt="Uploaded QR logo preview" hidden />
+                        <span class="qr-logo-icon-ph" id="qrLogoPh" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        </span>
+                        <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                          <strong style="font-size:13px;color:var(--ink)" id="qrLogoFileName">Upload PNG, JPG or WebP logo</strong>
+                          <span style="font-size:11.5px;color:var(--muted)">Centered automatically within safe limits · Max 2 MB</span>
+                        </span>
+                        <input type="file" id="qrLogoInput" class="sr-only" accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" />
+                      </label>
+                      <button type="button" class="qr-mini-btn" id="qrRemoveLogoBtn" hidden>Remove Logo</button>
+                    </div>
+
+                    <div id="qrLogoOptionsWrap" hidden style="display:flex;flex-direction:column;gap:12px">
+                      <div class="qr-logo-controls">
+                        <div class="qr-field">
+                          <div class="qr-label-row">
+                            <label for="qrLogoScale">Logo Size</label>
+                            <span class="qr-counter" id="qrLogoScaleVal">20%</span>
+                          </div>
+                          <input type="range" id="qrLogoScale" class="qr-range" min="12" max="28" value="20" />
+                        </div>
+
+                        <div class="qr-field">
+                          <label for="qrLogoBgSelect">Logo Background</label>
+                          <select id="qrLogoBgSelect" class="qr-select">
+                            <option value="white" selected>White Badge (Recommended)</option>
+                            <option value="transparent">Transparent</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="qr-warn-note">
+                        Center logos cover QR modules and can reduce scan reliability. Open Sign automatically upgrades Error Correction to High (H) when a logo is active, always test with multiple QR scanners before printing.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <!-- ============ RIGHT COLUMN: LIVE QR PREVIEW, EXPORT & VALIDATION ============ -->
+            <div class="qr-right-col">
+              <!-- Panel 1: Live QR Code Preview & Downloads -->
+              <section class="qr-card" aria-labelledby="qrPrevHead">
+                <div class="qr-card-head">
+                  <h2 id="qrPrevHead">Live QR Code Preview</h2>
+                  <button type="button" class="qr-mini-btn" id="qrResetPreviewBtn">Reset QR Code</button>
+                </div>
+
+                <div class="qr-preview-stage">
+                  <div class="qr-canvas-frame">
+                    <canvas id="qrPreviewCanvas" width="560" height="560" aria-label="Generated QR code preview"></canvas>
+                  </div>
+                  <div class="qr-meta-badges">
+                    <span class="qr-meta-pill" id="qrBadgeType">Website URL</span>
+                    <span class="qr-meta-pill" id="qrBadgeDims">1024 × 1024 px</span>
+                    <span class="qr-meta-pill" id="qrBadgeEcc">ECC: M</span>
+                  </div>
+                </div>
+
+                <!-- Encoded Payload Preview -->
+                <div class="qr-payload-box">
+                  <div class="qr-payload-top">
+                    <span>Encoded QR Payload</span>
+                    <button type="button" class="qr-mini-btn" id="qrCopyPayloadBtn" style="min-height:26px;font-size:11.5px;padding:0 9px">Copy QR Payload</button>
+                  </div>
+                  <pre class="qr-payload-code" id="qrPayloadPreview">https://www.example.com</pre>
+                </div>
+
+                <!-- Export Format Options -->
+                <div class="qr-export-options">
+                  <label class="qr-toggle-label">
+                    <input type="checkbox" id="qrTransparentPng" />
+                    <span>Transparent background (PNG &amp; SVG)</span>
+                  </label>
+                  <div style="display:inline-flex;align-items:center;gap:6px">
+                    <label for="qrJpgQuality" style="font-size:12px;font-weight:700;color:var(--muted)">JPG Quality:</label>
+                    <select id="qrJpgQuality" class="qr-select" style="width:auto;padding:5px 9px;font-size:12.5px">
+                      <option value="0.72">Low (72%)</option>
+                      <option value="0.85">Medium (85%)</option>
+                      <option value="0.95" selected>High (95%)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Primary Download Buttons -->
+                <div class="qr-download-grid">
+                  <button type="button" class="btn primary" id="qrDlPngBtn">Download PNG</button>
+                  <button type="button" class="btn" id="qrDlSvgBtn">Download SVG</button>
+                  <button type="button" class="btn" id="qrDlJpgBtn">Download JPG</button>
+                </div>
+              </section>
+
+              <!-- Panel 2: QR Validation & Local Scan-Back Verification -->
+              <section class="qr-card" aria-labelledby="qrValHead">
+                <div class="qr-card-head">
+                  <h2 id="qrValHead">QR Validation &amp; Scan Check</h2>
+                  <span style="font-size:12px;color:var(--muted);font-weight:600">Contrast &amp; density diagnostics</span>
+                </div>
+
+                <div class="qr-val-stats">
+                  <div class="qr-val-stat">
+                    <span>Payload Type</span>
+                    <strong id="qrValType">Website URL</strong>
+                  </div>
+                  <div class="qr-val-stat">
+                    <span>Payload Length &amp; Grid</span>
+                    <strong id="qrValChars">23 chars</strong>
+                  </div>
+                  <div class="qr-val-stat">
+                    <span>Output Dimensions</span>
+                    <strong id="qrValDims">1024 × 1024 px</strong>
+                  </div>
+                  <div class="qr-val-stat">
+                    <span>Error Correction &amp; Logo</span>
+                    <strong id="qrValEcc">M · No logo</strong>
+                    <span id="qrValLogo" class="sr-only">None</span>
+                  </div>
+                </div>
+
+                <ul class="qr-warnings-list" id="qrWarningsList" aria-live="polite" hidden></ul>
+
+                <div class="qr-scan-bar">
+                  <button type="button" class="qr-mini-btn" id="qrVerifyScanBtn">Verify Scan Locally</button>
+                  <span class="qr-scan-result" id="qrScanResult" role="status" aria-live="polite">Not yet tested</span>
+                </div>
+              </section>
+
+              <!-- Privacy Message -->
+              <div class="qr-privacy-box">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+                  <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+                </svg>
+                <span>Your QR codes are generated directly in your browser. Open Sign does not upload or store your QR content or logo.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: HOW TO USE THE FREE QR CODE GENERATOR ============ -->
+      <section class="workflow-band" aria-labelledby="qrHowTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Simple 3-step workflow</span>
+            <h2 class="section-title" id="qrHowTitle">How to Use the Free QR Code Generator</h2>
+            <p class="section-desc">
+              Generate static, watermark-free QR codes for print materials, packaging, business cards, and digital campaigns in seconds.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Choose a QR code type &amp; enter details</h3>
+              <p>Pick from Website URL, Plain Text, Wi-Fi, Email, Phone, SMS, Contact/vCard, WhatsApp, or Location and enter your information.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Customize colors, size &amp; center logo</h3>
+              <p>Apply a color preset or custom HEX colors, select resolution up to 2048 × 2048 px, adjust quiet-zone margins, and optionally upload a logo.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Verify scan &amp; download PNG, SVG or JPG</h3>
+              <p>Run the built-in local scan-back verification check and download crisp raster PNG/JPG or infinitely scalable vector SVG files.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: EDUCATIONAL SEO CONTENT SECTIONS ============ -->
+      <section class="saas-section" aria-labelledby="qrPurposesTitle">
+        <div class="saas-container">
+          <div class="qr-guide-grid">
+            <div class="qr-info-card">
+              <span class="section-kicker">9 structured QR payloads</span>
+              <h2 id="qrPurposesTitle">Create QR Codes for Different Purposes</h2>
+              <p>
+                Encode standard website URLs with campaign parameters, one-tap Wi-Fi network credentials (<code>WIFI:T:WPA;...</code>), vCard 3.0 business contacts, WhatsApp click-to-chat links, pre-filled emails, SMS messages, phone numbers, plain text notes, or geographic coordinates.
+              </p>
+            </div>
+
+            <div class="qr-info-card">
+              <span class="section-kicker">Contrast &amp; quiet-zone hygiene</span>
+              <h2 id="qrCustomTitle">Customize Your QR Code Design</h2>
+              <p>
+                Match your brand palette using foreground and background color pickers, choose error correction levels from Low (L) to High (H), and configure quiet-zone margins. Open Sign calculates color contrast ratios automatically and warns if low contrast or missing margins could hurt scannability.
+              </p>
+            </div>
+
+            <div class="qr-info-card">
+              <span class="section-kicker">Safe center logo placement</span>
+              <h2 id="qrLogoTitle">Add Your Logo to QR Codes</h2>
+              <p>
+                Upload a PNG, JPG, or WebP brand logo to center inside your QR code with a clean white badge or transparent background. Error correction automatically upgrades to High (H) when a logo is present so scanners can recover covered modules reliably.
+              </p>
+            </div>
+
+            <div class="qr-info-card">
+              <span class="section-kicker">Print &amp; web ready</span>
+              <h2 id="qrDownloadTitle">Download QR Codes in PNG and SVG</h2>
+              <p>
+                Export high-resolution PNG images (<code>opensign-qr-code.png</code>, up to 2048 × 2048 px with optional transparent background), crisp JPG files (<code>opensign-qr-code.jpg</code>) with adjustable quality, or resolution-independent vector SVG files (<code>opensign-qr-code.svg</code>) ready for posters, packaging, and signage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: FREQUENTLY ASKED QUESTIONS (EXACT 12 REQUIRED) ============ -->
+      <section class="sg-faq-band" aria-labelledby="qrFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="qrFaqTitle">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>1. How do I generate a QR code online for free?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Select a QR code type above, type in your URL, Wi-Fi details, contact card, or text, customize colors and size if desired, and click Download PNG, Download SVG, or Download JPG. No sign-up is required.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>2. Can I create a QR code for a website?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Choose Website URL, paste your HTTPS or HTTP link, optionally add a campaign name or query parameters, and download your QR code immediately.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>3. Can I create a QR code for Wi-Fi?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Select the Wi-Fi option, enter your network name (SSID), password, and security type (WPA/WPA2, WEP, or None). Your Wi-Fi credentials stay strictly inside your browser and are never sent to any server.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>4. Can I add my logo to a QR code?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Upload a PNG, JPG, or WebP logo under Customize Design, Size &amp; Logo. Open Sign centers your logo within safe limits and automatically increases error correction to High (H), though you should always test with multiple scanners before printing.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>5. Can I customize QR code colors?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Use the built-in color presets or pick custom foreground and background HEX colors. For reliable scanning, always keep a strong contrast between dark foreground modules and a light background.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>6. Can I download QR codes in SVG format?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Click Download SVG to export a clean, scalable vector graphic (opensign-qr-code.svg) that stays sharp at any print size without pixelation.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>7. Do Open Sign QR codes expire?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. The QR codes generated by this tool are static QR codes, meaning your content is encoded directly into the QR pattern itself and does not expire on its own. However, if you encode a destination URL or resource that later changes, moves, or becomes unavailable, that link will stop working.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>8. Can I create WhatsApp QR codes?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Select WhatsApp, enter your phone number with country code (for example 911234567890), and add an optional pre-filled greeting message to generate a standard https://wa.me/ click-to-chat QR code.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>9. Can I create QR codes for contact details?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Choose Contact / vCard to encode your name, organization, job title, phone number, email, website, and address in standard vCard 3.0 format.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>10. Are my QR code details uploaded to a server?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. All QR matrix generation, logo rendering, scan verification, and file exports run 100% locally in your browser. Open Sign never uploads or stores your QR content or logo.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>11. What is QR code error correction?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Error correction adds redundant data modules so a QR code remains readable even if part of it is obscured or worn: Low (L, ~7%), Medium (M, ~15%), Quartile (Q, ~25%), and High (H, ~30%). Higher levels increase module density.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>12. How do I test whether my QR code works?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Click Verify Scan Locally in the validation panel to run an immediate browser-based QR decode check on your generated image, and also scan the preview or printed proof with iOS and Android camera apps before mass printing.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELATED TOOLS ============ -->
+      <section class="saas-section" aria-labelledby="qrRelatedTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">More Developer, Utility &amp; SEO Tools</span>
+            <h2 class="section-title" id="qrRelatedTitle">Related Tools</h2>
+            <p class="section-desc">
+              Explore live and upcoming browser-based utilities in the Open Sign platform.
+            </p>
+          </div>
+
+          <div class="qr-related-grid">
+            <article class="qr-related-card" data-planned-url="/tools/password-generator/" aria-disabled="true">
+              <div class="qr-related-top">
+                <span class="qr-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>Password Generator</h3>
+              <p>Generate strong, cryptographically random passwords locally in your browser.</p>
+              <span class="qr-related-url">/tools/password-generator/</span>
+            </article>
+
+            <article class="qr-related-card" data-planned-url="/tools/uuid-generator/" aria-disabled="true">
+              <div class="qr-related-top">
+                <span class="qr-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h14"/></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>UUID Generator</h3>
+              <p>Create bulk RFC-compliant v4 UUIDs with one-click copy and export.</p>
+              <span class="qr-related-url">/tools/uuid-generator/</span>
+            </article>
+
+            <a class="qr-related-card" href="../meta-tag-generator/index.html">
+              <div class="qr-related-top">
+                <span class="qr-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Meta Tag Generator</h3>
+              <p>Create SEO page titles, meta descriptions, canonical URLs, and social cards.</p>
+              <span class="qr-related-url">Open Meta Tag Generator →</span>
+            </a>
+
+            <article class="qr-related-card" data-planned-url="/tools/utm-link-builder/" aria-disabled="true">
+              <div class="qr-related-top">
+                <span class="qr-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>UTM Link Builder</h3>
+              <p>Build campaign-tagged URLs with utm_source, utm_medium, and utm_campaign parameters.</p>
+              <span class="qr-related-url">/tools/utm-link-builder/</span>
+            </article>
+
+            <article class="qr-related-card" data-planned-url="/tools/image-compressor/" aria-disabled="true">
+              <div class="qr-related-top">
+                <span class="qr-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>Image Compressor</h3>
+              <p>Compress PNG, JPG, and WebP images directly in your browser without quality loss.</p>
+              <span class="qr-related-url">/tools/image-compressor/</span>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <!-- Brand & Social Column -->
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="../../index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="156" height="42" />
+          </a>
+          <p class="footer-tagline">
+            Enterprise-grade eSignature, smart PDF utilities, and business document tools engineered for speed, precision, and zero-retention browser privacy.
+          </p>
+          <div class="footer-socials" aria-label="Open Sign social media">
+            <a class="footer-social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 1: E-Signature -->
+        <div class="footer-col">
+          <p class="footer-col-title">E-Signature</p>
+          <nav class="footer-links" aria-label="Footer E-Signature tools">
+            <a href="../../index.html">Sign PDF Online</a>
+            <a href="../../index.html#features">Smart Sign Auto-Detect</a>
+            <a href="../../signature-generator.html">Signature Generator</a>
+            <a href="../../index.html#workflow">How It Works</a>
+          </nav>
+        </div>
+
+        <!-- Column 2: PDF & Document -->
+        <div class="footer-col">
+          <p class="footer-col-title">PDF &amp; Document</p>
+          <nav class="footer-links" aria-label="Footer PDF and Document tools">
+            <a href="../../tools/pdf-merger/index.html">PDF Merger</a>
+            <a href="../../tools/pdf-compressor/index.html">PDF Compressor</a>
+            <a href="../../tools/pdf-splitter/index.html">PDF Splitter</a>
+            <a href="../pdf-to-jpg/index.html">PDF to JPG Converter</a>
+            <span class="footer-soon-item" aria-disabled="true">JPG to PDF Converter <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Watermark Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Page Number Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Metadata Editor <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 3: HR & Business + More Suites -->
+        <div class="footer-col">
+          <p class="footer-col-title">HR &amp; Business</p>
+          <nav class="footer-links" aria-label="Footer HR and Business tools">
+            <a href="../../invoice-generator.html">Invoice Generator</a>
+            <a href="../../payslip-generator.html">Payslip Generator</a>
+          </nav>
+
+          <p class="footer-col-title" style="margin-top:12px">More Suites</p>
+          <nav class="footer-links" aria-label="Footer upcoming tool suites">
+            <a href="../meta-tag-generator/index.html">Meta Tag Generator</a>
+            <a href="../schema-markup-generator/index.html">Schema Markup Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">SEO Suite <span class="footer-soon-tag">Soon</span></span>
+            <a href="./" aria-current="page">QR Code Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Developer Suite <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Company -->
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Footer Company navigation">
+            <a href="../../index.html">Home</a>
+            <a href="../../about.html">About Us</a>
+            <a href="../../about.html#security">Security &amp; Privacy</a>
+            <a href="../../contact.html">Contact Us</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="../../about.html">About Us</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../about.html#security">Privacy &amp; Security</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../nav.js"></script>
+  <script src="qr-code-generator.js"></script>
+</body>
+</html>
