@@ -161,7 +161,7 @@
     }
   });
 
-  const desktopMq = window.matchMedia("(min-width: 1181px)");
+  const desktopMq = window.matchMedia("(min-width: 1281px)");
   const onDesktopChange = (ev) => {
     if (ev.matches && isOpen) closeMenu({ restoreFocus: false });
   };

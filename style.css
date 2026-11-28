@@ -21,21 +21,29 @@
 
 :root {
   color-scheme: light;
+  --zoho-red: #e42527;
+  --zoho-red-hover: #c81e20;
+  --zoho-blue: #056cb8;
+  --zoho-blue-deep: #004e98;
+  --zoho-green: #089949;
+  --zoho-yellow: #fed600;
+  --zoho-yellow-soft: #fff9db;
+
   --bg: #ffffff;
-  --ecru: #f8f3f0;
+  --ecru: #f8f9fb;
   --surface: #ffffff;
-  --surface-tint: #f6f4fa;
-  --stage: #f2f0f7;
-  --ink: #130032;
-  --ink-deep: #26065d;
-  --muted: #564c6b;
-  --line: rgba(19, 0, 50, 0.11);
-  --line-strong: rgba(19, 0, 50, 0.22);
-  --accent: #4c00ff;
-  --accent-hover: #3b00cc;
-  --accent-soft: rgba(76, 0, 255, 0.08);
-  --mist: #cbc2ff;
-  --poppy: #ff5252;
+  --surface-tint: #f3f5f9;
+  --stage: #eef1f6;
+  --ink: #0b132b;
+  --ink-deep: #004e98;
+  --muted: #4a5568;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --accent: #056cb8;
+  --accent-hover: #004e98;
+  --accent-soft: rgba(5, 108, 184, 0.08);
+  --mist: #dbeafe;
+  --poppy: #e42527;
   --on-accent: #ffffff;
   --danger: #d92d20;
   --font: "Plus Jakarta Sans", "Metropolis", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -2505,7 +2513,7 @@ body[data-view="processing"] .menu-toggle {
 }
 
 .side-nav-link:hover {
-  background: var(--surface-tint);
+  background: #f6f6f8;
   color: var(--accent);
 }
 
@@ -2514,8 +2522,9 @@ body[data-view="processing"] .menu-toggle {
 }
 
 .side-nav-link[aria-current="page"] {
-  background: var(--accent-soft);
+  background: transparent;
   color: var(--accent);
+  font-weight: 700;
 }
 
 .side-nav-link[aria-current="page"] svg {
@@ -2768,16 +2777,16 @@ body[data-view="processing"] .menu-toggle {
 
 
 /* =========================================================
-   Multi-Category Navigation Dropdowns (Desktop + Drawer)
+   Minimal Multi-Category Navigation Dropdowns (Desktop + Drawer)
    ========================================================= */
 
 .site-header {
-  gap: 14px;
+  gap: 12px;
 }
 
 .site-nav {
-  gap: 2px;
-  margin-left: 8px;
+  gap: 1px;
+  margin-left: 6px;
 }
 
 .nav-link,
@@ -2785,7 +2794,7 @@ body[data-view="processing"] .menu-toggle {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 7px 10px;
+  padding: 7px 8px;
   border: 0;
   border-radius: 6px;
   background: transparent;
@@ -2795,24 +2804,26 @@ body[data-view="processing"] .menu-toggle {
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: color 0.18s, background-color 0.18s;
+  transition: color 0.16s, background-color 0.16s;
 }
 
+.nav-link:hover,
 .nav-drop-btn:hover,
 .nav-dropdown.is-open > .nav-drop-btn,
 .nav-dropdown:hover > .nav-drop-btn {
   color: var(--ink);
-  background: var(--surface-tint);
+  background: #f6f6f8;
 }
 
+.nav-link[aria-current="page"],
 .nav-drop-btn.is-current {
   color: var(--accent);
-  background: var(--accent-soft);
+  background: transparent;
 }
 
 .nav-caret {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   flex: none;
   opacity: 0.72;
   transition: transform 0.2s var(--ease);
@@ -2829,23 +2840,23 @@ body[data-view="processing"] .menu-toggle {
 
 .nav-drop-menu {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 6px);
   left: 0;
   z-index: 60;
-  min-width: 248px;
-  padding: 8px;
-  border: 1px solid var(--line-strong);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: 0 22px 48px -20px rgba(19, 0, 50, 0.28), 0 4px 12px rgba(19, 0, 50, 0.05);
+  min-width: 236px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 14px 34px -16px rgba(19, 0, 50, 0.16), 0 2px 6px rgba(19, 0, 50, 0.04);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(6px);
+  transform: translateY(5px);
   pointer-events: none;
-  transition: opacity 0.18s var(--ease), transform 0.18s var(--ease), visibility 0.18s;
+  transition: opacity 0.16s var(--ease), transform 0.16s var(--ease), visibility 0.16s;
 }
 
 .nav-drop-menu::before {
@@ -2853,8 +2864,8 @@ body[data-view="processing"] .menu-toggle {
   position: absolute;
   left: 0;
   right: 0;
-  top: -10px;
-  height: 10px;
+  top: -8px;
+  height: 8px;
 }
 
 .nav-dropdown.is-right .nav-drop-menu {
@@ -2876,23 +2887,25 @@ body[data-view="processing"] .menu-toggle {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 8px 11px;
-  border-radius: 8px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: transparent;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--ink);
   text-decoration: none;
-  transition: background-color 0.15s, color 0.15s;
+  transition: background-color 0.14s, color 0.14s;
 }
 
 .nav-drop-item:hover:not(.is-disabled) {
-  background: var(--accent-soft);
+  background: #f6f6f8;
   color: var(--accent);
 }
 
 .nav-drop-item[aria-current="page"] {
-  background: var(--accent-soft);
+  background: transparent;
   color: var(--accent);
+  font-weight: 700;
 }
 
 .nav-drop-item.is-disabled {
@@ -2904,24 +2917,25 @@ body[data-view="processing"] .menu-toggle {
 
 .nav-soon-badge {
   flex: none;
-  padding: 2px 7px;
+  padding: 1px 6px;
   border-radius: 999px;
-  background: var(--surface-tint);
+  background: transparent;
   border: 1px solid var(--line);
   color: var(--muted);
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 9.5px;
+  font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
 .nav-live-badge {
   flex: none;
-  padding: 2px 7px;
+  padding: 1px 6px;
   border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 10px;
+  background: transparent;
+  border: 1px solid rgba(19, 0, 50, 0.18);
+  color: var(--ink);
+  font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -2940,8 +2954,8 @@ body[data-view="processing"] .menu-toggle {
   min-width: 0;
 }
 
-/* Switch 8-category desktop bar cleanly to slide-over drawer on tablet & smaller laptops */
-@media (max-width: 1180px) {
+/* Switch 9-category desktop bar cleanly to slide-over drawer on tablet & smaller laptops */
+@media (max-width: 1280px) {
   .site-nav {
     display: none !important;
   }
@@ -3164,5 +3178,1115 @@ body[data-view="processing"] .menu-toggle {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+}
+
+
+/* =========================================================
+   Minimal Responsive Human Resource Mega-Menu (Borderless Sub-Cards)
+   ========================================================= */
+
+.nav-drop-menu.is-hr-mega {
+  left: 50%;
+  right: auto;
+  width: min(760px, calc(100vw - 32px));
+  max-height: calc(100vh - var(--header-h) - 24px);
+  overflow-y: auto;
+  padding: 16px 18px;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 20px 44px -18px rgba(19, 0, 50, 0.16), 0 2px 6px rgba(19, 0, 50, 0.04);
+  transform: translateX(-50%) translateY(5px);
+}
+
+.nav-dropdown.is-open > .nav-drop-menu.is-hr-mega,
+.nav-dropdown:hover > .nav-drop-menu.is-hr-mega,
+.nav-dropdown:focus-within > .nav-drop-menu.is-hr-mega {
+  transform: translateX(-50%) translateY(0);
+}
+
+.hr-mega-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hr-mega-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.hr-mega-rec {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(21, 128, 61, 0.09);
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hr-mega-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.hr-mega-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 6px;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.hr-mega-cat-title {
+  margin: 0 0 6px;
+  padding-bottom: 6px;
+  border-bottom: 0;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hr-mega-cat-title svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  flex: none;
+}
+
+.hr-mega-card .nav-drop-item {
+  padding: 5px 8px;
+  font-size: 12.5px;
+  border-radius: 6px;
+  background: transparent;
+  border: 0;
+}
+
+.hr-mega-card .nav-drop-item:hover:not(.is-disabled) {
+  background: #f6f6f8;
+  color: var(--accent);
+}
+
+.hr-mega-card .nav-soon-badge,
+.hr-mega-card .nav-live-badge {
+  border: 0;
+  padding: 2px 7px;
+}
+
+/* Mobile & Tablet Drawer Sub-Accordions for Human Resource */
+.side-hr-acc {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.side-hr-acc + .side-hr-acc {
+  margin-top: 2px;
+}
+
+.side-hr-acc > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+}
+
+.side-hr-acc > summary::-webkit-details-marker {
+  display: none;
+}
+
+.side-hr-acc > summary:hover {
+  background: #f6f6f8;
+}
+
+.side-hr-acc[open] > summary {
+  color: var(--accent);
+  background: transparent;
+  border-bottom: 0;
+}
+
+.side-sub-caret {
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  transition: transform 0.2s var(--ease);
+}
+
+.side-hr-acc[open] > summary .side-sub-caret {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.side-hr-list {
+  padding: 2px 0 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.side-hr-list .side-nav-link {
+  min-height: 36px;
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 0;
+}
+
+.side-hr-list .nav-soon-badge,
+.side-hr-list .nav-live-badge {
+  border: 0;
+}
+
+@media (max-width: 1360px) {
+  .nav-drop-menu.is-hr-mega {
+    width: min(680px, calc(100vw - 32px));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+
+/* =========================================================
+   Zoho-Inspired Multi-Suite Homepage Sections (index.html)
+   Reuses Open Sign Cobalt (#4C00FF), Inkwell (#130032),
+   Ecru (#F8F3F0), and Surface Tint (#F6F4FA) tokens.
+   ========================================================= */
+
+/* 1. Featured Apps Grid */
+.z-featured-band {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  padding: clamp(56px, 8vh, 92px) clamp(20px, 4vw, 56px);
+}
+
+.z-section-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 32px;
+}
+
+.z-section-top .section-head {
+  margin-bottom: 0;
+}
+
+.z-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.z-app-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.z-app-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px -24px rgba(76, 0, 255, 0.26);
+}
+
+.z-app-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.z-app-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--surface-tint);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  flex: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.z-app-card:hover .z-app-icon {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.z-app-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.z-app-cat {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.z-app-card h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.z-app-card p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.z-app-cta {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 2. Unified All-in-One Suite Spotlight (Zoho One-style Band) */
+.z-suite-band {
+  width: 100%;
+  background: var(--ecru);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(56px, 8vh, 96px) clamp(20px, 4vw, 56px);
+}
+
+.z-suite-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+
+.z-suite-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.z-suite-copy h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+.z-suite-copy p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.62;
+  max-width: 48ch;
+}
+
+.z-suite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.z-suite-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.z-suite-tile {
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.z-suite-tile-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+}
+
+.z-suite-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.z-suite-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--line);
+  transition: color 0.15s;
+}
+
+.z-suite-links a:last-child {
+  border-bottom: 0;
+}
+
+.z-suite-links a:hover {
+  color: var(--accent);
+}
+
+/* 3. Core Values & Principles 4-Column Grid */
+.z-values-band {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  padding: clamp(56px, 8vh, 92px) clamp(20px, 4vw, 56px);
+}
+
+.z-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.z-value-card {
+  padding: 24px 22px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface-tint);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.z-value-num {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.z-value-card h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.z-value-card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* 4. Platform Scale & Craft Metrics Band (Zoho-Style High-Contrast Numbers) */
+.z-metrics-band {
+  width: 100%;
+  background: var(--ink);
+  color: #ffffff;
+  padding: clamp(52px, 7vh, 84px) clamp(20px, 4vw, 56px);
+}
+
+.z-metrics-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 36px;
+}
+
+.z-metrics-head h2 {
+  margin: 0;
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: #ffffff;
+}
+
+.z-metrics-head p {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.z-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.z-metric-box {
+  padding: 24px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(203, 194, 255, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.z-metric-val {
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--mist);
+}
+
+.z-metric-lbl {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+/* 5. Closing Ready-to-Start CTA Band */
+.z-closing-band {
+  width: 100%;
+  background: #ffffff;
+  padding: clamp(52px, 7vh, 84px) clamp(20px, 4vw, 56px);
+}
+
+.z-closing-card {
+  padding: clamp(32px, 5vw, 52px);
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-deep) 65%, #370882 100%);
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.z-closing-card h2 {
+  margin: 0;
+  font-size: clamp(26px, 3.4vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.z-closing-card p {
+  margin: 0;
+  max-width: 54ch;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+}
+
+.z-closing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Responsive Breakpoints for Zoho-Inspired Homepage Sections */
+@media (max-width: 1120px) {
+  .z-apps-grid,
+  .z-values-grid,
+  .z-metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .z-suite-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .z-apps-grid,
+  .z-suite-matrix,
+  .z-values-grid,
+  .z-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .z-closing-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .z-closing-actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   ZOHO BRAND GUIDELINES & DESIGN SYSTEM OVERRIDES
+   Palette: Red (#E42527), Blue (#056CB8), Green (#089949),
+            Yellow (#FED600), Ink (#0B132B), Surface (#F8F9FB)
+   ========================================================= */
+
+/* Signature 4-Color Zoho Top Accent Bar on Header */
+.site-header {
+  border-top: 3px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #e42527 0%, #e42527 25%, #089949 25%, #089949 50%, #056cb8 50%, #056cb8 75%, #fed600 75%, #fed600 100%) border-box;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Zoho-Style Buttons: Crisp Red Primary CTA & Sharp-Rounded Geometry */
+.btn {
+  border-radius: 5px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+.btn.primary {
+  background: var(--zoho-red);
+  border-color: var(--zoho-red);
+  color: #ffffff;
+  box-shadow: 0 6px 16px -8px rgba(228, 37, 39, 0.55);
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--zoho-red-hover);
+  border-color: var(--zoho-red-hover);
+  color: #ffffff;
+}
+
+.btn.on-dark {
+  background: var(--zoho-red);
+  border-color: var(--zoho-red);
+  color: #ffffff;
+}
+
+.btn.on-dark:hover:not(:disabled) {
+  background: var(--zoho-red-hover);
+  border-color: var(--zoho-red-hover);
+  color: #ffffff;
+}
+
+.eyebrow {
+  background: rgba(5, 108, 184, 0.08);
+  color: var(--zoho-blue);
+  border: 1px solid rgba(5, 108, 184, 0.16);
+}
+
+.accent-word {
+  color: var(--zoho-red);
+}
+
+/* Zoho Clean Light Footer */
+.site-footer {
+  background: #f3f5f9;
+  color: var(--ink);
+  border-top: 3px solid transparent;
+  background-image:
+    linear-gradient(#f3f5f9, #f3f5f9),
+    linear-gradient(90deg, #e42527 0%, #e42527 25%, #089949 25%, #089949 50%, #056cb8 50%, #056cb8 75%, #fed600 75%, #fed600 100%);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+}
+
+.footer-links a:hover,
+.footer-links a[aria-current="page"],
+.footer-bottom-links a:hover {
+  color: var(--zoho-blue);
+}
+
+.footer-social-btn:hover {
+  border-color: var(--zoho-blue);
+  background: var(--zoho-blue);
+  color: #ffffff;
+}
+
+/* About & Contact Hero Bands in Zoho Enterprise Blue */
+.about-hero-band,
+.ct-hero-band {
+  background: linear-gradient(135deg, #003d7a 0%, #056cb8 70%, #0a84d6 100%) !important;
+}
+
+.workflow-band {
+  background: #f8f9fb;
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.workflow-band .section-kicker {
+  color: var(--zoho-blue);
+}
+
+.workflow-band .section-title,
+.workflow-band .step-card h3 {
+  color: var(--ink);
+}
+
+.workflow-band .section-desc,
+.workflow-band .step-card p {
+  color: var(--muted);
+}
+
+.workflow-band .step-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 26px -20px rgba(11, 19, 43, 0.16);
+}
+
+.workflow-band .step-num {
+  background: rgba(5, 108, 184, 0.1);
+  color: var(--zoho-blue);
+}
+
+.workflow-band .workflow-cta {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+/* =========================================================
+   ZOHO-STYLE HOMEPAGE HERO, FEATURED PANEL & ILLUSTRATIONS
+   ========================================================= */
+
+.zoho-hero-band {
+  width: 100%;
+  background: linear-gradient(180deg, #f8f9fb 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(32px, 5vh, 60px) clamp(20px, 4vw, 56px) clamp(48px, 6.5vh, 76px);
+}
+
+.zoho-hero-grid {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+  gap: clamp(28px, 4vw, 52px);
+  align-items: start;
+}
+
+.zoho-hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.zoho-hero-title {
+  margin: 0;
+  font-size: clamp(36px, 4.6vw, 56px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.zoho-hero-rule {
+  width: 72px;
+  height: 4px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #e42527 0%, #e42527 25%, #089949 25%, #089949 50%, #056cb8 50%, #056cb8 75%, #fed600 75%, #fed600 100%);
+}
+
+.zoho-hero-sub {
+  margin: 0;
+  max-width: 54ch;
+  font-size: clamp(16px, 1.35vw, 18px);
+  line-height: 1.62;
+  color: var(--muted);
+}
+
+.zoho-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+/* Custom Editorial Vector Illustration Frame */
+.zoho-hero-illus {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  padding: 16px;
+  box-shadow: 0 18px 42px -28px rgba(11, 19, 43, 0.16);
+}
+
+.zoho-hero-illus svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Right Column: Interactive PDF Sign Dropzone + Zoho Featured Apps Card */
+.zoho-hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.zoho-hero-right .dropzone {
+  min-height: 215px;
+  padding: 20px;
+  border: 1.8px dashed rgba(5, 108, 184, 0.36);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 14px 34px -24px rgba(11, 19, 43, 0.16);
+}
+
+.zoho-hero-right .dropzone:hover {
+  border-color: var(--zoho-blue);
+  background: rgba(5, 108, 184, 0.03);
+}
+
+.zoho-featured-rail {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: 0 18px 44px -28px rgba(11, 19, 43, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zoho-rail-kicker {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+}
+
+.zoho-rail-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.zoho-rail-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 8px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  border-radius: 8px;
+  transition: background-color 0.15s;
+}
+
+.zoho-rail-item:last-child {
+  border-bottom: 0;
+}
+
+.zoho-rail-item:hover {
+  background: #f8f9fb;
+}
+
+.zoho-rail-icon {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+}
+
+.zoho-rail-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.z-ic-red { background: rgba(228, 37, 39, 0.1); color: #e42527; }
+.z-ic-blue { background: rgba(5, 108, 184, 0.1); color: #056cb8; }
+.z-ic-green { background: rgba(8, 153, 73, 0.1); color: #089949; }
+.z-ic-yellow { background: rgba(245, 158, 11, 0.14); color: #b45309; }
+
+.zoho-rail-copy {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.zoho-rail-copy strong {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.zoho-rail-copy span {
+  font-size: 12.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zoho-rail-arrow {
+  color: var(--muted);
+  font-weight: 700;
+  transition: transform 0.16s, color 0.16s;
+}
+
+.zoho-rail-item:hover .zoho-rail-arrow {
+  color: var(--zoho-blue);
+  transform: translateX(3px);
+}
+
+.zoho-rail-all {
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--zoho-blue);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zoho-rail-all:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   SIGNATURE ZOHO ONE YELLOW ALL-IN-ONE BAND (#FED600)
+   ========================================================= */
+
+.zoho-one-band {
+  width: 100%;
+  background: #fed600;
+  color: #0b132b;
+  padding: clamp(56px, 8vh, 92px) clamp(20px, 4vw, 56px);
+}
+
+.zoho-one-band .section-kicker {
+  color: #0b132b;
+  opacity: 0.78;
+}
+
+.zoho-one-band .z-suite-copy p {
+  color: #1f2937;
+}
+
+.zoho-one-band .z-suite-tile {
+  border: 0;
+  box-shadow: 0 18px 40px -24px rgba(11, 19, 43, 0.22);
+}
+
+.zoho-one-band .z-suite-tile-title {
+  color: var(--zoho-blue);
+}
+
+.zoho-one-band .z-suite-links a:hover {
+  color: var(--zoho-red);
+}
+
+.zoho-one-illus {
+  margin-top: 8px;
+  width: 100%;
+  max-width: 390px;
+}
+
+.zoho-one-illus svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* =========================================================
+   ZOHO ENTERPRISE BLUE "MADE IN INDIA" METRICS BAND
+   ========================================================= */
+
+.zoho-blue-band {
+  width: 100%;
+  background: linear-gradient(135deg, #004e98 0%, #056cb8 65%, #0984d8 100%);
+  color: #ffffff;
+  padding: clamp(56px, 8vh, 92px) clamp(20px, 4vw, 56px);
+}
+
+.zoho-blue-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 52px);
+  align-items: center;
+}
+
+.zoho-blue-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.zoho-blue-copy h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+}
+
+.zoho-blue-copy p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 48ch;
+}
+
+.zoho-blue-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.zoho-blue-stat {
+  padding: 22px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.zoho-blue-stat strong {
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1;
+  color: #fed600;
+  letter-spacing: -0.03em;
+}
+
+.zoho-blue-stat span {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Values Cards with Custom Mini Vector Illustrations */
+.z-value-illus {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 4px;
+}
+
+.z-value-illus svg {
+  width: 56px;
+  height: 56px;
+  display: block;
+}
+
+/* Zoho Closing CTA Band (Clean Light with 4-color accent top) */
+.zoho-closing-card {
+  padding: clamp(36px, 5vw, 56px);
+  border-radius: 14px;
+  background: #f8f9fb;
+  border: 1px solid var(--line);
+  border-top: 4px solid transparent;
+  background-image:
+    linear-gradient(#f8f9fb, #f8f9fb),
+    linear-gradient(90deg, #e42527 0%, #e42527 25%, #089949 25%, #089949 50%, #056cb8 50%, #056cb8 75%, #fed600 75%, #fed600 100%);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.zoho-closing-card h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+.zoho-closing-card p {
+  margin: 0;
+  max-width: 54ch;
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .zoho-hero-grid,
+  .zoho-blue-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .zoho-blue-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .zoho-hero-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .zoho-hero-actions .btn {
+    width: 100%;
   }
 }

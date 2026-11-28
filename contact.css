@@ -532,11 +532,12 @@ a.ct-channel-value:hover {
 
 /* ---------- Responsive Categorized Tools Footer ---------- */
 .site-footer .footer-top {
-  grid-template-columns: minmax(220px, 1.3fr) minmax(145px, 0.9fr) minmax(215px, 1.25fr) minmax(165px, 0.95fr) minmax(135px, 0.85fr);
+  grid-template-columns: minmax(205px, 1.25fr) minmax(135px, 0.85fr) minmax(195px, 1.15fr) minmax(190px, 1.15fr) minmax(155px, 0.95fr) minmax(125px, 0.8fr);
+  gap: 28px 16px;
   gap: 32px 24px;
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1240px) {
   .site-footer .footer-top {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px 32px;

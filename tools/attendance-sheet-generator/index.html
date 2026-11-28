@@ -1,0 +1,1580 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#056CB8" />
+  <title>Free Employee Attendance Sheet Generator Online | Open Sign</title>
+  <meta name="description" content="Create employee attendance sheets online for free with Open Sign. Track present days, absences, holidays and leaves. Export professional attendance reports in Excel and PDF." />
+  <link rel="canonical" href="https://www.opensign.in/tools/attendance-sheet-generator/" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Open Sign" />
+  <meta property="og:title" content="Free Employee Attendance Sheet Generator Online | Open Sign" />
+  <meta property="og:description" content="Create monthly employee attendance sheets online for free. Track present days, absences, holidays and leaves, calculate attendance summaries and download Excel or PDF." />
+  <meta property="og:url" content="https://www.opensign.in/tools/attendance-sheet-generator/" />
+  <meta property="og:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Twitter / X Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Employee Attendance Sheet Generator Online | Open Sign" />
+  <meta name="twitter:description" content="Track employee attendance, leaves, holidays, and attendance percentages locally in your browser and export Excel (.xlsx), PDF, or CSV reports." />
+  <meta name="twitter:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Ensure trailing slash on HTTP origins so relative asset paths resolve cleanly -->
+  <script>
+    if (/^https?:$/.test(location.protocol) && /\/tools\/attendance-sheet-generator$/.test(location.pathname)) {
+      location.replace(location.pathname + "/" + location.search + location.hash);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../contact.css" />
+  <link rel="stylesheet" href="../../signature-generator.css" />
+  <link rel="stylesheet" href="attendance-sheet-generator.css" />
+  <link rel="shortcut icon" href="../../assets/fav.png" type="image/x-icon" />
+
+  <!-- Client-Side Excel (SheetJS) & PDF (pdf-lib) Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PWPQ9PMD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+
+  <!-- Structured Data (WebApplication, BreadcrumbList, FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Open Sign Employee Attendance Sheet Generator",
+        "url": "https://www.opensign.in/tools/attendance-sheet-generator/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+        "description": "Free browser-based monthly employee attendance sheet generator with employee management, holiday calendar, automatic attendance percentage calculations, and Excel/PDF/CSV exports."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.opensign.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Human Resource", "item": "https://www.opensign.in/tools/attendance-sheet-generator/" },
+          { "@type": "ListItem", "position": 3, "name": "Attendance Sheet Generator", "item": "https://www.opensign.in/tools/attendance-sheet-generator/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I create an employee attendance sheet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Select a template (Corporate, Small Business, or School), enter your organization details, add or import your employee list, pick the month and year, mark daily statuses (Present, Absent, Leave, Half Day, WFH, On Duty, Holiday, Weekly Off), and export your report in Excel, PDF, or CSV."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is employee attendance data uploaded to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Your attendance records are stored locally in your browser using IndexedDB. Open Sign does not upload or store your employee attendance data on its servers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the attendance sheet generator free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Open Sign Attendance Sheet Generator is 100% free to use with no account sign-up, subscription, or watermarks."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-view="attendance-sheet-generator">
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link" href="../../about.html">About Us</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>E-Signature</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../index.html" role="menuitem"><span>Sign PDF Online</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../index.html#features" role="menuitem"><span>Smart Sign Auto-Detect</span></a>
+          <a class="nav-drop-item" href="../../signature-generator.html" role="menuitem"><span>Signature Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>PDF &amp; Document</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../tools/pdf-merger/index.html" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-compressor/index.html" role="menuitem"><span>PDF Compressor</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-splitter/index.html" role="menuitem"><span>PDF Splitter</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../pdf-to-jpg/index.html" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Page Number Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Metadata Editor</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn is-current" aria-expanded="false" aria-haspopup="true">
+          <span>Human Resource</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu is-hr-mega" role="menu" aria-label="Human Resource suite">
+          <div class="hr-mega-head">
+            <span class="hr-mega-title">Human Resource Suite</span>
+            <span class="hr-mega-rec">Recommended</span>
+          </div>
+          <div class="hr-mega-grid">
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><span>Salary &amp; Payroll</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>CTC Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <a class="nav-drop-item" href="../../payslip-generator.html" role="menuitem"><span>Payslip Generator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PF &amp; ESI</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Gratuity</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>F&amp;F Settlement</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Increment Calculator</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 12h8M8 16h6"/></svg><span>HR Documents</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Offer Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Appointment Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Experience Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Relieving Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Resignation Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Termination Letter</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Attendance &amp; Leave</span></p>
+              <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>Attendance Sheet Generator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Leave Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Working Days</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Leave Encashment</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Notice Period</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.85"/></svg><span>Recruitment &amp; Employees</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JD Generator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Interview Questions</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Onboarding Checklist</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Employee ID Card</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Org Chart</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Performance &amp; Management</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>KPI &amp; KRA</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Appraisal Form</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Attrition Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Employee Cost Calculator</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Business</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../invoice-generator.html" role="menuitem"><span>Invoice Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Quotation Generator</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>SEO &amp; Marketing</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Sitemap Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Robots.txt Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../meta-tag-generator/index.html" role="menuitem"><span>Meta Tag Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Open Graph Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../schema-markup-generator/index.html" role="menuitem"><span>Schema Markup Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>UTM Link Builder</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Developer &amp; Utility</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JSON &amp; XML Formatter</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../qr-code-generator/index.html" role="menuitem"><span>QR Code Generator</span><span class="nav-live-badge">Live</span></a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="../../contact.html">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="../../index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="../../index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">E-Signature</p>
+        <nav class="side-nav-list" aria-label="Mobile E-Signature navigation">
+          <a class="side-nav-link" href="../../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Home / Sign PDF</span>
+          </a>
+          <a class="side-nav-link" href="../../signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">PDF &amp; Document</p>
+        <nav class="side-nav-list" aria-label="Mobile PDF tools navigation">
+          <a class="side-nav-link" href="../../tools/pdf-merger/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M9 15h6M12 12v6" />
+            </svg>
+            <span>PDF Merger</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-compressor/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+            </svg>
+            <span>PDF Compressor</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-splitter/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" />
+            </svg>
+            <span>PDF Splitter</span>
+          </a>
+          <a class="side-nav-link" href="../pdf-to-jpg/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span>PDF to JPG Converter</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JPG to PDF Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Watermark Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Page Number Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Metadata Editor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Human Resource</p>
+        <details class="side-hr-acc" open>
+          <summary><span>Salary &amp; Payroll</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>CTC Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <a class="side-nav-link" href="../../payslip-generator.html">
+                <span>Payslip Generator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>PF &amp; ESI</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Gratuity</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>F&amp;F Settlement</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Increment Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>HR Documents</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Offer Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Appointment Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Experience Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Relieving Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Resignation Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Termination Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc" open>
+          <summary><span>Attendance &amp; Leave</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <a class="side-nav-link" href="./" aria-current="page">
+                <span>Attendance Sheet Generator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Leave Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Working Days</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Leave Encashment</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Notice Period</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>Recruitment &amp; Employees</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>JD Generator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Interview Questions</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Onboarding Checklist</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Employee ID Card</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Org Chart</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>Performance &amp; Management</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>KPI &amp; KRA</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Appraisal Form</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Attrition Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Employee Cost Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Business</p>
+        <nav class="side-nav-list" aria-label="Mobile Business navigation">
+          <a class="side-nav-link" href="../../invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Quotation Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">SEO &amp; Marketing</p>
+        <nav class="side-nav-list" aria-label="Mobile SEO &amp; Marketing navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Sitemap Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Robots.txt Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../meta-tag-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            <span>Meta Tag Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Open Graph Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../schema-markup-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>Schema Markup Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>UTM Link Builder</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Developer &amp; Utility</p>
+        <nav class="side-nav-list" aria-label="Mobile developer &amp; utility navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JSON &amp; XML Formatter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../qr-code-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <path d="M14 14h3v3h-3zM19 19h2v2h-2zM14 20h2" />
+            </svg>
+            <span>QR Code Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="../../about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About Us</span>
+          </a>
+          <a class="side-nav-link" href="../../contact.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            <span>Contact Us</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="../../index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view at-page enter">
+      <!-- ============ HERO & MAIN ATTENDANCE DASHBOARD ============ -->
+      <section class="at-hero-band" aria-labelledby="atHeroTitle">
+        <div class="at-container">
+          <!-- Breadcrumb Navigation -->
+          <nav class="at-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="at-bc-sep" aria-hidden="true">/</span>
+            <span>Human Resource</span>
+            <span class="at-bc-sep" aria-hidden="true">/</span>
+            <span aria-current="page">Attendance Sheet Generator</span>
+          </nav>
+
+          <div class="at-hero-head">
+            <h1 class="at-title" id="atHeroTitle">Free Employee Attendance Sheet Generator</h1>
+            <p class="at-sub">
+              Create monthly employee attendance sheets online for free. Track present days, absences, holidays and leaves, calculate attendance summaries and download professional attendance reports in Excel or PDF.
+            </p>
+          </div>
+
+          <!-- Top Templates, Backup & Export Action Bar -->
+          <div class="at-topbar" role="toolbar" aria-label="Attendance sheet templates and exports">
+            <div class="at-topbar-group">
+              <span style="font-size:12px;font-weight:700;color:var(--muted)">Templates:</span>
+              <div class="at-template-pills" role="radiogroup" aria-label="Attendance templates">
+                <button type="button" class="at-tpl-btn" data-tpl="corporate" role="radio" aria-checked="true">Corporate</button>
+                <button type="button" class="at-tpl-btn" data-tpl="small_business" role="radio" aria-checked="false">Small Business</button>
+                <button type="button" class="at-tpl-btn" data-tpl="school" role="radio" aria-checked="false">School / Student</button>
+              </div>
+            </div>
+
+            <div class="at-topbar-group">
+              <button type="button" class="at-mini-btn" id="atUndoBtn" disabled title="Undo last change (Ctrl+Z)">Undo</button>
+              <button type="button" class="at-mini-btn" id="atBackupJsonBtn">Backup JSON</button>
+              <label class="at-mini-btn" for="atRestoreJsonInput">
+                Restore JSON
+                <input type="file" id="atRestoreJsonInput" class="sr-only" accept="application/json,.json" />
+              </label>
+              <button type="button" class="at-mini-btn danger" id="atClearMonthBtn">Clear Month</button>
+              <button type="button" class="at-mini-btn danger" id="atResetAllBtn">New Sheet</button>
+            </div>
+          </div>
+
+          <!-- Summary KPI Dashboard Cards -->
+          <div class="at-kpi-grid" aria-label="Monthly attendance summary metrics">
+            <div class="at-kpi-card">
+              <span class="at-kpi-label">Total Employees</span>
+              <span class="at-kpi-val" id="kpiTotalEmp">0</span>
+              <span class="at-kpi-sub">Active in register</span>
+            </div>
+            <div class="at-kpi-card is-present">
+              <span class="at-kpi-label">Present Today</span>
+              <span class="at-kpi-val" id="kpiPresentToday">0</span>
+              <span class="at-kpi-sub" id="kpiRefDateSub">Current day</span>
+            </div>
+            <div class="at-kpi-card is-absent">
+              <span class="at-kpi-label">Absent Today</span>
+              <span class="at-kpi-val" id="kpiAbsentToday">0</span>
+              <span class="at-kpi-sub">Recorded absences</span>
+            </div>
+            <div class="at-kpi-card is-leave">
+              <span class="at-kpi-label">Employees on Leave</span>
+              <span class="at-kpi-val" id="kpiLeaveToday">0</span>
+              <span class="at-kpi-sub">Approved / recorded</span>
+            </div>
+            <div class="at-kpi-card is-rate">
+              <span class="at-kpi-label">Avg Monthly Attendance</span>
+              <span class="at-kpi-val" id="kpiAvgRate">0.0%</span>
+              <span class="at-kpi-sub">Eligible working days</span>
+            </div>
+          </div>
+
+          <!-- Collapsible Section 1: Organization Details -->
+          <details class="at-accordion">
+            <summary>
+              <span class="at-acc-title">
+                <span class="at-step-badge">1</span>
+                Organization &amp; Report Header Details
+              </span>
+              <span class="at-acc-meta">
+                <span>Logo, Address, Branch, HR Manager</span>
+                <span class="at-acc-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4" /></svg>
+                </span>
+              </span>
+            </summary>
+
+            <div class="at-acc-body">
+              <div class="at-logo-row">
+                <label class="at-logo-drop" for="atOrgLogoInput">
+                  <img id="atOrgLogoThumb" class="at-logo-thumb" alt="Organization logo preview" hidden />
+                  <span style="font-size:13px;font-weight:700;color:var(--ink)">Upload Organization Logo (PNG/JPG/WebP)</span>
+                  <input type="file" id="atOrgLogoInput" class="sr-only" accept="image/png,image/jpeg,image/webp" />
+                </label>
+                <button type="button" class="at-mini-btn danger" id="atRemoveOrgLogoBtn" hidden>Remove Logo</button>
+                <button type="button" class="at-mini-btn" id="atToggleHeaderPrevBtn">Preview Report Header</button>
+              </div>
+
+              <div class="at-header-preview" id="atHeaderPreviewBox" hidden>
+                <div class="at-hp-left">
+                  <img id="atHpLogo" class="at-hp-logo" alt="Report header logo" hidden />
+                  <div>
+                    <strong style="font-size:16px;color:var(--ink)" id="atHpOrgName">Organization Name</strong>
+                    <div style="font-size:12.5px;color:var(--muted)" id="atHpOrgMeta"></div>
+                  </div>
+                </div>
+                <div style="text-align:right">
+                  <strong style="font-size:14px;color:var(--accent)" id="atHpPeriod"></strong>
+                  <div style="font-size:12px;color:var(--muted)" id="atHpDept"></div>
+                </div>
+              </div>
+
+              <div class="at-grid-4">
+                <div class="at-field">
+                  <label for="atOrgName">Organization / School Name</label>
+                  <input type="text" id="atOrgName" class="at-input" placeholder="e.g. Acme Technologies Pvt. Ltd." />
+                </div>
+                <div class="at-field">
+                  <label for="atOrgDept">Department</label>
+                  <input type="text" id="atOrgDept" class="at-input" placeholder="e.g. Human Resources" />
+                </div>
+                <div class="at-field">
+                  <label for="atOrgBranch">Branch / Office Location</label>
+                  <input type="text" id="atOrgBranch" class="at-input" placeholder="e.g. Mumbai HQ" />
+                </div>
+                <div class="at-field">
+                  <label for="atOrgHr">HR Manager / Coordinator</label>
+                  <input type="text" id="atOrgHr" class="at-input" placeholder="e.g. Meera Nair" />
+                </div>
+              </div>
+
+              <div class="at-grid-3">
+                <div class="at-field">
+                  <label for="atOrgPhone">Contact Number (Optional)</label>
+                  <input type="text" id="atOrgPhone" class="at-input" placeholder="+91 22 4890 6200" />
+                </div>
+                <div class="at-field">
+                  <label for="atOrgEmail">Email Address (Optional)</label>
+                  <input type="email" id="atOrgEmail" class="at-input" placeholder="hr@company.com" />
+                </div>
+                <div class="at-field">
+                  <label for="atOrgAddress">Office Address (Optional)</label>
+                  <input type="text" id="atOrgAddress" class="at-input" placeholder="Street, City, State, PIN" />
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Collapsible Section 2: Employee Management -->
+          <details class="at-accordion">
+            <summary>
+              <span class="at-acc-title">
+                <span class="at-step-badge">2</span>
+                Employee Management &amp; Bulk CSV Import
+              </span>
+              <span class="at-acc-meta">
+                <span>Add, Edit, Search, CSV Import/Export</span>
+                <span class="at-acc-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4" /></svg>
+                </span>
+              </span>
+            </summary>
+
+            <div class="at-acc-body">
+              <form id="atAddEmpForm" style="display:flex;flex-direction:column;gap:12px">
+                <div class="at-grid-4">
+                  <div class="at-field">
+                    <label for="atNewEmpId">Employee ID (Optional)</label>
+                    <input type="text" id="atNewEmpId" class="at-input" placeholder="e.g. EMP-105" />
+                  </div>
+                  <div class="at-field">
+                    <label for="atNewEmpName">Full Name *</label>
+                    <input type="text" id="atNewEmpName" class="at-input" placeholder="e.g. Vikram Joshi" required />
+                  </div>
+                  <div class="at-field">
+                    <label for="atNewEmpDept">Department</label>
+                    <input type="text" id="atNewEmpDept" class="at-input" placeholder="e.g. Operations" />
+                  </div>
+                  <div class="at-field">
+                    <label for="atNewEmpRole">Designation</label>
+                    <input type="text" id="atNewEmpRole" class="at-input" placeholder="e.g. Team Lead" />
+                  </div>
+                </div>
+
+                <div class="at-grid-4" style="align-items:end">
+                  <div class="at-field">
+                    <label for="atNewEmpJoin">Joining Date (Optional)</label>
+                    <input type="date" id="atNewEmpJoin" class="at-input" />
+                  </div>
+                  <div class="at-field">
+                    <label for="atNewEmpStatus">Employment Status</label>
+                    <select id="atNewEmpStatus" class="at-select">
+                      <option value="Active" selected>Active</option>
+                      <option value="Probation">Probation</option>
+                      <option value="Contract">Contract</option>
+                      <option value="On Leave">On Leave</option>
+                    </select>
+                  </div>
+                  <div class="at-field">
+                    <label for="atNewEmpPhone">Contact Number (Optional)</label>
+                    <input type="text" id="atNewEmpPhone" class="at-input" placeholder="+91 98765 43210" />
+                  </div>
+                  <button type="submit" class="at-mini-btn primary" style="height:40px">+ Add Employee</button>
+                </div>
+              </form>
+
+              <div class="at-toolbar-row">
+                <div class="at-search-group">
+                  <input type="search" id="atSearchEmp" class="at-input" style="max-width:240px" placeholder="Search name or ID..." />
+                  <select id="atFilterDept" class="at-select" style="max-width:190px">
+                    <option value="">All Departments</option>
+                  </select>
+                  <select id="atFilterStatus" class="at-select" style="max-width:180px">
+                    <option value="">All Attendance Statuses</option>
+                    <option value="P">Has Present (P)</option>
+                    <option value="A">Has Absent (A)</option>
+                    <option value="L">Has Leave (L)</option>
+                    <option value="HD">Has Half Day (HD)</option>
+                    <option value="WFH">Has WFH</option>
+                    <option value="OD">Has On Duty (OD)</option>
+                  </select>
+                  <select id="atSortEmp" class="at-select" style="max-width:165px">
+                    <option value="default">Sort: Added Order</option>
+                    <option value="name_asc">Name (A → Z)</option>
+                    <option value="name_desc">Name (Z → A)</option>
+                    <option value="id_asc">Employee ID</option>
+                  </select>
+                </div>
+
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  <button type="button" class="at-mini-btn" id="atSampleEmpCsvBtn">Sample Employee CSV</button>
+                  <label class="at-mini-btn" for="atImportEmpCsvInput">
+                    Import Employees CSV
+                    <input type="file" id="atImportEmpCsvInput" class="sr-only" accept=".csv,text/csv" />
+                  </label>
+                  <button type="button" class="at-mini-btn" id="atExportEmpCsvBtn">Export Employees CSV</button>
+                </div>
+              </div>
+
+              <div class="at-table-wrap">
+                <table class="at-data-table" aria-label="Employee directory">
+                  <thead>
+                    <tr>
+                      <th style="width:36px"><input type="checkbox" id="atSelectAllEmps" aria-label="Select all visible employees" /></th>
+                      <th>ID</th>
+                      <th>Name (Click for Report)</th>
+                      <th>Department</th>
+                      <th>Designation</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="atEmpTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+
+          <!-- Collapsible Section 3: Holiday Management -->
+          <details class="at-accordion">
+            <summary>
+              <span class="at-acc-title">
+                <span class="at-step-badge">3</span>
+                Organization Holiday Calendar
+              </span>
+              <span class="at-acc-meta">
+                <span>Configure &amp; Apply Custom Holidays</span>
+                <span class="at-acc-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4" /></svg>
+                </span>
+              </span>
+            </summary>
+
+            <div class="at-acc-body">
+              <form id="atAddHolidayForm" class="at-grid-4" style="align-items:end">
+                <div class="at-field">
+                  <label for="atHolName">Holiday Name *</label>
+                  <input type="text" id="atHolName" class="at-input" placeholder="e.g. Diwali Holiday" required />
+                </div>
+                <div class="at-field">
+                  <label for="atHolDate">Date *</label>
+                  <input type="date" id="atHolDate" class="at-input" required />
+                </div>
+                <div class="at-field">
+                  <label for="atHolType">Holiday Type</label>
+                  <select id="atHolType" class="at-select">
+                    <option value="National Holiday">National Holiday</option>
+                    <option value="Public Holiday">Public Holiday</option>
+                    <option value="Company Holiday" selected>Company Holiday</option>
+                    <option value="Optional / Restricted">Optional / Restricted</option>
+                  </select>
+                </div>
+                <div class="at-field">
+                  <label for="atHolDesc">Description (Optional)</label>
+                  <input type="text" id="atHolDesc" class="at-input" placeholder="Optional note" />
+                </div>
+                <button type="submit" class="at-mini-btn primary">+ Add Holiday</button>
+                <button type="button" class="at-mini-btn" id="atSampleHolCsvBtn">Sample Holiday CSV</button>
+                <label class="at-mini-btn" for="atImportHolCsvInput">
+                  Import Holidays CSV
+                  <input type="file" id="atImportHolCsvInput" class="sr-only" accept=".csv,text/csv" />
+                </label>
+              </form>
+
+              <div class="at-table-wrap">
+                <table class="at-data-table" aria-label="Configured organization holidays">
+                  <thead>
+                    <tr>
+                      <th>Holiday Name</th>
+                      <th>Date</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="atHolidaysBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+
+          <!-- ============ MAIN MONTHLY ATTENDANCE REGISTER ============ -->
+          <section class="at-register-card" id="atRegisterCard" data-mob-view="cards" aria-labelledby="atMonthHeading">
+            <div class="at-month-bar">
+              <div class="at-month-nav">
+                <button type="button" class="at-mini-btn" id="atPrevMonthBtn" aria-label="Previous month">← Prev</button>
+                <select id="atMonthSelect" class="at-select" style="width:auto" aria-label="Select month"></select>
+                <input type="number" id="atYearInput" class="at-input" style="width:92px" min="2000" max="2100" aria-label="Select year" />
+                <button type="button" class="at-mini-btn" id="atNextMonthBtn" aria-label="Next month">Next →</button>
+                <button type="button" class="at-mini-btn" id="atCurrMonthBtn">Current Month</button>
+              </div>
+
+              <h2 class="at-month-title" id="atMonthHeading">November 2026</h2>
+
+              <!-- Primary Export Actions -->
+              <div class="at-topbar-group">
+                <button type="button" class="at-mini-btn primary" id="atExportExcelBtn">Export Excel (.xlsx)</button>
+                <button type="button" class="at-mini-btn" id="atExportPdfBtn">Export PDF</button>
+                <button type="button" class="at-mini-btn" id="atExportCsvBtn">Export CSV</button>
+                <button type="button" class="at-mini-btn" id="atPrintBtn">Print</button>
+              </div>
+            </div>
+
+            <!-- Weekly Off Schedule & Attendance % Calculation Formula Rules -->
+            <div class="at-rules-bar">
+              <div class="at-weekoff-group" role="group" aria-label="Configure weekly off days">
+                <span style="font-size:12px;font-weight:700;color:var(--ink);margin-right:4px">Weekly Off Days:</span>
+                <label class="at-day-toggle"><input type="checkbox" data-weekoff="0" checked /><span>Sun</span></label>
+                <label class="at-day-toggle"><input type="checkbox" data-weekoff="1" /><span>Mon</span></label>
+                <label class="at-day-toggle"><input type="checkbox" data-weekoff="2" /><span>Tue</span></label>
+                <label class="at-day-toggle"><input type="checkbox" data-weekoff="3" /><span>Wed</span></label>
+                <label class="at-day-toggle"><input type="checkbox" data-weekoff="4" /><span>Thu</span></label>
+                <label class="at-day-toggle"><input type="checkbox" data-weekoff="5" /><span>Fri</span></label>
+                <label class="at-day-toggle"><input type="checkbox" data-weekoff="6" checked /><span>Sat</span></label>
+              </div>
+
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px">
+                <label class="at-toggle-label">
+                  <input type="checkbox" id="atCountLeaveCheck" />
+                  <span>Count Approved Leave (L) toward Attendance %</span>
+                </label>
+                <label class="at-toggle-label">
+                  <input type="checkbox" id="atIncludeNotesCheck" />
+                  <span>Include private notes in exports</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Bulk Attendance Operations & Historical CSV Import -->
+            <div class="at-bulk-bar">
+              <div class="at-bulk-controls">
+                <select id="atBulkDaySelect" class="at-select" style="width:auto" aria-label="Target day for bulk update"></select>
+                <button type="button" class="at-mini-btn" id="atBulkMarkPresentBtn">Mark All Present</button>
+                <button type="button" class="at-mini-btn" id="atBulkWeekOffBtn">Apply Weekly Offs</button>
+                <button type="button" class="at-mini-btn" id="atBulkApplyHolidaysBtn">Apply Holidays</button>
+              </div>
+
+              <div class="at-bulk-controls">
+                <span style="font-size:12px;font-weight:700;color:var(--muted)" id="atBulkSelCount">0 selected</span>
+                <select id="atBulkStatusSelect" class="at-select" style="width:auto" aria-label="Status for selected employees">
+                  <option value="P">P — Present</option>
+                  <option value="A">A — Absent</option>
+                  <option value="L">L — Leave</option>
+                  <option value="HD">HD — Half Day</option>
+                  <option value="WFH">WFH — Work From Home</option>
+                  <option value="OD">OD — On Duty</option>
+                  <option value="H">H — Holiday</option>
+                  <option value="WO">WO — Weekly Off</option>
+                </select>
+                <button type="button" class="at-mini-btn" id="atBulkSelectedApplyBtn">Apply to Selected</button>
+                <button type="button" class="at-mini-btn" id="atSampleAttCsvBtn">Sample Attendance CSV</button>
+                <label class="at-mini-btn" for="atImportAttCsvInput">
+                  Import Attendance CSV
+                  <input type="file" id="atImportAttCsvInput" class="sr-only" accept=".csv,text/csv" />
+                </label>
+              </div>
+            </div>
+
+            <!-- Status Legend + Calculation Formula Note -->
+            <div class="at-legend-bar" aria-label="Attendance status legend">
+              <span class="at-legend-item"><span class="st-badge st-P">P</span> Present (1.0)</span>
+              <span class="at-legend-item"><span class="st-badge st-A">A</span> Absent (0)</span>
+              <span class="at-legend-item"><span class="st-badge st-L">L</span> Leave</span>
+              <span class="at-legend-item"><span class="st-badge st-H">H</span> Holiday (Excl.)</span>
+              <span class="at-legend-item"><span class="st-badge st-WO">WO</span> Weekly Off (Excl.)</span>
+              <span class="at-legend-item"><span class="st-badge st-HD">HD</span> Half Day (0.5)</span>
+              <span class="at-legend-item"><span class="st-badge st-WFH">WFH</span> Work From Home (1.0)</span>
+              <span class="at-legend-item"><span class="st-badge st-OD">OD</span> On Duty (1.0)</span>
+            </div>
+
+            <!-- Mobile View Mode Switcher -->
+            <div class="at-mobile-view-switch" role="tablist" aria-label="Mobile attendance view mode">
+              <button type="button" role="tab" class="active" data-mob-mode="cards" aria-selected="true">Employee Card View</button>
+              <button type="button" role="tab" data-mob-mode="grid" aria-selected="false">Full Scrollable Grid</button>
+            </div>
+
+            <!-- Desktop / Horizontal Scrollable Attendance Matrix -->
+            <div class="at-matrix-scroll" role="region" aria-label="Monthly attendance calendar grid" tabindex="0">
+              <table class="at-matrix-table">
+                <thead id="atMatrixHead"></thead>
+                <tbody id="atMatrixBody"></tbody>
+              </table>
+            </div>
+
+            <!-- Mobile Employee-by-Employee Card List -->
+            <div class="at-mobile-cards" id="atMobileCards"></div>
+          </section>
+
+          <!-- Live Analytics & Visualizations -->
+          <section class="at-analytics-grid" aria-label="Attendance analytics and charts">
+            <div class="at-viz-card">
+              <h3>Attendance Distribution</h3>
+              <div id="atDistChart"></div>
+            </div>
+
+            <div class="at-viz-card">
+              <h3>Department Attendance Breakdown</h3>
+              <div class="at-bar-list" id="atDeptBreakdown"></div>
+            </div>
+
+            <div class="at-viz-card">
+              <h3>Daily Attendance Trend</h3>
+              <div id="atTrendChart"></div>
+            </div>
+          </section>
+
+          <!-- Local Storage & Privacy Notice -->
+          <div class="at-privacy-box">
+            <strong>Your attendance records are stored locally in your browser. Open Sign does not upload or store your employee attendance data on its servers.</strong>
+            <span>Note: Clearing browser site data or IndexedDB storage will remove locally saved attendance records—use Backup JSON to keep offline copies.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: HOW TO USE THE ATTENDANCE SHEET GENERATOR ============ -->
+      <section class="workflow-band" aria-labelledby="atHowTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Simple 3-step HR workflow</span>
+            <h2 class="section-title" id="atHowTitle">How to Use the Attendance Sheet Generator</h2>
+            <p class="section-desc">
+              Set up your monthly attendance register, mark daily statuses in seconds, and export audit-ready reports in Excel, PDF, or CSV.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Add organization &amp; employee details</h3>
+              <p>Choose Corporate, Small Business, or School template, enter your organization header, and add employees manually or via bulk CSV upload.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Mark daily statuses, holidays &amp; weekly offs</h3>
+              <p>Click any cell to assign Present, Absent, Leave, Half Day, WFH, On Duty, Holiday, or Weekly Off—or apply bulk updates in one click.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Review summaries &amp; export Excel or PDF</h3>
+              <p>Inspect automatic attendance percentages, open individual employee reports, and download formatted <code>.xlsx</code>, <code>.pdf</code>, or <code>.csv</code> files.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: SEO EDUCATIONAL CONTENT SECTIONS ============ -->
+      <section class="saas-section" aria-labelledby="atCreateTitle">
+        <div class="saas-container">
+          <div class="at-guide-grid">
+            <div class="at-info-card">
+              <span class="section-kicker">28, 29, 30 &amp; 31-day calendars</span>
+              <h2 id="atCreateTitle">Create Monthly Employee Attendance Sheets</h2>
+              <p>
+                Generate accurate monthly registers for any year—including leap-year February—with automatic weekday labels and configurable weekly off days (such as Sunday-only or Saturday–Sunday schedules) that never penalize staff for scheduled rest days.
+              </p>
+            </div>
+
+            <div class="at-info-card">
+              <span class="section-kicker">Complete status &amp; note tracking</span>
+              <h2 id="atManageTitle">Manage Employee Attendance Online</h2>
+              <p>
+                Track Present (P), Absent (A), Approved Leave (L), Half Day (HD), Work From Home (WFH), On Duty (OD), Holidays (H), and Weekly Offs (WO), attach private cell notes for medical leave or client visits, and filter by department or status.
+              </p>
+            </div>
+
+            <div class="at-info-card">
+              <span class="section-kicker">Transparent payroll-ready math</span>
+              <h2 id="atCalcTitle">Calculate Monthly Attendance Automatically</h2>
+              <p>
+                Eligible working days automatically exclude scheduled weekly offs and organization holidays. Present, WFH, and On Duty count as 1.0 day, Half Day counts as 0.5 day, and HR managers can toggle whether Approved Leave counts toward Attendance %.
+              </p>
+            </div>
+
+            <div class="at-info-card">
+              <span class="section-kicker">Multi-sheet Excel &amp; landscape PDF</span>
+              <h2 id="atDownloadTitle">Download Attendance Reports in Excel and PDF</h2>
+              <p>
+                Export a 3-tab Excel workbook (<code>opensign-attendance-sheet.xlsx</code>) with frozen headers, a multi-page landscape PDF report (<code>opensign-attendance-report.pdf</code>) with logo and HR signature line, or clean CSV data—ready to pair with <a href="../../payslip-generator.html" style="color:var(--accent);font-weight:600">Open Sign Payslip Generator</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ H2: FREQUENTLY ASKED QUESTIONS (EXACT 12 REQUIRED) ============ -->
+      <section class="sg-faq-band" aria-labelledby="atFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="atFaqTitle">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>1. How do I create an employee attendance sheet?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Select a template above, add your organization name and employee list, pick the month and year, mark daily statuses in the attendance calendar, and click Export Excel (.xlsx), Export PDF, or Export CSV.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>2. Can I create monthly attendance sheets for multiple employees?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. You can add unlimited employees manually or import them in bulk via CSV, filter by department, and click any employee's name to open their individual monthly attendance report.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>3. Can I export attendance sheets to Excel?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Click Export Excel (.xlsx) to generate a multi-sheet workbook containing Monthly Attendance, Employee Summary, and Holiday List tabs with frozen header rows and formatted totals.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>4. Can I download attendance reports as PDF?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Click Export PDF for a landscape multi-page register with your logo, repeating table headers, status legend, page numbers, and HR signature line—or export an individual PDF from any employee's detail modal.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>5. How is attendance percentage calculated?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Attendance % = (Counted Present Days ÷ Eligible Working Days) × 100. Eligible Working Days exclude scheduled weekly offs and holidays. Present, WFH, and On Duty count as 1 day, Half Day counts as 0.5 day, and you can toggle whether Approved Leave counts toward the percentage.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>6. Can I mark half-day attendance?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Click any day cell and choose HD (Half Day). It automatically counts as 0.5 working day in monthly totals and attendance percentage calculations.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>7. Can I add holidays and weekly offs?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Configure your weekly off days (such as Sunday-only or Saturday &amp; Sunday), add custom holidays in the Holiday Calendar section, and click Apply Weekly Offs or Apply Holidays to populate the grid without counting them as absences.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>8. Can I import employees using CSV?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Download the Sample Employee CSV in Section 2 to see the exact columns, fill in your roster, and click Import Employees CSV. You can also import historical attendance records via CSV with a live preview before applying.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>9. Is the attendance sheet generator free?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Open Sign Attendance Sheet Generator is 100% free to use with no sign-up, subscription, or watermarks on exported files.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>10. Is employee attendance data uploaded to a server?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. All calculations, CSV parsing, Excel/PDF exports, and auto-saved records stay strictly inside your browser's local IndexedDB storage. Open Sign never uploads or stores your data on any server.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>11. Can I create attendance sheets for schools?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Select the School / Student template at the top of the dashboard to switch to student roll numbers, classes/sections, and teacher/principal sign-off labels.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>12. Can I save and continue editing attendance records?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Changes are automatically saved in your browser's local IndexedDB storage so you can return later and continue editing, or download a JSON backup file anytime to transfer across devices.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELATED HR & BUSINESS TOOLS ============ -->
+      <section class="saas-section" aria-labelledby="atRelatedTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">More Human Resource Tools</span>
+            <h2 class="section-title" id="atRelatedTitle">Related Tools</h2>
+            <p class="section-desc">
+              Explore live and upcoming HR, payroll, and business document tools in Open Sign.
+            </p>
+          </div>
+
+          <div class="at-related-grid">
+            <a class="at-related-card" href="../../payslip-generator.html">
+              <div class="at-related-top">
+                <span class="at-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6M7 17h4"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Payslip Generator</h3>
+              <p>Create Indian statutory salary slips with Basic, HRA, EPF, LOP days, and A4 PDF export.</p>
+              <span class="at-related-url">Open Payslip Generator →</span>
+            </a>
+
+            <article class="at-related-card" data-planned-url="/tools/salary-calculator/" aria-disabled="true">
+              <div class="at-related-top">
+                <span class="at-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h2M14 14h2M8 18h2M14 18h2"/></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>Salary Calculator</h3>
+              <p>Calculate monthly in-hand take-home pay from annual CTC with PF, PT, and tax deductions.</p>
+              <span class="at-related-url">/tools/salary-calculator/</span>
+            </article>
+
+            <article class="at-related-card" data-planned-url="/tools/notice-period-calculator/" aria-disabled="true">
+              <div class="at-related-top">
+                <span class="at-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>Notice Period Calculator</h3>
+              <p>Compute exact last working day and buyout duration from resignation date and notice terms.</p>
+              <span class="at-related-url">/tools/notice-period-calculator/</span>
+            </article>
+
+            <article class="at-related-card" data-planned-url="/tools/experience-letter-generator/" aria-disabled="true">
+              <div class="at-related-top">
+                <span class="at-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg>
+                </span>
+                <span class="nav-soon-badge">Coming Soon</span>
+              </div>
+              <h3>Experience Letter Generator</h3>
+              <p>Draft formal employee experience and service certificates ready for HR signature.</p>
+              <span class="at-related-url">/tools/experience-letter-generator/</span>
+            </article>
+
+            <a class="at-related-card" href="../../invoice-generator.html">
+              <div class="at-related-top">
+                <span class="at-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5M8 9h2"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Invoice Generator</h3>
+              <p>Build GST-compliant tax invoices, quotes, and receipts with UPI QR and PDF export.</p>
+              <span class="at-related-url">Open Invoice Generator →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ MODAL 1: CELL ATTENDANCE STATUS & PRIVATE NOTE ============ -->
+  <dialog id="atCellDialog" class="at-modal-sm" aria-labelledby="atCellDlgTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="atCellDlgTitle">Mark Attendance</h2>
+        <p class="dlg-sub">Select an attendance status or attach a private note.</p>
+      </div>
+      <button class="icon-btn" id="atCellCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+
+    <div class="at-grid-2" id="atCellStatusBtns" style="margin-bottom:14px"></div>
+
+    <div class="at-field" style="margin-bottom:14px">
+      <label for="atCellNoteInput">Private Attendance Note (Optional)</label>
+      <input type="text" id="atCellNoteInput" class="at-input" placeholder="e.g. Medical leave, Client meeting, Late arrival" />
+    </div>
+
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="atCellClearBtn">Clear Cell</button>
+      <button type="button" class="btn primary" id="atCellSaveNoteOnlyBtn">Save Note</button>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL 2: INDIVIDUAL EMPLOYEE ATTENDANCE REPORT ============ -->
+  <dialog id="atIndivDialog" class="at-modal" aria-labelledby="atIndivName">
+    <div class="dlg-head">
+      <div>
+        <h2 id="atIndivName">Employee Attendance Report</h2>
+        <p class="dlg-sub" id="atIndivMeta"></p>
+      </div>
+      <button class="icon-btn" id="atIndivCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+
+    <div class="at-grid-4" id="atIndivStats" style="margin-bottom:14px"></div>
+    <div class="at-indiv-cal" id="atIndivCal" style="margin-bottom:12px"></div>
+    <div id="atIndivNotesBox" style="padding:10px 12px;border-radius:8px;background:var(--ecru);font-size:12.5px;margin-bottom:12px" hidden></div>
+
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="atIndivCloseBtn">Close</button>
+      <div class="dlg-actions-right">
+        <button type="button" class="btn" id="atIndivPrintBtn">Print Report</button>
+        <button type="button" class="btn primary" id="atIndivPdfBtn">Download Individual PDF</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL 3: EDIT EMPLOYEE DETAILS ============ -->
+  <dialog id="atEditEmpDialog" class="at-modal-sm" aria-labelledby="atEditEmpTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="atEditEmpTitle">Edit Employee Details</h2>
+      </div>
+      <button class="icon-btn" id="atEditEmpCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px">
+      <div class="at-grid-2">
+        <div class="at-field">
+          <label for="atEditEmpId">Employee ID</label>
+          <input type="text" id="atEditEmpId" class="at-input" />
+        </div>
+        <div class="at-field">
+          <label for="atEditEmpName">Full Name *</label>
+          <input type="text" id="atEditEmpName" class="at-input" required />
+        </div>
+      </div>
+      <div class="at-grid-2">
+        <div class="at-field">
+          <label for="atEditEmpDept">Department</label>
+          <input type="text" id="atEditEmpDept" class="at-input" />
+        </div>
+        <div class="at-field">
+          <label for="atEditEmpRole">Designation</label>
+          <input type="text" id="atEditEmpRole" class="at-input" />
+        </div>
+      </div>
+      <div class="at-grid-2">
+        <div class="at-field">
+          <label for="atEditEmpJoin">Joining Date</label>
+          <input type="date" id="atEditEmpJoin" class="at-input" />
+        </div>
+        <div class="at-field">
+          <label for="atEditEmpStatus">Status</label>
+          <select id="atEditEmpStatus" class="at-select">
+            <option value="Active">Active</option>
+            <option value="Probation">Probation</option>
+            <option value="Contract">Contract</option>
+            <option value="On Leave">On Leave</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+      <div class="at-field">
+        <label for="atEditEmpPhone">Contact Number</label>
+        <input type="text" id="atEditEmpPhone" class="at-input" />
+      </div>
+    </div>
+
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="atEditEmpCancel">Cancel</button>
+      <button type="button" class="btn primary" id="atSaveEditEmpBtn">Save Changes</button>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL 4: CSV ATTENDANCE IMPORT PREVIEW ============ -->
+  <dialog id="atCsvPreviewDialog" class="at-modal" aria-labelledby="atCsvPrevTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="atCsvPrevTitle">Preview Attendance CSV Import</h2>
+        <p class="dlg-sub">Review validated rows before applying them to your attendance sheet.</p>
+      </div>
+      <button class="icon-btn" id="atCsvCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+
+    <div class="at-table-wrap" style="max-height:320px;margin-bottom:14px">
+      <table class="at-data-table">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Matched Name</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Validation</th>
+          </tr>
+        </thead>
+        <tbody id="atCsvPreviewBody"></tbody>
+      </table>
+    </div>
+
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="atCsvCancelBtn">Cancel</button>
+      <button type="button" class="btn primary" id="atCsvApplyBtn">Apply Valid Records</button>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL 5: DESTRUCTIVE ACTION CONFIRMATION ============ -->
+  <dialog id="atConfirmDialog" class="at-modal-sm" aria-labelledby="atConfirmTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="atConfirmTitle">Confirm Action</h2>
+        <p class="dlg-sub" id="atConfirmMsg"></p>
+      </div>
+      <button class="icon-btn" id="atConfirmCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="atConfirmCancel">Cancel</button>
+      <button type="button" class="btn primary" id="atConfirmOk">Confirm</button>
+    </div>
+  </dialog>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <!-- Brand & Social Column -->
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="../../index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="156" height="42" />
+          </a>
+          <p class="footer-tagline">
+            Enterprise-grade eSignature, smart PDF utilities, and business document tools engineered for speed, precision, and zero-retention browser privacy.
+          </p>
+          <div class="footer-socials" aria-label="Open Sign social media">
+            <a class="footer-social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 1: E-Signature -->
+        <div class="footer-col">
+          <p class="footer-col-title">E-Signature</p>
+          <nav class="footer-links" aria-label="Footer E-Signature tools">
+            <a href="../../index.html">Sign PDF Online</a>
+            <a href="../../index.html#features">Smart Sign Auto-Detect</a>
+            <a href="../../signature-generator.html">Signature Generator</a>
+            <a href="../../index.html#workflow">How It Works</a>
+          </nav>
+        </div>
+
+        <!-- Column 2: PDF & Document -->
+        <div class="footer-col">
+          <p class="footer-col-title">PDF &amp; Document</p>
+          <nav class="footer-links" aria-label="Footer PDF and Document tools">
+            <a href="../../tools/pdf-merger/index.html">PDF Merger</a>
+            <a href="../../tools/pdf-compressor/index.html">PDF Compressor</a>
+            <a href="../../tools/pdf-splitter/index.html">PDF Splitter</a>
+            <a href="../pdf-to-jpg/index.html">PDF to JPG Converter</a>
+            <span class="footer-soon-item" aria-disabled="true">JPG to PDF Converter <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Watermark Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Page Number Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Metadata Editor <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 3: Human Resource -->
+        <div class="footer-col">
+          <p class="footer-col-title">Human Resource</p>
+          <nav class="footer-links" aria-label="Footer Human Resource tools">
+            <a href="../../payslip-generator.html">Payslip Generator</a>
+            <a href="./" aria-current="page">Attendance Sheet Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Salary &amp; Payroll Tools <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">HR Documents &amp; Leave <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">Recruitment &amp; KPI <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Business + More Suites -->
+        <div class="footer-col">
+          <p class="footer-col-title">Business</p>
+          <nav class="footer-links" aria-label="Footer Business tools">
+            <a href="../../invoice-generator.html">Invoice Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Quotation Generator <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+
+          <p class="footer-col-title" style="margin-top:12px">More Suites</p>
+          <nav class="footer-links" aria-label="Footer upcoming tool suites">
+            <a href="../meta-tag-generator/index.html">Meta Tag Generator</a>
+            <a href="../schema-markup-generator/index.html">Schema Markup Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">SEO Suite <span class="footer-soon-tag">Soon</span></span>
+            <a href="../qr-code-generator/index.html">QR Code Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Developer Suite <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Company -->
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Footer Company navigation">
+            <a href="../../index.html">Home</a>
+            <a href="../../about.html">About Us</a>
+            <a href="../../about.html#security">Security &amp; Privacy</a>
+            <a href="../../contact.html">Contact Us</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="../../about.html">About Us</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../about.html#security">Privacy &amp; Security</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../nav.js"></script>
+  <script src="attendance-sheet-generator.js"></script>
+</body>
+</html>
