@@ -939,7 +939,7 @@ a.kk-related-card .kk-related-url {
 /* ---------- Responsive Breakpoints ---------- */
 @media (max-width: 1100px) {
   .kk-workspace {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .kk-right-col {
@@ -958,7 +958,7 @@ a.kk-related-card .kk-related-url {
   .kk-kpi-grid,
   .kk-kpi-vals-grid,
   .kk-guide-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .kk-related-grid {
@@ -970,7 +970,7 @@ a.kk-related-card .kk-related-url {
   .kk-summary-grid,
   .kk-export-grid,
   .kk-related-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .kk-topbar-group {

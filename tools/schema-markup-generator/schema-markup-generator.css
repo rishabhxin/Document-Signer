@@ -1,6 +1,6 @@
 /* =========================================================
    Open Sign — Free Schema Markup Generator (/tools/schema-markup-generator/)
-   Inherits Open Sign Cobalt (#4C00FF), Inkwell (#130032),
+   Inherits Open Sign Cobalt (#056cb8), Inkwell (#130032),
    Ecru (#F8F3F0), and Surface Tint (#F6F4FA) tokens.
    ========================================================= */
 
@@ -101,8 +101,8 @@ body[data-view="schema-markup-generator"] {
   gap: 6px;
   padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(76, 0, 255, 0.07);
-  border: 1px solid rgba(76, 0, 255, 0.15);
+  background: rgba(5, 108, 184, 0.07);
+  border: 1px solid rgba(5, 108, 184, 0.15);
   color: var(--ink);
   font-size: 12.5px;
   font-weight: 600;
@@ -273,7 +273,7 @@ body[data-view="schema-markup-generator"] {
   font-weight: 700;
   padding: 1px 6px;
   border-radius: 4px;
-  background: rgba(76, 0, 255, 0.09);
+  background: rgba(5, 108, 184, 0.09);
   color: var(--accent);
 }
 
@@ -814,7 +814,7 @@ details.sm-accordion[open] > summary .sm-acc-chevron {
 a.sm-related-card:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px -22px rgba(76, 0, 255, 0.28);
+  box-shadow: 0 16px 34px -22px rgba(5, 108, 184, 0.28);
 }
 
 .sm-related-card[aria-disabled="true"] {
@@ -872,7 +872,7 @@ a.sm-related-card .sm-related-url {
 /* ---------- Responsive Breakpoints ---------- */
 @media (max-width: 1080px) {
   .sm-workspace {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sm-right-col {
@@ -887,7 +887,7 @@ a.sm-related-card .sm-related-url {
 @media (max-width: 768px) {
   .sm-selector-top,
   .sm-guide-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sm-related-grid {
@@ -911,7 +911,7 @@ a.sm-related-card .sm-related-url {
   .sm-grid-2,
   .sm-grid-3,
   .sm-val-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sm-code-actions,
@@ -927,6 +927,6 @@ a.sm-related-card .sm-related-url {
   }
 
   .sm-related-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

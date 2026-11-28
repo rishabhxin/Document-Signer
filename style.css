@@ -1,6 +1,6 @@
 /* =========================================================
    Open Sign — Intelligent Agreement & eSignature SaaS
-   Palette: Cobalt (#4C00FF), Inkwell (#130032), Deep Violet (#26065D),
+   Palette: Cobalt (#056cb8), Inkwell (#130032), Deep Violet (#26065D),
             Mist (#CBC2FF), Poppy (#FF5252), Ecru (#F8F3F0)
    ========================================================= */
 
@@ -106,7 +106,7 @@ a {
 }
 
 ::selection {
-  background: rgba(76, 0, 255, 0.18);
+  background: rgba(5, 108, 184, 0.18);
 }
 
 [tabindex="-1"]:focus {
@@ -299,13 +299,13 @@ body:not([data-view="editor"]) #downloadBtn {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--on-accent);
-  box-shadow: 0 4px 14px -4px rgba(76, 0, 255, 0.45);
+  box-shadow: 0 4px 14px -4px rgba(5, 108, 184, 0.45);
 }
 
 .btn.primary:hover:not(:disabled) {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-  box-shadow: 0 8px 20px -6px rgba(76, 0, 255, 0.55);
+  box-shadow: 0 8px 20px -6px rgba(5, 108, 184, 0.55);
 }
 
 .btn.on-dark {
@@ -449,7 +449,7 @@ main {
   gap: 8px;
   padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(76, 0, 255, 0.08);
+  background: rgba(5, 108, 184, 0.08);
   color: var(--accent);
   font-size: 12px;
   font-weight: 700;
@@ -553,7 +553,7 @@ main {
   gap: 14px;
   text-align: center;
   padding: 18px 16px 26px;
-  border: 1.5px dashed rgba(76, 0, 255, 0.28);
+  border: 1.5px dashed rgba(5, 108, 184, 0.28);
   border-radius: 10px;
   background: var(--surface-tint);
   transition: border-color 0.25s, background-color 0.25s;
@@ -567,7 +567,7 @@ main {
   border-radius: 12px;
   background: #ffffff;
   color: var(--accent);
-  box-shadow: 0 8px 20px -10px rgba(76, 0, 255, 0.35);
+  box-shadow: 0 8px 20px -10px rgba(5, 108, 184, 0.35);
   transition: transform 0.3s var(--ease), background-color 0.25s, color 0.25s;
 }
 
@@ -610,7 +610,7 @@ main {
   color: var(--on-accent);
   font-size: 14px;
   font-weight: 600;
-  box-shadow: 0 6px 16px -6px rgba(76, 0, 255, 0.5);
+  box-shadow: 0 6px 16px -6px rgba(5, 108, 184, 0.5);
   transition: background-color 0.2s, transform 0.16s var(--ease);
 }
 
@@ -653,12 +653,12 @@ main {
 /* Hover, Drag-Over & Morph Reaction */
 .dropzone:hover {
   border-color: var(--accent);
-  box-shadow: 0 28px 64px -26px rgba(76, 0, 255, 0.24);
+  box-shadow: 0 28px 64px -26px rgba(5, 108, 184, 0.24);
 }
 
 .dropzone:hover .dz-stage {
   border-color: var(--accent);
-  background: rgba(76, 0, 255, 0.04);
+  background: rgba(5, 108, 184, 0.04);
 }
 
 .dropzone:hover .dz-arrow {
@@ -672,12 +672,12 @@ main {
 .dropzone.is-over {
   border-color: var(--accent);
   transform: scale(1.01);
-  box-shadow: 0 28px 64px -20px rgba(76, 0, 255, 0.32);
+  box-shadow: 0 28px 64px -20px rgba(5, 108, 184, 0.32);
 }
 
 .dropzone.is-over .dz-stage {
   border-color: var(--accent);
-  background: rgba(76, 0, 255, 0.08);
+  background: rgba(5, 108, 184, 0.08);
 }
 
 .dropzone.is-over .dz-arrow {
@@ -767,7 +767,7 @@ main {
 }
 
 .feature-card:hover {
-  border-color: rgba(76, 0, 255, 0.35);
+  border-color: rgba(5, 108, 184, 0.35);
   transform: translateY(-2px);
   box-shadow: 0 18px 40px -24px rgba(19, 0, 50, 0.16);
 }
@@ -994,7 +994,7 @@ main {
   top: 0;
   height: 2px;
   background: var(--accent);
-  box-shadow: 0 0 16px 3px rgba(76, 0, 255, 0.5);
+  box-shadow: 0 0 16px 3px rgba(5, 108, 184, 0.5);
   animation: scan-sweep 1.5s ease-in-out 0.25s infinite alternate;
 }
 
@@ -1069,7 +1069,7 @@ main {
 }
 
 .item:hover {
-  outline-color: rgba(76, 0, 255, 0.55);
+  outline-color: rgba(5, 108, 184, 0.55);
 }
 
 .item:active {
@@ -1078,7 +1078,7 @@ main {
 
 .item.selected {
   outline: 1.5px solid var(--accent);
-  box-shadow: 0 0 0 4px rgba(76, 0, 255, 0.14);
+  box-shadow: 0 0 0 4px rgba(5, 108, 184, 0.14);
 }
 
 .item.leaving {
@@ -1110,7 +1110,7 @@ main {
 
 .item .txt:focus {
   cursor: text;
-  background: rgba(76, 0, 255, 0.06);
+  background: rgba(5, 108, 184, 0.06);
 }
 
 .item .del,
@@ -1257,7 +1257,7 @@ body:not([data-view="editor"]) .hint {
 .tool.armed {
   background: var(--accent);
   color: var(--on-accent);
-  box-shadow: 0 4px 12px -4px rgba(76, 0, 255, 0.55);
+  box-shadow: 0 4px 12px -4px rgba(5, 108, 184, 0.55);
 }
 
 .tool.armed:hover:not(:disabled) {
@@ -1793,7 +1793,7 @@ dialog h2 {
 }
 
 .about-card:hover {
-  border-color: rgba(76, 0, 255, 0.35);
+  border-color: rgba(5, 108, 184, 0.35);
   box-shadow: 0 18px 40px -24px rgba(19, 0, 50, 0.16);
 }
 
@@ -2041,7 +2041,7 @@ body[data-view="editor"] .site-footer {
 /* ---------- Responsive Breakpoints ---------- */
 @media (max-width: 960px) {
   .hero-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 32px;
   }
 
@@ -2057,11 +2057,11 @@ body[data-view="editor"] .site-footer {
 
   .feature-grid,
   .steps-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .stat-item {
@@ -2141,7 +2141,7 @@ body[data-view="editor"] .site-footer {
 
   .about-grid,
   .about-specs {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .about-spec {
@@ -2212,7 +2212,7 @@ body[data-view="editor"] .site-footer {
   }
 
   .footer-top {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
 
@@ -2603,7 +2603,7 @@ body[data-view="processing"] .menu-toggle {
   }
 
   .hero-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 32px;
   }
 
@@ -2635,7 +2635,7 @@ body[data-view="processing"] .menu-toggle {
 @media (max-width: 640px) {
   .feature-grid,
   .steps-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .feature-grid > :last-child,
@@ -2730,7 +2730,7 @@ body[data-view="processing"] .menu-toggle {
   }
 
   .fonts {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .dlg-actions {
@@ -3161,7 +3161,7 @@ body[data-view="processing"] .menu-toggle {
   }
 
   .footer-top {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
 
@@ -3372,7 +3372,7 @@ body[data-view="processing"] .menu-toggle {
 
 /* =========================================================
    Zoho-Inspired Multi-Suite Homepage Sections (index.html)
-   Reuses Open Sign Cobalt (#4C00FF), Inkwell (#130032),
+   Reuses Open Sign Cobalt (#056cb8), Inkwell (#130032),
    Ecru (#F8F3F0), and Surface Tint (#F6F4FA) tokens.
    ========================================================= */
 
@@ -3420,7 +3420,7 @@ body[data-view="processing"] .menu-toggle {
 .z-app-card:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 18px 38px -24px rgba(76, 0, 255, 0.26);
+  box-shadow: 0 18px 38px -24px rgba(5, 108, 184, 0.26);
 }
 
 .z-app-head {
@@ -3746,7 +3746,7 @@ body[data-view="processing"] .menu-toggle {
   }
 
   .z-suite-shell {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -3755,7 +3755,7 @@ body[data-view="processing"] .menu-toggle {
   .z-suite-matrix,
   .z-values-grid,
   .z-metrics-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .z-closing-actions {
@@ -3978,9 +3978,11 @@ body[data-view="processing"] .menu-toggle {
 }
 
 .zoho-hero-right .dropzone {
+  width: 100%;
+  min-width: 0;
   min-height: 215px;
-  padding: 20px;
-  border: 1.8px dashed rgba(5, 108, 184, 0.36);
+  padding: 16px;
+  border: 1px solid var(--line);
   border-radius: 12px;
   background: #ffffff;
   box-shadow: 0 14px 34px -24px rgba(11, 19, 43, 0.16);
@@ -4271,13 +4273,13 @@ body[data-view="processing"] .menu-toggle {
 @media (max-width: 1024px) {
   .zoho-hero-grid,
   .zoho-blue-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (max-width: 640px) {
   .zoho-blue-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .zoho-hero-actions {
@@ -4288,5 +4290,198 @@ body[data-view="processing"] .menu-toggle {
 
   .zoho-hero-actions .btn {
     width: 100%;
+  }
+}
+
+
+/* =========================================================
+   Responsive Hardening — Zero Horizontal Overflow & Mobile Polish
+   ========================================================= */
+
+html,
+body,
+main,
+.view,
+.home {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.zoho-hero-left,
+.zoho-hero-right,
+.zoho-featured-rail,
+.zoho-rail-list,
+.zoho-rail-item,
+.zoho-hero-illus,
+.z-suite-copy,
+.z-suite-matrix,
+.z-suite-tile,
+.zoho-blue-copy,
+.zoho-blue-stats,
+.zoho-blue-stat,
+.z-value-card,
+.zoho-closing-card,
+.saas-container {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.zoho-hero-right .dropzone .dz-stage {
+  border: 1.5px dashed rgba(5, 108, 184, 0.32);
+  background: #f8fafd;
+}
+
+.zoho-hero-right .dropzone .dz-action {
+  box-shadow: 0 6px 14px -6px rgba(5, 108, 184, 0.38);
+}
+
+.zoho-hero-right .dropzone .dz-morph {
+  box-shadow: 0 6px 16px -8px rgba(5, 108, 184, 0.25);
+}
+
+/* Tablet & Mobile (<= 1024px) */
+@media (max-width: 1024px) {
+  .zoho-hero-grid,
+  .zoho-blue-grid,
+  .z-suite-shell {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .zoho-hero-right .dropzone {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* Mobile (<= 640px) */
+@media (max-width: 640px) {
+  .site-header {
+    padding: 0 14px;
+    gap: 8px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .brand-logo {
+    height: 30px;
+    max-width: 124px;
+  }
+
+  .btn.nav-cta {
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 12.5px;
+    white-space: nowrap;
+  }
+
+  .zoho-hero-band {
+    padding: 24px 16px 40px;
+  }
+
+  .zoho-hero-left {
+    gap: 14px;
+  }
+
+  .zoho-hero-title {
+    font-size: clamp(28px, 8vw, 38px);
+    line-height: 1.1;
+    word-break: break-word;
+  }
+
+  .zoho-hero-sub {
+    font-size: 15px;
+    line-height: 1.58;
+  }
+
+  .zoho-hero-illus {
+    padding: 10px;
+  }
+
+  .zoho-hero-right .dropzone {
+    min-height: 0;
+    padding: 14px;
+  }
+
+  .zoho-hero-right .dropzone .dz-stage {
+    padding: 20px 14px;
+    gap: 10px;
+  }
+
+  .zoho-hero-right .dropzone .dz-prompt {
+    font-size: 17px;
+  }
+
+  .zoho-hero-right .dropzone .dz-sub {
+    font-size: 13px;
+  }
+
+  .zoho-featured-rail {
+    padding: 16px;
+  }
+
+  .zoho-rail-item {
+    gap: 12px;
+    padding: 10px 4px;
+    align-items: flex-start;
+  }
+
+  .zoho-rail-copy span {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    line-height: 1.4;
+  }
+
+  .zoho-rail-arrow {
+    align-self: center;
+  }
+
+  .zoho-one-band,
+  .zoho-blue-band,
+  .z-values-band,
+  .z-closing-band {
+    padding: 40px 16px;
+  }
+
+  .zoho-closing-card {
+    padding: 28px 18px;
+  }
+
+  .z-suite-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .z-suite-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Very small phones (<= 380px) */
+@media (max-width: 380px) {
+  .site-header {
+    padding: 0 12px;
+  }
+
+  .brand-logo {
+    height: 27px;
+    max-width: 108px;
+  }
+
+  .btn.nav-cta {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .zoho-hero-band {
+    padding: 20px 12px 36px;
+  }
+
+  .zoho-featured-rail {
+    padding: 14px 12px;
   }
 }

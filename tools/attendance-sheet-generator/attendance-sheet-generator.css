@@ -1,7 +1,7 @@
 /* =========================================================
    Open Sign — Free Employee Attendance Sheet Generator
    Route: /tools/attendance-sheet-generator/
-   Inherits Open Sign Cobalt (#4C00FF), Inkwell (#130032),
+   Inherits Open Sign Cobalt (#056cb8), Inkwell (#130032),
    Ecru (#F8F3F0), and Surface Tint (#F6F4FA) tokens.
    ========================================================= */
 
@@ -102,8 +102,8 @@ body[data-view="attendance-sheet-generator"] {
   gap: 6px;
   padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(76, 0, 255, 0.07);
-  border: 1px solid rgba(76, 0, 255, 0.15);
+  background: rgba(5, 108, 184, 0.07);
+  border: 1px solid rgba(5, 108, 184, 0.15);
   color: var(--ink);
   font-size: 12.5px;
   font-weight: 600;
@@ -424,7 +424,7 @@ details.at-accordion[open] > summary .at-acc-chevron {
   align-items: center;
   gap: 11px;
   padding: 9px 14px;
-  border: 1.5px dashed rgba(76, 0, 255, 0.35);
+  border: 1.5px dashed rgba(5, 108, 184, 0.35);
   border-radius: 9px;
   background: var(--surface-tint);
   cursor: pointer;
@@ -712,7 +712,7 @@ details.at-accordion[open] > summary .at-acc-chevron {
 .st-H { background: rgba(124, 58, 237, 0.13); color: #6d28d9; border: 1px solid rgba(124, 58, 237, 0.28); }
 .st-WO { background: rgba(100, 116, 139, 0.13); color: #475569; border: 1px solid rgba(100, 116, 139, 0.26); }
 .st-HD { background: rgba(14, 165, 233, 0.14); color: #0369a1; border: 1px solid rgba(14, 165, 233, 0.28); }
-.st-WFH { background: rgba(76, 0, 255, 0.12); color: #4c00ff; border: 1px solid rgba(76, 0, 255, 0.26); }
+.st-WFH { background: rgba(5, 108, 184, 0.12); color: #056cb8; border: 1px solid rgba(5, 108, 184, 0.26); }
 .st-OD { background: rgba(13, 148, 136, 0.14); color: #0f766e; border: 1px solid rgba(13, 148, 136, 0.28); }
 .st-NONE { background: #ffffff; color: var(--muted); border: 1px dashed var(--line-strong); }
 
@@ -754,7 +754,7 @@ details.at-accordion[open] > summary .at-acc-chevron {
 }
 
 .at-matrix-table thead th.is-holiday-col {
-  background: #4c00ff;
+  background: #056cb8;
 }
 
 .at-matrix-table thead th.at-sticky-emp {
@@ -835,7 +835,7 @@ details.at-accordion[open] > summary .at-acc-chevron {
 }
 
 .at-matrix-table tbody td.at-day-cell.is-holiday-col {
-  background: rgba(76, 0, 255, 0.05);
+  background: rgba(5, 108, 184, 0.05);
 }
 
 .at-cell-btn {
@@ -1131,7 +1131,7 @@ details.at-accordion[open] > summary .at-acc-chevron {
 a.at-related-card:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px -22px rgba(76, 0, 255, 0.28);
+  box-shadow: 0 16px 34px -22px rgba(5, 108, 184, 0.28);
 }
 
 .at-related-card[aria-disabled="true"] {
@@ -1193,7 +1193,7 @@ a.at-related-card .at-related-url {
   }
 
   .at-analytics-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .at-related-grid {
@@ -1210,7 +1210,7 @@ a.at-related-card .at-related-url {
   .at-grid-3,
   .at-grid-4,
   .at-guide-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .at-mobile-view-switch {
@@ -1251,7 +1251,7 @@ a.at-related-card .at-related-url {
   }
 
   .at-related-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

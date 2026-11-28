@@ -1,6 +1,6 @@
 /* =========================================================
    Open Sign — Free Online PDF Splitter (/tools/pdf-splitter/)
-   Inherits Open Sign Cobalt (#4C00FF), Inkwell (#130032),
+   Inherits Open Sign Cobalt (#056cb8), Inkwell (#130032),
    Ecru (#F8F3F0), and Surface Tint (#F6F4FA) tokens.
    ========================================================= */
 
@@ -101,8 +101,8 @@ body[data-view="pdf-splitter"] {
   gap: 6px;
   padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(76, 0, 255, 0.07);
-  border: 1px solid rgba(76, 0, 255, 0.15);
+  background: rgba(5, 108, 184, 0.07);
+  border: 1px solid rgba(5, 108, 184, 0.15);
   color: var(--ink);
   font-size: 12.5px;
   font-weight: 600;
@@ -151,7 +151,7 @@ body[data-view="pdf-splitter"] {
 }
 
 .sp-alert[data-kind="info"] {
-  border-color: rgba(76, 0, 255, 0.25);
+  border-color: rgba(5, 108, 184, 0.25);
   background: var(--accent-soft);
   color: var(--accent);
 }
@@ -184,7 +184,7 @@ body[data-view="pdf-splitter"] {
   gap: 12px;
   min-height: 230px;
   padding: 32px 20px;
-  border: 1.8px dashed rgba(76, 0, 255, 0.34);
+  border: 1.8px dashed rgba(5, 108, 184, 0.34);
   border-radius: 12px;
   background: var(--surface-tint);
   text-align: center;
@@ -194,14 +194,14 @@ body[data-view="pdf-splitter"] {
 
 .sp-dropzone:hover {
   border-color: var(--accent);
-  background: rgba(76, 0, 255, 0.045);
+  background: rgba(5, 108, 184, 0.045);
 }
 
 .sp-dropzone.is-over {
   border-color: var(--accent);
-  background: rgba(76, 0, 255, 0.09);
+  background: rgba(5, 108, 184, 0.09);
   transform: scale(1.006);
-  box-shadow: 0 0 0 4px rgba(76, 0, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(5, 108, 184, 0.12);
 }
 
 .sp-dz-icon {
@@ -212,7 +212,7 @@ body[data-view="pdf-splitter"] {
   border-radius: 12px;
   background: #ffffff;
   color: var(--accent);
-  box-shadow: 0 8px 20px -10px rgba(76, 0, 255, 0.36);
+  box-shadow: 0 8px 20px -10px rgba(5, 108, 184, 0.36);
 }
 
 .sp-dz-icon svg {
@@ -401,7 +401,7 @@ body[data-view="pdf-splitter"] {
 
 .sp-mode-card[aria-checked="true"] {
   border-color: var(--accent);
-  background: linear-gradient(135deg, rgba(76, 0, 255, 0.06) 0%, #ffffff 100%);
+  background: linear-gradient(135deg, rgba(5, 108, 184, 0.06) 0%, #ffffff 100%);
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
@@ -587,13 +587,13 @@ body[data-view="pdf-splitter"] {
 }
 
 .sp-page-card:hover {
-  border-color: rgba(76, 0, 255, 0.45);
+  border-color: rgba(5, 108, 184, 0.45);
   box-shadow: 0 10px 24px -16px rgba(19, 0, 50, 0.24);
 }
 
 .sp-page-card.is-selected {
   border-color: var(--accent);
-  background: rgba(76, 0, 255, 0.04);
+  background: rgba(5, 108, 184, 0.04);
   box-shadow: 0 0 0 2.5px var(--accent-soft);
 }
 
@@ -740,7 +740,7 @@ body[data-view="pdf-splitter"] {
   gap: 8px;
   padding: 14px 16px;
   border-radius: 10px;
-  border: 1px solid rgba(76, 0, 255, 0.25);
+  border: 1px solid rgba(5, 108, 184, 0.25);
   background: var(--accent-soft);
 }
 
@@ -759,7 +759,7 @@ body[data-view="pdf-splitter"] {
   width: 100%;
   height: 6px;
   border-radius: 99px;
-  background: rgba(76, 0, 255, 0.16);
+  background: rgba(5, 108, 184, 0.16);
   overflow: hidden;
 }
 
@@ -1056,7 +1056,7 @@ body[data-view="pdf-splitter"] {
 
 @media (max-width: 768px) {
   .sp-modes-info-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sp-page-grid {
@@ -1080,7 +1080,7 @@ body[data-view="pdf-splitter"] {
   }
 
   .sp-mode-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sp-page-grid {
@@ -1111,7 +1111,7 @@ body[data-view="pdf-splitter"] {
   }
 
   .sp-result-summary-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sp-output-row {
@@ -1154,7 +1154,7 @@ body[data-view="pdf-splitter"] {
 a.pc-related-card:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 16px 34px -22px rgba(76, 0, 255, 0.28);
+  box-shadow: 0 16px 34px -22px rgba(5, 108, 184, 0.28);
 }
 
 .pc-related-card[aria-disabled="true"] {
@@ -1223,6 +1223,6 @@ a.pc-related-card .pc-related-url {
 
 @media (max-width: 640px) {
   .pc-related-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

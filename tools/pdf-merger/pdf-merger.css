@@ -1,6 +1,6 @@
 /* =========================================================
    Open Sign — Free Online PDF Merger (/tools/pdf-merger/)
-   Reuses Open Sign Cobalt (#4C00FF), Inkwell (#130032),
+   Reuses Open Sign Cobalt (#056cb8), Inkwell (#130032),
    Ecru (#F8F3F0), and Surface Tint (#F6F4FA) tokens.
    ========================================================= */
 
@@ -77,8 +77,8 @@ body[data-view="pdf-merger"] {
   gap: 8px;
   padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(76, 0, 255, 0.08);
-  border: 1px solid rgba(76, 0, 255, 0.16);
+  background: rgba(5, 108, 184, 0.08);
+  border: 1px solid rgba(5, 108, 184, 0.16);
   color: var(--accent);
   font-size: 12.5px;
   font-weight: 700;
@@ -144,7 +144,7 @@ body[data-view="pdf-merger"] {
 }
 
 .pm-alert[data-kind="info"] {
-  border-color: rgba(76, 0, 255, 0.25);
+  border-color: rgba(5, 108, 184, 0.25);
   background: var(--accent-soft);
   color: var(--accent);
 }
@@ -177,7 +177,7 @@ body[data-view="pdf-merger"] {
   gap: 12px;
   min-height: 220px;
   padding: 32px 20px;
-  border: 1.8px dashed rgba(76, 0, 255, 0.34);
+  border: 1.8px dashed rgba(5, 108, 184, 0.34);
   border-radius: 12px;
   background: var(--surface-tint);
   text-align: center;
@@ -196,14 +196,14 @@ body[data-view="pdf-merger"] {
 
 .pm-dropzone:hover {
   border-color: var(--accent);
-  background: rgba(76, 0, 255, 0.045);
+  background: rgba(5, 108, 184, 0.045);
 }
 
 .pm-dropzone.is-over {
   border-color: var(--accent);
-  background: rgba(76, 0, 255, 0.09);
+  background: rgba(5, 108, 184, 0.09);
   transform: scale(1.006);
-  box-shadow: 0 0 0 4px rgba(76, 0, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(5, 108, 184, 0.12);
 }
 
 .pm-dz-left {
@@ -228,7 +228,7 @@ body[data-view="pdf-merger"] {
   border-radius: 12px;
   background: #ffffff;
   color: var(--accent);
-  box-shadow: 0 8px 20px -10px rgba(76, 0, 255, 0.36);
+  box-shadow: 0 8px 20px -10px rgba(5, 108, 184, 0.36);
 }
 
 .pm-dropzone.is-compact .pm-dz-icon {
@@ -308,7 +308,7 @@ body[data-view="pdf-merger"] {
 }
 
 .pm-state-pill[data-status="ready"] {
-  border-color: rgba(76, 0, 255, 0.25);
+  border-color: rgba(5, 108, 184, 0.25);
   color: var(--accent);
 }
 
@@ -319,7 +319,7 @@ body[data-view="pdf-merger"] {
 }
 
 .pm-state-pill[data-status="processing"] {
-  border-color: rgba(76, 0, 255, 0.35);
+  border-color: rgba(5, 108, 184, 0.35);
   background: var(--accent-soft);
   color: var(--accent);
 }
@@ -384,7 +384,7 @@ body[data-view="pdf-merger"] {
 }
 
 .pm-file-row:hover {
-  border-color: rgba(76, 0, 255, 0.34);
+  border-color: rgba(5, 108, 184, 0.34);
   box-shadow: 0 8px 22px -16px rgba(19, 0, 50, 0.22);
 }
 
@@ -596,7 +596,7 @@ body[data-view="pdf-merger"] {
   gap: 8px;
   padding: 14px 16px;
   border-radius: 10px;
-  border: 1px solid rgba(76, 0, 255, 0.25);
+  border: 1px solid rgba(5, 108, 184, 0.25);
   background: var(--accent-soft);
 }
 
@@ -614,7 +614,7 @@ body[data-view="pdf-merger"] {
   width: 100%;
   height: 6px;
   border-radius: 99px;
-  background: rgba(76, 0, 255, 0.16);
+  background: rgba(5, 108, 184, 0.16);
   overflow: hidden;
 }
 
@@ -886,7 +886,7 @@ body[data-view="pdf-merger"] {
 
 @media (max-width: 768px) {
   .pm-why-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .pm-related-grid {
@@ -953,7 +953,7 @@ body[data-view="pdf-merger"] {
   }
 
   .pm-result-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .pm-download-bar {
@@ -966,7 +966,7 @@ body[data-view="pdf-merger"] {
   }
 
   .pm-related-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

@@ -211,7 +211,7 @@ body[data-view="generator"] {
 /* Draw Canvas Stage */
 .sg-pad-stage {
   position: relative;
-  border: 1.5px dashed rgba(76, 0, 255, 0.3);
+  border: 1.5px dashed rgba(5, 108, 184, 0.3);
   border-radius: 10px;
   background: #ffffff;
   overflow: hidden;
@@ -487,14 +487,14 @@ body[data-view="generator"] {
 .sg-use-pdf-btn {
   width: 100%;
   min-height: 40px;
-  border-color: rgba(76, 0, 255, 0.3);
+  border-color: rgba(5, 108, 184, 0.3);
   color: var(--accent);
   background: var(--accent-soft);
 }
 
 .sg-use-pdf-btn:hover:not(:disabled) {
   border-color: var(--accent);
-  background: rgba(76, 0, 255, 0.14);
+  background: rgba(5, 108, 184, 0.14);
 }
 
 .sg-format-note {
@@ -642,7 +642,7 @@ body[data-view="generator"] {
 }
 
 .sg-usecase-card:hover {
-  border-color: rgba(76, 0, 255, 0.35);
+  border-color: rgba(5, 108, 184, 0.35);
   transform: translateY(-2px);
   box-shadow: 0 16px 36px -24px rgba(19, 0, 50, 0.16);
 }
@@ -709,7 +709,7 @@ body[data-view="generator"] {
 }
 
 .sg-faq-item[open] {
-  border-color: rgba(76, 0, 255, 0.35);
+  border-color: rgba(5, 108, 184, 0.35);
   box-shadow: 0 14px 32px -22px rgba(19, 0, 50, 0.16);
 }
 
@@ -772,7 +772,7 @@ body[data-view="generator"] {
 /* ---------- Responsive Breakpoints ---------- */
 @media (max-width: 1024px) {
   .sg-studio {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sg-steps-4 {
@@ -786,7 +786,7 @@ body[data-view="generator"] {
 
 @media (max-width: 768px) {
   .sg-faq-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -818,7 +818,7 @@ body[data-view="generator"] {
   }
 
   .sg-style-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sg-style-card {
@@ -826,16 +826,16 @@ body[data-view="generator"] {
   }
 
   .sg-download-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sg-contract-sign-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
   }
 
   .sg-usecase-grid,
   .sg-steps-4 {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

@@ -1,6 +1,6 @@
 /* =========================================================
    Open Sign — Free Meta Tag Generator (/tools/meta-tag-generator/)
-   Inherits Open Sign Cobalt (#4C00FF), Inkwell (#130032),
+   Inherits Open Sign Cobalt (#056cb8), Inkwell (#130032),
    Ecru (#F8F3F0), and Surface Tint (#F6F4FA) tokens.
    ========================================================= */
 
@@ -100,8 +100,8 @@ body[data-view="meta-tag-generator"] {
   gap: 6px;
   padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(76, 0, 255, 0.07);
-  border: 1px solid rgba(76, 0, 255, 0.15);
+  background: rgba(5, 108, 184, 0.07);
+  border: 1px solid rgba(5, 108, 184, 0.15);
   color: var(--ink);
   font-size: 12.5px;
   font-weight: 600;
@@ -981,7 +981,7 @@ details.mt-accordion[open] > summary .mt-acc-chevron {
 
 @media (max-width: 1080px) {
   .mt-workspace {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .mt-right-col {
@@ -995,7 +995,7 @@ details.mt-accordion[open] > summary .mt-acc-chevron {
 
 @media (max-width: 768px) {
   .mt-guide-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .mt-related-grid {
@@ -1017,7 +1017,7 @@ details.mt-accordion[open] > summary .mt-acc-chevron {
   }
 
   .mt-grid-2 {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .mt-code-actions {
@@ -1039,6 +1039,6 @@ details.mt-accordion[open] > summary .mt-acc-chevron {
   }
 
   .mt-related-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

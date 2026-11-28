@@ -1,6 +1,6 @@
 /* =========================================================
    Open Sign — Corporate About & Contact Us Styles
-   Inherits Open Sign Cobalt (#4C00FF), Inkwell (#130032),
+   Inherits Open Sign Cobalt (#056cb8), Inkwell (#130032),
    Deep Violet (#26065D), Ecru (#F8F3F0), and Sage (#F4FAEC).
    ========================================================= */
 
@@ -145,7 +145,7 @@
 }
 
 .ct-channel-card:hover {
-  border-color: rgba(76, 0, 255, 0.4);
+  border-color: rgba(5, 108, 184, 0.4);
   transform: translateY(-2px);
 }
 
@@ -286,7 +286,7 @@ a.ct-channel-value:hover {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px -16px rgba(76, 0, 255, 0.35);
+  box-shadow: 0 10px 22px -16px rgba(5, 108, 184, 0.35);
 }
 
 .ct-social-icon {
@@ -588,7 +588,7 @@ a.ct-channel-value:hover {
 @media (max-width: 960px) {
   .corp-story-grid,
   .ct-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .ct-main-wrap {
@@ -601,7 +601,7 @@ a.ct-channel-value:hover {
 @media (max-width: 640px) {
   .ct-row-2,
   .ct-social-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .ct-channel-card,
@@ -622,7 +622,7 @@ a.ct-channel-value:hover {
   }
 
   .site-footer .footer-top {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
 }

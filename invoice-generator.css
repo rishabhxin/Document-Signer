@@ -109,7 +109,7 @@ body[data-view="invoice"] {
   background: var(--accent);
   border-color: var(--accent);
   color: #ffffff;
-  box-shadow: 0 4px 12px -4px rgba(76, 0, 255, 0.45);
+  box-shadow: 0 4px 12px -4px rgba(5, 108, 184, 0.45);
 }
 
 .ig-tool-btn.primary:hover:not(:disabled) {
@@ -119,12 +119,12 @@ body[data-view="invoice"] {
 
 .ig-tool-btn.accent-soft {
   background: var(--accent-soft);
-  border-color: rgba(76, 0, 255, 0.28);
+  border-color: rgba(5, 108, 184, 0.28);
   color: var(--accent);
 }
 
 .ig-tool-btn.accent-soft:hover:not(:disabled) {
-  background: rgba(76, 0, 255, 0.14);
+  background: rgba(5, 108, 184, 0.14);
   border-color: var(--accent);
 }
 
@@ -377,7 +377,7 @@ body[data-view="invoice"] {
   align-items: center;
   gap: 12px;
   padding: 12px 14px;
-  border: 1.5px dashed rgba(76, 0, 255, 0.35);
+  border: 1.5px dashed rgba(5, 108, 184, 0.35);
   border-radius: 10px;
   background: var(--surface-tint);
   cursor: pointer;
@@ -629,7 +629,7 @@ body[data-view="invoice"] {
 
 /* The Printable A4 Invoice Sheet */
 .inv-paper {
-  --inv-accent: #4c00ff;
+  --inv-accent: #056cb8;
   width: 100%;
   min-height: 720px;
   background: #ffffff;
@@ -1035,7 +1035,7 @@ body[data-view="invoice"] {
 }
 
 .ig-sig-canvas-wrap {
-  border: 1.5px dashed rgba(76, 0, 255, 0.35);
+  border: 1.5px dashed rgba(5, 108, 184, 0.35);
   border-radius: 10px;
   background: #ffffff;
   overflow: hidden;
@@ -1069,7 +1069,7 @@ body[data-view="invoice"] {
 }
 
 .ig-usecase-card:hover {
-  border-color: rgba(76, 0, 255, 0.35);
+  border-color: rgba(5, 108, 184, 0.35);
   transform: translateY(-2px);
   box-shadow: 0 16px 36px -24px rgba(19, 0, 50, 0.16);
 }
@@ -1110,7 +1110,7 @@ body[data-view="invoice"] {
   }
 
   .ig-workspace {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .ig-preview-col {
@@ -1151,7 +1151,7 @@ body[data-view="invoice"] {
 
   .ig-grid-2,
   .ig-grid-3 {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .ig-template-row {
@@ -1189,7 +1189,7 @@ body[data-view="invoice"] {
   .inv-parties-grid.has-ship,
   .inv-summary-row,
   .inv-bottom-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .inv-sig-block {
@@ -1198,7 +1198,7 @@ body[data-view="invoice"] {
   }
 
   .ig-usecase-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
