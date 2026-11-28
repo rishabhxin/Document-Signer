@@ -1,0 +1,1010 @@
+/* =========================================================
+   Open Sign — Free KPI & KRA Calculator
+   Route: /tools/kpi-kra-calculator/
+   Inherits Open Sign global design system variables.
+   ========================================================= */
+
+body[data-view="kpi-kra-calculator"] {
+  background: var(--bg);
+}
+
+.kk-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Hero & Calculator Workspace Band ---------- */
+.kk-hero-band {
+  width: 100%;
+  background: linear-gradient(180deg, var(--ecru) 0%, #ffffff 34%);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(20px, 3.5vh, 36px) clamp(16px, 3.5vw, 48px) clamp(48px, 7vh, 80px);
+}
+
+.kk-container {
+  width: min(1340px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.kk-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.kk-breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.16s;
+}
+
+.kk-breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.kk-breadcrumb span[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.kk-bc-sep {
+  opacity: 0.45;
+}
+
+.kk-hero-head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.kk-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(30px, 4.2vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.kk-sub {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.6;
+}
+
+/* ---------- Top Toolbar ---------- */
+.kk-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 18px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 12px 30px -22px rgba(11, 19, 43, 0.15);
+}
+
+.kk-topbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.kk-mini-btn {
+  min-height: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+}
+
+.kk-mini-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.kk-mini-btn.primary {
+  background: var(--zoho-red, #e42527);
+  border-color: var(--zoho-red, #e42527);
+  color: #ffffff;
+}
+
+.kk-mini-btn.primary:hover:not(:disabled) {
+  background: var(--zoho-red-hover, #c81e20);
+  border-color: var(--zoho-red-hover, #c81e20);
+  color: #ffffff;
+}
+
+.kk-mini-btn.blue {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.kk-mini-btn.blue:hover:not(:disabled) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #ffffff;
+}
+
+.kk-mini-btn.danger {
+  color: var(--danger);
+  border-color: rgba(217, 45, 32, 0.28);
+}
+
+.kk-mini-btn.danger:hover:not(:disabled) {
+  border-color: var(--danger);
+  background: rgba(217, 45, 32, 0.08);
+  color: var(--danger);
+}
+
+.kk-mini-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- Two-Column Calculator Workspace ---------- */
+.kk-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.88fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.kk-left-col,
+.kk-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.kk-right-col {
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+}
+
+/* White Cards */
+.kk-card {
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: clamp(16px, 2.2vw, 22px);
+  box-shadow: 0 14px 36px -26px rgba(11, 19, 43, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kk-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--line);
+}
+
+.kk-card-head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kk-step-badge {
+  width: 23px;
+  height: 23px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: inline-grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Accordion for Optional Settings */
+details.kk-accordion {
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px -24px rgba(11, 19, 43, 0.14);
+  overflow: hidden;
+}
+
+details.kk-accordion > summary {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px clamp(16px, 2.2vw, 22px);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s;
+}
+
+details.kk-accordion > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.kk-accordion > summary:hover {
+  background: var(--surface-tint);
+}
+
+.kk-acc-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.kk-acc-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.kk-acc-chevron {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--surface-tint);
+  border: 1px solid var(--line);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s var(--ease), background-color 0.15s, color 0.15s;
+}
+
+details.kk-accordion[open] > summary .kk-acc-chevron {
+  transform: rotate(180deg);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.kk-acc-body {
+  padding: 14px clamp(16px, 2.2vw, 22px) 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Form Controls */
+.kk-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kk-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kk-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.kk-field label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.kk-input,
+.kk-select {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 11px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 7px;
+  background: var(--surface-tint);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: border-color 0.16s, background-color 0.16s, box-shadow 0.16s;
+}
+
+.kk-input:focus,
+.kk-select:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.kk-input.is-invalid {
+  border-color: var(--danger);
+  background: rgba(217, 45, 32, 0.04);
+}
+
+.kk-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.kk-toggle-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+/* Formula Tooltip Badge */
+.kk-tip {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--surface-tint);
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  cursor: help;
+}
+
+/* ---------- Weightage Validation Banner ---------- */
+.kk-weight-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--surface-tint);
+  color: var(--ink);
+}
+
+.kk-weight-bar.is-ok {
+  background: rgba(8, 153, 73, 0.08);
+  border-color: rgba(8, 153, 73, 0.28);
+  color: #066a32;
+}
+
+.kk-weight-bar.is-error {
+  background: rgba(228, 37, 39, 0.07);
+  border-color: rgba(228, 37, 39, 0.28);
+  color: #b42318;
+}
+
+/* ---------- KRA Cards & KPI Rows ---------- */
+.kk-kra-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kk-kra-card {
+  background: #ffffff;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.kk-kra-head {
+  padding: 14px 16px;
+  background: var(--surface-tint);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kk-kra-head-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 128px auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.kk-kra-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.kk-kra-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* KPI Table / Responsive Rows */
+.kk-kpi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kk-kpi-row {
+  padding: 12px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: #fafbfd;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kk-kpi-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(130px, 0.9fr) minmax(130px, 0.9fr);
+  gap: 10px;
+}
+
+.kk-kpi-vals-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 104px auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.kk-kpi-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.kk-kpi-metrics {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.kk-kpi-metrics strong {
+  color: var(--ink);
+}
+
+/* Status Pills */
+.kk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.kk-pill.is-achieved {
+  background: rgba(8, 153, 73, 0.12);
+  color: #066a32;
+}
+
+.kk-pill.is-partial {
+  background: rgba(245, 158, 11, 0.14);
+  color: #92400e;
+}
+
+.kk-pill.is-below {
+  background: rgba(228, 37, 39, 0.12);
+  color: #b42318;
+}
+
+.kk-pill.is-incomplete {
+  background: rgba(11, 19, 43, 0.08);
+  color: var(--muted);
+}
+
+.kk-kra-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+/* Empty State */
+.kk-empty {
+  padding: 32px 20px;
+  text-align: center;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface-tint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.kk-empty h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.kk-empty p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+  max-width: 44ch;
+}
+
+/* ---------- RIGHT COLUMN: LIVE RESULTS DASHBOARD ---------- */
+.kk-score-hero {
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #004e98 0%, #056cb8 75%, #0984d8 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kk-score-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kk-score-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.kk-score-num {
+  font-size: clamp(34px, 3.6vw, 46px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.kk-rating-badge {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 800;
+  background: #fed600;
+  color: #0b132b;
+  white-space: nowrap;
+}
+
+.kk-rating-badge[data-tier="unsatisfactory"],
+.kk-rating-badge[data-tier="incomplete"] {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.kk-score-sub {
+  margin: 0;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.48;
+}
+
+/* Summary Mini Cards Grid */
+.kk-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.kk-stat-box {
+  padding: 11px 13px;
+  border-radius: 9px;
+  background: var(--surface-tint);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.kk-stat-box span {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.kk-stat-box strong {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Validation Alerts List */
+.kk-alerts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kk-alerts li {
+  padding: 8px 11px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #78350f;
+}
+
+.kk-alerts li.is-error {
+  background: rgba(228, 37, 39, 0.07);
+  border-color: rgba(228, 37, 39, 0.25);
+  color: #b42318;
+}
+
+/* KRA Progress Bars & Chart */
+.kk-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kk-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.kk-bar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.kk-bar-track {
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--surface-tint);
+  overflow: hidden;
+}
+
+.kk-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.28s var(--ease);
+}
+
+.kk-bar-fill.is-achieved { background: #089949; }
+.kk-bar-fill.is-partial { background: #d97706; }
+.kk-bar-fill.is-below { background: #e42527; }
+
+/* KPI Target vs Actual Summary Table */
+.kk-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+
+.kk-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.kk-summary-table th {
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--surface-tint);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line-strong);
+  white-space: nowrap;
+}
+
+.kk-summary-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  vertical-align: middle;
+}
+
+.kk-summary-table tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Export Buttons Grid */
+.kk-export-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.kk-privacy-box {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--surface-tint);
+  border: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---------- SEO Content Sections & Related HR Tools ---------- */
+.kk-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.kk-info-card {
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kk-info-card h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.kk-info-card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.62;
+}
+
+.kk-formula-box {
+  padding: 10px 13px;
+  border-radius: 8px;
+  background: var(--surface-tint);
+  border-left: 3px solid var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+.kk-related-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kk-related-card {
+  padding: 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s var(--ease), box-shadow 0.2s;
+}
+
+a.kk-related-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -22px rgba(5, 108, 184, 0.24);
+}
+
+.kk-related-card[aria-disabled="true"] {
+  opacity: 0.85;
+}
+
+.kk-related-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.kk-related-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--surface-tint);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+}
+
+.kk-related-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.kk-related-card h3 {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.kk-related-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.kk-related-url {
+  margin-top: auto;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+a.kk-related-card .kk-related-url {
+  color: var(--accent);
+}
+
+/* Confirmation Modal */
+.kk-modal-sm {
+  width: min(440px, calc(100vw - 24px));
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+@media (max-width: 1100px) {
+  .kk-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .kk-right-col {
+    position: static;
+  }
+
+  .kk-related-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .kk-grid-2,
+  .kk-grid-3,
+  .kk-kra-head-top,
+  .kk-kpi-grid,
+  .kk-kpi-vals-grid,
+  .kk-guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kk-related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .kk-summary-grid,
+  .kk-export-grid,
+  .kk-related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kk-topbar-group {
+    width: 100%;
+  }
+
+  .kk-topbar-group .kk-mini-btn {
+    flex: 1 1 auto;
+  }
+}
+
+/* ---------- Clean Print Styles ---------- */
+@media print {
+  .site-header,
+  .side-nav,
+  .side-nav-backdrop,
+  .site-footer,
+  .kk-breadcrumb,
+  .kk-topbar,
+  .kk-export-grid,
+  .kk-privacy-box,
+  .workflow-band,
+  .saas-section,
+  .sg-faq-band,
+  .toast,
+  button.kk-mini-btn {
+    display: none !important;
+  }
+
+  .kk-workspace {
+    grid-template-columns: 1fr !important;
+  }
+
+  .kk-right-col {
+    position: static !important;
+  }
+}

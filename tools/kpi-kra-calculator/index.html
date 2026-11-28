@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#056CB8" />
+  <title>Free KPI &amp; KRA Calculator, Calculate Employee Performance | Open Sign</title>
+  <meta name="description" content="Calculate KPI achievement, KRA scores, weighted performance, and employee ratings with Open Sign's free online KPI &amp; KRA Calculator." />
+  <link rel="canonical" href="https://www.opensign.in/tools/kpi-kra-calculator/" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Open Sign" />
+  <meta property="og:title" content="Free KPI &amp; KRA Calculator, Calculate Employee Performance | Open Sign" />
+  <meta property="og:description" content="Calculate KPI achievement percentages, weighted KRA scores, overall performance percentage, and final ratings instantly in your browser. Export PDF, Excel, or CSV." />
+  <meta property="og:url" content="https://www.opensign.in/tools/kpi-kra-calculator/" />
+  <meta property="og:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Twitter / X Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free KPI &amp; KRA Calculator, Calculate Employee Performance | Open Sign" />
+  <meta name="twitter:description" content="Free browser-based KPI &amp; KRA Calculator with weighted scoring, editable rating thresholds, and PDF/Excel report exports." />
+  <meta name="twitter:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Ensure trailing slash on HTTP origins so relative asset paths resolve cleanly -->
+  <script>
+    if (/^https?:$/.test(location.protocol) && /\/tools\/kpi-kra-calculator$/.test(location.pathname)) {
+      location.replace(location.pathname + "/" + location.search + location.hash);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../contact.css" />
+  <link rel="stylesheet" href="../../signature-generator.css" />
+  <link rel="stylesheet" href="kpi-kra-calculator.css" />
+  <link rel="shortcut icon" href="../../assets/fav.png" type="image/x-icon" />
+
+  <!-- Client-side Excel (SheetJS) & PDF (pdf-lib) Export Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PWPQ9PMD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+
+  <!-- Structured Data (WebApplication, BreadcrumbList, FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Open Sign KPI & KRA Calculator",
+        "url": "https://www.opensign.in/tools/kpi-kra-calculator/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+        "description": "Free standalone browser-based KPI and KRA Calculator to compute KPI achievement percentages, weighted KRA scores, overall performance ratings, and downloadable PDF/Excel reports."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.opensign.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Human Resource", "item": "https://www.opensign.in/tools/kpi-kra-calculator/" },
+          { "@type": "ListItem", "position": 3, "name": "KPI & KRA Calculator", "item": "https://www.opensign.in/tools/kpi-kra-calculator/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between KPI and KRA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "KRA (Key Result Area) defines the broad strategic responsibility of a role (such as Sales Performance or Productivity), while KPI (Key Performance Indicator) is the specific measurable metric used to track progress within that KRA (such as Monthly Revenue or On-time Delivery %)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is weighted KPI and KRA score calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Each KPI achievement percentage is multiplied by its KPI weightage divided by 100 to produce its weighted KPI score. Summing all weighted KPI scores under a KRA gives the KRA score, and multiplying each KRA score by its KRA weightage divided by 100 produces the overall performance score."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is employee performance data uploaded to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Open Sign KPI & KRA Calculator runs 100% locally in your browser without requiring login or uploading any employee data to a server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-view="kpi-kra-calculator">
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link" href="../../about.html">About Us</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>E-Signature</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../index.html" role="menuitem"><span>Sign PDF Online</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../index.html#features" role="menuitem"><span>Smart Sign Auto-Detect</span></a>
+          <a class="nav-drop-item" href="../../signature-generator.html" role="menuitem"><span>Signature Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>PDF &amp; Document</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../tools/pdf-merger/index.html" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-compressor/index.html" role="menuitem"><span>PDF Compressor</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-splitter/index.html" role="menuitem"><span>PDF Splitter</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../pdf-to-jpg/index.html" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Page Number Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Metadata Editor</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn is-current" aria-expanded="false" aria-haspopup="true">
+          <span>Human Resource</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu is-hr-mega" role="menu" aria-label="Human Resource suite">
+          <div class="hr-mega-head">
+            <span class="hr-mega-title">Human Resource Suite</span>
+            <span class="hr-mega-rec">Recommended</span>
+          </div>
+          <div class="hr-mega-grid">
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><span>Salary &amp; Payroll</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>CTC Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <a class="nav-drop-item" href="../../payslip-generator.html" role="menuitem"><span>Payslip Generator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PF &amp; ESI</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Gratuity</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>F&amp;F Settlement</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Increment Calculator</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 12h8M8 16h6"/></svg><span>HR Documents</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Offer Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Appointment Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Experience Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Relieving Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Resignation Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Termination Letter</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Attendance &amp; Leave</span></p>
+              <a class="nav-drop-item" href="../attendance-sheet-generator/index.html" role="menuitem"><span>Attendance Sheet Generator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Leave Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Working Days</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Leave Encashment</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Notice Period</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.85"/></svg><span>Recruitment &amp; Employees</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JD Generator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Interview Questions</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Onboarding Checklist</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Employee ID Card</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Org Chart</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Performance &amp; Management</span></p>
+              <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>KPI &amp; KRA Calculator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Appraisal Form</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Attrition Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Employee Cost Calculator</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Business</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../invoice-generator.html" role="menuitem"><span>Invoice Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Quotation Generator</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>SEO &amp; Marketing</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Sitemap Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Robots.txt Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../meta-tag-generator/index.html" role="menuitem"><span>Meta Tag Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Open Graph Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../schema-markup-generator/index.html" role="menuitem"><span>Schema Markup Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>UTM Link Builder</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Developer &amp; Utility</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JSON &amp; XML Formatter</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../qr-code-generator/index.html" role="menuitem"><span>QR Code Generator</span><span class="nav-live-badge">Live</span></a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="../../contact.html">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="../../index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="../../index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">E-Signature</p>
+        <nav class="side-nav-list" aria-label="Mobile E-Signature navigation">
+          <a class="side-nav-link" href="../../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Home / Sign PDF</span>
+          </a>
+          <a class="side-nav-link" href="../../signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">PDF &amp; Document</p>
+        <nav class="side-nav-list" aria-label="Mobile PDF tools navigation">
+          <a class="side-nav-link" href="../../tools/pdf-merger/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M9 15h6M12 12v6" />
+            </svg>
+            <span>PDF Merger</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-compressor/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+            </svg>
+            <span>PDF Compressor</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-splitter/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" />
+            </svg>
+            <span>PDF Splitter</span>
+          </a>
+          <a class="side-nav-link" href="../pdf-to-jpg/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span>PDF to JPG Converter</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JPG to PDF Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Watermark Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Page Number Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Metadata Editor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Human Resource</p>
+        <details class="side-hr-acc" open>
+          <summary><span>Salary &amp; Payroll</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>CTC Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <a class="side-nav-link" href="../../payslip-generator.html">
+                <span>Payslip Generator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>PF &amp; ESI</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Gratuity</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>F&amp;F Settlement</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Increment Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>HR Documents</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Offer Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Appointment Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Experience Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Relieving Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Resignation Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Termination Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc" open>
+          <summary><span>Attendance &amp; Leave</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <a class="side-nav-link" href="../attendance-sheet-generator/index.html">
+                <span>Attendance Sheet Generator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Leave Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Working Days</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Leave Encashment</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Notice Period</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>Recruitment &amp; Employees</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>JD Generator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Interview Questions</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Onboarding Checklist</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Employee ID Card</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Org Chart</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>Performance &amp; Management</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <a class="side-nav-link" href="./" aria-current="page">
+                <span>KPI &amp; KRA Calculator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Appraisal Form</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Attrition Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Employee Cost Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Business</p>
+        <nav class="side-nav-list" aria-label="Mobile Business navigation">
+          <a class="side-nav-link" href="../../invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Quotation Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">SEO &amp; Marketing</p>
+        <nav class="side-nav-list" aria-label="Mobile SEO &amp; Marketing navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Sitemap Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Robots.txt Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../meta-tag-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            <span>Meta Tag Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Open Graph Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../schema-markup-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>Schema Markup Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>UTM Link Builder</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Developer &amp; Utility</p>
+        <nav class="side-nav-list" aria-label="Mobile developer &amp; utility navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JSON &amp; XML Formatter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../qr-code-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <path d="M14 14h3v3h-3zM19 19h2v2h-2zM14 20h2" />
+            </svg>
+            <span>QR Code Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="../../about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About Us</span>
+          </a>
+          <a class="side-nav-link" href="../../contact.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            <span>Contact Us</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="../../index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view kk-page enter">
+      <!-- ============ HERO & TWO-COLUMN KPI/KRA CALCULATOR ============ -->
+      <section class="kk-hero-band" aria-labelledby="kkHeroTitle">
+        <div class="kk-container">
+          <!-- Breadcrumb Navigation -->
+          <nav class="kk-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="kk-bc-sep" aria-hidden="true">/</span>
+            <span>Human Resource</span>
+            <span class="kk-bc-sep" aria-hidden="true">/</span>
+            <span aria-current="page">KPI &amp; KRA Calculator</span>
+          </nav>
+
+          <div class="kk-hero-head">
+            <h1 class="kk-title" id="kkHeroTitle">Free KPI &amp; KRA Calculator</h1>
+            <p class="kk-sub">
+              Calculate KPI achievement percentages, weighted KRA scores, overall performance percentage, and final employee ratings instantly in your browser. Export clean PDF, Excel, or CSV performance reports with zero sign-up.
+            </p>
+          </div>
+
+          <!-- Top Action Toolbar -->
+          <div class="kk-topbar" role="toolbar" aria-label="Calculator actions">
+            <div class="kk-topbar-group">
+              <button type="button" class="kk-mini-btn blue" id="kkAddKraBtn">+ Add KRA</button>
+              <button type="button" class="kk-mini-btn" id="kkBalanceKrasBtn" title="Split 100% evenly across all KRAs">Auto-Split KRAs to 100%</button>
+            </div>
+
+            <div class="kk-topbar-group">
+              <button type="button" class="kk-mini-btn" id="kkLoadSampleBtn">Load Sample</button>
+              <button type="button" class="kk-mini-btn" id="kkClearBlankBtn">Start Blank</button>
+              <button type="button" class="kk-mini-btn danger" id="kkResetBtn">Reset Calculator</button>
+            </div>
+          </div>
+
+          <!-- Two-Column Workspace -->
+          <div class="kk-workspace" role="region" aria-label="KPI and KRA calculator workspace">
+            <!-- ============ LEFT / MAIN SECTION ============ -->
+            <div class="kk-left-col">
+              <!-- Card 1: Optional Employee & Review Information -->
+              <details class="kk-accordion" open>
+                <summary>
+                  <span class="kk-acc-title">
+                    <span class="kk-step-badge">1</span>
+                    Basic Information (Optional, Included in Exports)
+                  </span>
+                  <span class="kk-acc-meta">
+                    <span>Employee &amp; Review Period</span>
+                    <span class="kk-acc-chevron" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4" /></svg>
+                    </span>
+                  </span>
+                </summary>
+
+                <div class="kk-acc-body">
+                  <div class="kk-grid-3">
+                    <div class="kk-field">
+                      <label for="kkEmpName">Employee Name</label>
+                      <input type="text" id="kkEmpName" class="kk-input" placeholder="e.g. Aarav Mehta" autocomplete="off" />
+                    </div>
+                    <div class="kk-field">
+                      <label for="kkEmpId">Employee ID</label>
+                      <input type="text" id="kkEmpId" class="kk-input" placeholder="e.g. EMP-204" autocomplete="off" />
+                    </div>
+                    <div class="kk-field">
+                      <label for="kkCompanyName">Company Name</label>
+                      <input type="text" id="kkCompanyName" class="kk-input" placeholder="e.g. Acme Technologies" autocomplete="off" />
+                    </div>
+                  </div>
+
+                  <div class="kk-grid-3">
+                    <div class="kk-field">
+                      <label for="kkEmpDept">Department</label>
+                      <input type="text" id="kkEmpDept" class="kk-input" placeholder="e.g. Sales &amp; Revenue" autocomplete="off" />
+                    </div>
+                    <div class="kk-field">
+                      <label for="kkEmpRole">Designation</label>
+                      <input type="text" id="kkEmpRole" class="kk-input" placeholder="e.g. Senior Account Manager" autocomplete="off" />
+                    </div>
+                    <div class="kk-field">
+                      <label for="kkReviewPeriod">Review Period</label>
+                      <input type="text" id="kkReviewPeriod" class="kk-input" placeholder="e.g. Q3 FY 2026–27" autocomplete="off" />
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <!-- Card 2: Scoring Cap & Editable Rating Thresholds -->
+              <details class="kk-accordion">
+                <summary>
+                  <span class="kk-acc-title">
+                    <span class="kk-step-badge">2</span>
+                    Achievement Cap &amp; Rating Thresholds
+                  </span>
+                  <span class="kk-acc-meta">
+                    <span>Cap 120% · Editable Scale</span>
+                    <span class="kk-acc-chevron" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4" /></svg>
+                    </span>
+                  </span>
+                </summary>
+
+                <div class="kk-acc-body">
+                  <div class="kk-grid-2" style="align-items:end">
+                    <label class="kk-toggle-label">
+                      <input type="checkbox" id="kkCapEnabled" checked />
+                      <span>Cap individual KPI achievement at maximum limit</span>
+                    </label>
+                    <div class="kk-field">
+                      <label for="kkMaxCap">
+                        Maximum Achievement Cap (%)
+                        <span class="kk-tip" title="Default is 120% so one over-performing KPI does not distort the overall KRA score. Uncheck to disable capping.">?</span>
+                      </label>
+                      <input type="number" id="kkMaxCap" class="kk-input" min="100" max="500" step="5" value="120" />
+                    </div>
+                  </div>
+
+                  <div class="kk-grid-2">
+                    <div class="kk-field">
+                      <label for="kkThrOut">Outstanding (≥ %)</label>
+                      <input type="number" id="kkThrOut" class="kk-input" min="0" max="150" step="1" value="90" />
+                    </div>
+                    <div class="kk-field">
+                      <label for="kkThrExc">Exceeds Expectations (≥ %)</label>
+                      <input type="number" id="kkThrExc" class="kk-input" min="0" max="150" step="1" value="80" />
+                    </div>
+                    <div class="kk-field">
+                      <label for="kkThrMeet">Meets Expectations (≥ %)</label>
+                      <input type="number" id="kkThrMeet" class="kk-input" min="0" max="150" step="1" value="70" />
+                    </div>
+                    <div class="kk-field">
+                      <label for="kkThrNeed">Needs Improvement (≥ %, below = Unsatisfactory)</label>
+                      <input type="number" id="kkThrNeed" class="kk-input" min="0" max="150" step="1" value="60" />
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <!-- KRA Weightage Validation Status -->
+              <div class="kk-weight-bar is-ok" id="kkKraWeightBar" role="status" aria-live="polite">
+                <span id="kkKraWeightText">Total KRA Weightage: 100% (Valid)</span>
+                <span style="font-size:12px;opacity:0.85">Each KRA's KPIs must also total 100%</span>
+              </div>
+
+              <!-- Datalist for Quick KRA Suggestions -->
+              <datalist id="kkKraSuggestions">
+                <option value="Sales Performance"></option>
+                <option value="Customer Satisfaction"></option>
+                <option value="Productivity"></option>
+                <option value="Quality of Work"></option>
+                <option value="Team Collaboration"></option>
+                <option value="Project Delivery"></option>
+                <option value="Lead Generation"></option>
+                <option value="Revenue Growth"></option>
+              </datalist>
+
+              <!-- Dynamic KRA Cards List -->
+              <div class="kk-kra-list" id="kkKraList"></div>
+            </div>
+
+            <!-- ============ RIGHT / LIVE RESULTS SECTION ============ -->
+            <div class="kk-right-col">
+              <!-- Overall Performance Score Hero Card -->
+              <section class="kk-card" aria-labelledby="kkResultsHead">
+                <div class="kk-card-head">
+                  <h2 id="kkResultsHead">Live Performance Results</h2>
+                  <span class="kk-tip" title="Overall Score = Sum of (KRA Score × KRA Weightage / 100)">?</span>
+                </div>
+
+                <div class="kk-score-hero">
+                  <div class="kk-score-top">
+                    <div>
+                      <div class="kk-score-kicker">Overall Performance Score</div>
+                      <div class="kk-score-num" id="kkOverallScore">94.36%</div>
+                    </div>
+                    <span class="kk-rating-badge" id="kkOverallRating" data-tier="outstanding">Outstanding</span>
+                  </div>
+                  <p class="kk-score-sub" id="kkOverallSub">Calculated live from your KRAs and KPIs.</p>
+                </div>
+
+                <!-- Summary Metric Cards -->
+                <div class="kk-summary-grid">
+                  <div class="kk-stat-box">
+                    <span>Total KRAs</span>
+                    <strong id="kkStatKras">0</strong>
+                  </div>
+                  <div class="kk-stat-box">
+                    <span>Total KPIs</span>
+                    <strong id="kkStatKpis">0</strong>
+                  </div>
+                  <div class="kk-stat-box">
+                    <span>Avg KPI Achievement</span>
+                    <strong id="kkStatAvgKpi">—</strong>
+                  </div>
+                  <div class="kk-stat-box">
+                    <span>Final Rating</span>
+                    <strong id="kkStatRating">—</strong>
+                  </div>
+                  <div class="kk-stat-box">
+                    <span>Highest Performing KRA</span>
+                    <strong id="kkStatHighKra">—</strong>
+                  </div>
+                  <div class="kk-stat-box">
+                    <span>Lowest Performing KRA</span>
+                    <strong id="kkStatLowKra">—</strong>
+                  </div>
+                </div>
+
+                <!-- Validation Alerts -->
+                <ul class="kk-alerts" id="kkValAlerts" aria-live="polite" hidden></ul>
+
+                <!-- Export & Print Buttons -->
+                <div class="kk-export-grid">
+                  <button type="button" class="kk-mini-btn primary" id="kkExportPdfBtn">Download PDF Report</button>
+                  <button type="button" class="kk-mini-btn blue" id="kkExportExcelBtn">Export Excel (.xlsx)</button>
+                  <button type="button" class="kk-mini-btn" id="kkExportCsvBtn">Export CSV</button>
+                  <button type="button" class="kk-mini-btn" id="kkPrintBtn">Print Report</button>
+                </div>
+              </section>
+
+              <!-- KRA-Wise Breakdown & Chart Card -->
+              <section class="kk-card" aria-labelledby="kkBreakdownHead">
+                <div class="kk-card-head">
+                  <h2 id="kkBreakdownHead">KRA-Wise Performance Breakdown</h2>
+                </div>
+                <div class="kk-bars-list" id="kkKraBreakdown"></div>
+                <div id="kkPerfChart" style="margin-top:6px"></div>
+              </section>
+
+              <!-- KPI Target vs Actual Summary Table -->
+              <section class="kk-card" aria-labelledby="kkKpiCompHead">
+                <div class="kk-card-head">
+                  <h2 id="kkKpiCompHead">KPI Target vs Actual Summary</h2>
+                </div>
+                <div class="kk-table-wrap">
+                  <table class="kk-summary-table" aria-label="KPI comparison summary">
+                    <thead>
+                      <tr>
+                        <th>KPI</th>
+                        <th>Target</th>
+                        <th>Actual</th>
+                        <th>Achiev.</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="kkKpiCompBody"></tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Privacy Assurance -->
+              <div class="kk-privacy-box">
+                All calculations and PDF/Excel exports run directly in your browser. Open Sign does not upload, track, or store employee performance data.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SEO GUIDES: HOW TO CALCULATE KPI & KRA SCORES ============ -->
+      <section class="saas-section" aria-labelledby="kkCalcKpiTitle">
+        <div class="saas-container">
+          <div class="kk-guide-grid">
+            <div class="kk-info-card">
+              <span class="section-kicker">KPI calculation formulas</span>
+              <h2 id="kkCalcKpiTitle">How to Calculate KPI Scores</h2>
+              <p>
+                A Key Performance Indicator (KPI) measures how closely an actual result meets a defined target. Depending on whether higher or lower values are favorable, use one of three formulas:
+              </p>
+              <div class="kk-formula-box">
+                Higher is better: (Actual ÷ Target) × 100<br />
+                Lower is better: (Target ÷ Actual) × 100<br />
+                Binary KPI: Completed = 100%, Not Completed = 0%
+              </div>
+              <p>
+                Multiply the resulting achievement percentage (subject to your achievement cap, such as 120%) by the KPI's weightage divided by 100 to obtain the <strong>Weighted KPI Score</strong>.
+              </p>
+            </div>
+
+            <div class="kk-info-card">
+              <span class="section-kicker">Weighted KRA aggregation</span>
+              <h2 id="kkCalcKraTitle">How to Calculate KRA Scores</h2>
+              <p>
+                Each Key Result Area (KRA) groups related KPIs whose internal weightages total 100%. Summing the weighted KPI scores gives the KRA score. Then multiply each KRA score by its KRA weightage (where all KRAs total 100%) to find the overall employee performance score:
+              </p>
+              <div class="kk-formula-box">
+                KRA Score = Σ (Weighted KPI Scores)<br />
+                Overall Score = Σ (KRA Score × KRA Weightage ÷ 100)
+              </div>
+              <p>
+                If any KPI is missing a target or actual value, Open Sign marks that KRA as <strong>Incomplete</strong> rather than silently treating missing numbers as zero.
+              </p>
+            </div>
+
+            <div class="kk-info-card">
+              <span class="section-kicker">Core HR concepts</span>
+              <h2 id="kkVsTitle">KPI vs KRA Explained</h2>
+              <p>
+                <strong>KRA (Key Result Area)</strong> defines <em>what</em> major outcomes a role is accountable for, such as Sales Performance, Customer Satisfaction, or Project Delivery. <strong>KPI (Key Performance Indicator)</strong> defines <em>how</em> success within that KRA is measured numerically, such as ₹5,00,000 Monthly Revenue or 95% On-Time Delivery. Together, KRAs provide strategic focus while KPIs provide objective measurement.
+              </p>
+            </div>
+
+            <div class="kk-info-card">
+              <span class="section-kicker">Worked example</span>
+              <h2 id="kkExampleTitle">KPI &amp; KRA Calculation Example</h2>
+              <p>
+                In the pre-filled sample above, <strong>Sales Performance (60% weight)</strong> includes Revenue (₹4,50,000 / ₹5,00,000 = 90% × 50% = 45), New Customers (18 / 20 = 90% × 30% = 27), and Conversion Rate (12% / 10% = 120% × 20% = 24), totaling a <strong>96.0% KRA score</strong> (57.60 weighted points). Combined with <strong>Productivity (40% weight, 91.89% KRA score = 36.76 points)</strong>, the employee achieves an overall score of <strong>94.36% (Outstanding)</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FREQUENTLY ASKED QUESTIONS ============ -->
+      <section class="sg-faq-band" aria-labelledby="kkFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="kkFaqTitle">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>1. What is the difference between KRA and KPI?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>A KRA (Key Result Area) is a broad responsibility area assigned to an employee (such as Sales Performance or Quality of Work), while a KPI (Key Performance Indicator) is a quantifiable target inside that KRA used to measure actual achievement.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>2. Why must KRA and KPI weightages total 100%?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Weightages ensure every objective contributes proportionally to the final score. If KRA or KPI weightages do not add up to 100%, the weighted average would under- or over-state employee performance. Use the Auto-Split buttons to balance weights quickly.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>3. How do lower-is-better KPIs work?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>For metrics like support response time, bug count, or cost per lead where smaller numbers are better, select "Lower is better". The calculator divides Target by Actual (Target ÷ Actual × 100) and safely handles zero values.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>4. Why is there a 120% achievement cap by default?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Capping individual KPI achievement at 120% prevents a single extreme outlier from masking underperformance in other critical KPIs. You can adjust the cap percentage or turn off capping completely under Achievement Cap &amp; Rating Thresholds.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>5. Can I customize the performance rating thresholds?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Expand Section 2 (Achievement Cap &amp; Rating Thresholds) to edit the minimum percentage required for Outstanding, Exceeds Expectations, Meets Expectations, and Needs Improvement.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>6. Can I download the KPI &amp; KRA report as PDF or Excel?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Click Download PDF Report for a formatted summary with the Open Sign logo and calculation methodology, Export Excel (.xlsx) for a 2-sheet workbook, or Export CSV for raw spreadsheet analysis.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>7. Is this KPI &amp; KRA Calculator free and private?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. It is 100% free with no login required, and all calculations and file exports happen locally inside your web browser without sending employee data to any server.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELATED HR TOOLS ============ -->
+      <section class="saas-section" aria-labelledby="kkRelatedTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">More Human Resource &amp; Business Tools</span>
+            <h2 class="section-title" id="kkRelatedTitle">Related HR Tools</h2>
+          </div>
+
+          <div class="kk-related-grid">
+            <a class="kk-related-card" href="../../payslip-generator.html">
+              <div class="kk-related-top">
+                <span class="kk-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6M7 17h4"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Payslip Generator</h3>
+              <p>Generate Indian statutory monthly salary slips with Basic, HRA, EPF, and A4 PDF export.</p>
+              <span class="kk-related-url">Open Payslip Generator →</span>
+            </a>
+
+            <a class="kk-related-card" href="../attendance-sheet-generator/index.html">
+              <div class="kk-related-top">
+                <span class="kk-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 15l2 2 4-4"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Attendance Sheet Generator</h3>
+              <p>Track monthly team attendance, leaves, holidays, and export Excel or PDF registers.</p>
+              <span class="kk-related-url">Open Attendance Sheet →</span>
+            </a>
+
+            <a class="kk-related-card" href="../../invoice-generator.html">
+              <div class="kk-related-top">
+                <span class="kk-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Invoice Generator</h3>
+              <p>Create GST tax invoices with UPI QR codes, Tally XML, and A4 PDF export.</p>
+              <span class="kk-related-url">Open Invoice Generator →</span>
+            </a>
+
+            <article class="kk-related-card" aria-disabled="true">
+              <div class="kk-related-top">
+                <span class="kk-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h2M14 14h2"/></svg>
+                </span>
+                <span class="nav-soon-badge">Soon</span>
+              </div>
+              <h3>CTC Calculator</h3>
+              <p>Break down annual CTC into monthly in-hand take-home salary with PF and tax.</p>
+              <span class="kk-related-url">Coming Soon</span>
+            </article>
+
+            <article class="kk-related-card" aria-disabled="true">
+              <div class="kk-related-top">
+                <span class="kk-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                </span>
+                <span class="nav-soon-badge">Soon</span>
+              </div>
+              <h3>Appraisal Form</h3>
+              <p>Structured self-review and manager appraisal templates ready for signing.</p>
+              <span class="kk-related-url">Coming Soon</span>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ CONFIRMATION MODAL ============ -->
+  <dialog id="kkConfirmDialog" class="kk-modal-sm" aria-labelledby="kkConfirmTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="kkConfirmTitle">Confirm Action</h2>
+        <p class="dlg-sub" id="kkConfirmMsg"></p>
+      </div>
+      <button class="icon-btn" id="kkConfirmCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="kkConfirmCancel">Cancel</button>
+      <button type="button" class="btn primary" id="kkConfirmOk">Confirm</button>
+    </div>
+  </dialog>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <!-- Brand & Social Column -->
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="../../index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="156" height="42" />
+          </a>
+          <p class="footer-tagline">
+            Enterprise-grade eSignature, smart PDF utilities, and business document tools engineered for speed, precision, and zero-retention browser privacy.
+          </p>
+          <div class="footer-socials" aria-label="Open Sign social media">
+            <a class="footer-social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 1: E-Signature -->
+        <div class="footer-col">
+          <p class="footer-col-title">E-Signature</p>
+          <nav class="footer-links" aria-label="Footer E-Signature tools">
+            <a href="../../index.html">Sign PDF Online</a>
+            <a href="../../index.html#features">Smart Sign Auto-Detect</a>
+            <a href="../../signature-generator.html">Signature Generator</a>
+            <a href="../../index.html#workflow">How It Works</a>
+          </nav>
+        </div>
+
+        <!-- Column 2: PDF & Document -->
+        <div class="footer-col">
+          <p class="footer-col-title">PDF &amp; Document</p>
+          <nav class="footer-links" aria-label="Footer PDF and Document tools">
+            <a href="../../tools/pdf-merger/index.html">PDF Merger</a>
+            <a href="../../tools/pdf-compressor/index.html">PDF Compressor</a>
+            <a href="../../tools/pdf-splitter/index.html">PDF Splitter</a>
+            <a href="../pdf-to-jpg/index.html">PDF to JPG Converter</a>
+            <span class="footer-soon-item" aria-disabled="true">JPG to PDF Converter <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Watermark Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Page Number Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Metadata Editor <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 3: Human Resource -->
+        <div class="footer-col">
+          <p class="footer-col-title">Human Resource</p>
+          <nav class="footer-links" aria-label="Footer Human Resource tools">
+            <a href="../../payslip-generator.html">Payslip Generator</a>
+            <a href="../attendance-sheet-generator/index.html">Attendance Sheet Generator</a>
+            <a href="./" aria-current="page">KPI &amp; KRA Calculator</a>
+            <span class="footer-soon-item" aria-disabled="true">Salary &amp; Payroll Tools <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">HR Documents &amp; Leave <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">Recruitment &amp; KPI <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Business + More Suites -->
+        <div class="footer-col">
+          <p class="footer-col-title">Business</p>
+          <nav class="footer-links" aria-label="Footer Business tools">
+            <a href="../../invoice-generator.html">Invoice Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Quotation Generator <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+
+          <p class="footer-col-title" style="margin-top:12px">More Suites</p>
+          <nav class="footer-links" aria-label="Footer upcoming tool suites">
+            <a href="../meta-tag-generator/index.html">Meta Tag Generator</a>
+            <a href="../schema-markup-generator/index.html">Schema Markup Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">SEO Suite <span class="footer-soon-tag">Soon</span></span>
+            <a href="../qr-code-generator/index.html">QR Code Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Developer Suite <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Company -->
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Footer Company navigation">
+            <a href="../../index.html">Home</a>
+            <a href="../../about.html">About Us</a>
+            <a href="../../about.html#security">Security &amp; Privacy</a>
+            <a href="../../contact.html">Contact Us</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="../../about.html">About Us</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../about.html#security">Privacy &amp; Security</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../nav.js"></script>
+  <script src="kpi-kra-calculator.js"></script>
+</body>
+</html>
