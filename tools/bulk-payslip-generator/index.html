@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#056CB8" />
+  <title>Free Bulk Payslip Generator, Generate Multiple Payslips Online | Open Sign</title>
+  <meta name="description" content="Generate multiple employee payslips at once for free. Upload Excel or CSV salary data, create individual PDF payslips, and download all payslips in a ZIP file with Open Sign." />
+  <link rel="canonical" href="https://www.opensign.in/tools/bulk-payslip-generator/" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Open Sign" />
+  <meta property="og:title" content="Free Bulk Payslip Generator, Generate Multiple Payslips Online | Open Sign" />
+  <meta property="og:description" content="Upload Excel or CSV salary data locally in your browser to generate individual PDF payslips, a combined multi-page PDF, and a one-click ZIP archive for free." />
+  <meta property="og:url" content="https://www.opensign.in/tools/bulk-payslip-generator/" />
+  <meta property="og:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Twitter / X Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Bulk Payslip Generator, Generate Multiple Payslips Online | Open Sign" />
+  <meta name="twitter:description" content="Generate multiple employee PDF payslips at once from Excel or CSV with automatic totals, Indian currency words, and ZIP download, 100% browser-based." />
+  <meta name="twitter:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Ensure trailing slash on HTTP origins so relative asset paths resolve cleanly -->
+  <script>
+    if (/^https?:$/.test(location.protocol) && /\/tools\/bulk-payslip-generator$/.test(location.pathname)) {
+      location.replace(location.pathname + "/" + location.search + location.hash);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../contact.css" />
+  <link rel="stylesheet" href="../../signature-generator.css" />
+  <link rel="stylesheet" href="bulk-payslip-generator.css" />
+  <link rel="shortcut icon" href="../../assets/fav.png" type="image/x-icon" />
+
+  <!-- Client-side SheetJS (Excel/CSV), pdf-lib (PDF), and JSZip (ZIP) Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PWPQ9PMD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+
+  <!-- Structured Data (WebApplication & BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Open Sign Bulk Payslip Generator",
+        "url": "https://www.opensign.in/tools/bulk-payslip-generator/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+        "description": "Free browser-based Bulk Payslip Generator that converts Excel or CSV salary sheets into individual PDF payslips, a combined PDF, and a one-click ZIP archive."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.opensign.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Human Resource", "item": "https://www.opensign.in/tools/bulk-payslip-generator/" },
+          { "@type": "ListItem", "position": 3, "name": "Bulk Payslip Generator", "item": "https://www.opensign.in/tools/bulk-payslip-generator/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-view="bulk-payslip-generator">
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link" href="../../about.html">About Us</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>E-Signature</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../index.html" role="menuitem"><span>Sign PDF Online</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../index.html#features" role="menuitem"><span>Smart Sign Auto-Detect</span></a>
+          <a class="nav-drop-item" href="../../signature-generator.html" role="menuitem"><span>Signature Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>PDF &amp; Document</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../tools/pdf-merger/index.html" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-compressor/index.html" role="menuitem"><span>PDF Compressor</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-splitter/index.html" role="menuitem"><span>PDF Splitter</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../pdf-to-jpg/index.html" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Page Number Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Metadata Editor</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn is-current" aria-expanded="false" aria-haspopup="true">
+          <span>Human Resource</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu is-hr-mega" role="menu" aria-label="Human Resource suite">
+          <div class="hr-mega-head">
+            <span class="hr-mega-title">Human Resource Suite</span>
+            <span class="hr-mega-rec">Recommended</span>
+          </div>
+          <div class="hr-mega-grid">
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><span>Salary &amp; Payroll</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>CTC Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <a class="nav-drop-item" href="../../payslip-generator.html" role="menuitem"><span>Payslip Generator</span><span class="nav-live-badge">Live</span></a>
+              <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>Bulk Payslip Generator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PF &amp; ESI</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Gratuity</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>F&amp;F Settlement</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Increment Calculator</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 12h8M8 16h6"/></svg><span>HR Documents</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Offer Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Appointment Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Experience Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Relieving Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Resignation Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Termination Letter</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Attendance &amp; Leave</span></p>
+              <a class="nav-drop-item" href="../attendance-sheet-generator/index.html" role="menuitem"><span>Attendance Sheet Generator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Leave Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Working Days</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Leave Encashment</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Notice Period</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.85"/></svg><span>Recruitment &amp; Employees</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JD Generator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Interview Questions</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Onboarding Checklist</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Employee ID Card</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Org Chart</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Performance &amp; Management</span></p>
+              <a class="nav-drop-item" href="../kpi-kra-calculator/index.html" role="menuitem"><span>KPI &amp; KRA Calculator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Appraisal Form</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Attrition Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Employee Cost Calculator</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Business</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../invoice-generator.html" role="menuitem"><span>Invoice Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Quotation Generator</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>SEO &amp; Marketing</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Sitemap Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../../tools/robots-txt-generator/index.html" role="menuitem"><span>Robots.txt Generator</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../meta-tag-generator/index.html" role="menuitem"><span>Meta Tag Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Open Graph Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../schema-markup-generator/index.html" role="menuitem"><span>Schema Markup Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>UTM Link Builder</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Developer &amp; Utility</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JSON &amp; XML Formatter</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../qr-code-generator/index.html" role="menuitem"><span>QR Code Generator</span><span class="nav-live-badge">Live</span></a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="../../contact.html">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="../../index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="../../index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">E-Signature</p>
+        <nav class="side-nav-list" aria-label="Mobile E-Signature navigation">
+          <a class="side-nav-link" href="../../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Home / Sign PDF</span>
+          </a>
+          <a class="side-nav-link" href="../../signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">PDF &amp; Document</p>
+        <nav class="side-nav-list" aria-label="Mobile PDF tools navigation">
+          <a class="side-nav-link" href="../../tools/pdf-merger/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M9 15h6M12 12v6" />
+            </svg>
+            <span>PDF Merger</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-compressor/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+            </svg>
+            <span>PDF Compressor</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-splitter/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" />
+            </svg>
+            <span>PDF Splitter</span>
+          </a>
+          <a class="side-nav-link" href="../pdf-to-jpg/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span>PDF to JPG Converter</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JPG to PDF Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Watermark Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Page Number Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Metadata Editor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Human Resource</p>
+        <details class="side-hr-acc" open>
+          <summary><span>Salary &amp; Payroll</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>CTC Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <a class="side-nav-link" href="../../payslip-generator.html">
+                <span>Payslip Generator</span>
+              </a>
+              <a class="side-nav-link" href="./" aria-current="page">
+                <span>Bulk Payslip Generator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>PF &amp; ESI</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Gratuity</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>F&amp;F Settlement</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Increment Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>HR Documents</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Offer Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Appointment Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Experience Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Relieving Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Resignation Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Termination Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc" open>
+          <summary><span>Attendance &amp; Leave</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <a class="side-nav-link" href="../attendance-sheet-generator/index.html">
+                <span>Attendance Sheet Generator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Leave Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Working Days</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Leave Encashment</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Notice Period</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>Recruitment &amp; Employees</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>JD Generator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Interview Questions</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Onboarding Checklist</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Employee ID Card</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Org Chart</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>Performance &amp; Management</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <a class="side-nav-link" href="../kpi-kra-calculator/index.html">
+                <span>KPI &amp; KRA Calculator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Appraisal Form</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Attrition Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Employee Cost Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Business</p>
+        <nav class="side-nav-list" aria-label="Mobile Business navigation">
+          <a class="side-nav-link" href="../../invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Quotation Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">SEO &amp; Marketing</p>
+        <nav class="side-nav-list" aria-label="Mobile SEO &amp; Marketing navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Sitemap Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../../tools/robots-txt-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="6" width="16" height="12" rx="2" />
+              <path d="M9 11h.01M15 11h.01M9 15h6M12 2v4" />
+            </svg>
+            <span>Robots.txt Generator</span>
+          </a>
+          <a class="side-nav-link" href="../meta-tag-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            <span>Meta Tag Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Open Graph Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../schema-markup-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>Schema Markup Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>UTM Link Builder</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Developer &amp; Utility</p>
+        <nav class="side-nav-list" aria-label="Mobile developer &amp; utility navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JSON &amp; XML Formatter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../qr-code-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <path d="M14 14h3v3h-3zM19 19h2v2h-2zM14 20h2" />
+            </svg>
+            <span>QR Code Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="../../about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About Us</span>
+          </a>
+          <a class="side-nav-link" href="../../contact.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            <span>Contact Us</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="../../index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view bp-page enter">
+      <!-- ============ HERO & 5-STEP BULK PAYSLIP WORKSPACE ============ -->
+      <section class="bp-hero-band" aria-labelledby="bpHeroTitle">
+        <div class="bp-container">
+          <!-- Breadcrumb -->
+          <nav class="bp-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="bp-bc-sep" aria-hidden="true">/</span>
+            <span>Human Resource</span>
+            <span class="bp-bc-sep" aria-hidden="true">/</span>
+            <span aria-current="page">Bulk Payslip Generator</span>
+          </nav>
+
+          <div class="bp-hero-head">
+            <h1 class="bp-title" id="bpHeroTitle">Free Bulk Payslip Generator</h1>
+            <p class="bp-sub">
+              Upload an Excel or CSV salary sheet to generate individual PDF payslips for your entire team at once. Download all payslips in a single ZIP archive, a combined multi-page PDF, or individual PDFs, 100% locally in your browser.
+            </p>
+          </div>
+
+          <!-- 5-Step Progress Bar -->
+          <nav class="bp-stepper" aria-label="Bulk payslip steps">
+            <a class="bp-step-pill" id="bpStepPill1" href="#step1"><span class="bp-step-num">1</span><span>Company Details</span></a>
+            <a class="bp-step-pill" id="bpStepPill2" href="#step2"><span class="bp-step-num">2</span><span>Payroll &amp; Design</span></a>
+            <a class="bp-step-pill" id="bpStepPill3" href="#step3"><span class="bp-step-num">3</span><span>Upload Excel / CSV</span></a>
+            <a class="bp-step-pill" id="bpStepPill4" href="#step4"><span class="bp-step-num">4</span><span>Validate &amp; Preview</span></a>
+            <a class="bp-step-pill" id="bpStepPill5" href="#step5"><span class="bp-step-num">5</span><span>Generate &amp; Download</span></a>
+          </nav>
+
+          <!-- ============ STEP 1: COMPANY DETAILS ============ -->
+          <section class="bp-card" id="step1" aria-labelledby="bpStep1Head">
+            <div class="bp-card-head">
+              <h2 id="bpStep1Head"><span class="bp-badge-num">1</span> Company Details</h2>
+              <button type="button" class="bp-mini-btn danger" id="bpResetAllBtn">Reset All Data</button>
+            </div>
+
+            <div class="bp-media-row">
+              <label class="bp-media-drop" for="bpLogoInput">
+                <img id="bpLogoThumb" class="bp-media-thumb" alt="Company logo preview" hidden />
+                <span>Upload Company Logo (PNG / JPG / WebP)</span>
+                <input type="file" id="bpLogoInput" class="sr-only" accept="image/png,image/jpeg,image/webp" />
+              </label>
+              <button type="button" class="bp-mini-btn danger" id="bpRemoveLogoBtn" hidden>Remove Logo</button>
+
+              <label class="bp-media-drop" for="bpStampInput">
+                <img id="bpStampThumb" class="bp-media-thumb" alt="Company stamp preview" hidden />
+                <span>Optional Company Stamp</span>
+                <input type="file" id="bpStampInput" class="sr-only" accept="image/png,image/jpeg,image/webp" />
+              </label>
+              <button type="button" class="bp-mini-btn danger" id="bpRemoveStampBtn" hidden>Remove Stamp</button>
+            </div>
+
+            <div class="bp-grid-3">
+              <div class="bp-field">
+                <label for="bpCoName">Company Name</label>
+                <input type="text" id="bpCoName" class="bp-input" placeholder="e.g. Acme Technologies Pvt. Ltd." />
+              </div>
+              <div class="bp-field">
+                <label for="bpCoEmail">Company Email</label>
+                <input type="email" id="bpCoEmail" class="bp-input" placeholder="payroll@company.com" />
+              </div>
+              <div class="bp-field">
+                <label for="bpCoPhone">Company Contact Number</label>
+                <input type="text" id="bpCoPhone" class="bp-input" placeholder="+91 22 4890 6200" />
+              </div>
+            </div>
+
+            <div class="bp-grid-2">
+              <div class="bp-field">
+                <label for="bpCoAddress">Company Address</label>
+                <input type="text" id="bpCoAddress" class="bp-input" placeholder="Street, Area, City, State, PIN" />
+              </div>
+              <div class="bp-field">
+                <label for="bpCoSignatory">Authorized Signatory Name</label>
+                <input type="text" id="bpCoSignatory" class="bp-input" placeholder="e.g. Meera Nair, Head of Finance" />
+              </div>
+            </div>
+
+            <div class="bp-grid-3">
+              <div class="bp-field">
+                <label for="bpCoGstin">GSTIN (Optional)</label>
+                <input type="text" id="bpCoGstin" class="bp-input" placeholder="27AABCU9603R1ZM" />
+              </div>
+              <div class="bp-field">
+                <label for="bpCoPan">PAN Number (Optional)</label>
+                <input type="text" id="bpCoPan" class="bp-input" placeholder="AABCU9603R" />
+              </div>
+              <div class="bp-field">
+                <label for="bpCoWebsite">Website (Optional)</label>
+                <input type="url" id="bpCoWebsite" class="bp-input" placeholder="https://www.company.com" />
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ STEP 2: PAYROLL DETAILS & CUSTOMIZATION ============ -->
+          <section class="bp-card" id="step2" aria-labelledby="bpStep2Head">
+            <div class="bp-card-head">
+              <h2 id="bpStep2Head"><span class="bp-badge-num">2</span> Payroll Period, Numbering &amp; Payslip Design</h2>
+            </div>
+
+            <div class="bp-grid-4">
+              <div class="bp-field">
+                <label for="bpPayMonth">Payroll Month</label>
+                <select id="bpPayMonth" class="bp-select"></select>
+              </div>
+              <div class="bp-field">
+                <label for="bpPayYear">Payroll Year</label>
+                <input type="number" id="bpPayYear" class="bp-input" min="2000" max="2100" />
+              </div>
+              <div class="bp-field">
+                <label for="bpIssueDate">Payslip Issue Date</label>
+                <input type="date" id="bpIssueDate" class="bp-input" />
+              </div>
+              <div class="bp-field">
+                <label for="bpPaymentDate">Salary Payment Date</label>
+                <input type="date" id="bpPaymentDate" class="bp-input" />
+              </div>
+            </div>
+
+            <div class="bp-grid-4">
+              <div class="bp-field">
+                <label for="bpCurrency">Currency</label>
+                <select id="bpCurrency" class="bp-select">
+                  <option value="INR">INR (₹)</option>
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="GBP">GBP (£)</option>
+                  <option value="AED">AED</option>
+                  <option value="SGD">SGD (S$)</option>
+                </select>
+              </div>
+              <div class="bp-field">
+                <label for="bpFinYear">Financial Year (Optional)</label>
+                <input type="text" id="bpFinYear" class="bp-input" placeholder="FY 2026-27" />
+              </div>
+              <div class="bp-field">
+                <label for="bpPayRef">Payroll Reference No. (Optional)</label>
+                <input type="text" id="bpPayRef" class="bp-input" placeholder="PR-2026-11" />
+              </div>
+              <div class="bp-field">
+                <label for="bpNumPrefix">Payslip Prefix</label>
+                <input type="text" id="bpNumPrefix" class="bp-input" placeholder="OS" />
+              </div>
+            </div>
+
+            <div class="bp-grid-4">
+              <div class="bp-field">
+                <label for="bpNumFormat">Payslip Numbering Format</label>
+                <select id="bpNumFormat" class="bp-select">
+                  <option value="PREFIX/YYYY/MM/EMPID">OS/2026/11/EMP001</option>
+                  <option value="PREFIX-YYYY-MM-SEQ">OS-2026-11-001</option>
+                </select>
+              </div>
+              <div class="bp-field">
+                <label for="bpTplSelect">Payslip Template</label>
+                <select id="bpTplSelect" class="bp-select">
+                  <option value="modern">Modern Payslip</option>
+                  <option value="classic">Classic Payslip</option>
+                </select>
+              </div>
+              <div class="bp-field">
+                <label for="bpBrandPicker">Brand Accent Color</label>
+                <div class="bp-color-row">
+                  <input type="color" id="bpBrandPicker" class="bp-color-picker" value="#056cb8" />
+                  <input type="text" id="bpBrandHex" class="bp-input" value="#056cb8" maxlength="7" />
+                </div>
+              </div>
+              <div class="bp-field">
+                <label for="bpHeadingInput">Payslip Heading</label>
+                <input type="text" id="bpHeadingInput" class="bp-input" placeholder="PAYSLIP" />
+              </div>
+            </div>
+
+            <div class="bp-grid-4">
+              <div class="bp-field">
+                <label for="bpFontSizeSelect">Font Size</label>
+                <select id="bpFontSizeSelect" class="bp-select">
+                  <option value="12">Compact (12px)</option>
+                  <option value="13" selected>Standard (13px)</option>
+                  <option value="14">Large (14px)</option>
+                </select>
+              </div>
+              <div class="bp-field">
+                <label for="bpTableLayoutSelect">Preview Table Layout</label>
+                <select id="bpTableLayoutSelect" class="bp-select">
+                  <option value="side-by-side">Side-by-Side (Earnings | Deductions)</option>
+                  <option value="stacked">Stacked Tables</option>
+                </select>
+              </div>
+              <div class="bp-field">
+                <label for="bpNumLocaleSelect">Number Format</label>
+                <select id="bpNumLocaleSelect" class="bp-select">
+                  <option value="en-IN">Indian (1,00,000)</option>
+                  <option value="en-US">International (100,000)</option>
+                </select>
+              </div>
+              <div class="bp-field">
+                <label for="bpFooterMsgInput">Footer Message</label>
+                <input type="text" id="bpFooterMsgInput" class="bp-input" placeholder="This is a computer-generated payslip." />
+              </div>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:16px">
+              <label class="bp-toggle-label"><input type="checkbox" id="bpShowOptCheck" checked /><span>Show optional employee &amp; company fields</span></label>
+              <label class="bp-toggle-label"><input type="checkbox" id="bpShowEmptyCheck" /><span>Show zero-value / empty salary components</span></label>
+              <label class="bp-toggle-label"><input type="checkbox" id="bpOverrideNegCheck" /><span>Allow authorized override if deductions exceed earnings</span></label>
+            </div>
+          </section>
+
+          <!-- ============ STEP 3: UPLOAD EMPLOYEE DATA ============ -->
+          <section class="bp-card" id="step3" aria-labelledby="bpStep3Head">
+            <div class="bp-card-head">
+              <h2 id="bpStep3Head"><span class="bp-badge-num">3</span> Upload Employee Salary Data (Excel / CSV)</h2>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <button type="button" class="bp-mini-btn blue" id="bpDownloadTplBtn">Download Excel Template (.xlsx)</button>
+                <button type="button" class="bp-mini-btn" id="bpLoadSampleBtn">Load Sample 10 Employees</button>
+              </div>
+            </div>
+
+            <label class="bp-upload-zone" id="bpDropzone" for="bpFileInput">
+              <input type="file" id="bpFileInput" class="sr-only" accept=".xlsx,.xls,.csv,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" />
+              <span class="bp-dz-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3"/></svg>
+              </span>
+              <p class="bp-dz-title">Drop your Excel (.xlsx, .xls) or CSV file here, or click to browse</p>
+              <p class="bp-dz-sub">Uses exact earnings &amp; deduction values from your sheet, never applies assumed statutory tax rates.</p>
+            </label>
+
+            <div class="bp-upload-bar" id="bpLoadedFileBar" hidden>
+              <div>
+                <strong id="bpLoadedFileName" style="font-size:14px;color:var(--ink)">—</strong>
+                <div id="bpLoadedRowCount" style="font-size:12.5px;color:var(--muted)">0 rows</div>
+              </div>
+              <button type="button" class="bp-mini-btn" id="bpReplaceFileBtn">Replace File</button>
+            </div>
+          </section>
+
+          <!-- ============ STEP 4: VALIDATE, MAP & PREVIEW ============ -->
+          <section class="bp-card" id="step4" hidden aria-labelledby="bpStep4Head">
+            <div class="bp-card-head">
+              <h2 id="bpStep4Head"><span class="bp-badge-num">4</span> Column Mapping, Validation &amp; Payslip Preview</h2>
+              <button type="button" class="bp-mini-btn" id="bpErrReportBtn" disabled>Download Error Report (CSV)</button>
+            </div>
+
+            <div class="bp-alert is-warn" id="bpAmbiguousAlert" role="alert" hidden></div>
+
+            <!-- Validation Summary Counters -->
+            <div class="bp-stats-grid">
+              <div class="bp-stat-card"><span>Total Uploaded</span><strong id="bpStatTotal">0</strong></div>
+              <div class="bp-stat-card is-valid"><span>Valid Records</span><strong id="bpStatValid">0</strong></div>
+              <div class="bp-stat-card is-invalid"><span>Invalid Records</span><strong id="bpStatInvalid">0</strong></div>
+              <div class="bp-stat-card is-excluded"><span>Excluded</span><strong id="bpStatExcluded">0</strong></div>
+            </div>
+
+            <!-- Configurable Column Mapping Accordion -->
+            <details class="bp-accordion">
+              <summary>
+                <span>Column Mapping &amp; Custom Earnings / Deductions</span>
+                <span style="font-size:12px;color:var(--muted)">Click to inspect or adjust mapped columns</span>
+              </summary>
+              <div class="bp-acc-body">
+                <div class="bp-map-grid" id="bpMappingGrid"></div>
+                <div style="padding-top:10px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:8px">
+                  <strong style="font-size:13px;color:var(--ink)">Unmapped Columns (Add as Custom Earning or Deduction)</strong>
+                  <div id="bpCustomColsWrap" style="display:flex;flex-direction:column;gap:6px"></div>
+                </div>
+              </div>
+            </details>
+
+            <!-- Uploaded Employee Validation Table -->
+            <div class="bp-table-wrap">
+              <table class="bp-data-table" aria-label="Uploaded employee salary validation">
+                <thead>
+                  <tr>
+                    <th>Row</th>
+                    <th>Emp ID</th>
+                    <th>Employee Name</th>
+                    <th>Department</th>
+                    <th>Gross Earnings</th>
+                    <th>Deductions</th>
+                    <th>Net Salary</th>
+                    <th>Status</th>
+                    <th>Validation Details</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bpValTableBody"></tbody>
+              </table>
+            </div>
+
+            <!-- Live Employee Payslip Preview -->
+            <div class="bp-preview-toolbar">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+                <strong style="font-size:13.5px;color:var(--ink)">Payslip Preview:</strong>
+                <button type="button" class="bp-mini-btn" id="bpPrevEmpBtn" style="min-height:32px;padding:0 10px">← Prev</button>
+                <select id="bpPreviewSelect" class="bp-select" style="width:auto;min-width:210px;padding:6px 10px" aria-label="Select employee to preview"></select>
+                <button type="button" class="bp-mini-btn" id="bpNextEmpBtn" style="min-height:32px;padding:0 10px">Next →</button>
+              </div>
+              <button type="button" class="bp-mini-btn" id="bpTogglePrintPrevBtn" style="min-height:32px">Print Preview</button>
+            </div>
+
+            <div class="bp-preview-stage" id="bpPreviewStage"></div>
+          </section>
+
+          <!-- ============ STEP 5: GENERATE & DOWNLOAD ============ -->
+          <section class="bp-card" id="step5" hidden aria-labelledby="bpStep5Head">
+            <div class="bp-card-head">
+              <h2 id="bpStep5Head"><span class="bp-badge-num">5</span> Generate &amp; Download Bulk Payslips</h2>
+              <span id="bpGenSummaryText" style="font-size:13px;font-weight:700;color:var(--muted)">Ready</span>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+              <button type="button" class="bp-mini-btn primary" id="bpGenerateBtn" style="min-height:42px;padding:0 22px;font-size:14px">Generate All Payslips</button>
+              <button type="button" class="bp-mini-btn" id="bpRetryFailedBtn" hidden>Retry Failed Payslips</button>
+              <button type="button" class="bp-mini-btn" id="bpDlSummaryCsvBtn">Download Salary Summary (CSV)</button>
+            </div>
+
+            <div class="bp-progress-box" id="bpProgressBox" hidden>
+              <div class="bp-progress-top">
+                <span id="bpProgressText">Preparing batch...</span>
+                <span id="bpProgressCount">0 / 0 completed</span>
+              </div>
+              <div class="bp-progress-track"><div class="bp-progress-fill" id="bpProgressFill"></div></div>
+            </div>
+
+            <div id="bpDownloadsWrap" style="display:flex;flex-direction:column;gap:14px" hidden>
+              <div class="bp-download-grid">
+                <button type="button" class="bp-mini-btn primary" id="bpDlZipBtn" style="min-height:42px">Download All as ZIP</button>
+                <button type="button" class="bp-mini-btn blue" id="bpDlCombinedBtn" style="min-height:42px">Download Combined PDF</button>
+                <a class="bp-mini-btn" href="#step4" style="min-height:42px;text-decoration:none">Edit / Change Template</a>
+              </div>
+
+              <div class="bp-table-wrap">
+                <table class="bp-data-table" aria-label="Generated individual payslips">
+                  <thead>
+                    <tr>
+                      <th>Payslip No.</th>
+                      <th>Emp ID</th>
+                      <th>Employee Name</th>
+                      <th>Net Salary</th>
+                      <th>Status</th>
+                      <th>Individual PDF</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bpGenTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- Privacy & Local Processing Promise -->
+          <div class="bp-privacy-box">
+            <strong>Your employee salary data is processed locally in your browser and is not uploaded to our servers.</strong>
+            <div>No login required · Zero localStorage/sessionStorage persistence · Bank accounts masked to last 4 digits only.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ HOW TO GENERATE BULK PAYSLIPS ============ -->
+      <section class="workflow-band" aria-labelledby="bpHowTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Fast 3-step payroll workflow</span>
+            <h2 class="section-title" id="bpHowTitle">How to Generate Bulk Payslips</h2>
+            <p class="section-desc">
+              Turn any Excel or CSV salary register into clean, individual employee PDFs in minutes without payroll software subscriptions.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Enter company details &amp; download the template</h3>
+              <p>Add your company header, logo, and payroll month, then fill our ready-made Excel template or upload your existing salary CSV.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Map columns, fix errors &amp; preview payslips</h3>
+              <p>Review auto-mapped fields, fix or exclude any invalid rows, and preview each employee's payslip in Modern or Classic layout.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Generate &amp; download ZIP or combined PDF</h3>
+              <p>Generate all valid PDFs in browser-friendly batches and download them as a single ZIP folder, combined multi-page PDF, or individual files.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EXCEL TEMPLATE, FEATURES & SALARY CALCULATION ============ -->
+      <section class="saas-section" aria-labelledby="bpTplInfoTitle">
+        <div class="saas-container">
+          <div class="bp-guide-grid">
+            <div class="bp-info-card">
+              <span class="section-kicker">Ready-to-use spreadsheet</span>
+              <h2 id="bpTplInfoTitle">Excel Template Download</h2>
+              <p>
+                Our pre-formatted <code>.xlsx</code> template includes Employee Details, Earnings (Basic, HRA, Conveyance, Medical, Special, Bonus, Incentives, Overtime), Deductions (PF, ESI, PT, TDS, Loan, Advance), and optional Attendance columns.
+              </p>
+              <div style="margin-top:6px">
+                <button type="button" class="bp-mini-btn blue" id="bpDownloadTplSecBtn">Download Excel Template (.xlsx)</button>
+              </div>
+            </div>
+
+            <div class="bp-info-card">
+              <span class="section-kicker">Transparent arithmetic</span>
+              <h2>Salary Calculation Explanation</h2>
+              <p>
+                Every payslip uses decimal-safe arithmetic directly on your uploaded figures without silently applying outdated or assumed statutory PF, ESI, or TDS rates:
+              </p>
+              <ul>
+                <li><strong>Total Earnings:</strong> Sum of Basic Salary, all mapped allowances, bonus, incentives, overtime, and custom earnings.</li>
+                <li><strong>Total Deductions:</strong> Sum of uploaded PF, ESI, Professional Tax, TDS, loan, advance, and custom deductions.</li>
+                <li><strong>Net Salary Payable:</strong> Total Earnings minus Total Deductions, displayed in Indian currency words (Lakhs &amp; Crores).</li>
+              </ul>
+            </div>
+
+            <div class="bp-info-card">
+              <span class="section-kicker">Built for HR &amp; accountants</span>
+              <h2>Features and Benefits</h2>
+              <ul>
+                <li>Supports Excel (<code>.xlsx</code>, <code>.xls</code>) and CSV uploads with custom column mapping.</li>
+                <li>Flags missing names, negative amounts, invalid dates, and duplicate Employee IDs before generation.</li>
+                <li>Exports individual PDFs, a structured ZIP folder (<code>OpenSign_Payslips_Month_Year/</code>), a combined PDF, and a CSV summary.</li>
+                <li>100% browser-based processing keeps confidential salary registers off external servers.</li>
+              </ul>
+            </div>
+
+            <div class="bp-info-card">
+              <span class="section-kicker">Single vs Bulk</span>
+              <h2>Need a Single Payslip Instead?</h2>
+              <p>
+                If you only need to generate a single employee's monthly salary slip with interactive form fields, use our standalone <a href="../../payslip-generator.html" style="color:var(--accent);font-weight:700">Single Payslip Generator</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FREQUENTLY ASKED QUESTIONS ============ -->
+      <section class="sg-faq-band" aria-labelledby="bpFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="bpFaqTitle">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>1. Is my employees' salary data uploaded to Open Sign servers?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. Spreadsheet parsing, salary calculations, PDF generation, and ZIP packaging run 100% locally inside your web browser. Data is never uploaded to any server or saved to browser storage.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>2. Can I use my own Excel or CSV column headers?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Step 4 automatically detects clear column matches, flags ambiguous headers so nothing is silently guessed, and lets you manually map standard fields or assign extra columns as Custom Earnings or Custom Deductions.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>3. Does the Bulk Payslip Generator automatically deduct PF, ESI, or TDS?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. To prevent compliance errors from outdated or assumed statutory slabs, the tool uses the exact deduction amounts present in your uploaded spreadsheet.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>4. How many employees can I generate payslips for at once?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>The generator processes PDFs in non-blocking browser batches so batches of 100+ employees run smoothly without freezing the interface, and failed items can be retried individually.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>5. What download formats are supported?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>You can download each employee's individual PDF, download all PDFs packaged in a single ZIP folder, download one combined multi-page PDF (one employee per page), and export a CSV salary summary.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELATED HR TOOLS ============ -->
+      <section class="saas-section" aria-labelledby="bpRelatedTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">More Human Resource &amp; Business Tools</span>
+            <h2 class="section-title" id="bpRelatedTitle">Related HR Tools</h2>
+          </div>
+
+          <div class="bp-related-grid">
+            <a class="bp-related-card" href="../../payslip-generator.html">
+              <div class="bp-related-top">
+                <span class="bp-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6M7 17h4"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Payslip Generator</h3>
+              <p>Create an individual employee salary slip with live A4 preview and PDF download.</p>
+              <span class="bp-related-url">Open Payslip Generator →</span>
+            </a>
+
+            <a class="bp-related-card" href="../attendance-sheet-generator/index.html">
+              <div class="bp-related-top">
+                <span class="bp-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 15l2 2 4-4"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Attendance Sheet Generator</h3>
+              <p>Track monthly team attendance, leaves, holidays, and export Excel or PDF registers.</p>
+              <span class="bp-related-url">Open Attendance Sheet →</span>
+            </a>
+
+            <article class="bp-related-card" aria-disabled="true">
+              <div class="bp-related-top">
+                <span class="bp-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h2M14 14h2"/></svg>
+                </span>
+                <span class="nav-soon-badge">Soon</span>
+              </div>
+              <h3>Salary Calculator</h3>
+              <p>Break down annual CTC into monthly in-hand take-home salary and deductions.</p>
+              <span class="bp-related-url">Coming Soon</span>
+            </article>
+
+            <a class="bp-related-card" href="../../invoice-generator.html">
+              <div class="bp-related-top">
+                <span class="bp-related-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+                </span>
+                <span class="nav-live-badge">Live</span>
+              </div>
+              <h3>Invoice Generator</h3>
+              <p>Create GST-compliant tax invoices with UPI QR codes, Tally XML, and A4 PDF export.</p>
+              <span class="bp-related-url">Open Invoice Generator →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ MODAL 1: EDIT ROW ERROR CORRECTION ============ -->
+  <dialog id="bpEditRowDialog" class="bp-modal" aria-labelledby="bpEditRowTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="bpEditRowTitle">Edit Employee Row</h2>
+        <p class="dlg-sub">Fix missing names, invalid dates, or negative salary values before generating.</p>
+      </div>
+      <button class="icon-btn" id="bpEditRowCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+
+    <div class="bp-grid-2" id="bpEditRowFields" style="max-height:55vh;overflow-y:auto;padding-right:4px;margin-bottom:16px"></div>
+
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="bpEditRowCancel">Cancel</button>
+      <button type="button" class="btn primary" id="bpSaveEditRowBtn">Save &amp; Re-Validate</button>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL 2: CONFIRM RESET ============ -->
+  <dialog id="bpConfirmDialog" class="bp-modal-sm" aria-labelledby="bpConfirmTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="bpConfirmTitle">Confirm Action</h2>
+        <p class="dlg-sub" id="bpConfirmMsg"></p>
+      </div>
+      <button class="icon-btn" id="bpConfirmCloseTop" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+    </div>
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="bpConfirmCancel">Cancel</button>
+      <button type="button" class="btn primary" id="bpConfirmOk">Confirm</button>
+    </div>
+  </dialog>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <!-- Brand & Social Column -->
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="../../index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="156" height="42" />
+          </a>
+          <p class="footer-tagline">
+            Enterprise-grade eSignature, smart PDF utilities, and business document tools engineered for speed, precision, and zero-retention browser privacy.
+          </p>
+          <div class="footer-socials" aria-label="Open Sign social media">
+            <a class="footer-social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 1: E-Signature -->
+        <div class="footer-col">
+          <p class="footer-col-title">E-Signature</p>
+          <nav class="footer-links" aria-label="Footer E-Signature tools">
+            <a href="../../index.html">Sign PDF Online</a>
+            <a href="../../index.html#features">Smart Sign Auto-Detect</a>
+            <a href="../../signature-generator.html">Signature Generator</a>
+            <a href="../../index.html#workflow">How It Works</a>
+          </nav>
+        </div>
+
+        <!-- Column 2: PDF & Document -->
+        <div class="footer-col">
+          <p class="footer-col-title">PDF &amp; Document</p>
+          <nav class="footer-links" aria-label="Footer PDF and Document tools">
+            <a href="../../tools/pdf-merger/index.html">PDF Merger</a>
+            <a href="../../tools/pdf-compressor/index.html">PDF Compressor</a>
+            <a href="../../tools/pdf-splitter/index.html">PDF Splitter</a>
+            <a href="../pdf-to-jpg/index.html">PDF to JPG Converter</a>
+            <span class="footer-soon-item" aria-disabled="true">JPG to PDF Converter <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Watermark Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Page Number Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Metadata Editor <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 3: Human Resource -->
+        <div class="footer-col">
+          <p class="footer-col-title">Human Resource</p>
+          <nav class="footer-links" aria-label="Footer Human Resource tools">
+            <a href="../../payslip-generator.html">Payslip Generator</a>
+            <a href="./" aria-current="page">Bulk Payslip Generator</a>
+            <a href="../attendance-sheet-generator/index.html">Attendance Sheet Generator</a>
+            <a href="../kpi-kra-calculator/index.html">KPI &amp; KRA Calculator</a>
+            <span class="footer-soon-item" aria-disabled="true">Salary &amp; Payroll Tools <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">HR Documents &amp; Leave <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">Recruitment &amp; KPI <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Business + More Suites -->
+        <div class="footer-col">
+          <p class="footer-col-title">Business</p>
+          <nav class="footer-links" aria-label="Footer Business tools">
+            <a href="../../invoice-generator.html">Invoice Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Quotation Generator <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+
+          <p class="footer-col-title" style="margin-top:12px">More Suites</p>
+          <nav class="footer-links" aria-label="Footer upcoming tool suites">
+            <a href="../../tools/robots-txt-generator/index.html">Robots.txt Generator</a>
+            <a href="../meta-tag-generator/index.html">Meta Tag Generator</a>
+            <a href="../schema-markup-generator/index.html">Schema Markup Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">SEO Suite <span class="footer-soon-tag">Soon</span></span>
+            <a href="../qr-code-generator/index.html">QR Code Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Developer Suite <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Company -->
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Footer Company navigation">
+            <a href="../../index.html">Home</a>
+            <a href="../../about.html">About Us</a>
+            <a href="../../about.html#security">Security &amp; Privacy</a>
+            <a href="../../contact.html">Contact Us</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="../../about.html">About Us</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../about.html#security">Privacy &amp; Security</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../nav.js"></script>
+  <script src="bulk-payslip-generator.js"></script>
+</body>
+</html>
