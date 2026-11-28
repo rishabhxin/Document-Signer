@@ -1,0 +1,7 @@
+# Robots.txt generated with Open Sign
+# Website: https://www.opensign.in
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.opensign.in/sitemap.xml
