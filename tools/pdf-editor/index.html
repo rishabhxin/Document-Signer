@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#056CB8" />
+  <title>Free PDF Editor Online, Edit, Sign, Annotate &amp; Download PDFs | Open Sign</title>
+  <meta name="description" content="Edit PDF files online for free with Open Sign. Add text, images, signatures, highlights, annotations, page numbers, watermarks, and more. Download your edited PDF instantly." />
+  <link rel="canonical" href="https://www.opensign.in/tools/pdf-editor/" />
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Open Sign" />
+  <meta property="og:title" content="Free PDF Editor Online, Edit, Sign, Annotate &amp; Download PDFs | Open Sign" />
+  <meta property="og:description" content="Complete browser-based PDF Editor: add &amp; edit text, insert images &amp; signatures, draw, highlight, organize pages, fill forms, add watermarks &amp; page numbers locally." />
+  <meta property="og:url" content="https://www.opensign.in/tools/pdf-editor/" />
+  <meta property="og:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Twitter / X Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free PDF Editor Online, Edit, Sign, Annotate &amp; Download PDFs | Open Sign" />
+  <meta name="twitter:description" content="Edit, annotate, sign, organize, and download PDFs locally in your browser with zero server uploads." />
+  <meta name="twitter:image" content="https://www.opensign.in/assets/open%20sign%20logo.png" />
+
+  <!-- Ensure trailing slash on HTTP origins so relative asset paths resolve cleanly -->
+  <script>
+    if (/^https?:$/.test(location.protocol) && /\/tools\/pdf-editor$/.test(location.pathname)) {
+      location.replace(location.pathname + "/" + location.search + location.hash);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@600&family=Open+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" />
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../contact.css" />
+  <link rel="stylesheet" href="../../signature-generator.css" />
+  <link rel="stylesheet" href="pdf-editor.css" />
+  <link rel="shortcut icon" href="../../assets/fav.png" type="image/x-icon" />
+
+  <!-- Client-side PDF.js, pdf-lib & JSZip Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PWPQ9PMD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+
+  <!-- Structured Data (WebApplication & BreadcrumbList) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Open Sign Online PDF Editor",
+        "url": "https://www.opensign.in/tools/pdf-editor/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+        "description": "Free browser-based PDF Editor to edit text, insert images and signatures, annotate, organize pages, fill forms, add watermarks and page numbers, and export locally."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.opensign.in/" },
+          { "@type": "ListItem", "position": 2, "name": "PDF & Document", "item": "https://www.opensign.in/tools/pdf-editor/" },
+          { "@type": "ListItem", "position": 3, "name": "PDF Editor", "item": "https://www.opensign.in/tools/pdf-editor/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-view="pdf-editor">
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Open Sign home">
+      <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="164" height="34" />
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-link" href="../../index.html">Home</a>
+      <a class="nav-link" href="../../about.html">About Us</a>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>E-Signature</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../index.html" role="menuitem"><span>Sign PDF Online</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../index.html#features" role="menuitem"><span>Smart Sign Auto-Detect</span></a>
+          <a class="nav-drop-item" href="../../signature-generator.html" role="menuitem"><span>Signature Generator</span></a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn is-current" aria-expanded="false" aria-haspopup="true">
+          <span>PDF &amp; Document</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="./" aria-current="page" role="menuitem"><span>PDF Editor</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../pdf-merger/index.html" role="menuitem"><span>PDF Merger</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-compressor/index.html" role="menuitem"><span>PDF Compressor</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-splitter/index.html" role="menuitem"><span>PDF Splitter</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/pdf-to-jpg/index.html" role="menuitem"><span>PDF to JPG Converter</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JPG to PDF Converter</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Watermark Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Page Number Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PDF Metadata Editor</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Human Resource</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu is-hr-mega" role="menu" aria-label="Human Resource suite">
+          <div class="hr-mega-head">
+            <span class="hr-mega-title">Human Resource Suite</span>
+            <span class="hr-mega-rec">Recommended</span>
+          </div>
+          <div class="hr-mega-grid">
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><span>Salary &amp; Payroll</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>CTC Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <a class="nav-drop-item" href="../../payslip-generator.html" role="menuitem"><span>Payslip Generator</span><span class="nav-live-badge">Live</span></a>
+              <a class="nav-drop-item" href="../../tools/bulk-payslip-generator/index.html" role="menuitem"><span>Bulk Payslip Generator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>PF &amp; ESI</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Gratuity</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>F&amp;F Settlement</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Increment Calculator</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 12h8M8 16h6"/></svg><span>HR Documents</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Offer Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Appointment Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Experience Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Relieving Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Resignation Letter</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Termination Letter</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Attendance &amp; Leave</span></p>
+              <a class="nav-drop-item" href="../../tools/attendance-sheet-generator/index.html" role="menuitem"><span>Attendance Sheet Generator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Leave Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Working Days</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Leave Encashment</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Notice Period</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.85"/></svg><span>Recruitment &amp; Employees</span></p>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JD Generator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Interview Questions</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Onboarding Checklist</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Employee ID Card</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Org Chart</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+            <div class="hr-mega-card">
+              <p class="hr-mega-cat-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Performance &amp; Management</span></p>
+              <a class="nav-drop-item" href="../../tools/kpi-kra-calculator/index.html" role="menuitem"><span>KPI &amp; KRA Calculator</span><span class="nav-live-badge">Live</span></a>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Appraisal Form</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Attrition Calculator</span><span class="nav-soon-badge">Soon</span></span>
+              <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Employee Cost Calculator</span><span class="nav-soon-badge">Soon</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Business</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <a class="nav-drop-item" href="../../invoice-generator.html" role="menuitem"><span>Invoice Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Quotation Generator</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>SEO &amp; Marketing</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Sitemap Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../../tools/robots-txt-generator/index.html" role="menuitem"><span>Robots.txt Generator</span><span class="nav-live-badge">Live</span></a>
+          <a class="nav-drop-item" href="../../tools/meta-tag-generator/index.html" role="menuitem"><span>Meta Tag Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>Open Graph Generator</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../../tools/schema-markup-generator/index.html" role="menuitem"><span>Schema Markup Generator</span><span class="nav-live-badge">Live</span></a>
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>UTM Link Builder</span><span class="nav-soon-badge">Soon</span></span>
+        </div>
+      </div>
+
+      <div class="nav-dropdown is-right">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">
+          <span>Developer &amp; Utility</span><svg class="nav-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg>
+        </button>
+        <div class="nav-drop-menu" role="menu">
+          <span class="nav-drop-item is-disabled" aria-disabled="true" role="menuitem"><span>JSON &amp; XML Formatter</span><span class="nav-soon-badge">Soon</span></span>
+          <a class="nav-drop-item" href="../../tools/qr-code-generator/index.html" role="menuitem"><span>QR Code Generator</span><span class="nav-live-badge">Live</span></a>
+        </div>
+      </div>
+
+      <a class="nav-link" href="../../contact.html">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn primary nav-cta" href="../../index.html">Sign a PDF</a>
+
+      <button class="menu-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sideNav">
+        <span class="menu-bars" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE & TABLET SIDE NAVIGATION DRAWER ============ -->
+  <div class="side-nav-backdrop" id="sideNavBackdrop" hidden></div>
+  <aside class="side-nav" id="sideNav" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="side-nav-head">
+      <a class="brand" href="../../index.html" aria-label="Open Sign home">
+        <img class="brand-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="146" height="30" />
+      </a>
+      <button class="side-nav-close" id="sideNavClose" type="button" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav-body">
+      <div class="side-nav-group">
+        <p class="side-nav-label">E-Signature</p>
+        <nav class="side-nav-list" aria-label="Mobile E-Signature navigation">
+          <a class="side-nav-link" href="./" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z" />
+            </svg>
+            <span>PDF Editor</span>
+          </a>
+          <a class="side-nav-link" href="../../index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 20l4-1 11-11a2 2 0 0 0-3-3L5 16l-1 4Z" />
+              <path d="M14 7l3 3" />
+            </svg>
+            <span>Home / Sign PDF</span>
+          </a>
+          <a class="side-nav-link" href="../../signature-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 17c2.5-5 4.2-7 5.5-5.8 1.4 1.3-1.8 6.3.4 6.3 2 0 2.7-4.2 4.4-4.2 1.4 0 1.4 2.5 3.7 1" />
+              <path d="M4 20h16" />
+            </svg>
+            <span>Signature Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">PDF &amp; Document</p>
+        <nav class="side-nav-list" aria-label="Mobile PDF tools navigation">
+          <a class="side-nav-link" href="../pdf-merger/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M9 15h6M12 12v6" />
+            </svg>
+            <span>PDF Merger</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-compressor/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+            </svg>
+            <span>PDF Compressor</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-splitter/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 3h5v5M8 3H3v5M21 3l-7 7v11M3 3l7 7" />
+            </svg>
+            <span>PDF Splitter</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/pdf-to-jpg/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span>PDF to JPG Converter</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JPG to PDF Converter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Watermark Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Page Number Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>PDF Metadata Editor</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Human Resource</p>
+        <details class="side-hr-acc" open>
+          <summary><span>Salary &amp; Payroll</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>CTC Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <a class="side-nav-link" href="../../payslip-generator.html">
+                <span>Payslip Generator</span>
+              </a>
+              <a class="side-nav-link" href="../../tools/bulk-payslip-generator/index.html">
+                <span>Bulk Payslip Generator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>PF &amp; ESI</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Gratuity</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>F&amp;F Settlement</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Increment Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>HR Documents</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Offer Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Appointment Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Experience Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Relieving Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Resignation Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Termination Letter</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc" open>
+          <summary><span>Attendance &amp; Leave</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <a class="side-nav-link" href="../../tools/attendance-sheet-generator/index.html">
+                <span>Attendance Sheet Generator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Leave Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Working Days</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Leave Encashment</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Notice Period</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>Recruitment &amp; Employees</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>JD Generator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Interview Questions</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Onboarding Checklist</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Employee ID Card</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Org Chart</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+        <details class="side-hr-acc">
+          <summary><span>Performance &amp; Management</span><svg class="side-sub-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4" /></svg></summary>
+          <div class="side-hr-list">
+              <a class="side-nav-link" href="../../tools/kpi-kra-calculator/index.html">
+                <span>KPI &amp; KRA Calculator</span>
+              </a>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Appraisal Form</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Attrition Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+              <span class="side-nav-link is-disabled" aria-disabled="true">
+                <span class="side-nav-link-inner"><span>Employee Cost Calculator</span></span>
+                <span class="nav-soon-badge">Soon</span>
+              </span>
+          </div>
+        </details>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Business</p>
+        <nav class="side-nav-list" aria-label="Mobile Business navigation">
+          <a class="side-nav-link" href="../../invoice-generator.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+              <path d="M14 2v6h6M8 13h8M8 17h5M8 9h2" />
+            </svg>
+            <span>Invoice Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Quotation Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">SEO &amp; Marketing</p>
+        <nav class="side-nav-list" aria-label="Mobile SEO &amp; Marketing navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Sitemap Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../../tools/robots-txt-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="6" width="16" height="12" rx="2" />
+              <path d="M9 11h.01M15 11h.01M9 15h6M12 2v4" />
+            </svg>
+            <span>Robots.txt Generator</span>
+          </a>
+          <a class="side-nav-link" href="../../tools/meta-tag-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            <span>Meta Tag Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>Open Graph Generator</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../../tools/schema-markup-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>Schema Markup Generator</span>
+          </a>
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>UTM Link Builder</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Developer &amp; Utility</p>
+        <nav class="side-nav-list" aria-label="Mobile developer &amp; utility navigation">
+          <span class="side-nav-link is-disabled" aria-disabled="true">
+            <span class="side-nav-link-inner"><span>JSON &amp; XML Formatter</span></span>
+            <span class="nav-soon-badge">Soon</span>
+          </span>
+          <a class="side-nav-link" href="../../tools/qr-code-generator/index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <path d="M14 14h3v3h-3zM19 19h2v2h-2zM14 20h2" />
+            </svg>
+            <span>QR Code Generator</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="side-nav-group">
+        <p class="side-nav-label">Company</p>
+        <nav class="side-nav-list" aria-label="Mobile company navigation">
+          <a class="side-nav-link" href="../../about.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 10v6M12 7h.01" />
+            </svg>
+            <span>About Us</span>
+          </a>
+          <a class="side-nav-link" href="../../contact.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            <span>Contact Us</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="side-nav-foot">
+      <a class="btn primary full-w" href="../../index.html">Upload &amp; Sign PDF</a>
+      <p class="side-nav-note">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3.5" y="7" width="9" height="6.5" rx="1.5" />
+          <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+        </svg>
+        Zero-retention local processing
+      </p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="view pe-page enter">
+      <!-- ============ 1. LANDING UPLOAD VIEW ============ -->
+      <section class="pe-hero-band" id="peLandingView" aria-labelledby="peHeroTitle">
+        <div class="pe-container">
+          <nav class="pe-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Home</a>
+            <span class="pe-bc-sep" aria-hidden="true">/</span>
+            <span>PDF &amp; Document</span>
+            <span class="pe-bc-sep" aria-hidden="true">/</span>
+            <span aria-current="page">PDF Editor</span>
+          </nav>
+
+          <div class="pe-hero-head">
+            <h1 class="pe-title" id="peHeroTitle">Free Online PDF Editor</h1>
+            <p class="pe-sub">
+              Edit, annotate, sign, organize, and export PDF documents directly in your browser. Add text, logos, highlights, drawings, shapes, forms, watermarks, headers, footers, and page numbers, 100% locally with zero server uploads.
+            </p>
+          </div>
+
+          <div class="pe-upload-card">
+            <label class="pe-dropzone" id="peDropzone" for="peFileInput">
+              <input type="file" id="peFileInput" class="sr-only" accept="application/pdf,.pdf" />
+              <span class="pe-dz-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3"/></svg>
+              </span>
+              <p class="pe-dz-title">Drop your PDF file here to open the editor</p>
+              <p class="pe-dz-sub">Supports multi-page PDFs, forms, and scanned documents up to 80 MB</p>
+              <div class="pe-upload-actions">
+                <span class="btn primary">Upload PDF from Device</span>
+              </div>
+            </label>
+
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px">
+              <span class="pe-privacy-line"><strong>100% Private:</strong> Your PDF is edited locally in browser memory and never uploaded to Open Sign servers.</span>
+              <button type="button" class="pe-tool-btn" id="peCreateBlankBtn">Or Start with Blank A4 PDF</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 2. FULL INTERACTIVE PDF EDITOR WORKSPACE ============ -->
+      <section class="pe-workspace-shell" id="peWorkspaceShell" hidden aria-label="PDF editor workspace">
+        <!-- Top Application Bar -->
+        <div class="pe-top-bar">
+          <div class="pe-top-group">
+            <div class="pe-file-pill" title="Current PDF filename"><span id="peFileNameLbl">Document.pdf</span></div>
+            <button type="button" class="pe-tool-btn" id="peOpenNewBtn" title="Open another PDF">Open PDF</button>
+            <span class="pe-sep"></span>
+            <button type="button" class="pe-tool-btn" id="peUndoBtn" disabled title="Undo (Ctrl+Z)">Undo</button>
+            <button type="button" class="pe-tool-btn" id="peRedoBtn" disabled title="Redo (Ctrl+Y)">Redo</button>
+            <button type="button" class="pe-tool-btn" id="peToggleSearchBtn" title="Search document text">Search</button>
+          </div>
+
+          <div class="pe-top-group">
+            <button type="button" class="pe-tool-btn" id="pePrintBtn" title="Print edited PDF">Print</button>
+            <button type="button" class="pe-tool-btn" id="peDownloadFlatBtn" title="Flatten forms and download copy">Save Flattened</button>
+            <button type="button" class="pe-tool-btn primary" id="peDownloadBtn" title="Download Edited PDF (Ctrl+S)">Download PDF</button>
+          </div>
+        </div>
+
+        <!-- Categorized Ribbon Toolbar -->
+        <div class="pe-ribbon">
+          <div class="pe-ribbon-tabs" role="tablist" aria-label="Editor tool categories">
+            <button type="button" role="tab" class="pe-tab-btn active" data-tab="edit">Edit &amp; Select</button>
+            <button type="button" role="tab" class="pe-tab-btn" data-tab="annotate">Annotate &amp; Draw</button>
+            <button type="button" role="tab" class="pe-tab-btn" data-tab="insert">Insert &amp; Forms</button>
+            <button type="button" role="tab" class="pe-tab-btn" data-tab="organize">Organize Pages</button>
+            <button type="button" role="tab" class="pe-tab-btn" data-tab="document">Document &amp; Security</button>
+          </div>
+
+          <div class="pe-ribbon-tools">
+            <!-- Group 1: Edit & Select -->
+            <div class="pe-tool-group active" data-group="edit">
+              <button type="button" class="pe-tool-btn active" data-tool="select" title="Select, Move, Resize, Rotate">Select</button>
+              <button type="button" class="pe-tool-btn" data-tool="pan" title="Hand / Pan tool">Pan</button>
+              <span class="pe-sep"></span>
+              <button type="button" class="pe-tool-btn" data-tool="edit_text" title="Click existing PDF text to cover and replace visually">Edit Existing Text</button>
+              <button type="button" class="pe-tool-btn" data-tool="text" title="Click anywhere on page to add text">Add Text</button>
+              <label class="pe-tool-btn" for="peAddImageInput" title="Insert PNG, JPG, or WebP image/logo">
+                Add Image
+                <input type="file" id="peAddImageInput" class="sr-only" accept="image/png,image/jpeg,image/webp" />
+              </label>
+              <button type="button" class="pe-tool-btn" data-tool="whiteout" title="Visual whiteout / cover rectangle">Whiteout</button>
+              <button type="button" class="pe-tool-btn" data-tool="eraser" title="Click drawings or added objects to erase">Eraser</button>
+              <span class="pe-sep"></span>
+              <button type="button" class="pe-tool-btn" id="peOcrBtn" title="Run optional browser OCR on scanned page">Run OCR (Scanned)</button>
+            </div>
+
+            <!-- Group 2: Annotate & Draw -->
+            <div class="pe-tool-group" data-group="annotate">
+              <button type="button" class="pe-tool-btn" data-tool="highlight" title="Drag to highlight area">Highlight</button>
+              <button type="button" class="pe-tool-btn" data-tool="underline" title="Drag to add underline">Underline</button>
+              <button type="button" class="pe-tool-btn" data-tool="strike" title="Drag to add strikethrough">Strikethrough</button>
+              <button type="button" class="pe-tool-btn" data-tool="draw" title="Freehand drawing">Draw</button>
+              <button type="button" class="pe-tool-btn" data-tool="eraser" title="Erase drawings">Erase</button>
+              <span class="pe-sep"></span>
+              <button type="button" class="pe-tool-btn" data-tool="comment" title="Add text comment">Comment</button>
+              <button type="button" class="pe-tool-btn" data-tool="sticky" title="Add movable sticky note">Sticky Note</button>
+              <span class="pe-sep"></span>
+              <button type="button" class="pe-tool-btn" data-tool="rect" title="Draw rectangle / area annotation">Rectangle</button>
+              <button type="button" class="pe-tool-btn" data-tool="circle" title="Draw circle / ellipse">Circle</button>
+              <button type="button" class="pe-tool-btn" data-tool="line" title="Draw straight line">Line</button>
+              <button type="button" class="pe-tool-btn" data-tool="arrow" title="Draw arrow">Arrow</button>
+              <button type="button" class="pe-tool-btn" data-tool="polygon" title="Draw polygon / triangle">Polygon</button>
+            </div>
+
+            <!-- Group 3: Insert & Forms -->
+            <div class="pe-tool-group" data-group="insert">
+              <button type="button" class="pe-tool-btn primary" id="peOpenSigBtn" title="Draw, type, or upload visual signature">Signature</button>
+              <button type="button" class="pe-tool-btn" id="peInsertDateBtn" title="Insert today's date">Date</button>
+              <button type="button" class="pe-tool-btn" id="peInsertNameBtn" title="Insert name field">Name</button>
+              <button type="button" class="pe-tool-btn" id="peInsertInitialsBtn" title="Insert initials">Initials</button>
+              <span class="pe-sep"></span>
+              <button type="button" class="pe-tool-btn" id="peFormsBtn" title="Fill detected AcroForm fields">Fill Forms</button>
+              <button type="button" class="pe-tool-btn" data-tool="form_text" title="Add interactive PDF Text Field">+ Text Field</button>
+              <button type="button" class="pe-tool-btn" data-tool="form_check" title="Add interactive PDF Checkbox">+ Checkbox</button>
+              <button type="button" class="pe-tool-btn" data-tool="form_radio" title="Add interactive Radio Button">+ Radio</button>
+              <button type="button" class="pe-tool-btn" data-tool="form_select" title="Add interactive Dropdown">+ Dropdown</button>
+              <button type="button" class="pe-tool-btn" data-tool="form_date" title="Add Date Field">+ Date Field</button>
+            </div>
+
+            <!-- Group 4: Organize Pages -->
+            <div class="pe-tool-group" data-group="organize">
+              <button type="button" class="pe-tool-btn" id="peAddBlankBtn">+ Blank Page</button>
+              <button type="button" class="pe-tool-btn" id="peDupPageBtn">Duplicate Page</button>
+              <button type="button" class="pe-tool-btn danger" id="peDelPageBtn">Delete Page(s)</button>
+              <span class="pe-sep"></span>
+              <button type="button" class="pe-tool-btn" id="peRotCwBtn">Rotate CW</button>
+              <button type="button" class="pe-tool-btn" id="peRotCcwBtn">Rotate CCW</button>
+              <button type="button" class="pe-tool-btn" id="peCropPageBtn">Crop Page</button>
+              <span class="pe-sep"></span>
+              <label class="pe-tool-btn" for="peMergePdfInput">Merge PDF<input type="file" id="peMergePdfInput" class="sr-only" accept="application/pdf,.pdf" /></label>
+              <label class="pe-tool-btn" for="peInsertPdfInput">Insert PDF<input type="file" id="peInsertPdfInput" class="sr-only" accept="application/pdf,.pdf" /></label>
+              <label class="pe-tool-btn" for="peReplacePdfInput">Replace Page<input type="file" id="peReplacePdfInput" class="sr-only" accept="application/pdf,.pdf" /></label>
+              <button type="button" class="pe-tool-btn" id="peExtractPagesBtn" disabled>Extract Selected</button>
+              <button type="button" class="pe-tool-btn" id="peSplitZipBtn">Split All (ZIP)</button>
+            </div>
+
+            <!-- Group 5: Document & Security -->
+            <div class="pe-tool-group" data-group="document">
+              <button type="button" class="pe-tool-btn" id="peWatermarkBtn">Watermark</button>
+              <button type="button" class="pe-tool-btn" id="peHfBtn">Header, Footer &amp; Page Numbers</button>
+              <button type="button" class="pe-tool-btn" id="peMetaBtn">Metadata &amp; Security Info</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Export Progress Strip -->
+        <div class="pe-export-progress" id="peExportProgress" hidden>
+          <span id="peExportStatus">Exporting PDF...</span>
+        </div>
+
+        <!-- Find & Search Bar -->
+        <div class="pe-search-bar" id="peSearchBar" hidden>
+          <input type="search" id="peSearchInput" class="pe-input" style="max-width:240px" placeholder="Find text in PDF..." />
+          <button type="button" class="pe-tool-btn" id="peSearchGoBtn">Find</button>
+          <button type="button" class="pe-tool-btn" id="peSearchPrevBtn">Prev</button>
+          <button type="button" class="pe-tool-btn" id="peSearchNextBtn">Next</button>
+          <button type="button" class="pe-tool-btn" id="peSearchClearBtn">Clear</button>
+          <span id="peSearchStatus" style="font-weight:600;color:var(--ink)"></span>
+        </div>
+
+        <!-- Mobile Collapsible Panel Switcher -->
+        <div class="pe-mobile-pane-bar" role="tablist" aria-label="Mobile workspace view">
+          <button type="button" class="pe-tool-btn active" data-mob-pane="canvas" style="flex:1">Canvas</button>
+          <button type="button" class="pe-tool-btn" data-mob-pane="pages" style="flex:1">Pages</button>
+          <button type="button" class="pe-tool-btn" data-mob-pane="props" style="flex:1">Properties</button>
+        </div>
+
+        <!-- Main Three-Pane Body -->
+        <div class="pe-body" id="peBody" data-mob-pane="canvas">
+          <!-- Left Sidebar: Page Management & Thumbnails -->
+          <aside class="pe-left-pane" aria-label="Page thumbnails">
+            <div class="pe-pane-head">
+              <span>Pages</span>
+              <input type="range" id="peThumbZoom" min="84" max="170" value="120" style="width:74px" title="Zoom thumbnails" />
+            </div>
+            <div class="pe-thumb-list" id="peThumbList"></div>
+          </aside>
+
+          <!-- Center Editing Canvas -->
+          <div class="pe-center-pane" id="peCenterPane">
+            <div class="pe-page-stage" id="pePageStage">
+              <canvas class="pe-pdf-canvas" id="pePdfCanvas"></canvas>
+              <div class="pe-text-layer" id="peTextLayer"></div>
+              <svg class="pe-svg-layer" id="peSvgLayer"></svg>
+              <div class="pe-obj-layer" id="peObjLayer"></div>
+              <div class="pe-doc-overlay" id="peDocOverlay"></div>
+            </div>
+          </div>
+
+          <!-- Right Sidebar: Properties Panel -->
+          <aside class="pe-right-pane" aria-label="Object properties">
+            <div class="pe-pane-head"><span>Properties</span></div>
+            <div class="pe-props-scroll" id="pePropsBody"></div>
+          </aside>
+        </div>
+
+        <!-- Bottom Navigation & Zoom Bar -->
+        <div class="pe-bottom-bar">
+          <div class="pe-top-group">
+            <button type="button" class="pe-tool-btn" id="pePrevPageBtn">← Prev</button>
+            <strong id="pePageIndicator" style="color:var(--ink)">Page 1 of 1</strong>
+            <button type="button" class="pe-tool-btn" id="peNextPageBtn">Next →</button>
+          </div>
+
+          <div class="pe-top-group">
+            <button type="button" class="pe-tool-btn" id="peZoomOutBtn">−</button>
+            <strong id="peZoomLbl" style="color:var(--ink);min-width:46px;text-align:center">100%</strong>
+            <button type="button" class="pe-tool-btn" id="peZoomInBtn">+</button>
+            <button type="button" class="pe-tool-btn" id="peFitWidthBtn">Fit Width</button>
+            <button type="button" class="pe-tool-btn" id="peFitPageBtn">Fit Page</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SEO EDUCATIONAL CONTENT SECTIONS ============ -->
+      <section class="workflow-band" aria-labelledby="peHowTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Simple 3-step PDF editing</span>
+            <h2 class="section-title" id="peHowTitle">How to Edit a PDF Online</h2>
+            <p class="section-desc">
+              Open any PDF in your browser, make visual or text edits, organize pages, and download a clean PDF without uploading files to external servers.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <h3>Upload your PDF locally</h3>
+              <p>Drag and drop any single-page or multi-page PDF into the editor, or start from a blank A4 document.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <h3>Edit text, annotate, sign &amp; organize</h3>
+              <p>Add text boxes, images, highlights, shapes, visual signatures, watermarks, headers, footers, page numbers, or reorder pages.</p>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <h3>Export &amp; download instantly</h3>
+              <p>Click Download PDF to rebuild your edited document locally with original vector text preserved wherever possible.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="saas-section" aria-labelledby="peFeatTitle">
+        <div class="saas-container">
+          <div class="pe-guide-grid">
+            <div class="pe-info-card">
+              <span class="section-kicker">Complete document studio</span>
+              <h2 id="peFeatTitle">PDF Editing Features</h2>
+              <p>
+                Open Sign PDF Editor combines text editing, visual whiteout replacement, optional browser OCR for scanned pages, image and logo placement, freehand drawing, shapes, sticky notes, AcroForm filling, page management, watermarks, headers, footers, and metadata editing in a single workspace.
+              </p>
+            </div>
+
+            <div class="pe-info-card">
+              <span class="section-kicker">Text &amp; visual branding</span>
+              <h2>How to Add Text and Images to PDFs</h2>
+              <p>
+                Select <strong>Add Text</strong> in the ribbon and click anywhere on the page to type inline, then customize font family, size, bold/italic/underline, color, alignment, and background in the Properties panel. Use <strong>Add Image</strong> to insert PNG, JPG, or WebP logos, stamps, or product photos with aspect-ratio lock and crop controls.
+              </p>
+            </div>
+
+            <div class="pe-info-card">
+              <span class="section-kicker">Visual signing</span>
+              <h2>How to Sign a PDF</h2>
+              <p>
+                Open the <strong>Insert &amp; Forms</strong> tab and click <strong>Signature</strong> to draw with a mouse or touch screen, type a signature appearance, or upload a signature scan. Visual signature images are clearly distinguished from certificate-based cryptographic digital signatures.
+              </p>
+            </div>
+
+            <div class="pe-info-card">
+              <span class="section-kicker">Page organization</span>
+              <h2>How to Organize PDF Pages</h2>
+              <p>
+                Use the left thumbnail sidebar and <strong>Organize Pages</strong> tab to drag-and-drop reorder pages, rotate clockwise or counterclockwise, add blank pages, duplicate or delete pages, crop margins, merge another PDF, extract selected pages, or split every page into a ZIP archive.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FREQUENTLY ASKED QUESTIONS ============ -->
+      <section class="sg-faq-band" aria-labelledby="peFaqTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">Frequently asked questions</span>
+            <h2 class="section-title" id="peFaqTitle">Frequently Asked Questions</h2>
+          </div>
+
+          <div class="sg-faq-list">
+            <details class="sg-faq-item" open>
+              <summary>
+                <span>1. Is my PDF uploaded to a server when I edit it?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. Rendering, editing, OCR, form filling, and PDF rebuilding all run 100% locally inside your browser memory. Open Sign never uploads or stores your documents.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>2. How does existing PDF text editing work?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>When you choose Edit Existing Text, Open Sign detects extractable text spans on the page so you can click any span to place a cleanly matched cover-and-replace text box without corrupting complex embedded PDF fonts. For scanned PDFs, use optional browser OCR (Tesseract.js) and review recognized text carefully.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>3. Does the editor preserve original PDF quality instead of rasterizing?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Export uses pdf-lib to copy your original vector and text PDF pages directly and draw your edits on top, preserving crisp text and original page dimensions.</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>4. Are signatures created here cryptographic digital signatures?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>No. Signatures placed in the PDF Editor are visual electronic signature images, not certificate-based cryptographic digital signatures (such as DSC / PKI tokens).</p>
+              </div>
+            </details>
+
+            <details class="sg-faq-item">
+              <summary>
+                <span>5. Can I fill existing PDF forms or add new form fields?</span>
+                <span class="sg-faq-plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="sg-faq-body">
+                <p>Yes. Click Fill Forms under the Insert &amp; Forms tab to fill detected text fields, checkboxes, radio buttons, and dropdowns, or insert new interactive AcroForm fields onto any page.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RELATED PDF TOOLS ============ -->
+      <section class="saas-section" aria-labelledby="peRelatedTitle">
+        <div class="saas-container">
+          <div class="section-head">
+            <span class="section-kicker">More PDF &amp; Document Tools</span>
+            <h2 class="section-title" id="peRelatedTitle">Related PDF Tools</h2>
+          </div>
+
+          <div class="pe-related-grid">
+            <a class="pe-related-card" href="../pdf-merger/index.html">
+              <div class="pe-related-top"><span class="pe-related-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 15h6M12 12v6"/></svg></span><span class="nav-live-badge">Live</span></div>
+              <h3>PDF Merger</h3>
+              <p>Combine multiple PDF files in your preferred order locally in your browser.</p>
+              <span class="pe-related-url">Open PDF Merger →</span>
+            </a>
+
+            <a class="pe-related-card" href="../pdf-splitter/index.html">
+              <div class="pe-related-top"><span class="pe-related-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 15h8"/></svg></span><span class="nav-live-badge">Live</span></div>
+              <h3>PDF Splitter</h3>
+              <p>Split PDFs by page ranges or extract individual pages into a ZIP archive.</p>
+              <span class="pe-related-url">Open PDF Splitter →</span>
+            </a>
+
+            <a class="pe-related-card" href="../pdf-compressor/index.html">
+              <div class="pe-related-top"><span class="pe-related-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M12 12v6M9 15l3 3 3-3"/></svg></span><span class="nav-live-badge">Live</span></div>
+              <h3>PDF Compressor</h3>
+              <p>Reduce PDF file size cleanly for email and portal uploads without server storage.</p>
+              <span class="pe-related-url">Open PDF Compressor →</span>
+            </a>
+
+            <a class="pe-related-card" href="../pdf-to-jpg/index.html">
+              <div class="pe-related-top"><span class="pe-related-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 15l-5-5L5 20"/></svg></span><span class="nav-live-badge">Live</span></div>
+              <h3>PDF to JPG Converter</h3>
+              <p>Convert PDF pages into crisp JPG images at custom DPI directly in your browser.</p>
+              <span class="pe-related-url">Open PDF to JPG →</span>
+            </a>
+
+            <article class="pe-related-card" aria-disabled="true">
+              <div class="pe-related-top"><span class="pe-related-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg></span><span class="nav-soon-badge">Soon</span></div>
+              <h3>JPG to PDF Converter</h3>
+              <p>Turn JPG and PNG photos into clean multi-page PDF documents.</p>
+              <span class="pe-related-url">Coming Soon</span>
+            </article>
+
+            <article class="pe-related-card" aria-disabled="true">
+              <div class="pe-related-top"><span class="pe-related-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span><span class="nav-soon-badge">Soon</span></div>
+              <h3>PDF Watermark Generator</h3>
+              <p>Dedicated batch watermarking tool (already built right into PDF Editor above).</p>
+              <span class="pe-related-url">Coming Soon</span>
+            </article>
+
+            <article class="pe-related-card" aria-disabled="true">
+              <div class="pe-related-top"><span class="pe-related-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/></svg></span><span class="nav-soon-badge">Soon</span></div>
+              <h3>PDF Page Number Generator</h3>
+              <p>Dedicated page numbering tool (also available under Document tab above).</p>
+              <span class="pe-related-url">Coming Soon</span>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ MODAL: SIGNATURE STUDIO ============ -->
+  <dialog id="peSigDialog" class="pe-modal" aria-labelledby="peSigTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="peSigTitle">Insert Visual Signature</h2>
+        <p class="dlg-sub">Places a visual signature image on your PDF (not a certificate-based cryptographic digital signature).</p>
+      </div>
+      <button class="icon-btn" id="peSigCloseTop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="pe-field">
+        <label>Draw Signature</label>
+        <canvas id="peSigCanvas" class="pe-sig-canvas" width="520" height="150"></canvas>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <button type="button" class="pe-tool-btn primary" id="peSigInsertDrawBtn">Insert Drawn Signature</button>
+          <button type="button" class="pe-tool-btn" id="peSigClearBtn">Clear</button>
+        </div>
+      </div>
+
+      <div class="pe-field" style="padding-top:10px;border-top:1px solid var(--line)">
+        <label for="peSigTypeInput">Or Type Signature</label>
+        <div style="display:flex;gap:8px">
+          <input type="text" id="peSigTypeInput" class="pe-input" placeholder="Type your full name..." />
+          <button type="button" class="pe-tool-btn" id="peSigInsertTypeBtn">Insert Typed</button>
+        </div>
+      </div>
+
+      <div class="pe-field" style="padding-top:10px;border-top:1px solid var(--line)">
+        <label class="pe-tool-btn" for="peSigUploadInput">Upload Signature or Company Stamp Image (PNG/JPG/WebP)<input type="file" id="peSigUploadInput" class="sr-only" accept="image/png,image/jpeg,image/webp" /></label>
+      </div>
+
+      <div id="peSavedSigsTray" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL: WATERMARK ============ -->
+  <dialog id="peWmDialog" class="pe-modal" aria-labelledby="peWmTitle">
+    <div class="dlg-head">
+      <div><h2 id="peWmTitle">Watermark Settings</h2></div>
+      <button class="icon-btn" id="peWmCloseTop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <label style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px"><input type="checkbox" id="peWmEnabled" /> Enable Watermark</label>
+      <div style="display:flex;flex-wrap:wrap;gap:5px">
+        <button type="button" class="pe-tool-btn" data-wm-preset="CONFIDENTIAL">CONFIDENTIAL</button>
+        <button type="button" class="pe-tool-btn" data-wm-preset="DRAFT">DRAFT</button>
+        <button type="button" class="pe-tool-btn" data-wm-preset="APPROVED">APPROVED</button>
+        <button type="button" class="pe-tool-btn" data-wm-preset="SAMPLE">SAMPLE</button>
+        <button type="button" class="pe-tool-btn" data-wm-preset="INTERNAL USE ONLY">INTERNAL USE ONLY</button>
+      </div>
+      <div class="pe-grid-2">
+        <div class="pe-field"><label>Watermark Text</label><input type="text" id="peWmText" class="pe-input" /></div>
+        <div class="pe-field"><label>Font Size</label><input type="number" id="peWmSize" class="pe-input" min="14" max="120" value="48" /></div>
+        <div class="pe-field"><label>Color</label><input type="color" id="peWmColor" class="pe-input" style="height:36px;padding:2px" value="#e42527" /></div>
+        <div class="pe-field"><label>Opacity (0.05 – 1)</label><input type="number" id="peWmOpacity" class="pe-input" step="0.05" min="0.05" max="1" value="0.22" /></div>
+        <div class="pe-field"><label>Rotation (°)</label><input type="number" id="peWmRot" class="pe-input" value="-35" /></div>
+        <div class="pe-field"><label>Position</label><select id="peWmPos" class="pe-select"><option value="center">Center</option><option value="top">Top</option><option value="bottom">Bottom</option></select></div>
+        <div class="pe-field"><label>Apply To</label><select id="peWmScope" class="pe-select"><option value="all">All Pages</option><option value="selected">Selected Pages Only</option></select></div>
+        <div class="pe-field"><label>Or Image Watermark</label><label class="pe-tool-btn" for="peWmImgInput">Upload Image<input type="file" id="peWmImgInput" class="sr-only" accept="image/png,image/jpeg,image/webp" /></label></div>
+      </div>
+      <div class="dlg-actions"><button type="button" class="btn primary" id="peWmApplyBtn">Apply Watermark</button></div>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL: HEADER, FOOTER & PAGE NUMBERS ============ -->
+  <dialog id="peHfDialog" class="pe-modal" aria-labelledby="peHfTitle">
+    <div class="dlg-head">
+      <div><h2 id="peHfTitle">Header, Footer &amp; Page Numbers</h2></div>
+      <button class="icon-btn" id="peHfCloseTop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <label style="display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:13px"><input type="checkbox" id="peHfEnabled" /> Enable Header &amp; Footer</label>
+        <label style="display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:13px"><input type="checkbox" id="peHfPn" /> Enable Page Numbers</label>
+      </div>
+      <div class="pe-grid-2">
+        <div class="pe-field"><label>Header Left (Company)</label><input type="text" id="peHfHL" class="pe-input" /></div>
+        <div class="pe-field"><label>Header Center (Title)</label><input type="text" id="peHfHC" class="pe-input" /></div>
+        <div class="pe-field"><label>Header Right (Date)</label><input type="text" id="peHfHR" class="pe-input" /></div>
+        <div class="pe-field"><label>Footer Left (Company Info)</label><input type="text" id="peHfFL" class="pe-input" /></div>
+        <div class="pe-field"><label>Footer Center (Copyright)</label><input type="text" id="peHfFC" class="pe-input" /></div>
+        <div class="pe-field"><label>Footer Right</label><input type="text" id="peHfFR" class="pe-input" /></div>
+        <div class="pe-field"><label>Page Number Position</label><select id="peHfPnPos" class="pe-select"><option value="top-left">Top Left</option><option value="top-center">Top Center</option><option value="top-right">Top Right</option><option value="bottom-left">Bottom Left</option><option value="bottom-center">Bottom Center</option><option value="bottom-right" selected>Bottom Right</option></select></div>
+        <div class="pe-field"><label>Number Format</label><select id="peHfPnFmt" class="pe-select"><option value="Page {n} of {total}">Page 1 of N</option><option value="{n} / {total}">1 / N</option><option value="{n}">1</option></select></div>
+        <div class="pe-field"><label>Start Numbering From Page</label><input type="number" id="peHfStart" class="pe-input" min="1" value="1" /></div>
+        <div class="pe-field"><label>Font Size / Color</label><div style="display:flex;gap:6px"><input type="number" id="peHfSize" class="pe-input" value="10" /><input type="color" id="peHfColor" class="pe-input" style="width:46px;height:36px;padding:2px" value="#4a5568" /></div></div>
+      </div>
+      <div class="dlg-actions"><button type="button" class="btn primary" id="peHfApplyBtn">Apply to Document</button></div>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL: CROP PAGE ============ -->
+  <dialog id="peCropDialog" class="pe-modal" aria-labelledby="peCropTitle">
+    <div class="dlg-head">
+      <div><h2 id="peCropTitle">Crop Current Page Margins (%)</h2></div>
+      <button class="icon-btn" id="peCropCloseTop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
+    </div>
+    <div class="pe-grid-2" style="margin-bottom:14px">
+      <div class="pe-field"><label>Top Margin %</label><input type="number" id="peCropT" class="pe-input" min="0" max="40" value="0" /></div>
+      <div class="pe-field"><label>Right Margin %</label><input type="number" id="peCropR" class="pe-input" min="0" max="40" value="0" /></div>
+      <div class="pe-field"><label>Bottom Margin %</label><input type="number" id="peCropB" class="pe-input" min="0" max="40" value="0" /></div>
+      <div class="pe-field"><label>Left Margin %</label><input type="number" id="peCropL" class="pe-input" min="0" max="40" value="0" /></div>
+    </div>
+    <div class="dlg-actions"><button type="button" class="btn primary" id="peCropApplyBtn">Save Crop Box</button></div>
+  </dialog>
+
+  <!-- ============ MODAL: FILL EXISTING PDF FORMS ============ -->
+  <dialog id="peFormsDialog" class="pe-modal" aria-labelledby="peFormsTitle">
+    <div class="dlg-head">
+      <div><h2 id="peFormsTitle">Fill Detected PDF Form Fields</h2></div>
+      <button class="icon-btn" id="peFormsCloseTop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
+    </div>
+    <div id="peFormsList" style="display:flex;flex-direction:column;gap:10px;max-height:50vh;overflow-y:auto;margin-bottom:14px"></div>
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="peFormsClearBtn">Clear All Fields</button>
+      <button type="button" class="btn primary" id="peFormsSaveBtn">Save Form Values</button>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL: METADATA & SECURITY INFO ============ -->
+  <dialog id="peMetaDialog" class="pe-modal" aria-labelledby="peMetaModalTitle">
+    <div class="dlg-head">
+      <div><h2 id="peMetaModalTitle">PDF Metadata &amp; Security Information</h2></div>
+      <button class="icon-btn" id="peMetaCloseTop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="pe-grid-2">
+        <div class="pe-field"><label>Title</label><input type="text" id="peMetaTitle" class="pe-input" /></div>
+        <div class="pe-field"><label>Author</label><input type="text" id="peMetaAuthor" class="pe-input" /></div>
+        <div class="pe-field"><label>Subject</label><input type="text" id="peMetaSubject" class="pe-input" /></div>
+        <div class="pe-field"><label>Keywords (comma-separated)</label><input type="text" id="peMetaKeywords" class="pe-input" /></div>
+        <div class="pe-field"><label>Creator</label><input type="text" id="peMetaCreator" class="pe-input" /></div>
+        <div class="pe-field"><label>Producer</label><input type="text" id="peMetaProducer" class="pe-input" /></div>
+      </div>
+      <div style="padding:10px 12px;border-radius:8px;background:var(--surface-tint);border:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.5">
+        <strong>PDF Password &amp; Encryption Note:</strong> Standard browser <code>pdf-lib</code> does not natively apply AES-256 PDF password encryption. When opening an encrypted PDF, Open Sign prompts for the valid owner/user password and never attempts to bypass or crack PDF protection.
+      </div>
+      <div class="dlg-actions"><button type="button" class="btn primary" id="peMetaApplyBtn">Save Metadata</button></div>
+    </div>
+  </dialog>
+
+  <!-- ============ MODAL: OCR RESULT ============ -->
+  <dialog id="peOcrDialog" class="pe-modal" aria-labelledby="peOcrTitle">
+    <div class="dlg-head">
+      <div>
+        <h2 id="peOcrTitle">Browser OCR Result</h2>
+        <p class="dlg-sub">OCR results from scanned pages may contain recognition inaccuracies, always verify before copying.</p>
+      </div>
+      <button class="icon-btn" id="peOcrCloseTop" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18" /></svg></button>
+    </div>
+    <textarea id="peOcrOutput" class="pe-textarea" style="min-height:200px;margin-bottom:12px"></textarea>
+    <div class="dlg-actions"><button type="button" class="btn primary" id="peOcrCopyBtn">Copy Recognized Text</button></div>
+  </dialog>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <!-- Brand & Social Column -->
+        <div class="footer-brand">
+          <a class="footer-logo-link" href="../../index.html" aria-label="Open Sign home">
+            <img class="footer-logo" src="../../assets/open sign logo.png" alt="Open Sign logo" width="156" height="42" />
+          </a>
+          <p class="footer-tagline">
+            Enterprise-grade eSignature, smart PDF utilities, and business document tools engineered for speed, precision, and zero-retention browser privacy.
+          </p>
+          <div class="footer-socials" aria-label="Open Sign social media">
+            <a class="footer-social-btn" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on X">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="footer-social-btn" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Open Sign on YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 1: E-Signature -->
+        <div class="footer-col">
+          <p class="footer-col-title">E-Signature</p>
+          <nav class="footer-links" aria-label="Footer E-Signature tools">
+            <a href="../../index.html">Sign PDF Online</a>
+            <a href="../../index.html#features">Smart Sign Auto-Detect</a>
+            <a href="../../signature-generator.html">Signature Generator</a>
+            <a href="../../index.html#workflow">How It Works</a>
+          </nav>
+        </div>
+
+        <!-- Column 2: PDF & Document -->
+        <div class="footer-col">
+          <p class="footer-col-title">PDF &amp; Document</p>
+          <nav class="footer-links" aria-label="Footer PDF and Document tools">
+            <a href="./" aria-current="page">PDF Editor</a>
+            <a href="../pdf-merger/index.html">PDF Merger</a>
+            <a href="../../tools/pdf-compressor/index.html">PDF Compressor</a>
+            <a href="../../tools/pdf-splitter/index.html">PDF Splitter</a>
+            <a href="../../tools/pdf-to-jpg/index.html">PDF to JPG Converter</a>
+            <span class="footer-soon-item" aria-disabled="true">JPG to PDF Converter <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Watermark Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Page Number Generator <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">PDF Metadata Editor <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 3: Human Resource -->
+        <div class="footer-col">
+          <p class="footer-col-title">Human Resource</p>
+          <nav class="footer-links" aria-label="Footer Human Resource tools">
+            <a href="../../payslip-generator.html">Payslip Generator</a>
+            <a href="../../tools/bulk-payslip-generator/index.html">Bulk Payslip Generator</a>
+            <a href="../../tools/attendance-sheet-generator/index.html">Attendance Sheet Generator</a>
+            <a href="../../tools/kpi-kra-calculator/index.html">KPI &amp; KRA Calculator</a>
+            <span class="footer-soon-item" aria-disabled="true">Salary &amp; Payroll Tools <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">HR Documents &amp; Leave <span class="footer-soon-tag">Soon</span></span>
+            <span class="footer-soon-item" aria-disabled="true">Recruitment &amp; KPI <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Business + More Suites -->
+        <div class="footer-col">
+          <p class="footer-col-title">Business</p>
+          <nav class="footer-links" aria-label="Footer Business tools">
+            <a href="../../invoice-generator.html">Invoice Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Quotation Generator <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+
+          <p class="footer-col-title" style="margin-top:12px">More Suites</p>
+          <nav class="footer-links" aria-label="Footer upcoming tool suites">
+            <a href="../../tools/robots-txt-generator/index.html">Robots.txt Generator</a>
+            <a href="../../tools/meta-tag-generator/index.html">Meta Tag Generator</a>
+            <a href="../../tools/schema-markup-generator/index.html">Schema Markup Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">SEO Suite <span class="footer-soon-tag">Soon</span></span>
+            <a href="../../tools/qr-code-generator/index.html">QR Code Generator</a>
+            <span class="footer-soon-item" aria-disabled="true">Developer Suite <span class="footer-soon-tag">Soon</span></span>
+          </nav>
+        </div>
+
+        <!-- Column 4: Company -->
+        <div class="footer-col">
+          <p class="footer-col-title">Company</p>
+          <nav class="footer-links" aria-label="Footer Company navigation">
+            <a href="../../index.html">Home</a>
+            <a href="../../about.html">About Us</a>
+            <a href="../../about.html#security">Security &amp; Privacy</a>
+            <a href="../../contact.html">Contact Us</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Open Sign. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="../../about.html">About Us</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../about.html#security">Privacy &amp; Security</a>
+          <span aria-hidden="true">·</span>
+          <a href="../../contact.html">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../../nav.js"></script>
+  <script src="pdf-editor.js"></script>
+</body>
+</html>
